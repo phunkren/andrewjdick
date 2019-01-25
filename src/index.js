@@ -11,13 +11,25 @@ import * as serviceWorker from "./serviceWorker";
 const GlobalStyle = createGlobalStyle`
   ${reset};
 
-  html, body, div#wallop {
-    height: 100%;
+  html {
+    min-height: 100%;
+    display: flex;
+  }
+  
+  body, div#wallop {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     font-family: 'Lato', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto Slab', serif;
+    margin-bottom: 1em;
+  }
+
+  p {
+    padding-bottom: 1em;
   }
 `;
 
