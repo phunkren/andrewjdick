@@ -1,0 +1,65 @@
+import React from "react";
+import { Social } from "./Social";
+import { Navigation } from "./Navigation";
+import { Header, Container, Section, Name, Info } from "./styles";
+
+export class Home extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.myRef = React.createRef();
+
+    this.state = {
+      clientX: 0,
+      clientY: 0,
+      clientWidth: 0,
+      clientHeight: 0
+    };
+  }
+
+  _onMouseMove({ clientX, clientY }) {
+    this.setState({ clientX, clientY });
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.updateDimensions.bind(this));
+    this.updateDimensions();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions.bind(this));
+  }
+
+  updateDimensions() {
+    const { clientHeight, clientWidth } = this.myRef.current;
+    this.setState({ clientWidth, clientHeight });
+  }
+
+  render() {
+    const { clientX, clientY, clientWidth, clientHeight } = this.state;
+
+    return (
+        <Container
+          ref={this.myRef}
+          clientX={clientX}
+          clientY={clientY}
+          clientWidth={clientWidth}
+          clientHeight={clientHeight}
+          onMouseMove={this._onMouseMove.bind(this)}
+        >
+          <Header>
+            <Navigation />
+            <Social />
+          </Header>
+
+          <Section>
+            <Name>Andrew James Dick</Name>
+            <Info>Frontend developer @ Fathom</Info>
+            <Info>London, UK</Info>
+          </Section>
+
+          <footer>Twitter</footer>
+        </Container>
+    );
+  }
+}
