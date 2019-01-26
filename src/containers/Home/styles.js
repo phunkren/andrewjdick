@@ -12,9 +12,14 @@ export const Section = styled.section`
 
 export const Header = styled.header`
   display: flex;
+  flex-direction: column-reverse;
   justify-content: space-between;
   align-items: center;
-  padding: 2em;
+  padding: 2em 2em 0;
+
+  ${media.tablet`
+    flex-direction: row;
+  `};
 `;
 
 export const Name = styled.h1`

@@ -25,7 +25,7 @@ export const EXPERIENCE = [
   },
   {
     position: "Associate developer",
-    company: "Cohaesus Projects Ltd",
+    company: "Cohaesus",
     url: "https://cohaesus.co.uk/",
     dates: "Feb 2015 - June 2017",
     description: () => (
@@ -137,8 +137,8 @@ export const INTERESTS = [
 export const HOBBIES = [
   "cycling",
   "boxing",
-  "video games",
   "guitar",
+  "video games",
   "cooking",
   "rugby"
 ];

@@ -12,6 +12,7 @@ import {
   Section,
   Subtitle,
   Description,
+  MobileH2,
   Block,
   Text,
   Tag,
@@ -34,6 +35,7 @@ export const Resume = () => (
       <Content>
         <Sidebar>
           <Block>
+            <MobileH2>Contact</MobileH2>
             <Contact />
           </Block>
 

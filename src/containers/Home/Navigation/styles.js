@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "components/Link";
+import { media } from "media.js";
 
 export const StyledLink = styled(Link)`
   text-decoration: underline;
@@ -12,7 +13,13 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-export const List = styled.ul``;
+export const List = styled.ul`
+  margin-top: 2em;
+
+  ${media.tablet`
+    margin-top: 0;
+  `};
+`;
 
 export const ListItem = styled.li`
   display: inline;

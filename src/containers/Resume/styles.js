@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { rgba } from "polished";
 import { COLORS, ALPHAS } from "constants.js";
+import { media } from "media.js";
 
 export const Container = styled.main`
   flex: 1;
@@ -12,28 +13,45 @@ export const Container = styled.main`
 `;
 
 export const Header = styled.header`
-  padding: 3em;
+  padding: 2.5em;
+  text-align: center;
+
+  ${media.tablet`
+    padding: 3em;
+    text-align: left;
+  `};
 `;
 export const Content = styled.div`
   flex: 1;
-  flex-direction: row;
-  display: inline-flex;
-  flex-wrap: wrap;
-  padding: 1em;
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 1.5em;
   border-top: 5px solid ${COLORS.black};
   border-bottom: 5px solid ${COLORS.black};
+
+  ${media.tablet`
+    display: inline-flex;
+    flex-direction: row;
+    padding: 1em;
+  `};
 `;
 
 export const Sidebar = styled.aside`
-  flex: 0 1 25%;
-  border-right: 2px solid ${COLORS.black};
-  padding: 1em 2em 2em 1em;
-  margin-right: 1em;
+  ${media.tablet`
+    flex: 0 1 25%;
+    margin-right: 1em;
+    border-right: 2px solid ${COLORS.black};
+    padding: 1em 2em 2em 1em;
+  `};
 `;
 
 export const Section = styled.section`
-  flex: 1;
-  padding: 1em;
+  padding: 0;
+
+  ${media.tablet`
+    flex: 1;
+    padding: 1em;
+  `};
 `;
 
 export const Footer = styled.footer`
@@ -45,10 +63,15 @@ export const Block = styled.div`
 `;
 
 export const H1 = styled.h1`
-  font-size: 3rem;
+  font-size: 1.75rem;
   font-weight: 300;
-  line-height: 4rem;
+  line-height: 2.5rem;
   margin-bottom: 0;
+
+  ${media.tablet`
+    font-size: 3rem;
+    line-height: 4rem;
+  `};
 `;
 
 export const H2 = styled.h2`
@@ -56,6 +79,12 @@ export const H2 = styled.h2`
   font-weight: 300;
   line-height: 2.5rem;
   border-bottom: 1px solid ${COLORS.black};
+`;
+
+export const MobileH2 = styled(H2)`
+  ${media.tablet`
+    display: none;
+  `};
 `;
 
 export const H3 = styled.h3`
