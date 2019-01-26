@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "media.js";
 
 export const Section = styled.section`
   flex: 1;
@@ -17,15 +18,25 @@ export const Header = styled.header`
 `;
 
 export const Name = styled.h1`
-  font-size: 4rem;
-  line-height: 4.4rem;
+  font-size: 2rem;
+  line-height: 2.2rem;
   margin-bottom: 10px;
   text-align: center;
+
+  ${media.tablet`
+    font-size: 4rem;
+    line-height: 4.4rem;
+  `};
 `;
 
 export const Info = styled.p`
   padding-bottom: 0;
-  font-size: 2rem;
-  line-height: 2.5rem;
+  font-size: 1rem;
+  line-height: 1.25rem;
   text-align: center;
+
+  ${media.tablet`
+    font-size: 2rem;
+    line-height: 2.5rem;
+  `};
 `;

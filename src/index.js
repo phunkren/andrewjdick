@@ -8,6 +8,7 @@ import { Resume } from "containers/Resume";
 import { NotFound } from "containers/NotFound";
 import * as serviceWorker from "./serviceWorker";
 import { ColouredContainer } from "./components/ColouredContainer";
+import { media } from "media.js";
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
@@ -22,9 +23,15 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     font-family: 'Lato', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
 		font-weight: 400;
-		line-height: 1.6rem;
+		line-height: 1.2rem;
+
+    ${media.tablet`
+      font-size: 1.2rem;
+		  font-weight: 400;
+		  line-height: 1.6rem;
+    `}
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -44,7 +51,7 @@ export const App = () => (
       <ColouredContainer>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/résumé" component={Resume} />
+          <Route path="/resume" component={Resume} />
           <Route component={NotFound} />
         </Switch>
       </ColouredContainer>

@@ -9,6 +9,6 @@ export const NavigationLink = ({ children, ...props }) => (
 
 export const Navigation = () => (
   <List>
-    <NavigationLink href="./résumé">Résumé</NavigationLink>
+    <NavigationLink href="./resume">Résumé</NavigationLink>
   </List>
 );
