@@ -15,19 +15,19 @@ const iconProps = {
 
 export const Social = () => (
   <SocialLinks>
-    <SocialLink href={SOCIAL_LINKS.github.url} target="_blank">
+    <SocialLink href={SOCIAL_LINKS.github.url}>
       <GitHubIcon {...iconProps} />
     </SocialLink>
 
-    <SocialLink href={SOCIAL_LINKS.medium.url} target="_blank">
+    <SocialLink href={SOCIAL_LINKS.medium.url}>
       <MediumIcon {...iconProps} />
     </SocialLink>
 
-    <SocialLink href={SOCIAL_LINKS.twitter.url} target="_blank">
+    <SocialLink href={SOCIAL_LINKS.twitter.url}>
       <TwitterIcon {...iconProps} />
     </SocialLink>
 
-    <SocialLink href={SOCIAL_LINKS.linkedIn.url} target="_blank">
+    <SocialLink href={SOCIAL_LINKS.linkedIn.url}>
       <LinkedInIcon {...iconProps} />
     </SocialLink>
   </SocialLinks>
