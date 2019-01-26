@@ -4,8 +4,8 @@ import {
   MediumIcon,
   TwitterIcon,
   LinkedInIcon
-} from "components/icons/";
-import { SOCIAL_LINKS } from "../../../constants";
+} from "components/icons";
+import { SOCIAL_LINKS } from "constants.js";
 import { SocialLinks, SocialLink } from "./styles";
 
 const iconProps = {

@@ -1,21 +1,34 @@
 import React, { Fragment } from "react";
-import { StarIcon } from "components/icons";
-import { StyledStarIcon, Skill, SkillRating, Label} from "./styles";
+import {
+  FilledStarIcon,
+  EmptyStarIcon,
+  Skill,
+  SkillRating,
+  Label
+} from "./styles";
 import { EXPERTISE } from "../data";
 
 export const Rating = ({ skills, numberOfStars }) => (
   <Fragment>
-    {skills.map(({ id, rating }) => (
-      <Skill>
+    {skills.map(({ id, rating }, index) => (
+      <Skill key={`Skill-${index}`}>
         <Label>{id}</Label>
         <SkillRating>
-          {Array.from(new Array(numberOfStars)).map((star, index) => (
-            <StyledStarIcon 
-              key={index}
-              width="1.5em"
-              height="1.5em" 
-              isFilled={Boolean(rating > index)} />
-          ))}
+          {Array.from(new Array(numberOfStars)).map((star, index) =>
+            rating > index ? (
+              <FilledStarIcon
+                key={`Star-${index}`}
+                width="1.5em"
+                height="1.5em"
+              />
+            ) : (
+              <EmptyStarIcon
+                key={`Star-${index}`}
+                width="1.5em"
+                height="1.5em"
+              />
+            )
+          )}
         </SkillRating>
       </Skill>
     ))}

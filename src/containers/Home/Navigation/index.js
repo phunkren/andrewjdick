@@ -1,14 +1,14 @@
 import React from "react";
-import { Link, List, ListItem } from "./styles";
+import { StyledLink, List, ListItem } from "./styles";
 
 export const NavigationLink = ({ children, ...props }) => (
-  <Link {...props}>
+  <StyledLink {...props}>
     <ListItem>{children}</ListItem>
-  </Link>
+  </StyledLink>
 );
 
 export const Navigation = () => (
   <List>
-    <NavigationLink href="./resume">Resume</NavigationLink>
+    <NavigationLink href="./résumé">Résumé</NavigationLink>
   </List>
 );

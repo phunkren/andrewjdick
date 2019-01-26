@@ -1,12 +1,12 @@
 import styled from "styled-components";
+import { Link } from "components/Link";
 
-export const Link = styled.a`
+export const StyledLink = styled(Link)`
+  text-decoration: underline;
+
   &:not(:first-child) {
     margin-left: 1em;
-    text-decoration: none;
   }
-
-  color: black;
 `;
 
 export const List = styled.ul``;

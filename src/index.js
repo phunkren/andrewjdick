@@ -7,6 +7,7 @@ import { Home } from "containers/Home";
 import { Resume } from "containers/Resume";
 import { NotFound } from "containers/NotFound";
 import * as serviceWorker from "./serviceWorker";
+import { ColouredContainer } from "./components/ColouredContainer";
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
@@ -21,6 +22,9 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     font-family: 'Lato', sans-serif;
+    font-size: 1.2rem;
+		font-weight: 400;
+		line-height: 1.6rem;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -29,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   p {
-    padding-bottom: 1em;
+     padding-bottom: 1em;
   }
 `;
 
@@ -37,11 +41,13 @@ export const App = () => (
   <Fragment>
     <GlobalStyle />
     <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/resume" component={Resume} />
-        <Route component={NotFound} />
-      </Switch>
+      <ColouredContainer>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/résumé" component={Resume} />
+          <Route component={NotFound} />
+        </Switch>
+      </ColouredContainer>
     </Router>
   </Fragment>
 );

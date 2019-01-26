@@ -10,11 +10,6 @@ export const ListItem = styled.li`
   align-items: center;
 `;
 
-export const Link = styled.a`
-  text-decoration: none;
-  color: black;
-`;
-
 export const Text = styled.span`
   margin-left: 10px;
 `;

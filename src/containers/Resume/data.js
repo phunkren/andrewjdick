@@ -110,7 +110,7 @@ export const EDUCATION = [
 export const EXPERTISE = [
   {
     id: "HTML",
-    rating: 5
+    rating: 4
   },
   {
     id: "CSS",
@@ -118,7 +118,7 @@ export const EXPERTISE = [
   },
   {
     id: "JavaScript",
-    rating: 4
+    rating: 3
   },
   {
     id: "Git",
