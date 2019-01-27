@@ -3,7 +3,7 @@ import { rgba } from "polished";
 import { COLORS, ALPHAS } from "constants.js";
 import { media } from "media.js";
 
-export const Container = styled.main`
+export const Container = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -17,6 +17,11 @@ export const Header = styled.header`
   text-align: center;
 
   ${media.tablet`
+    padding: 3em;
+    text-align: left;
+  `};
+
+  ${media.print`
     padding: 3em;
     text-align: left;
   `};
@@ -34,10 +39,23 @@ export const Content = styled.div`
     flex-direction: row;
     padding: 1em;
   `};
+
+  ${media.print`
+    display: inline-flex;
+    flex-direction: row;
+    padding: 1em 0 0;
+  `};
 `;
 
 export const Sidebar = styled.aside`
   ${media.tablet`
+    flex: 0 1 25%;
+    margin-right: 1em;
+    border-right: 2px solid ${COLORS.black};
+    padding: 1em 2em 2em 1em;
+  `};
+
+  ${media.print`
     flex: 0 1 25%;
     margin-right: 1em;
     border-right: 2px solid ${COLORS.black};
@@ -49,6 +67,11 @@ export const Section = styled.section`
   padding: 0;
 
   ${media.tablet`
+    flex: 1;
+    padding: 1em;
+  `};
+
+  ${media.print`
     flex: 1;
     padding: 1em;
   `};
@@ -72,6 +95,11 @@ export const H1 = styled.h1`
     font-size: 3rem;
     line-height: 4rem;
   `};
+
+  ${media.print`
+    font-size: 3rem;
+    line-height: 4rem;
+  `};
 `;
 
 export const H2 = styled.h2`
@@ -83,6 +111,10 @@ export const H2 = styled.h2`
 
 export const MobileH2 = styled(H2)`
   ${media.tablet`
+    display: none;
+  `};
+
+  ${media.print`
     display: none;
   `};
 `;
