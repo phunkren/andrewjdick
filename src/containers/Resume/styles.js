@@ -9,7 +9,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 1440px;
-  min-width: 480px;
   margin: 0 auto;
   background-color: ${COLORS.white};
 `;
