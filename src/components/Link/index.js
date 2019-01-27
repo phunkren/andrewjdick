@@ -6,7 +6,7 @@ export const Link = ({ children, ...props }) => (
 );
 
 export const ExternalLink = ({ children, ...props }) => (
-  <Link target="_blank" {...props}>
+  <Link target="_blank" rel="noreferrer" {...props}>
     {children}
   </Link>
 );
