@@ -1,6 +1,5 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import profileImage from "assets/images/profileImage.jpg";
 import { SITE_URL, CONTACT_DETAILS, SOCIAL_LINKS, COLORS } from "constants.js";
 
 export const TitleAndMetaTags = ({
@@ -39,5 +38,5 @@ TitleAndMetaTags.defaultProps = {
   description: `${CONTACT_DETAILS.position} working in ${
     CONTACT_DETAILS.location
   }`,
-  image: profileImage
+  image: "profileImage.jpg"
 };
