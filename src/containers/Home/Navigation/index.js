@@ -2,13 +2,13 @@ import React from "react";
 import { StyledLink, List, ListItem } from "./styles";
 
 export const NavigationLink = ({ children, ...props }) => (
-  <StyledLink {...props}>
-    <ListItem>{children}</ListItem>
-  </StyledLink>
+  <ListItem>
+    <StyledLink {...props}>{children}</StyledLink>
+  </ListItem>
 );
 
-export const Navigation = ({ isMobileOnly, ...props}) => (
-  <List isMobileOnly={isMobileOnly} {...props}>
+export const Navigation = props => (
+  <List {...props}>
     <NavigationLink href="./resume">Résumé</NavigationLink>
   </List>
 );
