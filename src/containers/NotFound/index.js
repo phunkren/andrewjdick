@@ -9,7 +9,11 @@ export const NotFound = () => (
       <title>Andrew James Dick | Page Not Found</title>
     </Helmet>
     <Header>
-      <Link href="/">
+      <Link
+        href="/"
+        alt="Return to the homepage"
+        aria-label="Return to the homepage"
+      >
         <span>←</span>
         <StyledLink>Return to site</StyledLink>
       </Link>

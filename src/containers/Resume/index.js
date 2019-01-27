@@ -38,7 +38,11 @@ export const Resume = () => {
       <Container>
         <Header>
           <HeaderTitle>
-            <Link href="/">
+            <Link
+              href="/"
+              alt="Return to homepage"
+              aria-label="Return to homepage"
+            >
               <H1>{name}</H1>
             </Link>
             <Subtitle>
@@ -49,8 +53,9 @@ export const Resume = () => {
           {isBrowser && !isIE && (
             <HeaderIcons>
               <Link
-                alt="Download my resumé"
                 href="/AndrewJamesDick-Resume.pdf"
+                alt="Download my resumé"
+                aria-label="Download my resumé"
                 download
               >
                 <DownloadIcon width="2.25em" height="2.25em" />
@@ -130,7 +135,11 @@ export const Resume = () => {
                   <Block key={`Experience-${index}`}>
                     <H3>{position}</H3>
                     <Subtitle>
-                      <ExternalLink alt={`${company} website`} href={url}>
+                      <ExternalLink
+                        href={url}
+                        alt={`${company} website`}
+                        aria-label={`${company} website`}
+                      >
                         {company}
                       </ExternalLink>{" "}
                       / {dates}

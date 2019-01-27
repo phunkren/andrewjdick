@@ -26,7 +26,11 @@ export const Home = () => {
         <Name>{name}</Name>
         <Info>
           {position} @{" "}
-          <ExternalLink alt="Fathom's website" href="https://fath.om">
+          <ExternalLink
+            href="https://fath.om"
+            alt="Fathom's website"
+            aria-label="Fathom's website"
+          >
             Fathom
           </ExternalLink>
         </Info>

@@ -21,25 +21,37 @@ export const Contact = () => {
   return (
     <List>
       <ListItem>
-        <ExternalLink alt="Email me" href={`mailto:${email}`}>
+        <ExternalLink
+          href={`mailto:${email}`}
+          alt="Email me"
+          aria-label="Email me"
+        >
           <EmailIcon {...iconProps} />
           <Text>{email}</Text>
         </ExternalLink>
       </ListItem>
       <ListItem>
-        <ExternalLink alt="Call me" href={`tel:${tel}`}>
+        <ExternalLink alt="Call me" href={`tel:${tel}`} aria-label="Email me">
           <TelephoneIcon {...iconProps} />
           <Text>{tel}</Text>
         </ExternalLink>
       </ListItem>
       <ListItem>
-        <ExternalLink alt="GitHub profile" href={github.url}>
+        <ExternalLink
+          href={github.url}
+          alt="GitHub profile"
+          aria-label="Email me"
+        >
           <GitHubIcon {...iconProps} />
           <Text>{github.handle}</Text>
         </ExternalLink>
       </ListItem>
       <ListItem>
-        <ExternalLink alt="LinkedIn profile" href={linkedIn.url}>
+        <ExternalLink
+          href={linkedIn.url}
+          alt="LinkedIn profile"
+          aria-label="Email me"
+        >
           <LinkedInIcon {...iconProps} />
           <Text>{linkedIn.handle}</Text>
         </ExternalLink>

@@ -18,19 +18,35 @@ export const Social = () => {
 
   return (
     <SocialLinks>
-      <SocialLink alt="GitHub profile" href={github.url}>
+      <SocialLink
+        href={github.url}
+        alt="GitHub profile"
+        aria-label="Github profile"
+      >
         <GitHubIcon {...iconProps} />
       </SocialLink>
 
-      <SocialLink alt="Medium profile" href={medium.url}>
+      <SocialLink
+        href={medium.url}
+        alt="Medium profile"
+        aria-label="Medium profile"
+      >
         <MediumIcon {...iconProps} />
       </SocialLink>
 
-      <SocialLink alt="Twitter profile" href={twitter.url}>
+      <SocialLink
+        href={twitter.url}
+        alt="Twitter profile"
+        aria-label="Twitter profile"
+      >
         <TwitterIcon {...iconProps} />
       </SocialLink>
 
-      <SocialLink alt="LinkedIn profile" href={linkedIn.url}>
+      <SocialLink
+        href={linkedIn.url}
+        alt="LinkedIn profile"
+        aria-label="LinkedIn profile"
+      >
         <LinkedInIcon {...iconProps} />
       </SocialLink>
     </SocialLinks>
