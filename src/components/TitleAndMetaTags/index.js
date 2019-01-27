@@ -15,6 +15,7 @@ export const TitleAndMetaTags = ({
     </title>
 
     <meta name="theme-color" content={COLORS.black} />
+    <meta name="Description" content={description} />
 
     <meta property="og:url" content={`${url}${pathname}`} />
     <meta property="og:image" content={`${url}${image}`} />
