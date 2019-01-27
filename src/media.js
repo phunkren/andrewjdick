@@ -1,14 +1,14 @@
 import { css } from "styled-components";
 
-const sizes = {
+export const SIZES = {
   desktop: 992,
   tablet: 768,
   phone: 576
 };
 
-export const media = Object.keys(sizes).reduce((acc, label) => {
+export const media = Object.keys(SIZES).reduce((acc, label) => {
   acc[label] = (...args) => css`
-    @media (min-width: ${sizes[label] / 16}em) {
+    @media (min-width: ${SIZES[label] / 16}em) {
       ${css(...args)}
     }
   `;
