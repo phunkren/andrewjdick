@@ -1,5 +1,5 @@
 {
-  "short_name": "Andrew James Dick",
+  "short_name": "Andrew Dick",
   "name": "Andrew James Dick | Frontend Developer",
   "icons": [
     {
@@ -14,7 +14,7 @@
     }
   ],
   "start_url": ".",
-  "display": "browser",
+  "display": "standalone",
   "theme_color": "#1d1d1c",
   "background_color": "#fcfcfc"
 }
