@@ -12,7 +12,7 @@ export const SOCIAL_LINKS = {
     url: "https://medium.com/@andrewjd_ck"
   },
   twitter: {
-    handle: "andrewjd_ck",
+    handle: "@andrewjd_ck",
     url: "https://twitter.com/andrewjd_ck"
   }
 };

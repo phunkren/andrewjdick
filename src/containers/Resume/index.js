@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
-import { Helmet } from "react-helmet";
 import { isBrowser, isIE } from "react-device-detect";
 import { ExternalLink, Link } from "components/Link";
 import { DownloadIcon } from "components/icons";
+import { TitleAndMetaTags } from "components/TitleAndMetaTags";
 import { EDUCATION, EXPERIENCE, EXPERTISE, INTERESTS, HOBBIES } from "./data";
 import { Rating } from "./Rating";
 import { Contact } from "./Contact";
@@ -31,9 +31,7 @@ export const Resume = () => {
 
   return (
     <Fragment>
-      <Helmet>
-        <title>{name} | Resume</title>
-      </Helmet>
+      <TitleAndMetaTags title="Resume" pathname="resume" />
 
       <Container>
         <Header>

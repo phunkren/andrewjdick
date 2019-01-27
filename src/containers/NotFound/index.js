@@ -1,13 +1,12 @@
 import React, { Fragment } from "react";
-import { Helmet } from "react-helmet";
 import { Link } from "components/Link";
+import { TitleAndMetaTags } from "components/TitleAndMetaTags";
 import { Section, Header, Status, Info, StyledLink } from "./styles";
 
 export const NotFound = () => (
   <Fragment>
-    <Helmet>
-      <title>Andrew James Dick | Page Not Found</title>
-    </Helmet>
+    <TitleAndMetaTags title="Page Not Found" />
+
     <Header>
       <Link
         href="/"

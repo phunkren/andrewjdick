@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
+import { ExternalLink } from "components/Link";
+import { TitleAndMetaTags } from "components/TitleAndMetaTags";
 import { Social } from "./Social";
 import { Navigation } from "./Navigation";
-import { ExternalLink } from "components/Link";
 import { CONTACT_DETAILS } from "constants.js";
 import {
   Header,
@@ -17,6 +18,8 @@ export const Home = () => {
 
   return (
     <Fragment>
+      <TitleAndMetaTags />
+
       <Header>
         <Navigation />
         <Social />
