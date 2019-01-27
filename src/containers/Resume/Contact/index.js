@@ -16,29 +16,29 @@ const iconProps = {
 
 export const Contact = () => (
   <List>
-    <ExternalLink href={`mailto:${CONTACT_DETAILS.email}`}>
-      <ListItem>
+    <ListItem>
+      <ExternalLink alt="Email me" href={`mailto:${CONTACT_DETAILS.email}`}>
         <EmailIcon {...iconProps} />
         <Text>{CONTACT_DETAILS.email}</Text>
-      </ListItem>
-    </ExternalLink>
-    <ExternalLink href={`tel:${CONTACT_DETAILS.tel}`}>
-      <ListItem>
+      </ExternalLink>
+    </ListItem>
+    <ListItem>
+      <ExternalLink alt="Call me" href={`tel:${CONTACT_DETAILS.tel}`}>
         <TelephoneIcon {...iconProps} />
         <Text>{CONTACT_DETAILS.tel}</Text>
-      </ListItem>
-    </ExternalLink>
-    <ExternalLink href={SOCIAL_LINKS.github.url}>
-      <ListItem>
+      </ExternalLink>
+    </ListItem>
+    <ListItem>
+      <ExternalLink alt="Github profile" href={SOCIAL_LINKS.github.url}>
         <GitHubIcon {...iconProps} />
         <Text>{SOCIAL_LINKS.github.handle}</Text>
-      </ListItem>
-    </ExternalLink>
-    <ExternalLink href={SOCIAL_LINKS.linkedIn.url}>
-      <ListItem>
+      </ExternalLink>
+    </ListItem>
+    <ListItem>
+      <ExternalLink alt="LinkedIn profile" href={SOCIAL_LINKS.linkedIn.url}>
         <LinkedInIcon {...iconProps} />
         <Text>{SOCIAL_LINKS.linkedIn.handle}</Text>
-      </ListItem>
-    </ExternalLink>
+      </ExternalLink>
+    </ListItem>
   </List>
 );

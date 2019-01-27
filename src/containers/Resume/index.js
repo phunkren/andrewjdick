@@ -45,7 +45,11 @@ export const Resume = () => (
 
         {isBrowser && !isIE && (
           <HeaderIcons>
-            <Link href="/AndrewJamesDick-Resume.pdf" download>
+            <Link
+              alt="Download my resumé"
+              href="/AndrewJamesDick-Resume.pdf"
+              download
+            >
               <DownloadIcon width="2.5em" height="2.5em" />
             </Link>
           </HeaderIcons>
@@ -123,7 +127,11 @@ export const Resume = () => (
                 <Block key={`Experience-${index}`}>
                   <H3>{position}</H3>
                   <Subtitle>
-                    <ExternalLink href={url} target="_blank">
+                    <ExternalLink
+                      alt={`${company} website`}
+                      href={url}
+                      target="_blank"
+                    >
                       {company}
                     </ExternalLink>{" "}
                     / {dates}

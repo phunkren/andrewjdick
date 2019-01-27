@@ -3,7 +3,14 @@ import { Social } from "./Social";
 import { Navigation } from "./Navigation";
 import { ExternalLink } from "components/Link";
 import { CONTACT_DETAILS } from "constants.js";
-import { Header, Section, Name, Info, Footer, FooterNavigation } from "./styles";
+import {
+  Header,
+  Section,
+  Name,
+  Info,
+  Footer,
+  FooterNavigation
+} from "./styles";
 
 export const Home = () => {
   const { name, position, location } = CONTACT_DETAILS;
@@ -19,7 +26,9 @@ export const Home = () => {
         <Name>{name}</Name>
         <Info>
           {position} @{" "}
-          <ExternalLink href="https://fath.om">Fathom</ExternalLink>
+          <ExternalLink alt="Fathom's website" href="https://fath.om">
+            Fathom
+          </ExternalLink>
         </Info>
         <Info>{location}</Info>
       </Section>
