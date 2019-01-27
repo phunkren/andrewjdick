@@ -1,52 +1,16 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
-import { reset } from "styled-reset";
 import { Home } from "containers/Home";
 import { Resume } from "containers/Resume";
 import { NotFound } from "containers/NotFound";
+import { ColouredContainer } from "components/ColouredContainer";
+import { GlobalStyles } from "./styles";
 import * as serviceWorker from "./serviceWorker";
-import { ColouredContainer } from "./components/ColouredContainer";
-import { media } from "media.js";
-
-const GlobalStyle = createGlobalStyle`
-  ${reset};
-
-  html {
-    min-height: 100%;
-    display: flex;
-  }
-  
-  body, div#wallop {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Lato', sans-serif;
-    font-size: 1rem;
-		font-weight: 400;
-		line-height: 1.2rem;
-
-    ${media.tablet`
-      font-size: 1.2rem;
-		  font-weight: 400;
-		  line-height: 1.6rem;
-    `}
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roboto Slab', serif;
-    margin-bottom: 1em;
-  }
-
-  p {
-     padding-bottom: 1em;
-  }
-`;
 
 export const App = () => (
   <Fragment>
-    <GlobalStyle />
+    <GlobalStyles />
     <Router>
       <ColouredContainer>
         <Switch>
