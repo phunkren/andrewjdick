@@ -35,7 +35,11 @@ export const Header = styled.header`
 
 export const HeaderTitle = styled.div``;
 
-export const HeaderIcons = styled.div``;
+export const HeaderIcons = styled.div`
+  ${media.print`
+    display: none;
+  `};
+`;
 
 export const Content = styled.div`
   flex: 1;
