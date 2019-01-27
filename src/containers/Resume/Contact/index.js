@@ -5,9 +5,8 @@ import {
   LinkedInIcon,
   TelephoneIcon
 } from "components/icons";
-import { ExternalLink } from "components/Link";
 import { CONTACT_DETAILS, SOCIAL_LINKS } from "constants.js";
-import { List, ListItem, Text } from "./styles";
+import { List, ListItem, Text, StyledLink } from "./styles";
 
 const iconProps = {
   width: "2em",
@@ -21,40 +20,40 @@ export const Contact = () => {
   return (
     <List>
       <ListItem>
-        <ExternalLink
+        <StyledLink
           href={`mailto:${email}`}
           alt="Email me"
           aria-label="Email me"
         >
           <EmailIcon {...iconProps} />
           <Text>{email}</Text>
-        </ExternalLink>
+        </StyledLink>
       </ListItem>
       <ListItem>
-        <ExternalLink alt="Call me" href={`tel:${tel}`} aria-label="Email me">
+        <StyledLink alt="Call me" href={`tel:${tel}`} aria-label="Email me">
           <TelephoneIcon {...iconProps} />
           <Text>{tel}</Text>
-        </ExternalLink>
+        </StyledLink>
       </ListItem>
       <ListItem>
-        <ExternalLink
+        <StyledLink
           href={github.url}
           alt="GitHub profile"
           aria-label="Email me"
         >
           <GitHubIcon {...iconProps} />
           <Text>{github.handle}</Text>
-        </ExternalLink>
+        </StyledLink>
       </ListItem>
       <ListItem>
-        <ExternalLink
+        <StyledLink
           href={linkedIn.url}
           alt="LinkedIn profile"
           aria-label="Email me"
         >
           <LinkedInIcon {...iconProps} />
           <Text>{linkedIn.handle}</Text>
-        </ExternalLink>
+        </StyledLink>
       </ListItem>
     </List>
   );
