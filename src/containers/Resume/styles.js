@@ -88,10 +88,6 @@ export const Section = styled.section`
   `};
 `;
 
-export const Footer = styled.footer`
-  background-color: black;
-`;
-
 export const Block = styled.div`
   margin-bottom: 1.5em;
 `;

@@ -13,22 +13,26 @@ const iconProps = {
   height: "2.5em"
 };
 
-export const Social = () => (
-  <SocialLinks>
-    <SocialLink alt="GitHub profile" href={SOCIAL_LINKS.github.url}>
-      <GitHubIcon {...iconProps} />
-    </SocialLink>
+export const Social = () => {
+  const { github, medium, twitter, linkedIn } = SOCIAL_LINKS;
 
-    <SocialLink alt="Medium profile" href={SOCIAL_LINKS.medium.url}>
-      <MediumIcon {...iconProps} />
-    </SocialLink>
+  return (
+    <SocialLinks>
+      <SocialLink alt="GitHub profile" href={github.url}>
+        <GitHubIcon {...iconProps} />
+      </SocialLink>
 
-    <SocialLink alt="Twitter profile" href={SOCIAL_LINKS.twitter.url}>
-      <TwitterIcon {...iconProps} />
-    </SocialLink>
+      <SocialLink alt="Medium profile" href={medium.url}>
+        <MediumIcon {...iconProps} />
+      </SocialLink>
 
-    <SocialLink alt="LinkedIn profile" href={SOCIAL_LINKS.linkedIn.url}>
-      <LinkedInIcon {...iconProps} />
-    </SocialLink>
-  </SocialLinks>
-);
+      <SocialLink alt="Twitter profile" href={twitter.url}>
+        <TwitterIcon {...iconProps} />
+      </SocialLink>
+
+      <SocialLink alt="LinkedIn profile" href={linkedIn.url}>
+        <LinkedInIcon {...iconProps} />
+      </SocialLink>
+    </SocialLinks>
+  );
+};

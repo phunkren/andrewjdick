@@ -26,123 +26,123 @@ import {
   H3
 } from "./styles";
 
-export const Resume = () => (
-  <Fragment>
-    <Helmet>
-      <title>{CONTACT_DETAILS.name} | Resume</title>
-    </Helmet>
+export const Resume = () => {
+  const { name, position, location } = CONTACT_DETAILS;
 
-    <Container>
-      <Header>
-        <HeaderTitle>
-          <Link href="/">
-            <H1>{CONTACT_DETAILS.name}</H1>
-          </Link>
-          <Subtitle>
-            {CONTACT_DETAILS.position} | {CONTACT_DETAILS.location}
-          </Subtitle>
-        </HeaderTitle>
+  return (
+    <Fragment>
+      <Helmet>
+        <title>{name} | Resume</title>
+      </Helmet>
 
-        {isBrowser && !isIE && (
-          <HeaderIcons>
-            <Link
-              alt="Download my resumé"
-              href="/AndrewJamesDick-Resume.pdf"
-              download
-            >
-              <DownloadIcon width="2.5em" height="2.5em" />
+      <Container>
+        <Header>
+          <HeaderTitle>
+            <Link href="/">
+              <H1>{name}</H1>
             </Link>
-          </HeaderIcons>
-        )}
-      </Header>
-      <Content>
-        <Sidebar>
-          <Block>
-            <MobileH2>Contact</MobileH2>
-            <Contact />
-          </Block>
+            <Subtitle>
+              {position} | {location}
+            </Subtitle>
+          </HeaderTitle>
 
-          <Block>
-            <H2>Education</H2>
-            {EDUCATION.map(
-              ({ qualification, course, institute, dates }, index) => (
-                <Block key={`Education-${index}`}>
-                  <H3>{qualification}</H3>
-                  <Subtitle>{course}</Subtitle>
-                  <Subtitle>{institute}</Subtitle>
-                  <Text>{dates}</Text>
-                </Block>
-              )
-            )}
-          </Block>
-
-          <Block>
-            <H2>Expertise</H2>
+          {isBrowser && !isIE && (
+            <HeaderIcons>
+              <Link
+                alt="Download my resumé"
+                href="/AndrewJamesDick-Resume.pdf"
+                download
+              >
+                <DownloadIcon width="2.25em" height="2.25em" />
+              </Link>
+            </HeaderIcons>
+          )}
+        </Header>
+        <Content>
+          <Sidebar>
             <Block>
-              <Rating skills={EXPERTISE} numberOfStars={5} />
+              <MobileH2>Contact</MobileH2>
+              <Contact />
             </Block>
-          </Block>
 
-          <Block>
-            <H2>Interests</H2>
             <Block>
-              {INTERESTS.map((interest, index) => (
-                <Tag key={`Interest-${index}`}>{interest}</Tag>
-              ))}
+              <H2>Education</H2>
+              {EDUCATION.map(
+                ({ qualification, course, institute, dates }, index) => (
+                  <Block key={`Education-${index}`}>
+                    <H3>{qualification}</H3>
+                    <Subtitle>{course}</Subtitle>
+                    <Subtitle>{institute}</Subtitle>
+                    <Text>{dates}</Text>
+                  </Block>
+                )
+              )}
             </Block>
-          </Block>
 
-          <Block>
-            <H2>Hobbies</H2>
             <Block>
-              {HOBBIES.map((interest, index) => (
-                <Tag key={`Hobby-${index}`}>{interest}</Tag>
-              ))}
+              <H2>Expertise</H2>
+              <Block>
+                <Rating skills={EXPERTISE} numberOfStars={5} />
+              </Block>
             </Block>
-          </Block>
 
-          <Block>
-            <H2>References</H2>
             <Block>
-              <Text>Written references available upon request.</Text>
+              <H2>Interests</H2>
+              <Block>
+                {INTERESTS.map((interest, index) => (
+                  <Tag key={`Interest-${index}`}>{interest}</Tag>
+                ))}
+              </Block>
             </Block>
-          </Block>
-        </Sidebar>
 
-        <Section>
-          <Block>
-            <H2>Professional Profile</H2>
-            <Text>
-              My passion for digital technology continually drives me to advance
-              my skill set as a software engineer. With strong communication and
-              front-end web development skills, I thrive in environments where I
-              can learn from and inspire those around me.
-            </Text>
-          </Block>
+            <Block>
+              <H2>Hobbies</H2>
+              <Block>
+                {HOBBIES.map((interest, index) => (
+                  <Tag key={`Hobby-${index}`}>{interest}</Tag>
+                ))}
+              </Block>
+            </Block>
 
-          <Block>
-            <H2>Work Experience</H2>
-            {EXPERIENCE.map(
-              ({ position, company, url, dates, description }, index) => (
-                <Block key={`Experience-${index}`}>
-                  <H3>{position}</H3>
-                  <Subtitle>
-                    <ExternalLink
-                      alt={`${company} website`}
-                      href={url}
-                      target="_blank"
-                    >
-                      {company}
-                    </ExternalLink>{" "}
-                    / {dates}
-                  </Subtitle>
-                  <Description>{description()}</Description>
-                </Block>
-              )
-            )}
-          </Block>
-        </Section>
-      </Content>
-    </Container>
-  </Fragment>
-);
+            <Block>
+              <H2>References</H2>
+              <Block>
+                <Text>Written references available upon request.</Text>
+              </Block>
+            </Block>
+          </Sidebar>
+
+          <Section>
+            <Block>
+              <H2>Professional Profile</H2>
+              <Text>
+                My passion for digital technology continually drives me to
+                advance my skill set as a software engineer. With strong
+                communication and front-end web development skills, I thrive in
+                environments where I can learn from and inspire those around me.
+              </Text>
+            </Block>
+
+            <Block>
+              <H2>Work Experience</H2>
+              {EXPERIENCE.map(
+                ({ position, company, url, dates, description }, index) => (
+                  <Block key={`Experience-${index}`}>
+                    <H3>{position}</H3>
+                    <Subtitle>
+                      <ExternalLink alt={`${company} website`} href={url}>
+                        {company}
+                      </ExternalLink>{" "}
+                      / {dates}
+                    </Subtitle>
+                    <Description>{description()}</Description>
+                  </Block>
+                )
+              )}
+            </Block>
+          </Section>
+        </Content>
+      </Container>
+    </Fragment>
+  );
+};
