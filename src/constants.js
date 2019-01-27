@@ -1,7 +1,9 @@
+export const SITE_URL = "https://andrewjdick.co.uk/";
+
 export const SOCIAL_LINKS = {
   github: {
     handle: "andrewjdick",
-    url: "https://github.com/andrewjdick"
+    url: "https://github.com/andrewjdick/"
   },
   linkedIn: {
     handle: "andrewjdick",
@@ -9,11 +11,11 @@ export const SOCIAL_LINKS = {
   },
   medium: {
     handle: "andrewjd_ck",
-    url: "https://medium.com/@andrewjd_ck"
+    url: "https://medium.com/@andrewjd_ck/"
   },
   twitter: {
     handle: "@andrewjd_ck",
-    url: "https://twitter.com/andrewjd_ck"
+    url: "https://twitter.com/andrewjd_ck/"
   }
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import profileImage from "assets/images/profileImage.jpg";
-import { CONTACT_DETAILS, SOCIAL_LINKS } from "constants.js";
+import { SITE_URL, CONTACT_DETAILS, SOCIAL_LINKS, COLORS } from "constants.js";
 
 export const TitleAndMetaTags = ({
   url,
@@ -14,6 +14,8 @@ export const TitleAndMetaTags = ({
     <title>
       {CONTACT_DETAILS.name} | {title}
     </title>
+
+    <meta name="theme-color" content={COLORS.black} />
 
     <meta property="og:url" content={`${url}${pathname}`} />
     <meta property="og:image" content={`${url}${image}`} />
@@ -31,7 +33,7 @@ export const TitleAndMetaTags = ({
 );
 
 TitleAndMetaTags.defaultProps = {
-  url: "https://andrewjdick.co.uk/",
+  url: `${SITE_URL}`,
   pathname: ".",
   title: `${CONTACT_DETAILS.position}`,
   description: `${CONTACT_DETAILS.position} working in ${
