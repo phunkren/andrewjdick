@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Home } from "containers/Home";
-import { Resume } from "containers/Resume";
+import { CV } from "containers/CV";
 import { NotFound } from "containers/NotFound";
 import { ColouredContainer } from "components/ColouredContainer";
 import { GlobalStyles } from "./styles";
@@ -15,7 +15,7 @@ export const App = () => (
       <ColouredContainer>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/resume" component={Resume} />
+          <Route path="/cv" component={CV} />
           <Route component={NotFound} />
         </Switch>
       </ColouredContainer>

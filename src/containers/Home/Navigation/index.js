@@ -9,6 +9,6 @@ export const NavigationLink = ({ children, ...props }) => (
 
 export const Navigation = props => (
   <List {...props}>
-    <NavigationLink href="./resume">Résumé</NavigationLink>
+    <NavigationLink href="./cv">Curriculum Vitae</NavigationLink>
   </List>
 );

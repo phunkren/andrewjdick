@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { ExternalLink } from "components/Link";
 import { TitleAndMetaTags } from "components/TitleAndMetaTags";
-import { EXPERIENCE } from "containers/Resume/data";
+import { EXPERIENCE } from "containers/CV/data";
 import { Social } from "./Social";
 import { Navigation } from "./Navigation";
 import { CONTACT_DETAILS } from "constants.js";

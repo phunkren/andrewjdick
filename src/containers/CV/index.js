@@ -26,12 +26,12 @@ import {
   H3
 } from "./styles";
 
-export const Resume = () => {
+export const CV = () => {
   const { name, position, location } = CONTACT_DETAILS;
 
   return (
     <Fragment>
-      <TitleAndMetaTags title="Resume" pathname="resume" />
+      <TitleAndMetaTags title="CV" pathname="cv" />
 
       <Container>
         <Header>
@@ -51,9 +51,9 @@ export const Resume = () => {
           {isBrowser && !isIE && (
             <HeaderIcons>
               <Link
-                href="/AndrewJamesDick-Resume.pdf"
-                alt="Download my resumé"
-                aria-label="Download my resumé"
+                href="/AndrewJamesDick-CV.pdf"
+                alt="Download my CV"
+                aria-label="Download my CV"
                 download
               >
                 <DownloadIcon width="2.25em" height="2.25em" />
