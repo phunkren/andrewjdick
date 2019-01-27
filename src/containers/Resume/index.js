@@ -1,13 +1,18 @@
 import React, { Fragment } from "react";
 import { Helmet } from "react-helmet";
-import { ExternalLink } from "components/Link";
+import { isBrowser, isIE } from "react-device-detect";
+import { ExternalLink, Link } from "components/Link";
+import { DownloadIcon } from "components/icons";
 import { EDUCATION, EXPERIENCE, EXPERTISE, INTERESTS, HOBBIES } from "./data";
 import { Rating } from "./Rating";
 import { Contact } from "./Contact";
+import { CONTACT_DETAILS } from "constants.js";
 import {
   Container,
   Content,
   Header,
+  HeaderTitle,
+  HeaderIcons,
   Sidebar,
   Section,
   Subtitle,
@@ -24,13 +29,27 @@ import {
 export const Resume = () => (
   <Fragment>
     <Helmet>
-      <title>Andrew James Dick | Resume</title>
+      <title>{CONTACT_DETAILS.name} | Resume</title>
     </Helmet>
 
     <Container>
       <Header>
-        <H1>Andrew James Dick</H1>
-        <Subtitle>Frontend Developer | London, UK</Subtitle>
+        <HeaderTitle>
+          <Link href="/">
+            <H1>{CONTACT_DETAILS.name}</H1>
+          </Link>
+          <Subtitle>
+            {CONTACT_DETAILS.position} | {CONTACT_DETAILS.location}
+          </Subtitle>
+        </HeaderTitle>
+
+        {isBrowser && !isIE && (
+          <HeaderIcons>
+            <Link href="/AndrewJamesDick-Resume.pdf" download>
+              <DownloadIcon width="2.5em" height="2.5em" />
+            </Link>
+          </HeaderIcons>
+        )}
       </Header>
       <Content>
         <Sidebar>

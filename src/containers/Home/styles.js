@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Navigation } from "./Navigation";
 import { media } from "media.js";
 
 export const Section = styled.section`
@@ -25,6 +26,14 @@ export const Footer = styled.footer`
   display: flex;
   justify-content: center;
   padding: 0 2em 2em;
+
+  ${media.tablet`
+    display: none;
+  `};
+`;
+
+export const FooterNavigation = styled(Navigation)`
+  display: block;
 `;
 
 export const Name = styled.h1`

@@ -7,8 +7,8 @@ export const NavigationLink = ({ children, ...props }) => (
   </StyledLink>
 );
 
-export const Navigation = () => (
-  <List>
+export const Navigation = ({ isMobileOnly, ...props}) => (
+  <List isMobileOnly={isMobileOnly} {...props}>
     <NavigationLink href="./resume">Résumé</NavigationLink>
   </List>
 );

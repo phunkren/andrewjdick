@@ -5,3 +5,4 @@ export { MediumIcon } from "./MediumIcon";
 export { TelephoneIcon } from "./TelephoneIcon";
 export { TwitterIcon } from "./TwitterIcon";
 export { StarIcon } from "./StarIcon";
+export { DownloadIcon } from "./DownloadIcon";

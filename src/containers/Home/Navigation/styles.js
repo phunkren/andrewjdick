@@ -14,10 +14,10 @@ export const StyledLink = styled(Link)`
 `;
 
 export const List = styled.ul`
-  margin-top: 2em;
+  display: none;
 
   ${media.tablet`
-    margin-top: 0;
+    display: block;
   `};
 `;
 

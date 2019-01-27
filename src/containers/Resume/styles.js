@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { isBrowser } from "react-device-detect";
 import { rgba } from "polished";
 import { COLORS, ALPHAS } from "constants.js";
 import { media } from "media.js";
@@ -8,24 +9,35 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 1440px;
+  min-width: 480px;
   margin: 0 auto;
   background-color: ${COLORS.white};
 `;
 
 export const Header = styled.header`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 2.5em;
   text-align: center;
 
-  ${media.tablet`
-    padding: 3em;
-    text-align: left;
-  `};
+  ${isBrowser
+    ? css`
+        justify-content: space-between;
+        text-align: left;
+      `
+    : undefined}
 
   ${media.print`
-    padding: 3em;
+    padding: 1em;
     text-align: left;
   `};
 `;
+
+export const HeaderTitle = styled.div``;
+
+export const HeaderIcons = styled.div``;
+
 export const Content = styled.div`
   flex: 1;
   display: flex;
