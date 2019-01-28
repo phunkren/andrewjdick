@@ -124,6 +124,13 @@ export const CV = () => {
                 communication and front-end web development skills, I thrive in
                 environments where I can learn from and inspire those around me.
               </Text>
+              <Text>
+                I have a sincere love for all things technical in the digital
+                age. I've recently constructed my own desktop PC, built a chat
+                bot on Discord, coordinated a live stream of internal tech
+                meetups and I'm currently in the process of building my own
+                smart home.
+              </Text>
             </Block>
 
             <Block>

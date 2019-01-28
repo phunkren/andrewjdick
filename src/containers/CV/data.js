@@ -5,20 +5,27 @@ export const EXPERIENCE = [
     position: "Frontend developer",
     company: "Fathom",
     url: "https://fath.om",
-    dates: "Feb 2015 - June 2017",
+    dates: "June 2017 - Present",
     description: () => (
       <Fragment>
         <p>
           Working at Fathom has provided me with the opportunity of working
           alongside a number of highly-skilled professionals on a diverse range
-          of challenging front end web projects. The majority of my time has
-          been spent working with React, but I've also been fortunate enough to
-          get hands-on experience with React Native, GatsbyJS and Angular 2.
+          of challenging frontend web projects. The majority of my time has been
+          spent working with React, but I've also been fortunate enough to
+          acquire hands-on experience with React Native, GatsbyJS and Angular 2.
+        </p>
+        <p>
+          Over the years, Fathom has helped instilled a set of base principles
+          to strive towards. Complexity should only be introduced when it’s
+          inevitable. Code should be easy to reason about and easy to delete.
+          Try to avoid abstracting too early and thinking too far in the future.
+          Finally, the top priority is always the best possible User Experience.
         </p>
         <p>
           Alongside the tech stack, my time at Fathom has also encouraged me to
-          advance my public speaking, writing, and introduced me to boxing and
-          cycling outside of work.
+          present at the internal tech meetups, publish blog posts, and
+          introduced me to boxing and cycling outside of work.
         </p>
       </Fragment>
     )
@@ -31,29 +38,31 @@ export const EXPERIENCE = [
     description: () => (
       <Fragment>
         <p>
-          I have over two years of experience working in teams of various sizes
-          on commercial front-end web projects. Originally hired as a Trainee
-          developer, I’ve since progressed through Junior and into the Associate
-          role by completing several technical segments and consistently
-          delivering client-based work to my highest possible standard.
+          I accrued over two years of experience working at Cohaesus in teams of
+          various sizes on commercial front-end web projects. Originally hired
+          as a Trainee developer, I progressed through Junior and into the
+          Associate role by completing several technical segments and
+          consistently delivering client-based work on time and to my highest
+          possible standard.
         </p>
+
         <ul>
           <li>
-            Contributed to commercial projects on-site at top advertising
-            agencies.
+            I primarily worked with HTML and CSS frameworks, but also had the
+            opportunity to experience Unity, Wordpress, and the Knockout
+            JavaScript framework.
           </li>
           <li>
-            Experience with both Agile and waterfall project environments.
+            Contributed to commercial projects on-site at some of London's top
+            advertising agencies.
           </li>
           <li>
-            Led internal projects, and provided in-house technical support.
+            Worked on both green field and legacy projects in both Agile and
+            waterfall project environments.
           </li>
           <li>
-            Worked on both green-field projects and inherited legacy code.
-          </li>
-          <li>
-            Hosted workshops and technical training sessions for junior
-            developers.
+            Hosted workshops and technical training sessions for Junior
+            Developers.
           </li>
           <li>
             Represented the business overseas at international training events.
@@ -72,20 +81,20 @@ export const EXPERIENCE = [
         <p>
           Credited as a QA Tester on Grand Theft Auto V, I was primarily
           responsible for identifying defects, errors, and failures in the
-          software. These were cross-referenced over multiple databases;
+          system software. These were cross-referenced over multiple databases;
           undiscovered bugs were logged, and pre-existing issues were updated.
         </p>
+
         <ul>
           <li>
             Experience with functionality, regression, and user acceptance
             testing.
           </li>
           <li>
-            Co-ordinated with up to 30 team members across multiple studios.
+            Co-ordinated with up to 30 team members across multiple studios, and
+            led a small team of four on previously unreleased alpha content.
           </li>
-          <li>
-            Led a small team of four on previously unreleased alpha content.
-          </li>
+          <li>Software was version controlled with Perforce</li>
         </ul>
       </Fragment>
     )
