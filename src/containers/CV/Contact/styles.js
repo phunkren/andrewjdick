@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ExternalLink } from "components/Link";
+import { Link, ExternalLink } from "components/Link";
 
 export const List = styled.ul`
   margin-bottom: 2em;
@@ -13,7 +13,12 @@ export const Text = styled.span`
   margin-left: 1em;
 `;
 
-export const StyledLink = styled(ExternalLink)`
+export const StyledExternalLink = styled(ExternalLink)`
+  display: flex;
+  align-items: center;
+`;
+
+export const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
 `;

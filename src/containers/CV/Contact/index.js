@@ -6,7 +6,7 @@ import {
   TelephoneIcon
 } from "components/icons";
 import { CONTACT_DETAILS, SOCIAL_LINKS } from "constants.js";
-import { List, ListItem, Text, StyledLink } from "./styles";
+import { List, ListItem, Text, StyledLink, StyledExternalLink } from "./styles";
 
 const iconProps = {
   width: "2em",
@@ -36,24 +36,24 @@ export const Contact = () => {
         </StyledLink>
       </ListItem>
       <ListItem>
-        <StyledLink
+        <StyledExternalLink
           href={github.url}
           alt="GitHub profile"
           aria-label="Email me"
         >
           <GitHubIcon {...iconProps} />
           <Text>{github.handle}</Text>
-        </StyledLink>
+        </StyledExternalLink>
       </ListItem>
       <ListItem>
-        <StyledLink
+        <StyledExternalLink
           href={linkedIn.url}
           alt="LinkedIn profile"
           aria-label="Email me"
         >
           <LinkedInIcon {...iconProps} />
           <Text>{linkedIn.handle}</Text>
-        </StyledLink>
+        </StyledExternalLink>
       </ListItem>
     </List>
   );
