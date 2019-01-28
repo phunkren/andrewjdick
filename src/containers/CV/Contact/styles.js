@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link, ExternalLink } from "components/Link";
+import {media} from "media.js";
 
 export const List = styled.ul`
   margin-bottom: 2em;
@@ -21,4 +22,8 @@ export const StyledExternalLink = styled(ExternalLink)`
 export const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
+
+  ${media.print`
+    pointer-events: none;
+  `};
 `;
