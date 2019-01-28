@@ -28,7 +28,7 @@ export const Header = styled.header`
     : undefined}
 
   ${media.print`
-    padding: 1em;
+    padding: 3em;
     text-align: left;
   `};
 `;
