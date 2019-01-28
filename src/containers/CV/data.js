@@ -16,11 +16,11 @@ export const EXPERIENCE = [
           acquire hands-on experience with React Native, GatsbyJS and Angular 2.
         </p>
         <p>
-          Over the years, Fathom has helped instilled a set of base principles
+          Over the years, Fathom has helped to instill a set of base principles
           to strive towards. Complexity should only be introduced when it’s
-          inevitable. Code should be easy to reason about and easy to delete.
-          Try to avoid abstracting too early and thinking too far in the future.
-          Finally, the top priority is always the best possible User Experience.
+          unavoidable. Code should be easy to reason with and delete. Try to
+          avoid abstracting too early and think too far in the future. Finally,
+          the top priority is always the best possible User Experience.
         </p>
         <p>
           Alongside the tech stack, my time at Fathom has also encouraged me to
