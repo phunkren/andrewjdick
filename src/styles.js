@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { reset } from "styled-reset";
 import { media } from "media.js";
 
@@ -18,6 +18,7 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 1rem;
 		font-weight: 400;
 		line-height: 1.2rem;
+    background-color: whitesmoke;
 
     ${media.tablet`
       font-size: 1.2rem;
@@ -34,4 +35,10 @@ export const GlobalStyles = createGlobalStyle`
   p {
      padding-bottom: 1em;
   }
+`;
+
+export const SpringContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 `;

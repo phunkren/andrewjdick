@@ -38,13 +38,18 @@ export const FooterNavigation = styled(Navigation)`
 
 export const Name = styled.h1`
   font-size: 2rem;
-  line-height: 2.2rem;
+  line-height: 2.25rem;
   margin-bottom: 10px;
   text-align: center;
 
   ${media.tablet`
-    font-size: 4rem;
-    line-height: 4.4rem;
+    font-size: 3.5rem;
+    line-height: 3.75rem;
+  `};
+
+  ${media.desktop`
+    font-size: 4.5rem;
+    line-height: 4.75rem;
   `};
 `;
 
