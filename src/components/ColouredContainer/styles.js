@@ -23,7 +23,7 @@ export const Container = styled.main.attrs(
       : {
           style: {
             ...style,
-            backgroundColor: rgba(COLORS.white, 0.1)
+            backgroundColor: rgba(COLORS.white, 0.005)
           }
         }
 )`

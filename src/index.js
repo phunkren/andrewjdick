@@ -13,7 +13,7 @@ export const App = () => (
   <Fragment>
     <GlobalStyles />
     <Router>
-      <Spring delay={1000} from={{ opacity: 0 }} to={{ opacity: 1 }}>
+      <Spring delay={500} from={{ opacity: 0 }} to={{ opacity: 1 }}>
         {props => (
           <SpringContainer style={props}>
             <ColouredContainer>
