@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 
 export const EXPERIENCE = [
   {
-    position: "Senior frontend developer",
+    position: "Senior developer",
     company: "BCG Digital Ventures",
     url: "https://www.bcgdv.com/",
     dates: "April 2019 - Present"

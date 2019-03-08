@@ -79,7 +79,7 @@ export const Sidebar = styled.aside`
   `};
 `;
 
-export const Section = styled.section`
+export const Section = styled.article`
   padding: 0;
 
   ${media.tablet`
@@ -199,5 +199,19 @@ export const Tag = styled.div`
 
   ${media.print`
     font-size: 0.8rem;
+  `};
+`;
+
+export const Dates = styled.div`
+  display: block;
+  margin-top: 0.5em;
+
+  ${media.tablet`
+    display: inline-block;
+    margin-top: 0;
+
+    &:before {
+      content: ' / '
+    }
   `};
 `;

@@ -12,6 +12,7 @@ import { CONTACT_DETAILS } from "constants.js";
 import {
   Container,
   Content,
+  Dates,
   Header,
   HeaderTitle,
   HeaderIcons,
@@ -152,7 +153,7 @@ export const CV = () => {
                               >
                                 {company}
                               </ExternalLink>{" "}
-                              / {dates}
+                              <Dates>{dates}</Dates>
                             </Subtitle>
                             {description && (
                               <Description>{description()}</Description>
