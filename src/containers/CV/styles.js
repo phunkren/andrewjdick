@@ -148,7 +148,7 @@ export const Description = styled.div`
   line-height: 1.6rem;
 
   p {
-    margin-top: 1em;
+    margin-top: 1.1em;
     padding-bottom: 0;
   }
 
