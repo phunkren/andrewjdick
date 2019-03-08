@@ -20,12 +20,12 @@ export class ColouredContainer extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener("resize", this.updateDimensions.bind(this));
+    window.addEventListener("resize", () => this.updateDimensions());
     this.updateDimensions();
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions.bind(this));
+    window.removeEventListener("resize", () => this.updateDimensions());
   }
 
   updateDimensions() {

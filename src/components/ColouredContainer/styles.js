@@ -10,13 +10,10 @@ export const Container = styled.main.attrs(
           style: {
             ...style,
             backgroundColor: rgba(
-              Math.round((clientX / clientWidth) * 255),
-              Math.round(
-                ((clientX + clientY / 2) / (clientHeight + clientWidth / 2)) *
-                  255
-              ),
-              Math.round((clientY / clientHeight) * 255),
-              0.1
+              Math.round((clientX / clientHeight) * 255),
+              255 - Math.round((clientY / clientWidth) * 255),
+              255 - Math.round((clientX / clientHeight) * 255),
+              0.75
             )
           }
         }
