@@ -94,7 +94,11 @@ export const Section = styled.section`
 `;
 
 export const Block = styled.div`
-  margin-bottom: 1.5em;
+  margin-bottom: 2em;
+
+  ${media.print`
+    margin-bottom: 1.5em;
+  `};
 `;
 
 export const H1 = styled.h1`
@@ -140,17 +144,41 @@ export const H3 = styled.h3`
 `;
 
 export const Description = styled.div`
+  font-size: 1.1rem;
+  line-height: 1.6rem;
+
+  p {
+    margin-top: 1em;
+    padding-bottom: 0;
+  }
+
+  ${media.tablet`
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+  `};
+
   ul {
-    padding: 0 0 1em 2em;
+    padding: 0 0 0 2em;
+    margin-top: 1em;
     list-style-type: circle;
   }
 `;
 
-export const Text = styled.p``;
+export const Text = styled.p`
+  font-size: 1.1rem;
+  line-height: 1.6rem;
 
-export const Subtitle = styled(Text)`
+  ${media.tablet`
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+  `};
+`;
+
+export const Subtitle = styled.p`
   padding-bottom: 0.5em;
   font-weight: bold;
+  font-size: 1.1rem;
+  line-height: 1.3rem;
 `;
 
 export const Tag = styled.div`

@@ -15,23 +15,18 @@ export const EXPERIENCE = [
     description: () => (
       <Fragment>
         <p>
-          Working at Fathom has provided me with the opportunity of working
+          Working at Fathom provided me with the opportunity of working
           alongside a number of highly-skilled professionals on a diverse range
-          of challenging frontend web projects. The majority of my time has been
-          spent working with React, but I've also been fortunate enough to
-          acquire hands-on experience with React Native, GatsbyJS and Angular 2.
+          of challenging frontend web projects. The majority of my time was
+          spent working with React, but was also fortunate enough to acquire
+          hands-on experience with React Native, GatsbyJS and Angular 2.
         </p>
         <p>
-          Over the years, Fathom has helped to instill a set of base principles
-          to strive towards. Complexity should only be introduced when it’s
-          unavoidable. Code should be easy to reason with and delete. Try to
-          avoid abstracting too early and think too far in the future. Finally,
-          the top priority is always the best possible User Experience.
-        </p>
-        <p>
-          Alongside the tech stack, my time at Fathom has also encouraged me to
-          present at the internal tech meetups, publish blog posts, and
-          introduced me to boxing and cycling outside of work.
+          Over the years, Fathom helped instill a set of base principles to
+          strive towards: complexity should only be introduced when it’s
+          unavoidable; code should be easy to reason with and delete; try to
+          avoid abstracting too early and think too far in the future, and
+          finally, the top priority is always the best possible user experience.
         </p>
       </Fragment>
     )
@@ -48,15 +43,13 @@ export const EXPERIENCE = [
           various sizes on commercial front-end web projects. Originally hired
           as a Trainee developer, I progressed through Junior and into the
           Associate role by completing several technical segments and
-          consistently delivering client-based work on time and to my highest
-          possible standard.
+          consistently delivering on time and to the best of my ability.
         </p>
 
         <ul>
           <li>
-            I primarily worked with HTML and CSS frameworks, but also had the
-            opportunity to experience Unity, Wordpress, and the Knockout
-            JavaScript framework.
+            HTML and CSS frameworks, but also had the exposure to Unity,
+            Wordpress, and the Knockout JavaScript framework.
           </li>
           <li>
             Contributed to commercial projects on-site at some of London's top
@@ -85,10 +78,10 @@ export const EXPERIENCE = [
     description: () => (
       <Fragment>
         <p>
-          Credited as a QA Tester on Grand Theft Auto V, I was primarily
-          responsible for identifying defects, errors, and failures in the
-          system software. These were cross-referenced over multiple databases;
-          undiscovered bugs were logged, and pre-existing issues were updated.
+          Credited as a QA Tester on Grand Theft Auto V, I was responsible for
+          identifying defects, errors, and failures in the system software.
+          These were cross-referenced over multiple databases; undiscovered bugs
+          were logged and pre-existing issues were updated.
         </p>
 
         <ul>
