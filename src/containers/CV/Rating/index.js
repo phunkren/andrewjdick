@@ -18,14 +18,14 @@ export const Rating = ({ skills, numberOfStars }) => (
             rating > index ? (
               <FilledStarIcon
                 key={`Star-${index}`}
-                width="1.5em"
-                height="1.5em"
+                width="1.4em"
+                height="1.4em"
               />
             ) : (
               <EmptyStarIcon
                 key={`Star-${index}`}
-                width="1.5em"
-                height="1.5em"
+                width="1.4em"
+                height="1.4em"
               />
             )
           )}

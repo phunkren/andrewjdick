@@ -11,6 +11,7 @@ export const Container = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   background-color: ${COLORS.white};
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
 `;
 
 export const Header = styled.header`
@@ -167,4 +168,8 @@ export const Tag = styled.div`
   &:not(:last-child) {
     margin-right: 1em;
   }
+
+  ${media.print`
+    font-size: 0.8rem;
+  `};
 `;

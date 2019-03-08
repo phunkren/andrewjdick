@@ -2,10 +2,16 @@ import React, { Fragment } from "react";
 
 export const EXPERIENCE = [
   {
+    position: "Senior frontend developer",
+    company: "BCG Digital Ventures",
+    url: "https://www.bcgdv.com/",
+    dates: "April 2019 - Present"
+  },
+  {
     position: "Frontend developer",
     company: "Fathom",
     url: "https://fath.om",
-    dates: "June 2017 - Present",
+    dates: "June 2017 - March 2019",
     description: () => (
       <Fragment>
         <p>
@@ -126,7 +132,7 @@ export const EXPERTISE = [
     rating: 5
   },
   {
-    id: "JavaScript",
+    id: "JS",
     rating: 3
   },
   {

@@ -12,7 +12,7 @@ export const Skill = styled.div`
   margin-right: 0.75em;
 
   ${media.print`
-    margin-right: 0.5em;
+    margin-right: 0.25em;
   `};
 `;
 
@@ -22,7 +22,7 @@ export const Label = styled.span`
   line-height: 2.5rem;
 
   ${media.print`
-    font-size: 1rem;
+    font-size: 0.75rem;
     line-height: 2rem;
   `};
 `;
@@ -36,7 +36,7 @@ export const EmptyStarIcon = styled(StarIcon)`
     margin-right: 0.5em;
 
     ${media.print`
-      margin-right: 0.25em;
+      margin-right: 0.15em;
     `};
   }
 `;

@@ -3,7 +3,6 @@ import {
   EmailIcon,
   GitHubIcon,
   LinkedInIcon,
-  TelephoneIcon,
   GlobeIcon
 } from "components/icons";
 import { CONTACT_DETAILS, SOCIAL_LINKS, SITE_URL } from "constants.js";
@@ -15,17 +14,11 @@ const iconProps = {
 };
 
 export const Contact = () => {
-  const { email, tel } = CONTACT_DETAILS;
+  const { email } = CONTACT_DETAILS;
   const { github, linkedIn } = SOCIAL_LINKS;
 
   return (
     <List>
-      <ListItem>
-        <StyledLink alt="Call me" href={`tel:${tel}`} aria-label="Email me">
-          <TelephoneIcon {...iconProps} />
-          <Text>{tel}</Text>
-        </StyledLink>
-      </ListItem>
       <ListItem>
         <StyledLink
           href={`mailto:${email}`}
@@ -43,7 +36,7 @@ export const Contact = () => {
           aria-label="Personal website"
         >
           <GlobeIcon {...iconProps} />
-          <Text>andrewjdick.co.uk</Text>
+          <Text>ajames.dev</Text>
         </StyledExternalLink>
       </ListItem>
       <ListItem>
