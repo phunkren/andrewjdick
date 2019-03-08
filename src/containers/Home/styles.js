@@ -9,7 +9,7 @@ const infiniteScroll = keyframes`
     transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translate3d(0, -${window.innerHeight}px, 0);
+    transform: translate3d(0, -1920px, 0);
   }
 `;
 
@@ -26,12 +26,12 @@ const RawImage = styled.div`
   right: 0;
   left: 0;
   top: 0;
-  height: 400%;
+  height: 600%;
   background-image: url(${homeBackground});
-  background-position: top;
+  background-position: bottom;
   background-repeat: repeat
   pointer-events: none;
-  animation: ${infiniteScroll} 30s linear infinite 4s;
+  animation: ${infiniteScroll} 45s linear infinite 4s;
 `;
 
 export const Image = animated(RawImage);
