@@ -214,4 +214,13 @@ export const Dates = styled.div`
       content: ' / '
     }
   `};
+
+  ${media.print`
+    display: inline-block;
+    margin-top: 0;
+
+    &:before {
+      content: ' / '
+    }
+  `};
 `;

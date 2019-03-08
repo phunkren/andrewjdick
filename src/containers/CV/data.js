@@ -49,7 +49,7 @@ export const EXPERIENCE = [
         <ul>
           <li>
             HTML and CSS frameworks, but also had the exposure to Unity,
-            Wordpress, and the Knockout JavaScript framework.
+            Wordpress, and Knockout JS.
           </li>
           <li>
             Contributed to commercial projects on-site at some of London's top
