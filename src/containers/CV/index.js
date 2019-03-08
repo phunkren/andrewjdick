@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { isBrowser, isIE } from "react-device-detect";
-import { Spring } from "react-spring";
+import { Spring } from "react-spring/renderprops";
 import { ExternalLink, Link } from "components/Link";
 import { ColouredContainer } from "components/ColouredContainer";
 import { DownloadIcon } from "components/icons";
