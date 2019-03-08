@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
+import { animated } from "react-spring/renderprops";
 import { Navigation } from "./Navigation";
 import homeBackground from "assets/images/homeBackground.png";
-import Particles from "react-particles-js";
 import { media } from "media.js";
 
 const infiniteScroll = keyframes`
@@ -9,28 +9,8 @@ const infiniteScroll = keyframes`
     transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translate3d(0, -1920px, 0);
+    transform: translate3d(0, -${window.innerHeight}px, 0);
   }
-`;
-
-const particleOpacity = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.1;
-  }
-`;
-
-export const StyledParticles = styled(Particles)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  animation: ${particleOpacity} 2s linear;
-  pointer-events: none;
-  opacity: 0.1;
 `;
 
 export const Wrapper = styled.div`
@@ -41,58 +21,73 @@ export const Wrapper = styled.div`
   overflow: hidden;
 `;
 
-export const Image = styled.div`
+const RawImage = styled.div`
   position: absolute;
   right: 0;
   left: 0;
   top: 0;
   height: 400%;
   background-image: url(${homeBackground});
-  background-position: center center;
+  background-position: top;
   background-repeat: repeat
   pointer-events: none;
-  animation: ${infiniteScroll} 120s linear infinite;
+  animation: ${infiniteScroll} 30s linear infinite 4s;
 `;
 
-export const Section = styled.section`
+export const Image = animated(RawImage);
+
+const RawSection = styled.section`
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 10px;
-  transition: all 400ms linear;
 `;
 
-export const Header = styled.header`
+export const Section = animated(RawSection);
+
+const RawHeader = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2em 2em 0;
+  padding: 0 2em;
   position: relative;
-  transition: top 600ms linear;
+  height: 100px;
+
   ${media.tablet`
     justify-content: space-between;
   `};
 `;
 
-export const Footer = styled.footer`
+export const Header = animated(RawHeader);
+
+const RawFooter = styled.footer`
   display: flex;
   justify-content: center;
-  padding: 0 2em 2em;
+  align-items: center;
+  padding: 0 2em;
   position: relative;
-  transition: bottom 600ms linear;
+  height: 100px;
 
   ${media.tablet`
     display: none;
   `};
 `;
 
+export const Footer = animated(RawFooter);
+
 export const FooterNavigation = styled(Navigation)`
   display: block;
 `;
 
-export const Name = styled.h1`
+const RawAt = styled.span`
+  display: inline-block;
+`;
+
+export const At = animated(RawAt);
+
+const RawName = styled.h1`
   font-size: 2rem;
   line-height: 2.25rem;
   margin-bottom: 10px;
@@ -109,14 +104,20 @@ export const Name = styled.h1`
   `};
 `;
 
-export const Info = styled.p`
+export const Name = animated(RawName);
+
+export const RawInfo = styled.p`
+  color: rgba(0, 0, 0, 0.7);
   padding-bottom: 0;
   font-size: 1rem;
   line-height: 1.25rem;
   text-align: center;
+  transition: opacity 100ms ease-out;
 
   ${media.tablet`
     font-size: 1.8rem;
     line-height: 2.5rem;
   `};
 `;
+
+export const Info = animated(RawInfo);
