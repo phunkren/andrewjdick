@@ -1,29 +1,33 @@
-export const SITE_URL = "https://andrewjdick.co.uk/";
+export const SITE_URL = "https://ajames.dev/";
 
 export const SOCIAL_LINKS = {
   github: {
-    handle: "andrewjdick",
-    url: "https://github.com/andrewjdick/"
+    handle: "phunkren",
+    url: "https://github.com/phunkren/",
+    label: "GitHub"
   },
   linkedIn: {
-    handle: "andrewjdick",
-    url: "https://www.linkedin.com/in/andrewjdick/"
+    handle: "Andrew James",
+    url: "https://www.linkedin.com/in/ajamesdev/",
+    label: "LinkedIn"
   },
   medium: {
     handle: "andrewjd_ck",
-    url: "https://medium.com/@andrewjd_ck/"
+    url: "https://medium.com/@andrewjd_ck/",
+    label: "Medium"
   },
   twitter: {
-    handle: "@andrewjd_ck",
-    url: "https://twitter.com/andrewjd_ck/"
+    handle: "@phunkren",
+    url: "https://twitter.com/phunkren/",
+    label: "Twitter"
   }
 };
 
 export const CONTACT_DETAILS = {
-  name: "Andrew James Dick",
-  position: "Frontend developer",
+  name: "Andrew James",
+  position: "Senior developer",
   location: "London, UK",
-  email: "andrewdick1987@gmail.com",
+  email: "contact@ajames.dev",
   tel: "+44 (0) 7480468006"
 };
 
