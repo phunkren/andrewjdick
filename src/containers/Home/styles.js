@@ -69,16 +69,25 @@ const RawFooter = styled.footer`
   padding: 0 2em;
   position: relative;
   height: 100px;
-
-  ${media.tablet`
-    display: none;
-  `};
 `;
 
 export const Footer = animated(RawFooter);
 
+export const BackgroundCredit = styled.figcaption`
+  display: none;
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.5);
+  ${media.tablet`
+    display: block;
+  `};
+`;
+
 export const FooterNavigation = styled(Navigation)`
   display: block;
+
+  ${media.tablet`
+    display: none;
+  `};
 `;
 
 const RawAt = styled.span`

@@ -13,6 +13,7 @@ import {
   Info,
   Footer,
   FooterNavigation,
+  BackgroundCredit,
   Wrapper,
   Image,
   At
@@ -134,6 +135,17 @@ export class Home extends React.Component {
               renderAnimations &&
               (props => (
                 <Footer style={props}>
+                  <BackgroundCredit>
+                    background courtesy of
+                    <ExternalLink
+                      href="https://absurd.design/"
+                      alt="absurd.design"
+                      aria-label="absurd.design"
+                    >
+                      {" "}
+                      absurd.design
+                    </ExternalLink>
+                  </BackgroundCredit>
                   <FooterNavigation />
                 </Footer>
               ))
