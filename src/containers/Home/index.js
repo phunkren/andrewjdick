@@ -97,7 +97,7 @@ export class Home extends React.Component {
               {props => (
                 <Fragment>
                   <Info style={props}>
-                    {position}{" "}
+                    {currentEmployer.position}{" "}
                     <Spring
                       native
                       delay={3100}
