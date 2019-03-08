@@ -64,6 +64,7 @@ export const Header = animated(RawHeader);
 
 const RawFooter = styled.footer`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 0 2em;
@@ -74,7 +75,7 @@ const RawFooter = styled.footer`
 export const Footer = animated(RawFooter);
 
 export const BackgroundCredit = styled.figcaption`
-  display: none;
+  display: block;
   font-size: 0.75rem;
   color: rgba(0, 0, 0, 0.5);
   ${media.tablet`
@@ -84,6 +85,7 @@ export const BackgroundCredit = styled.figcaption`
 
 export const FooterNavigation = styled(Navigation)`
   display: block;
+  margin-bottom: 20px;
 
   ${media.tablet`
     display: none;

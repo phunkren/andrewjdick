@@ -135,6 +135,7 @@ export class Home extends React.Component {
               renderAnimations &&
               (props => (
                 <Footer style={props}>
+                  <FooterNavigation />
                   <BackgroundCredit>
                     background courtesy of
                     <ExternalLink
@@ -146,7 +147,6 @@ export class Home extends React.Component {
                       absurd.design
                     </ExternalLink>
                   </BackgroundCredit>
-                  <FooterNavigation />
                 </Footer>
               ))
             }
