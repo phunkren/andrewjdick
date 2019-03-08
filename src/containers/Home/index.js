@@ -56,7 +56,7 @@ export class Home extends React.Component {
           <Transition
             native
             items={renderAnimations}
-            delay={4500}
+            delay={3900}
             config={config.wobbly}
             from={{ top: -100 }}
             enter={[{ top: 0 }]}
@@ -78,7 +78,7 @@ export class Home extends React.Component {
               native
               items={renderAnimations}
               delay={3000}
-              config={config.wobbly}
+              config={config.stiff}
               from={{ overflow: "hidden", height: 0 }}
               enter={[{ height: "auto" }]}
               leave={{ height: 0 }}
@@ -91,7 +91,6 @@ export class Home extends React.Component {
             <Spring
               native
               delay={3100}
-              config={config.gentle}
               from={{ opacity: 0 }}
               to={{ opacity: 1 }}
             >
@@ -125,7 +124,7 @@ export class Home extends React.Component {
           <Transition
             native
             items={renderAnimations}
-            delay={4500}
+            delay={3900}
             config={config.wobbly}
             from={{ bottom: -100 }}
             enter={[{ bottom: 0 }]}
