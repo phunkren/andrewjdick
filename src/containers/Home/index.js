@@ -100,7 +100,7 @@ export class Home extends React.Component {
                     {currentEmployer.position}{" "}
                     <Spring
                       native
-                      delay={3100}
+                      delay={3900}
                       from={{ transform: "rotate(-360deg)" }}
                       to={{ transform: "rotate(0)" }}
                     >
