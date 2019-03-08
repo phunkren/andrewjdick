@@ -9,8 +9,8 @@ import { SOCIAL_LINKS } from "constants.js";
 import { SocialLinks, SocialLink } from "./styles";
 
 const iconProps = {
-  width: "2.5em",
-  height: "2.5em"
+  width: "1.8em",
+  height: "1.8em"
 };
 
 export const Social = () => {
@@ -20,32 +20,36 @@ export const Social = () => {
     <SocialLinks>
       <SocialLink
         href={github.url}
-        alt="GitHub profile"
-        aria-label="Github profile"
+        alt={github.label}
+        aria-label={github.label}
+        title={github.label}
       >
         <GitHubIcon {...iconProps} />
       </SocialLink>
 
       <SocialLink
         href={medium.url}
-        alt="Medium profile"
-        aria-label="Medium profile"
+        alt={medium.label}
+        aria-label={medium.label}
+        title={medium.label}
       >
         <MediumIcon {...iconProps} />
       </SocialLink>
 
       <SocialLink
         href={twitter.url}
-        alt="Twitter profile"
-        aria-label="Twitter profile"
+        alt={twitter.label}
+        aria-label={twitter.label}
+        title={twitter.label}
       >
         <TwitterIcon {...iconProps} />
       </SocialLink>
 
       <SocialLink
         href={linkedIn.url}
-        alt="LinkedIn profile"
-        aria-label="LinkedIn profile"
+        alt={linkedIn.label}
+        aria-label={linkedIn.label}
+        title={linkedIn.label}
       >
         <LinkedInIcon {...iconProps} />
       </SocialLink>
