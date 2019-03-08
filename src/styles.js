@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import { reset } from "styled-reset";
 import { media } from "media.js";
 
@@ -35,10 +35,4 @@ export const GlobalStyles = createGlobalStyle`
   p {
      padding-bottom: 1em;
   }
-`;
-
-export const SpringContainer = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
 `;
