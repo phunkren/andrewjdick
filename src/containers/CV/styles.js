@@ -29,7 +29,7 @@ export const Header = styled.header`
     : undefined}
 
   ${media.print`
-    padding: 2.5em;
+    padding: 2.5em 1em;
     text-align: left;
   `};
 `;
@@ -50,6 +50,13 @@ export const Content = styled.div`
   border-top: 5px solid ${COLORS.black};
   border-bottom: 5px solid ${COLORS.black};
 
+  p,
+  li {
+    padding: 0;
+    line-height: 1.75rem;
+    color: #333;
+  }
+
   ${media.tablet`
     display: inline-flex;
     flex-direction: row;
@@ -68,7 +75,7 @@ export const Sidebar = styled.aside`
     flex: 0 1 25%;
     margin-right: 1em;
     border-right: 2px solid ${COLORS.black};
-    padding: 1em 2em 2em 1em;
+    padding: 2em 4em 2em 1em;
   `};
 
   ${media.print`
@@ -84,7 +91,7 @@ export const Section = styled.article`
 
   ${media.tablet`
     flex: 1;
-    padding: 1em;
+    padding: 2em 3em;
   `};
 
   ${media.print`
@@ -202,7 +209,7 @@ export const Tag = styled.div`
   `};
 `;
 
-export const Dates = styled.div`
+export const Dates = styled.span`
   display: block;
   margin-top: 0.5em;
 

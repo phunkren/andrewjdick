@@ -77,7 +77,7 @@ export const Footer = animated(RawFooter);
 export const BackgroundCredit = styled.figcaption`
   display: block;
   font-size: 0.75rem;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.7);
   ${media.tablet`
     display: block;
   `};
