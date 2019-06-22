@@ -5,7 +5,26 @@ export const EXPERIENCE = [
     position: "Senior developer",
     company: "BCG Digital Ventures",
     url: "https://www.bcgdv.com/",
-    dates: "April 2019 - Present"
+    dates: "April 2019 - Present",
+    description: () => (
+      <Fragment>
+        <p>
+          Each digital venture at BCGDV involves members from various cohorts
+          working together to deliver a goto market product for a startup
+          business. Each development cycle typically lasts betweeen six to nine
+          months with three major milestones (MVP, Alpha, and Beta), which is
+          then handed over to a newly-recruited team to continue development.
+        </p>
+        <p>
+          As a senior developer it is my responsibility to support leads in
+          pushing the product forward and mentoring associates wherever
+          possible. I'm ultimately responsible for collaborating with design,
+          UX, growth, and product team members to engineer a robust and well
+          documented product that can be handed over and taken to market by the
+          business.
+        </p>
+      </Fragment>
+    )
   },
   {
     position: "Frontend developer",
@@ -62,9 +81,6 @@ export const EXPERIENCE = [
           <li>
             Hosted workshops and technical training sessions for Junior
             Developers.
-          </li>
-          <li>
-            Represented the business overseas at international training events.
           </li>
         </ul>
       </Fragment>
