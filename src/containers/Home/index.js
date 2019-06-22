@@ -32,7 +32,7 @@ export class Home extends React.Component {
 
   render() {
     const { renderAnimations } = this.state;
-    const { name, position, location } = CONTACT_DETAILS;
+    const { name, location } = CONTACT_DETAILS;
     const currentEmployer = EXPERIENCE[0];
 
     return (
