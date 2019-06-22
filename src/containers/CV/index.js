@@ -129,7 +129,7 @@ export const CV = () => {
                       <H2>Professional Profile</H2>
                       <Text>
                         My passion for digital technology continually drives me
-                        to advance my skill set as a software engineer. With
+                        to advance my skill set as a software developer. With
                         strong communication and frontend web development
                         skills, I thrive in environments where I can learn from
                         and inspire those around me.
