@@ -12,8 +12,8 @@ export const SOCIAL_LINKS = {
     label: "LinkedIn"
   },
   medium: {
-    handle: "andrewjd_ck",
-    url: "https://medium.com/@andrewjd_ck/",
+    handle: "@phunkren",
+    url: "https://medium.com/@phunkren/",
     label: "Medium"
   },
   twitter: {
