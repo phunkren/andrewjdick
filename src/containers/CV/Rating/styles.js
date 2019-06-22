@@ -9,7 +9,6 @@ export const Skill = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 0.75em;
 
   ${media.print`
     margin-right: 0.25em;

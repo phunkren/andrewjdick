@@ -75,6 +75,10 @@ export const Sidebar = styled.aside`
     flex: 0 1 25%;
     margin-right: 1em;
     border-right: 2px solid ${COLORS.black};
+    padding: 1em 2em 2em 1em;
+  `};
+
+  ${media.desktop`
     padding: 2em 4em 2em 1em;
   `};
 
@@ -90,6 +94,11 @@ export const Section = styled.article`
   padding: 0;
 
   ${media.tablet`
+    flex: 1;
+    padding: 1em;
+  `};
+
+  ${media.desktop`
     flex: 1;
     padding: 2em 3em;
   `};
