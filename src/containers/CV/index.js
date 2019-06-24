@@ -57,7 +57,7 @@ export const CV = () => {
                   {isBrowser && !isIE && (
                     <HeaderIcons>
                       <Link
-                        href="/AndrewJamesDick-CV.pdf"
+                        href="/AndrewJames-CV.pdf"
                         alt="Download my CV"
                         aria-label="Download my CV"
                         download
