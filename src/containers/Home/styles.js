@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import { animated } from "react-spring/renderprops";
-import { Navigation } from "./Navigation";
 import homeBackground from "assets/images/homeBackground.png";
 import { media } from "media.js";
 import { Social } from "./Social";
