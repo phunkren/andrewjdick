@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 
 export const EXPERIENCE = [
   {
-    position: "Senior developer",
+    position: "Senior engineer",
     company: "BCG Digital Ventures",
     url: "https://www.bcgdv.com/",
     dates: "April 2019 - Present",
@@ -10,13 +10,13 @@ export const EXPERIENCE = [
       <Fragment>
         <p>
           Each digital venture at BCGDV involves members from various cohorts
-          working together to deliver a goto market product for a startup
+          working together to deliver a go-to market product for a startup
           business. Each development cycle typically lasts betweeen six to nine
           months with three major milestones (MVP, Alpha, and Beta), which is
           then handed over to a newly-recruited team to continue development.
         </p>
         <p>
-          As a senior developer it is my responsibility to support leads in
+          As a senior engineer it is my responsibility to support leads in
           pushing the product forward and mentoring associates wherever
           possible. I'm ultimately responsible for collaborating with design,
           UX, growth, and product team members to engineer a robust and well
@@ -27,7 +27,7 @@ export const EXPERIENCE = [
     )
   },
   {
-    position: "Frontend developer",
+    position: "Frontend engineer",
     company: "Fathom",
     url: "https://fath.om",
     dates: "June 2017 - March 2019",
@@ -51,7 +51,7 @@ export const EXPERIENCE = [
     )
   },
   {
-    position: "Associate developer",
+    position: "Associate frontend engineer",
     company: "Cohaesus",
     url: "https://cohaesus.co.uk/",
     dates: "Feb 2015 - June 2017",
@@ -60,7 +60,7 @@ export const EXPERIENCE = [
         <p>
           I accrued over two years of experience working at Cohaesus in teams of
           various sizes on commercial front-end web projects. Originally hired
-          as a Trainee developer, I progressed through Junior and into the
+          as a Trainee engineer, I progressed through Junior and into the
           Associate role by completing several technical segments and
           consistently delivering on time and to the best of my ability.
         </p>
@@ -80,7 +80,7 @@ export const EXPERIENCE = [
           </li>
           <li>
             Hosted workshops and technical training sessions for Junior
-            Developers.
+            engineers.
           </li>
         </ul>
       </Fragment>

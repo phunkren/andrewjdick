@@ -25,7 +25,7 @@ export const SOCIAL_LINKS = {
 
 export const CONTACT_DETAILS = {
   name: "Andrew James",
-  position: "Senior developer",
+  position: "Senior engineer",
   location: "London, UK",
   email: "contact@ajames.dev",
   tel: "+44 (0) 7480468006"
@@ -33,7 +33,8 @@ export const CONTACT_DETAILS = {
 
 export const COLORS = {
   black: "#1d1d1c",
-  white: "#fcfcfc"
+  white: "#fcfcfc",
+  cadetBlue: "#5f9ea0"
 };
 
 export const ALPHAS = {

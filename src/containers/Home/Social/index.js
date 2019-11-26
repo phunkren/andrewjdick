@@ -13,11 +13,11 @@ const iconProps = {
   height: "1.8em"
 };
 
-export const Social = () => {
+export const Social = props => {
   const { github, medium, twitter, linkedIn } = SOCIAL_LINKS;
 
   return (
-    <SocialLinks>
+    <SocialLinks {...props}>
       <SocialLink
         href={github.url}
         alt={github.label}
