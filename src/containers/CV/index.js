@@ -150,6 +150,7 @@ export const CV = () => {
                                 href={url}
                                 alt={`${company} website`}
                                 aria-label={`${company} website`}
+                                withHighlight
                               >
                                 {company}
                               </ExternalLink>{" "}
