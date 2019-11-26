@@ -192,7 +192,6 @@ export const Text = styled.p`
 
 export const Subtitle = styled.p`
   padding-bottom: 0.5em;
-  font-weight: bold;
   font-size: 1.1rem;
   line-height: 1.3rem;
 `;
@@ -200,7 +199,7 @@ export const Subtitle = styled.p`
 export const Tag = styled.div`
   border: 1px solid ${COLORS.black};
   border-radius: 5px;
-  background-color: ${rgba(COLORS.black, ALPHAS.disabled)};
+  background-color: ${rgba(COLORS.cadetBlue, ALPHAS.disabled)};
   text-transform: uppercase;
   padding: 0.5em;
   margin-bottom: 0.5em;

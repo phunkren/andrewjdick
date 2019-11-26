@@ -1,10 +1,18 @@
 import styled from "styled-components";
 import { ExternalLink } from "components/Link";
+import { media } from "media.js";
 
-export const SocialLinks = styled.div``;
+export const SocialLinks = styled.div`
+  display: none;
+
+  ${media.tablet`
+    display: inline-block;
+  `};
+`;
 
 export const SocialLink = styled(ExternalLink)`
   display: inline-block;
+  color: black;
 
   &:not(:first-child) {
     margin-left: 0.75em;

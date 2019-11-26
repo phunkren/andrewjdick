@@ -3,6 +3,7 @@ import { animated } from "react-spring/renderprops";
 import { Navigation } from "./Navigation";
 import homeBackground from "assets/images/homeBackground.png";
 import { media } from "media.js";
+import { Social } from "./Social";
 
 const infiniteScroll = keyframes`
   from {
@@ -21,22 +22,7 @@ export const Wrapper = styled.div`
   overflow: hidden;
 `;
 
-const RawImage = styled.div`
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: 0;
-  height: 600%;
-  background-image: url(${homeBackground});
-  background-position: bottom;
-  background-repeat: repeat
-  pointer-events: none;
-  animation: ${infiniteScroll} 45s linear infinite 4s;
-`;
-
-export const Image = animated(RawImage);
-
-const RawSection = styled.section`
+export const Section = styled.section`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -44,35 +30,6 @@ const RawSection = styled.section`
   justify-content: center;
   margin: 10px;
 `;
-
-export const Section = animated(RawSection);
-
-const RawHeader = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 2em;
-  position: relative;
-  height: 100px;
-
-  ${media.tablet`
-    justify-content: space-between;
-  `};
-`;
-
-export const Header = animated(RawHeader);
-
-const RawFooter = styled.footer`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 2em;
-  position: relative;
-  height: 100px;
-`;
-
-export const Footer = animated(RawFooter);
 
 export const BackgroundCredit = styled.figcaption`
   display: block;
@@ -83,26 +40,12 @@ export const BackgroundCredit = styled.figcaption`
   `};
 `;
 
-export const FooterNavigation = styled(Navigation)`
-  display: block;
-  margin-bottom: 20px;
-
-  ${media.tablet`
-    display: none;
-  `};
-`;
-
-const RawAt = styled.span`
-  display: inline-block;
-`;
-
-export const At = animated(RawAt);
-
-const RawName = styled.h1`
+export const Name = styled.h1`
   font-size: 2rem;
   line-height: 2.25rem;
   margin-bottom: 10px;
   text-align: center;
+  text
 
   ${media.tablet`
     font-size: 3.5rem;
@@ -115,9 +58,7 @@ const RawName = styled.h1`
   `};
 `;
 
-export const Name = animated(RawName);
-
-export const RawInfo = styled.p`
+export const Info = styled.p`
   color: rgba(0, 0, 0, 0.7);
   padding-bottom: 0;
   font-size: 1rem;
@@ -131,4 +72,53 @@ export const RawInfo = styled.p`
   `};
 `;
 
-export const Info = animated(RawInfo);
+export const Header = styled.header`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2em;
+  position: relative;
+  height: 100px;
+
+  ${media.tablet`
+    justify-content: space-between;
+  `};
+`;
+
+const RawImage = styled.div`
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  height: 600%;
+  background-image: url(${homeBackground});
+  background-position: bottom;
+  background-repeat: repeat
+  pointer-events: none;
+  animation: ${infiniteScroll} 45s linear infinite;
+`;
+
+export const Image = animated(RawImage);
+
+export const Footer = styled.footer`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2em;
+  position: relative;
+  height: 100px;
+`;
+
+export const FooterSocial = styled(Social)`
+  display: inline-block;
+  margin-bottom: 24px;
+
+  ${media.tablet`
+    display: none;
+  `};
+`;
+
+export const At = styled.span`
+  display: inline-block;
+`;
