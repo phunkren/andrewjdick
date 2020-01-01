@@ -104,9 +104,8 @@ export const Footer = styled.footer`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 2em;
+  padding: 0 2em 1em;
   position: relative;
-  height: 100px;
 `;
 
 export const FooterSocial = styled(Social)`
@@ -120,4 +119,9 @@ export const FooterSocial = styled(Social)`
 
 export const At = styled.span`
   display: inline-block;
+`;
+
+export const Legal = styled.p`
+  font-size: 0.75rem;
+  padding: 0;
 `;
