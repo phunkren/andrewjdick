@@ -14,6 +14,7 @@ import {
   Footer,
   FooterSocial,
   BackgroundCredit,
+  Legal,
   Wrapper,
   Image,
   At
@@ -85,6 +86,7 @@ export class Home extends React.Component {
                 absurd.design
               </ExternalLink>
             </BackgroundCredit>
+            <Legal>&copy; 2020</Legal>
           </Footer>
         </Wrapper>
       </Fragment>
