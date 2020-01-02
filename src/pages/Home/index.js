@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Transition, config } from "react-spring/renderprops";
 import { ExternalLink } from "components/Link";
 import { TitleAndMetaTags } from "components/TitleAndMetaTags";
-import { EXPERIENCE } from "containers/CV/data";
+import { EXPERIENCE } from "pages/CV/data";
 import { Social } from "./Social";
 import { Navigation } from "./Navigation";
 import { CONTACT_DETAILS } from "constants.js";

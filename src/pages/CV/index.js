@@ -1,14 +1,14 @@
 import React, { Fragment } from "react";
 import { isBrowser, isIE } from "react-device-detect";
 import { Spring } from "react-spring/renderprops";
+import { CONTACT_DETAILS } from "constants.js";
 import { ExternalLink, Link } from "components/Link";
 import { ColouredContainer } from "components/ColouredContainer";
 import { DownloadIcon } from "components/icons";
 import { TitleAndMetaTags } from "components/TitleAndMetaTags";
+import { Rating } from "./components/Rating";
+import { Contact } from "./components/Contact";
 import { EDUCATION, EXPERIENCE, EXPERTISE, INTERESTS, HOBBIES } from "./data";
-import { Rating } from "./Rating";
-import { Contact } from "./Contact";
-import { CONTACT_DETAILS } from "constants.js";
 import {
   Container,
   Content,

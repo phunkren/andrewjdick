@@ -6,7 +6,7 @@ import {
   SkillRating,
   Label
 } from "./styles";
-import { EXPERTISE } from "../data";
+import { EXPERTISE } from "../../data";
 
 export const Rating = ({ skills, numberOfStars }) => (
   <Fragment>

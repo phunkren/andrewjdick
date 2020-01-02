@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Home } from "containers/Home";
-import { CV } from "containers/CV";
-import { NotFound } from "containers/NotFound";
+import { Home } from "pages/Home";
+import { CV } from "pages/CV";
+import { NotFound } from "pages/NotFound";
 import { GlobalStyles } from "./styles";
 import * as serviceWorker from "./serviceWorker";
 
