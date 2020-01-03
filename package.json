@@ -18,8 +18,8 @@
     "styled-reset": "^4.0.9"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && cp build/index.html build/404.html",
+    "start": "gatsby develop",
+    "build": "gatsby build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
