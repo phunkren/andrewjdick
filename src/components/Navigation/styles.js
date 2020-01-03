@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "components/Link";
+import { Link } from "../Link";
 
 export const StyledLink = styled(Link)`
   font-size: 1.3rem;

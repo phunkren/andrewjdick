@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { reset } from "styled-reset";
-import { media } from "media.js";
+import { media } from "../../media.js";
 
 export const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -10,7 +10,9 @@ export const GlobalStyles = createGlobalStyle`
     display: flex;
   }
   
-  body, div#wallop {
+  body, 
+  div#___gatsby, 
+  div#gatsby-focus-wrapper {
     flex: 1;
     display: flex;
     flex-direction: column;

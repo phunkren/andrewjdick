@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { rgba } from "polished";
 import { isBrowser } from "react-device-detect";
-import { COLORS } from "constants.js";
+import { COLORS } from "../../constants.js";
 
 export const Container = styled.main.attrs(
   ({ clientX, clientY, clientWidth, clientHeight, style }) =>

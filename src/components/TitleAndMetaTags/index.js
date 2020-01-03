@@ -1,6 +1,11 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { SITE_URL, CONTACT_DETAILS, SOCIAL_LINKS, COLORS } from "constants.js";
+import {
+  SITE_URL,
+  CONTACT_DETAILS,
+  SOCIAL_LINKS,
+  COLORS
+} from "../../constants.js";
 
 export const TitleAndMetaTags = ({
   url,
@@ -36,8 +41,6 @@ TitleAndMetaTags.defaultProps = {
   url: `${SITE_URL}`,
   pathname: ".",
   title: `${CONTACT_DETAILS.position}`,
-  description: `${CONTACT_DETAILS.position} working in ${
-    CONTACT_DETAILS.location
-  }`,
+  description: `${CONTACT_DETAILS.position} working in ${CONTACT_DETAILS.location}`,
   image: "profileImage.jpg"
 };

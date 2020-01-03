@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { EXPERTISE } from "../../data";
 import {
   FilledStarIcon,
   EmptyStarIcon,
@@ -6,7 +7,6 @@ import {
   SkillRating,
   Label
 } from "./styles";
-import { EXPERTISE } from "../../data";
 
 export const Rating = ({ skills, numberOfStars }) => (
   <Fragment>

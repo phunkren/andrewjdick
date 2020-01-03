@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { rgba } from "polished";
-import { StarIcon } from "components/icons";
-import { COLORS, ALPHAS } from "constants.js";
-import { media } from "media.js";
+import { COLORS, ALPHAS } from "../../constants";
+import { media } from "../../media";
+import { StarIcon } from "../icons";
 
 export const Skill = styled.div`
   stroke: ${COLORS.black};

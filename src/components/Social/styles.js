@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ExternalLink } from "components/Link";
-import { media } from "media.js";
+import { ExternalLink } from "../Link";
+import { media } from "../../media";
 
 export const SocialLinks = styled.div`
   display: none;

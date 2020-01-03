@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Link, ExternalLink } from "components/Link";
-import { media } from "media.js";
+import { Link, ExternalLink } from "../Link";
+import { media } from "../../media";
 
 export const List = styled.ul`
   margin-bottom: 2em;
