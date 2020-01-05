@@ -1,5 +1,5 @@
 import React from "react";
-import { SOCIAL_LINKS } from "../../constants.js";
+import { SOCIAL_LINKS } from "../../constants";
 import { GitHubIcon, MediumIcon, TwitterIcon, LinkedInIcon } from "../icons";
 import { SocialLinks, SocialLink } from "./styles";
 

@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { reset } from "styled-reset";
-import { media } from "../../media.js";
+import { media } from "../../media";
 
 export const GlobalStyles = createGlobalStyle`
   ${reset};

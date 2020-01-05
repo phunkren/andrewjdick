@@ -5,7 +5,7 @@ import {
   CONTACT_DETAILS,
   SOCIAL_LINKS,
   COLORS
-} from "../../constants.js";
+} from "../../constants";
 
 export const TitleAndMetaTags = ({
   url,

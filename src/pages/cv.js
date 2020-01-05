@@ -3,8 +3,6 @@ import { isBrowser, isIE } from "react-device-detect";
 import { Spring } from "react-spring/renderprops";
 import styled, { css } from "styled-components";
 import { rgba } from "polished";
-import { COLORS, ALPHAS } from "../constants.js";
-import { media } from "../media.js";
 import { Layout } from "../components/Layout";
 import { ExternalLink, Link } from "../components/Link";
 import { ColouredContainer } from "../components/ColouredContainer";
@@ -12,7 +10,8 @@ import { DownloadIcon } from "../components/icons";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
 import { Rating } from "../components/Rating";
 import { Contact } from "../components/Contact";
-import { CONTACT_DETAILS } from "../constants";
+import { media } from "../media";
+import { CONTACT_DETAILS, COLORS, ALPHAS } from "../constants";
 import { EDUCATION, EXPERIENCE, EXPERTISE, INTERESTS, HOBBIES } from "../data";
 
 const Container = styled.div`

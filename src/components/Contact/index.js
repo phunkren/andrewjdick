@@ -1,5 +1,5 @@
 import React from "react";
-import { CONTACT_DETAILS, SOCIAL_LINKS, SITE_URL } from "../../constants.js";
+import { CONTACT_DETAILS, SOCIAL_LINKS, SITE_URL } from "../../constants";
 import { EmailIcon, GitHubIcon, LinkedInIcon, GlobeIcon } from "../icons";
 import { List, ListItem, Text, StyledLink, StyledExternalLink } from "./styles";
 

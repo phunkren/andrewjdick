@@ -5,12 +5,12 @@ import { animated } from "react-spring/renderprops";
 import { Layout } from "../components/Layout";
 import { Social } from "../components/Social";
 import homeBackground from "../assets/images/homeBackground.png";
-import { media } from "../media.js";
 import { ExternalLink } from "../components/Link";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
 import { Navigation } from "../components/Navigation";
-import { CONTACT_DETAILS } from "../constants.js";
+import { CONTACT_DETAILS } from "../constants";
 import { EXPERIENCE } from "../data";
+import { media } from "../media";
 
 const infiniteScroll = keyframes`
   from {
