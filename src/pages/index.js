@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 import { animated } from "react-spring/renderprops";
 import { Layout } from "../components/Layout";
 import { Social } from "../components/Social";
-import homeBackground from "../images/homeBackground.png";
+import homeBackground from "../assets/images/homeBackground.png";
 import { media } from "../media.js";
 import { ExternalLink } from "../components/Link";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
