@@ -1,7 +1,9 @@
 import { createGlobalStyle } from "styled-components";
+import reset from "modern-css-reset";
 import { media } from "../../media";
 
 export const GlobalStyles = createGlobalStyle`
+  ${reset};
 
   html {
     min-height: 100%;
