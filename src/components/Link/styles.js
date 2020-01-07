@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { position } from "polished";
-import { COLORS } from "constants.js";
+import { COLORS } from "../../constants";
 
 export const RawLink = styled.a(({ withHighlight }) => [
   css`
