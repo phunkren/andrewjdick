@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Transition, config } from "react-spring/renderprops";
 import styled, { keyframes } from "styled-components";
 import { animated } from "react-spring/renderprops";
@@ -134,76 +134,72 @@ const Legal = styled.p`
   padding: 0;
 `;
 
-export default class Home extends React.Component {
-  state = { renderAnimations: false };
+export default function Home() {
+  const [renderAnimations, setRenderAnimations] = useState(false);
+  const { name, location } = CONTACT_DETAILS;
+  const currentEmployer = EXPERIENCE[0];
 
-  componentDidMount() {
-    this.setState({ renderAnimations: true });
-  }
+  useEffect(() => {
+    setRenderAnimations(true);
 
-  componentWillUnmount() {
-    this.setState({ renderAnimations: false });
-  }
+    return function cleanup() {
+      setRenderAnimations(false);
+    };
+  }, []);
 
-  render() {
-    const { renderAnimations } = this.state;
-    const { name, location } = CONTACT_DETAILS;
-    const currentEmployer = EXPERIENCE[0];
+  return (
+    <Layout>
+      <TitleAndMetaTags />
+      <Wrapper>
+        <Transition
+          native
+          items={renderAnimations}
+          config={config.molasses}
+          enter={[{ opacity: 0.04, top: -1500 }]}
+          leave={{ opacity: 0, top: -2000 }}
+        >
+          {renderAnimations =>
+            renderAnimations && (props => <Image style={props} />)
+          }
+        </Transition>
 
-    return (
-      <Layout>
-        <TitleAndMetaTags />
-        <Wrapper>
-          <Transition
-            native
-            items={renderAnimations}
-            config={config.molasses}
-            enter={[{ opacity: 0.04, top: -1500 }]}
-            leave={{ opacity: 0, top: -2000 }}
-          >
-            {renderAnimations =>
-              renderAnimations && (props => <Image style={props} />)
-            }
-          </Transition>
+        <Header>
+          <Navigation />
+          <Social />
+        </Header>
 
-          <Header>
-            <Navigation />
-            <Social />
-          </Header>
+        <Section>
+          <Name>{name}</Name>
+          <Info>
+            {currentEmployer.position} <At>@</At>{" "}
+            <ExternalLink
+              href={currentEmployer.url}
+              alt={`${currentEmployer.company}'s website`}
+              aria-label={`${currentEmployer.company}'s website`}
+              withHighlight
+            >
+              {currentEmployer.company}
+            </ExternalLink>
+          </Info>
+          <Info>{location}</Info>
+        </Section>
 
-          <Section>
-            <Name>{name}</Name>
-            <Info>
-              {currentEmployer.position} <At>@</At>{" "}
-              <ExternalLink
-                href={currentEmployer.url}
-                alt={`${currentEmployer.company}'s website`}
-                aria-label={`${currentEmployer.company}'s website`}
-                withHighlight
-              >
-                {currentEmployer.company}
-              </ExternalLink>
-            </Info>
-            <Info>{location}</Info>
-          </Section>
-
-          <Footer>
-            <FooterSocial />
-            <BackgroundCredit>
-              background courtesy of{" "}
-              <ExternalLink
-                href="https://absurd.design/"
-                alt="absurd.design"
-                aria-label="absurd.design"
-                withHighlight
-              >
-                absurd.design
-              </ExternalLink>
-            </BackgroundCredit>
-            <Legal>&copy; 2020</Legal>
-          </Footer>
-        </Wrapper>
-      </Layout>
-    );
-  }
+        <Footer>
+          <FooterSocial />
+          <BackgroundCredit>
+            background courtesy of{" "}
+            <ExternalLink
+              href="https://absurd.design/"
+              alt="absurd.design"
+              aria-label="absurd.design"
+              withHighlight
+            >
+              absurd.design
+            </ExternalLink>
+          </BackgroundCredit>
+          <Legal>&copy; 2020</Legal>
+        </Footer>
+      </Wrapper>
+    </Layout>
+  );
 }
