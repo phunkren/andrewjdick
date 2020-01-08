@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { rgba } from "polished";
-import { COLORS, ALPHAS } from "../../constants";
-import { media } from "../../media";
 import { StarIcon } from "../icons";
+import { ALPHAS } from "../../styles/alphas";
+import { COLORS } from "../../styles/colors";
+import { MEDIA } from "../../styles/media";
 
 export const Skill = styled.div`
   stroke: ${COLORS.black};
@@ -10,19 +11,8 @@ export const Skill = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  ${media.print`
+  ${MEDIA.print`
     margin-right: 0.25em;
-  `};
-`;
-
-export const Label = styled.span`
-  font-size: 1.2rem;
-  font-weight: 400;
-  line-height: 2.5rem;
-
-  ${media.print`
-    font-size: 0.75rem;
-    line-height: 2rem;
   `};
 `;
 
@@ -34,7 +24,7 @@ export const EmptyStarIcon = styled(StarIcon)`
   &:not(:last-child) {
     margin-right: 0.5em;
 
-    ${media.print`
+    ${MEDIA.print`
       margin-right: 0.15em;
     `};
   }

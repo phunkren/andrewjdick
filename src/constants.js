@@ -30,16 +30,3 @@ export const CONTACT_DETAILS = {
   email: "contact@ajames.dev",
   tel: "+44 (0) 7480468006"
 };
-
-export const COLORS = {
-  black: "#1d1d1c",
-  white: "#fcfcfc",
-  cadetBlue: "#5f9ea0"
-};
-
-export const ALPHAS = {
-  disabled: 0.15,
-  active: 0.35,
-  selected: 0.65,
-  rollover: 0.75
-};

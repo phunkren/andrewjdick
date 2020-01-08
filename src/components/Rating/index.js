@@ -1,18 +1,13 @@
 import React, { Fragment } from "react";
 import { EXPERTISE } from "../../data";
-import {
-  FilledStarIcon,
-  EmptyStarIcon,
-  Skill,
-  SkillRating,
-  Label
-} from "./styles";
+import { Text } from "../../styles/typography";
+import { FilledStarIcon, EmptyStarIcon, Skill, SkillRating } from "./styles";
 
 export const Rating = ({ skills, numberOfStars }) => (
   <Fragment>
     {skills.map(({ id, rating }, index) => (
       <Skill key={`Skill-${index}`}>
-        <Label>{id}</Label>
+        <Text>{id}</Text>
         <SkillRating>
           {Array.from(new Array(numberOfStars)).map((star, index) =>
             rating > index ? (

@@ -1,9 +1,10 @@
 import React from "react";
-import { StyledLink, List, ListItem } from "./styles";
+import { Link } from "../Link";
+import { List, ListItem } from "./styles";
 
 export const NavigationLink = ({ children, ...props }) => (
   <ListItem>
-    <StyledLink {...props}>{children}</StyledLink>
+    <Link {...props}>{children}</Link>
   </ListItem>
 );
 

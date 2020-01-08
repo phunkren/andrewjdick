@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import { isBrowser, isIE } from "react-device-detect";
 import { Spring } from "react-spring/renderprops";
-import styled, { css } from "styled-components";
+import { isBrowser, isIE } from "react-device-detect";
+import styled from "styled-components";
 import { rgba } from "polished";
 import { Layout } from "../components/Layout";
 import { ExternalLink, Link } from "../components/Link";
@@ -10,45 +10,45 @@ import { DownloadIcon } from "../components/icons";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
 import { Rating } from "../components/Rating";
 import { Contact } from "../components/Contact";
-import { media } from "../media";
-import { CONTACT_DETAILS, COLORS, ALPHAS } from "../constants";
+import { COLORS } from "../styles/colors";
+import { MEDIA, BREAKPOINTS } from "../styles/media";
+import { H1, H2, H3, Text } from "../styles/typography";
+import { CONTACT_DETAILS } from "../constants";
 import { EDUCATION, EXPERIENCE, EXPERTISE, INTERESTS, HOBBIES } from "../data";
 
-const Container = styled.div`
+const Container = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
-  max-width: 1440px;
+  max-width: ${BREAKPOINTS.desktopWide}px;
   margin: 0 auto;
   background-color: ${COLORS.white};
-  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 5px 1px ${rgba(COLORS.black, 0.5)};
 `;
 
 const Header = styled.header`
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 2.5em;
+  align-items: flex-end;
+  padding: 2em;
   text-align: center;
 
-  ${isBrowser
-    ? css`
-        justify-content: space-between;
-        text-align: left;
-      `
-    : undefined}
+  ${MEDIA.desktop`
+    justify-content: space-between;
+    text-align: left;
+  `}
 
-  ${media.print`
-    padding: 2.5em 1em;
+  ${MEDIA.print`
+    justify-content: space-between;
     text-align: left;
   `};
 `;
 
-const HeaderTitle = styled.div``;
-
 const HeaderIcons = styled.div`
-  ${media.print`
-    display: none;
+  display: none;
+
+  ${MEDIA.desktop`
+    display: block;
   `};
 `;
 
@@ -56,193 +56,92 @@ const Content = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column-reverse;
-  padding: 1.5em;
+  padding: 1em;
   border-top: 5px solid ${COLORS.black};
   border-bottom: 5px solid ${COLORS.black};
 
-  p,
-  li {
-    padding: 0;
-    line-height: 1.75rem;
-    color: #333;
-  }
-
-  ${media.tablet`
+  ${MEDIA.tablet`
     display: inline-flex;
     flex-direction: row;
-    padding: 1em;
+    padding: 2em;
   `};
 
-  ${media.print`
+  ${MEDIA.print`
     display: inline-flex;
     flex-direction: row;
-    padding: 1em 0 0;
+    padding: 2em;
   `};
 `;
 
 const Sidebar = styled.aside`
-  ${media.tablet`
-    flex: 0 1 25%;
-    margin-right: 1em;
+  ${MEDIA.tablet`
+    flex: 0 1 33%;
     border-right: 2px solid ${COLORS.black};
-    padding: 1em 2em 2em 1em;
+    padding: 0 2em 0 0;
   `};
 
-  ${media.desktop`
-    padding: 2em 4em 2em 1em;
-  `};
-
-  ${media.print`
-    flex: 0 1 25%;
-    margin-right: 1em;
+  ${MEDIA.print`
+    flex: 0 1 33%;
     border-right: 2px solid ${COLORS.black};
-    padding: 1em 2em 2em 1em;
+    padding: 0 2em 0 0;
   `};
 `;
 
-const Section = styled.article`
+const Section = styled.section`
   padding: 0;
 
-  ${media.tablet`
+  ${MEDIA.tablet`
     flex: 1;
-    padding: 1em;
+    padding-left: 2em;
   `};
 
-  ${media.desktop`
+  ${MEDIA.print`
     flex: 1;
-    padding: 2em 3em;
-  `};
-
-  ${media.print`
-    flex: 1;
-    padding: 1em;
+    padding-left: 2em;
   `};
 `;
 
 const Block = styled.div`
   margin-bottom: 2em;
-
-  ${media.print`
-    margin-bottom: 1.5em;
-  `};
 `;
 
-const H1 = styled.h1`
-  font-size: 1.75rem;
-  font-weight: 300;
-  line-height: 2.5rem;
-  margin-bottom: 0;
-
-  ${media.tablet`
-    font-size: 3rem;
-    line-height: 4rem;
-  `};
-
-  ${media.print`
-    font-size: 3rem;
-    line-height: 4rem;
-  `};
-`;
-
-const H2 = styled.h2`
-  font-size: 1.8rem;
-  font-weight: 300;
-  line-height: 2.5rem;
+const BlockHeader = styled(H2)`
+  margin-bottom: 0.75em;
   border-bottom: 1px solid ${COLORS.black};
 `;
 
-const MobileH2 = styled(H2)`
-  ${media.tablet`
-    display: none;
-  `};
-
-  ${media.print`
-    display: none;
-  `};
-`;
-
-const H3 = styled.h3`
-  margin-bottom: 0.5em;
-  font-size: 1.4rem;
-  font-weight: 400;
-  line-height: 1.5rem;
-  text-transform: uppercase;
-`;
-
 const Description = styled.div`
-  font-size: 1.1rem;
-  line-height: 1.6rem;
-
-  p {
-    margin-top: 1.1em;
+  ${Text} {
+    margin-top: 1em;
     padding-bottom: 0;
   }
 
-  ${media.tablet`
-    font-size: 1.2rem;
-    line-height: 1.8rem;
-  `};
-
   ul {
-    padding: 0 0 0 2em;
+    padding-left: 1.5em;
     margin-top: 1em;
     list-style-type: circle;
   }
 `;
 
-const Text = styled.p`
-  font-size: 1.1rem;
-  line-height: 1.6rem;
-
-  ${media.tablet`
-    font-size: 1.2rem;
-    line-height: 1.8rem;
-  `};
-`;
-
-const Subtitle = styled.p`
-  padding-bottom: 0.5em;
-  font-size: 1.1rem;
-  line-height: 1.3rem;
-`;
-
-const Tag = styled.div`
+const Tag = styled(Text)`
   border: 1px solid ${COLORS.black};
   border-radius: 5px;
-  background-color: ${rgba(COLORS.cadetBlue, ALPHAS.disabled)};
+  background-color: ${rgba(COLORS.black, 0.2)};
   text-transform: uppercase;
   padding: 0.5em;
   margin-bottom: 0.5em;
   display: inline-block;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.25rem;
 
   &:not(:last-child) {
     margin-right: 1em;
   }
-
-  ${media.print`
-    font-size: 0.8rem;
-  `};
 `;
 
-const Dates = styled.span`
+const Dates = styled(Text)`
   display: block;
-  margin-top: 0.5em;
 
-  ${media.tablet`
+  ${MEDIA.tablet`
     display: inline-block;
-    margin-top: 0;
-
-    &:before {
-      content: ' / '
-    }
-  `};
-
-  ${media.print`
-    display: inline-block;
-    margin-top: 0;
 
     &:before {
       content: ' / '
@@ -262,41 +161,39 @@ export default function CV() {
             {props => (
               <Fragment>
                 <Header style={props}>
-                  <HeaderTitle>
-                    <Link
-                      href="/"
-                      alt="Return to homepage"
-                      aria-label="Return to homepage"
-                    >
-                      <H1>{name}</H1>
-                    </Link>
-                    <Subtitle>
+                  <div>
+                    <H1>
+                      <Link href="/" aria-label="Return to homepage">
+                        {name}
+                      </Link>
+                    </H1>
+                    <Text as="p">
                       {position} | {location}
-                    </Subtitle>
-                  </HeaderTitle>
+                    </Text>
+                  </div>
 
                   {isBrowser && !isIE && (
                     <HeaderIcons>
                       <Link
-                        alt="Download my CV"
                         href="/AndrewJames-CV.pdf"
                         aria-label="Download my CV"
                         download
                       >
-                        <DownloadIcon width="2.25em" height="2.25em" />
+                        <DownloadIcon width="2.25rem" height="2.25rem" />
                       </Link>
                     </HeaderIcons>
                   )}
                 </Header>
+
                 <Content style={props}>
                   <Sidebar>
                     <Block>
-                      <MobileH2>Contact</MobileH2>
+                      <BlockHeader>Contact</BlockHeader>
                       <Contact />
                     </Block>
 
                     <Block>
-                      <H2>Education</H2>
+                      <BlockHeader>Education</BlockHeader>
                       {EDUCATION.map(
                         (
                           { qualification, course, institute, dates },
@@ -304,50 +201,52 @@ export default function CV() {
                         ) => (
                           <Block key={`Education-${index}`}>
                             <H3>{qualification}</H3>
-                            <Subtitle>{course}</Subtitle>
-                            <Subtitle>{institute}</Subtitle>
+                            <Text>{course}</Text>
+                            <br />
+                            <Text>{institute}</Text>
+                            <br />
                             <Text>{dates}</Text>
+                            <br />
                           </Block>
                         )
                       )}
                     </Block>
 
                     <Block>
-                      <H2>Expertise</H2>
+                      <BlockHeader>Expertise</BlockHeader>
                       <Block>
                         <Rating skills={EXPERTISE} numberOfStars={5} />
                       </Block>
                     </Block>
 
                     <Block>
-                      <H2>Interests</H2>
-                      <Block>
-                        {INTERESTS.map((interest, index) => (
-                          <Tag key={`Interest-${index}`}>{interest}</Tag>
-                        ))}
-                      </Block>
+                      <BlockHeader>Interests</BlockHeader>
+
+                      {INTERESTS.map((interest, index) => (
+                        <Tag key={`Interest-${index}`} small>
+                          {interest}
+                        </Tag>
+                      ))}
                     </Block>
 
                     <Block>
-                      <H2>Hobbies</H2>
-                      <Block>
-                        {HOBBIES.map((interest, index) => (
-                          <Tag key={`Hobby-${index}`}>{interest}</Tag>
-                        ))}
-                      </Block>
+                      <BlockHeader>Hobbies</BlockHeader>
+                      {HOBBIES.map((interest, index) => (
+                        <Tag key={`Hobby-${index}`} small>
+                          {interest}
+                        </Tag>
+                      ))}
                     </Block>
 
                     <Block>
-                      <H2>References</H2>
-                      <Block>
-                        <Text>Written references available upon request.</Text>
-                      </Block>
+                      <BlockHeader>References</BlockHeader>
+                      <Text>Written references available upon request.</Text>
                     </Block>
                   </Sidebar>
 
                   <Section>
                     <Block>
-                      <H2>Professional Profile</H2>
+                      <BlockHeader>Profile</BlockHeader>
                       <Text>
                         My passion for digital technology continually drives me
                         to advance my skill set as a software engineer. With
@@ -357,33 +256,28 @@ export default function CV() {
                       </Text>
                     </Block>
 
-                    <Block>
-                      <H2>Work Experience</H2>
-                      {EXPERIENCE.map(
-                        (
-                          { position, company, url, dates, description },
-                          index
-                        ) => (
-                          <Block key={`Experience-${index}`}>
-                            <H3>{position}</H3>
-                            <Subtitle>
-                              <ExternalLink
-                                href={url}
-                                alt={`${company} website`}
-                                aria-label={`${company} website`}
-                                withHighlight
-                              >
-                                {company}
-                              </ExternalLink>{" "}
-                              <Dates>{dates}</Dates>
-                            </Subtitle>
-                            {description && (
-                              <Description>{description()}</Description>
-                            )}
-                          </Block>
-                        )
-                      )}
-                    </Block>
+                    <BlockHeader>Experience</BlockHeader>
+                    {EXPERIENCE.map(
+                      (
+                        { position, company, url, dates, description },
+                        index
+                      ) => (
+                        <Block key={`Experience-${index}`}>
+                          <H3>{position}</H3>
+                          <Text>
+                            <ExternalLink
+                              href={url}
+                              aria-label={`${company} website`}
+                              withHighlight
+                            >
+                              {company}
+                            </ExternalLink>{" "}
+                            <Dates>{dates}</Dates>
+                          </Text>
+                          <Description>{description()}</Description>
+                        </Block>
+                      )
+                    )}
                   </Section>
                 </Content>
               </Fragment>

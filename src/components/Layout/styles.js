@@ -1,13 +1,25 @@
-import { createGlobalStyle } from "styled-components";
 import reset from "modern-css-reset";
-import { media } from "../../media";
+import { createGlobalStyle } from "styled-components";
+import { rgba } from "polished";
+import { COLORS } from "../../styles/colors";
+import { MEDIA } from "../../styles/media";
 
 export const GlobalStyles = createGlobalStyle`
   ${reset};
 
   html {
-    min-height: 100%;
     display: flex;
+  }
+
+  body {
+    font-family: 'Roboto', serif;
+    font-size: 16px;
+    font-size: 1rem;
+    color: ${rgba(COLORS.black, 0.9)};
+
+    ${MEDIA.desktopWide`
+      font-size: 1.5rem;
+    `}
   }
   
   body, 
@@ -16,25 +28,11 @@ export const GlobalStyles = createGlobalStyle`
     flex: 1;
     display: flex;
     flex-direction: column;
-    font-family: 'Lato', sans-serif;
-    font-size: 1rem;
-		font-weight: 400;
-		line-height: 1.2rem;
-    background-color: whitesmoke;
-
-    ${media.tablet`
-      font-size: 1.2rem;
-		  font-weight: 400;
-		  line-height: 1.6rem;
-    `}
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roboto Slab', serif;
-    margin-bottom: 1em;
-  }
-
-  p {
-     padding-bottom: 1em;
+    color: ${COLORS.black};
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
   }
 `;

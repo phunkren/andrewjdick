@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { ExternalLink } from "../Link";
-import { media } from "../../media";
+import { MEDIA } from "../../styles/media";
 
 export const SocialLinks = styled.div`
   display: none;
 
-  ${media.tablet`
+  ${MEDIA.tablet`
     display: inline-block;
   `};
 `;

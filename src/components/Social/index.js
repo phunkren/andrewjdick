@@ -15,7 +15,6 @@ export const Social = props => {
     <SocialLinks {...props}>
       <SocialLink
         href={github.url}
-        alt={github.label}
         aria-label={github.label}
         title={github.label}
       >
@@ -24,7 +23,6 @@ export const Social = props => {
 
       <SocialLink
         href={medium.url}
-        alt={medium.label}
         aria-label={medium.label}
         title={medium.label}
       >
@@ -33,7 +31,6 @@ export const Social = props => {
 
       <SocialLink
         href={twitter.url}
-        alt={twitter.label}
         aria-label={twitter.label}
         title={twitter.label}
       >
@@ -42,7 +39,6 @@ export const Social = props => {
 
       <SocialLink
         href={linkedIn.url}
-        alt={linkedIn.label}
         aria-label={linkedIn.label}
         title={linkedIn.label}
       >
