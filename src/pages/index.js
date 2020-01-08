@@ -120,7 +120,6 @@ export default function Home() {
             {currentEmployer.position} <span>@</span>{" "}
             <ExternalLink
               href={currentEmployer.url}
-              alt={`${currentEmployer.company}'s website`}
               aria-label={`${currentEmployer.company}'s website`}
               withHighlight
             >
@@ -136,7 +135,6 @@ export default function Home() {
             background courtesy of{" "}
             <ExternalLink
               href="https://absurd.design/"
-              alt="absurd.design"
               aria-label="absurd.design"
               withHighlight
             >

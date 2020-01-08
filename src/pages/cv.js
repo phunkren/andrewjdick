@@ -163,11 +163,7 @@ export default function CV() {
                 <Header style={props}>
                   <div>
                     <H1>
-                      <Link
-                        href="/"
-                        alt="Return to homepage"
-                        aria-label="Return to homepage"
-                      >
+                      <Link href="/" aria-label="Return to homepage">
                         {name}
                       </Link>
                     </H1>
@@ -179,12 +175,11 @@ export default function CV() {
                   {isBrowser && !isIE && (
                     <HeaderIcons>
                       <Link
-                        alt="Download my CV"
                         href="/AndrewJames-CV.pdf"
                         aria-label="Download my CV"
                         download
                       >
-                        <DownloadIcon width="2.25em" height="2.25em" />
+                        <DownloadIcon width="2.25rem" height="2.25rem" />
                       </Link>
                     </HeaderIcons>
                   )}
@@ -272,7 +267,6 @@ export default function CV() {
                           <Text>
                             <ExternalLink
                               href={url}
-                              alt={`${company} website`}
                               aria-label={`${company} website`}
                               withHighlight
                             >
