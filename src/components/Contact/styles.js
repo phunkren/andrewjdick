@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link, ExternalLink } from "../Link";
-import { media } from "../../media";
+import { MEDIA } from "../../styles/media";
+import { Text } from "../../styles/typography";
 
 export const List = styled.ul`
   margin-bottom: 2em;
@@ -8,10 +9,10 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   margin-bottom: 1em;
-`;
 
-export const Text = styled.span`
-  margin-left: 1em;
+  ${Text} {
+    margin-left: 1em;
+  }
 `;
 
 export const StyledExternalLink = styled(ExternalLink)`
@@ -23,7 +24,7 @@ export const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
 
-  ${media.print`
+  ${MEDIA.print`
     pointer-events: none;
   `};
 `;

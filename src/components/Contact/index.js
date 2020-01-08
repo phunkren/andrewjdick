@@ -1,11 +1,12 @@
 import React from "react";
 import { CONTACT_DETAILS, SOCIAL_LINKS, SITE_URL } from "../../constants";
+import { Text } from "../../styles/typography";
 import { EmailIcon, GitHubIcon, LinkedInIcon, GlobeIcon } from "../icons";
-import { List, ListItem, Text, StyledLink, StyledExternalLink } from "./styles";
+import { List, ListItem, StyledLink, StyledExternalLink } from "./styles";
 
 const iconProps = {
-  width: "2em",
-  height: "2em"
+  width: "2rem",
+  height: "2rem"
 };
 
 export const Contact = () => {
@@ -34,21 +35,23 @@ export const Contact = () => {
           <Text>ajames.dev</Text>
         </StyledExternalLink>
       </ListItem>
+
       <ListItem>
         <StyledExternalLink
           href={github.url}
           alt="GitHub profile"
-          aria-label="Email me"
+          aria-label="Github profile"
         >
           <GitHubIcon {...iconProps} />
           <Text>{github.handle}</Text>
         </StyledExternalLink>
       </ListItem>
+
       <ListItem>
         <StyledExternalLink
           href={linkedIn.url}
           alt="LinkedIn profile"
-          aria-label="Email me"
+          aria-label="LinkedIn profile"
         >
           <LinkedInIcon {...iconProps} />
           <Text>{linkedIn.handle}</Text>
