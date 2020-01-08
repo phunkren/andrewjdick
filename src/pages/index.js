@@ -84,6 +84,7 @@ export default function Home() {
   const [renderAnimations, setRenderAnimations] = useState(false);
   const { name, location } = CONTACT_DETAILS;
   const currentEmployer = EXPERIENCE[0];
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     setRenderAnimations(true);
@@ -117,7 +118,7 @@ export default function Home() {
         <Section>
           <H1>{name}</H1>
           <Text as="p">
-            {currentEmployer.position} <span>@</span>{" "}
+            {currentEmployer.position} @{" "}
             <ExternalLink
               href={currentEmployer.url}
               aria-label={`${currentEmployer.company}'s website`}
@@ -142,7 +143,7 @@ export default function Home() {
             </ExternalLink>
           </Text>
           <Text as="p" small>
-            &copy; 2020
+            &copy; {currentYear}
           </Text>
         </Footer>
       </Wrapper>

@@ -29,7 +29,7 @@ const Container = styled.main`
 const Header = styled.header`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   padding: 2em;
   text-align: center;
 
