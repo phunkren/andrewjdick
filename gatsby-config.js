@@ -4,7 +4,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`Rubik`, `Lato`]
+        fonts: [`Rubik\:300`, `Roboto`],
+        display: "swap"
       }
     }
   ]

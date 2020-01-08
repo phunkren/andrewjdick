@@ -12,9 +12,9 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Lato', sans-serif;
-    font-size: 1rem;
+    font-family: 'Roboto', serif;
     font-size: 16px;
+    font-size: 1rem;
     color: ${rgba(COLORS.black, 0.9)};
 
     ${MEDIA.desktopWide`
@@ -32,7 +32,7 @@ export const GlobalStyles = createGlobalStyle`
 
   h1, h2, h3, h4, h5, h6 {
     color: ${COLORS.black};
-    font-family: 'Rubik', serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 300;
   }
 `;
