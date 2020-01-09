@@ -1,7 +1,5 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { animated, config } from "react-spring";
-import { Transition } from "react-spring/renderprops";
 import { position } from "polished";
 import { Layout } from "../components/Layout";
 import { Social } from "../components/Social";
@@ -36,7 +34,7 @@ const Wrapper = styled.div`
   `};
 `;
 
-const Header = styled(animated.header)`
+const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +52,7 @@ const Section = styled.section`
   text-align: center;
 `;
 
-const Footer = styled(animated.footer)`
+const Footer = styled.footer`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,11 +74,11 @@ const Image = styled.div`
   background-repeat: repeat-y;
   background-position: center;
   background-size: cover;
-  margin-bottom: 100vh;
   height: 200vh;
+  margin-bottom: 100vh;
   opacity: 0.075;
   pointer-events: none;
-  animation: ${infiniteScroll} 45s linear infinite;
+  animation: ${infiniteScroll} 30s linear infinite;
 `;
 
 export default function Home() {
@@ -92,24 +90,10 @@ export default function Home() {
     <Layout>
       <TitleAndMetaTags />
       <Wrapper>
-        <Transition
-          items={true}
-          config={config.wobbly}
-          delay={250}
-          from={{ transform: "translateY(-100%)" }}
-          enter={[{ transform: "translateY(0)" }]}
-          leave={{ transform: "translateY(-100%)" }}
-        >
-          {show =>
-            show &&
-            (props => (
-              <Header style={props}>
-                <Navigation />
-                <Social />
-              </Header>
-            ))
-          }
-        </Transition>
+        <Header>
+          <Navigation />
+          <Social />
+        </Header>
 
         <Section>
           <H1>{name}</H1>
@@ -126,36 +110,22 @@ export default function Home() {
           <Text as="p">{location}</Text>
         </Section>
 
-        <Transition
-          items={true}
-          config={config.wobbly}
-          delay={250}
-          from={{ transform: "translateY(100%)" }}
-          enter={[{ transform: "translateY(0)" }]}
-          leave={{ transform: "translateY(100%)" }}
-        >
-          {show =>
-            show &&
-            (props => (
-              <Footer style={props}>
-                <FooterSocial />
-                <Text as="p" small>
-                  background courtesy of{" "}
-                  <ExternalLink
-                    href="https://absurd.design/"
-                    aria-label="absurd.design"
-                    withHighlight
-                  >
-                    absurd.design
-                  </ExternalLink>
-                </Text>
-                <Text as="p" small>
-                  &copy; {currentYear}
-                </Text>
-              </Footer>
-            ))
-          }
-        </Transition>
+        <Footer>
+          <FooterSocial />
+          <Text as="p" small>
+            background courtesy of{" "}
+            <ExternalLink
+              href="https://absurd.design/"
+              aria-label="absurd.design"
+              withHighlight
+            >
+              absurd.design
+            </ExternalLink>
+          </Text>
+          <Text as="p" small>
+            &copy; {currentYear}
+          </Text>
+        </Footer>
 
         <Image />
       </Wrapper>
