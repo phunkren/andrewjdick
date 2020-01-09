@@ -1,11 +1,25 @@
 import reset from "modern-css-reset";
 import { createGlobalStyle } from "styled-components";
 import { rgba } from "polished";
+import Roboto from "../../assets/fonts/Roboto-Regular.woff2";
+import Rubik from "../../assets/fonts/Rubik-Regular.woff2";
 import { COLORS } from "../../styles/colors";
 import { MEDIA } from "../../styles/media";
 
 export const GlobalStyles = createGlobalStyle`
   ${reset};
+
+  @font-face {
+    src: url(${Rubik}) format('woff2');
+    font-family: 'Rubik';
+    font-display: swap;
+  }
+
+  @font-face {
+    src: url(${Roboto}) format('woff2');
+    font-family: 'Roboto';
+    font-display: swap;
+  }
 
   html {
     display: flex;
