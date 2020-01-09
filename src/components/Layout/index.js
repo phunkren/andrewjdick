@@ -4,9 +4,8 @@ import { GlobalStyles, Main } from "./styles";
 
 export const Layout = ({ children }) => (
   <Transition
-    native
     items={true}
-    delay={250}
+    delay={200}
     from={{ opacity: 0 }}
     enter={{ opacity: 1 }}
     leave={{ opacity: 0 }}
