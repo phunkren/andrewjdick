@@ -15,7 +15,7 @@ import { H1, H2, H3, Text } from "../styles/typography";
 import { CONTACT_DETAILS } from "../constants";
 import { EDUCATION, EXPERIENCE, EXPERTISE, INTERESTS, HOBBIES } from "../data";
 
-const Container = styled.main`
+const Container = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;

@@ -55,4 +55,5 @@ export const GlobalStyles = createGlobalStyle`
 export const Main = styled(animated.main)`
   flex: 1;
   display: flex;
+  flex-flow: column;
 `;
