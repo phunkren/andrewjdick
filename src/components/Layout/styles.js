@@ -1,5 +1,6 @@
+import styled, { createGlobalStyle } from "styled-components";
+import { animated } from "react-spring";
 import reset from "modern-css-reset";
-import { createGlobalStyle } from "styled-components";
 import { rgba } from "polished";
 import Roboto from "../../assets/fonts/Roboto-Regular.woff2";
 import Rubik from "../../assets/fonts/Rubik-Regular.woff2";
@@ -49,4 +50,9 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Rubik', sans-serif;
     font-weight: 300;
   }
+`;
+
+export const Main = styled(animated.main)`
+  flex: 1;
+  display: flex;
 `;

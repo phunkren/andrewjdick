@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Transition, config } from "react-spring/renderprops";
+import React from "react";
 import styled, { keyframes } from "styled-components";
 import { position } from "polished";
-import { animated } from "react-spring/renderprops";
 import { Layout } from "../components/Layout";
 import { Social } from "../components/Social";
-import homeBackground from "../assets/images/homeBackground.png";
+import lightbulbs from "../assets/images/lightbulbs.png";
 import { ExternalLink } from "../components/Link";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
 import { Navigation } from "../components/Navigation";
@@ -19,7 +17,7 @@ const infiniteScroll = keyframes`
     transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translate3d(0, -1920px, 0);
+    transform: translate3d(0, -300vh, 0);
   }
 `;
 
@@ -62,7 +60,6 @@ const Footer = styled.footer`
 `;
 
 const FooterSocial = styled(Social)`
-  display: block;
   margin-bottom: 0.5em;
 
   ${MEDIA.tablet`
@@ -70,46 +67,28 @@ const FooterSocial = styled(Social)`
   `};
 `;
 
-const Image = animated(styled.div`
-  ${position("absolute", "0", "0", null, "0")};
-  height: 600%;
-  background-image: url(${homeBackground});
-  background-position: bottom;
-  background-repeat: repeat
+const Image = styled.div`
+  ${position("absolute", "100%", 0, null, 0)};
+  background-image: url(${lightbulbs});
+  background-repeat: repeat-y;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 100vh;
+  height: 200vh;
+  opacity: 0.075;
   pointer-events: none;
   animation: ${infiniteScroll} 45s linear infinite;
-`);
+`;
 
 export default function Home() {
-  const [renderAnimations, setRenderAnimations] = useState(false);
   const { name, location } = CONTACT_DETAILS;
   const currentEmployer = EXPERIENCE[0];
   const currentYear = new Date().getFullYear();
-
-  useEffect(() => {
-    setRenderAnimations(true);
-
-    return function cleanup() {
-      setRenderAnimations(false);
-    };
-  }, []);
 
   return (
     <Layout>
       <TitleAndMetaTags />
       <Wrapper>
-        <Transition
-          native
-          items={renderAnimations}
-          config={config.molasses}
-          enter={[{ opacity: 0.04, top: -1500 }]}
-          leave={{ opacity: 0, top: -2000 }}
-        >
-          {renderAnimations =>
-            renderAnimations && (props => <Image style={props} />)
-          }
-        </Transition>
-
         <Header>
           <Navigation />
           <Social />
@@ -146,6 +125,8 @@ export default function Home() {
             &copy; {currentYear}
           </Text>
         </Footer>
+
+        <Image />
       </Wrapper>
     </Layout>
   );
