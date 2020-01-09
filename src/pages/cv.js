@@ -1,5 +1,4 @@
-import React, { Fragment } from "react";
-import { Spring } from "react-spring/renderprops";
+import React from "react";
 import { isBrowser, isIE } from "react-device-detect";
 import styled from "styled-components";
 import { rgba } from "polished";
@@ -16,7 +15,7 @@ import { H1, H2, H3, Text } from "../styles/typography";
 import { CONTACT_DETAILS } from "../constants";
 import { EDUCATION, EXPERIENCE, EXPERTISE, INTERESTS, HOBBIES } from "../data";
 
-const Container = styled.main`
+const Container = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -157,132 +156,120 @@ export default function CV() {
       <TitleAndMetaTags title="CV" pathname="cv" />
       <ColouredContainer>
         <Container>
-          <Spring delay={500} from={{ opacity: 0 }} to={{ opacity: 1 }}>
-            {props => (
-              <Fragment>
-                <Header style={props}>
-                  <div>
-                    <H1>
-                      <Link href="/" aria-label="Return to homepage">
-                        {name}
-                      </Link>
-                    </H1>
-                    <Text as="p">
-                      {position} | {location}
-                    </Text>
-                  </div>
+          <Header>
+            <div>
+              <H1>
+                <Link href="/" aria-label="Return to homepage">
+                  {name}
+                </Link>
+              </H1>
+              <Text as="p">
+                {position} | {location}
+              </Text>
+            </div>
 
-                  {isBrowser && !isIE && (
-                    <HeaderIcons>
-                      <Link
-                        href="/AndrewJames-CV.pdf"
-                        aria-label="Download my CV"
-                        download
-                      >
-                        <DownloadIcon width="2.25rem" height="2.25rem" />
-                      </Link>
-                    </HeaderIcons>
-                  )}
-                </Header>
-
-                <Content style={props}>
-                  <Sidebar>
-                    <Block>
-                      <BlockHeader>Contact</BlockHeader>
-                      <Contact />
-                    </Block>
-
-                    <Block>
-                      <BlockHeader>Education</BlockHeader>
-                      {EDUCATION.map(
-                        (
-                          { qualification, course, institute, dates },
-                          index
-                        ) => (
-                          <Block key={`Education-${index}`}>
-                            <H3>{qualification}</H3>
-                            <Text>{course}</Text>
-                            <br />
-                            <Text>{institute}</Text>
-                            <br />
-                            <Text>{dates}</Text>
-                            <br />
-                          </Block>
-                        )
-                      )}
-                    </Block>
-
-                    <Block>
-                      <BlockHeader>Expertise</BlockHeader>
-                      <Block>
-                        <Rating skills={EXPERTISE} numberOfStars={5} />
-                      </Block>
-                    </Block>
-
-                    <Block>
-                      <BlockHeader>Interests</BlockHeader>
-
-                      {INTERESTS.map((interest, index) => (
-                        <Tag key={`Interest-${index}`} small>
-                          {interest}
-                        </Tag>
-                      ))}
-                    </Block>
-
-                    <Block>
-                      <BlockHeader>Hobbies</BlockHeader>
-                      {HOBBIES.map((interest, index) => (
-                        <Tag key={`Hobby-${index}`} small>
-                          {interest}
-                        </Tag>
-                      ))}
-                    </Block>
-
-                    <Block>
-                      <BlockHeader>References</BlockHeader>
-                      <Text>Written references available upon request.</Text>
-                    </Block>
-                  </Sidebar>
-
-                  <Section>
-                    <Block>
-                      <BlockHeader>Profile</BlockHeader>
-                      <Text>
-                        My passion for digital technology continually drives me
-                        to advance my skill set as a software engineer. With
-                        strong communication and frontend web development
-                        skills, I thrive in environments where I can learn from
-                        and inspire those around me.
-                      </Text>
-                    </Block>
-
-                    <BlockHeader>Experience</BlockHeader>
-                    {EXPERIENCE.map(
-                      (
-                        { position, company, url, dates, description },
-                        index
-                      ) => (
-                        <Block key={`Experience-${index}`}>
-                          <H3>{position}</H3>
-                          <Text>
-                            <ExternalLink
-                              href={url}
-                              aria-label={`${company} website`}
-                              withHighlight
-                            >
-                              {company}
-                            </ExternalLink>{" "}
-                            <Dates>{dates}</Dates>
-                          </Text>
-                          <Description>{description()}</Description>
-                        </Block>
-                      )
-                    )}
-                  </Section>
-                </Content>
-              </Fragment>
+            {isBrowser && !isIE && (
+              <HeaderIcons>
+                <Link
+                  href="/AndrewJames-CV.pdf"
+                  aria-label="Download my CV"
+                  download
+                >
+                  <DownloadIcon width="2.25rem" height="2.25rem" />
+                </Link>
+              </HeaderIcons>
             )}
-          </Spring>
+          </Header>
+
+          <Content>
+            <Sidebar>
+              <Block>
+                <BlockHeader>Contact</BlockHeader>
+                <Contact />
+              </Block>
+
+              <Block>
+                <BlockHeader>Education</BlockHeader>
+                {EDUCATION.map(
+                  ({ qualification, course, institute, dates }, index) => (
+                    <Block key={`Education-${index}`}>
+                      <H3>{qualification}</H3>
+                      <Text>{course}</Text>
+                      <br />
+                      <Text>{institute}</Text>
+                      <br />
+                      <Text>{dates}</Text>
+                      <br />
+                    </Block>
+                  )
+                )}
+              </Block>
+
+              <Block>
+                <BlockHeader>Expertise</BlockHeader>
+                <Block>
+                  <Rating skills={EXPERTISE} numberOfStars={5} />
+                </Block>
+              </Block>
+
+              <Block>
+                <BlockHeader>Interests</BlockHeader>
+
+                {INTERESTS.map((interest, index) => (
+                  <Tag key={`Interest-${index}`} small>
+                    {interest}
+                  </Tag>
+                ))}
+              </Block>
+
+              <Block>
+                <BlockHeader>Hobbies</BlockHeader>
+                {HOBBIES.map((interest, index) => (
+                  <Tag key={`Hobby-${index}`} small>
+                    {interest}
+                  </Tag>
+                ))}
+              </Block>
+
+              <Block>
+                <BlockHeader>References</BlockHeader>
+                <Text>Written references available upon request.</Text>
+              </Block>
+            </Sidebar>
+
+            <Section>
+              <Block>
+                <BlockHeader>Profile</BlockHeader>
+                <Text>
+                  My passion for digital technology continually drives me to
+                  advance my skill set as a software engineer. With strong
+                  communication and frontend web development skills, I thrive in
+                  environments where I can learn from and inspire those around
+                  me.
+                </Text>
+              </Block>
+
+              <BlockHeader>Experience</BlockHeader>
+              {EXPERIENCE.map(
+                ({ position, company, url, dates, description }, index) => (
+                  <Block key={`Experience-${index}`}>
+                    <H3>{position}</H3>
+                    <Text>
+                      <ExternalLink
+                        href={url}
+                        aria-label={`${company} website`}
+                        withHighlight
+                      >
+                        {company}
+                      </ExternalLink>{" "}
+                      <Dates>{dates}</Dates>
+                    </Text>
+                    <Description>{description()}</Description>
+                  </Block>
+                )
+              )}
+            </Section>
+          </Content>
         </Container>
       </ColouredContainer>
     </Layout>

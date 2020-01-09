@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Transition, config } from "react-spring/renderprops";
+import React from "react";
 import styled, { keyframes } from "styled-components";
+import { animated, config } from "react-spring";
+import { Transition } from "react-spring/renderprops";
 import { position } from "polished";
-import { animated } from "react-spring/renderprops";
 import { Layout } from "../components/Layout";
 import { Social } from "../components/Social";
-import homeBackground from "../assets/images/homeBackground.png";
+import lightbulbs from "../assets/images/lightbulbs.png";
 import { ExternalLink } from "../components/Link";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
 import { Navigation } from "../components/Navigation";
@@ -19,7 +19,7 @@ const infiniteScroll = keyframes`
     transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translate3d(0, -1920px, 0);
+    transform: translate3d(0, -300vh, 0);
   }
 `;
 
@@ -36,7 +36,7 @@ const Wrapper = styled.div`
   `};
 `;
 
-const Header = styled.header`
+const Header = styled(animated.header)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +54,7 @@ const Section = styled.section`
   text-align: center;
 `;
 
-const Footer = styled.footer`
+const Footer = styled(animated.footer)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,50 +70,46 @@ const FooterSocial = styled(Social)`
   `};
 `;
 
-const Image = animated(styled.div`
-  ${position("absolute", "0", "0", null, "0")};
-  height: 600%;
-  background-image: url(${homeBackground});
-  background-position: bottom;
-  background-repeat: repeat
+const Image = styled.div`
+  ${position("absolute", "100%", 0, null, 0)};
+  background-image: url(${lightbulbs});
+  background-repeat: repeat-y;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 100vh;
+  height: 200vh;
+  opacity: 0.075;
   pointer-events: none;
   animation: ${infiniteScroll} 45s linear infinite;
-`);
+`;
 
 export default function Home() {
-  const [renderAnimations, setRenderAnimations] = useState(false);
   const { name, location } = CONTACT_DETAILS;
   const currentEmployer = EXPERIENCE[0];
   const currentYear = new Date().getFullYear();
-
-  useEffect(() => {
-    setRenderAnimations(true);
-
-    return function cleanup() {
-      setRenderAnimations(false);
-    };
-  }, []);
 
   return (
     <Layout>
       <TitleAndMetaTags />
       <Wrapper>
         <Transition
-          native
-          items={renderAnimations}
-          config={config.molasses}
-          enter={[{ opacity: 0.04, top: -1500 }]}
-          leave={{ opacity: 0, top: -2000 }}
+          items={true}
+          config={config.wobbly}
+          delay={250}
+          from={{ transform: "translateY(-100%)" }}
+          enter={[{ transform: "translateY(0)" }]}
+          leave={{ transform: "translateY(-100%)" }}
         >
-          {renderAnimations =>
-            renderAnimations && (props => <Image style={props} />)
+          {show =>
+            show &&
+            (props => (
+              <Header style={props}>
+                <Navigation />
+                <Social />
+              </Header>
+            ))
           }
         </Transition>
-
-        <Header>
-          <Navigation />
-          <Social />
-        </Header>
 
         <Section>
           <H1>{name}</H1>
@@ -130,22 +126,38 @@ export default function Home() {
           <Text as="p">{location}</Text>
         </Section>
 
-        <Footer>
-          <FooterSocial />
-          <Text as="p" small>
-            background courtesy of{" "}
-            <ExternalLink
-              href="https://absurd.design/"
-              aria-label="absurd.design"
-              withHighlight
-            >
-              absurd.design
-            </ExternalLink>
-          </Text>
-          <Text as="p" small>
-            &copy; {currentYear}
-          </Text>
-        </Footer>
+        <Transition
+          items={true}
+          config={config.wobbly}
+          delay={250}
+          from={{ transform: "translateY(100%)" }}
+          enter={[{ transform: "translateY(0)" }]}
+          leave={{ transform: "translateY(100%)" }}
+        >
+          {show =>
+            show &&
+            (props => (
+              <Footer style={props}>
+                <FooterSocial />
+                <Text as="p" small>
+                  background courtesy of{" "}
+                  <ExternalLink
+                    href="https://absurd.design/"
+                    aria-label="absurd.design"
+                    withHighlight
+                  >
+                    absurd.design
+                  </ExternalLink>
+                </Text>
+                <Text as="p" small>
+                  &copy; {currentYear}
+                </Text>
+              </Footer>
+            ))
+          }
+        </Transition>
+
+        <Image />
       </Wrapper>
     </Layout>
   );
