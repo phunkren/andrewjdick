@@ -1,5 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import { animated, config } from "react-spring";
+import { Transition } from "react-spring/renderprops";
 import { position } from "polished";
 import { Layout } from "../components/Layout";
 import { Social } from "../components/Social";
@@ -34,7 +36,7 @@ const Wrapper = styled.div`
   `};
 `;
 
-const Header = styled.header`
+const Header = styled(animated.header)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,7 +54,7 @@ const Section = styled.section`
   text-align: center;
 `;
 
-const Footer = styled.footer`
+const Footer = styled(animated.footer)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,6 +62,7 @@ const Footer = styled.footer`
 `;
 
 const FooterSocial = styled(Social)`
+  display: block;
   margin-bottom: 0.5em;
 
   ${MEDIA.tablet`
@@ -89,10 +92,24 @@ export default function Home() {
     <Layout>
       <TitleAndMetaTags />
       <Wrapper>
-        <Header>
-          <Navigation />
-          <Social />
-        </Header>
+        <Transition
+          items={true}
+          config={config.wobbly}
+          delay={250}
+          from={{ transform: "translateY(-100%)" }}
+          enter={[{ transform: "translateY(0)" }]}
+          leave={{ transform: "translateY(-100%)" }}
+        >
+          {show =>
+            show &&
+            (props => (
+              <Header style={props}>
+                <Navigation />
+                <Social />
+              </Header>
+            ))
+          }
+        </Transition>
 
         <Section>
           <H1>{name}</H1>
@@ -109,22 +126,36 @@ export default function Home() {
           <Text as="p">{location}</Text>
         </Section>
 
-        <Footer>
-          <FooterSocial />
-          <Text as="p" small>
-            background courtesy of{" "}
-            <ExternalLink
-              href="https://absurd.design/"
-              aria-label="absurd.design"
-              withHighlight
-            >
-              absurd.design
-            </ExternalLink>
-          </Text>
-          <Text as="p" small>
-            &copy; {currentYear}
-          </Text>
-        </Footer>
+        <Transition
+          items={true}
+          config={config.wobbly}
+          delay={250}
+          from={{ transform: "translateY(100%)" }}
+          enter={[{ transform: "translateY(0)" }]}
+          leave={{ transform: "translateY(100%)" }}
+        >
+          {show =>
+            show &&
+            (props => (
+              <Footer style={props}>
+                <FooterSocial />
+                <Text as="p" small>
+                  background courtesy of{" "}
+                  <ExternalLink
+                    href="https://absurd.design/"
+                    aria-label="absurd.design"
+                    withHighlight
+                  >
+                    absurd.design
+                  </ExternalLink>
+                </Text>
+                <Text as="p" small>
+                  &copy; {currentYear}
+                </Text>
+              </Footer>
+            ))
+          }
+        </Transition>
 
         <Image />
       </Wrapper>
