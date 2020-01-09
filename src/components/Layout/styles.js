@@ -13,11 +13,13 @@ export const GlobalStyles = createGlobalStyle`
   @font-face {
     src: url(${Rubik}) format('woff2');
     font-family: 'Rubik';
+    font-display: swap;
   }
 
   @font-face {
     src: url(${Roboto}) format('woff2');
     font-family: 'Roboto';
+    font-display: swap;
   }
 
   html {
