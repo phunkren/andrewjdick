@@ -7,12 +7,12 @@ export const Layout = ({ children }) => (
     <GlobalStyles />
     <Transition
       items={true}
-      delay={250}
+      delay={300}
       from={{ opacity: 0 }}
       enter={{ opacity: 1 }}
       leave={{ opacity: 0 }}
     >
-      {() => props => <Main style={props}>{children}</Main>}
+      {show => show && (props => <Main style={props}>{children}</Main>)}
     </Transition>
   </Fragment>
 );
