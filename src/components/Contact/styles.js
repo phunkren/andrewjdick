@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Link, ExternalLink } from "../Link";
-import { MEDIA } from "../../styles/media";
+import { ExternalLink } from "../Link";
 import { Text } from "../../styles/typography";
 
 export const List = styled.ul`
@@ -18,13 +17,4 @@ export const ListItem = styled.li`
 export const StyledExternalLink = styled(ExternalLink)`
   display: flex;
   align-items: center;
-`;
-
-export const StyledLink = styled(Link)`
-  display: flex;
-  align-items: center;
-
-  ${MEDIA.print`
-    pointer-events: none;
-  `};
 `;

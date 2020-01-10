@@ -2,7 +2,7 @@ import React from "react";
 import { CONTACT_DETAILS, SOCIAL_LINKS, SITE_URL } from "../../constants";
 import { Text } from "../../styles/typography";
 import { EmailIcon, GitHubIcon, LinkedInIcon, GlobeIcon } from "../icons";
-import { List, ListItem, StyledLink, StyledExternalLink } from "./styles";
+import { List, ListItem, StyledExternalLink } from "./styles";
 
 const iconProps = {
   width: "2rem",
@@ -16,11 +16,12 @@ export const Contact = () => {
   return (
     <List>
       <ListItem>
-        <StyledLink href={`mailto:${email}`} aria-label="Email me">
+        <StyledExternalLink href={`mailto:${email}`} aria-label="Email me">
           <EmailIcon {...iconProps} />
           <Text>{email}</Text>
-        </StyledLink>
+        </StyledExternalLink>
       </ListItem>
+
       <ListItem>
         <StyledExternalLink href={SITE_URL} aria-label="Personal website">
           <GlobeIcon {...iconProps} />
