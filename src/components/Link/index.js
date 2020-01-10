@@ -1,4 +1,5 @@
 import React from "react";
+import { Link as RouterLink } from "gatsby";
 import { RawLink, RawExternalLink } from "./styles";
 
 export const Link = ({ children, ...props }) => (
@@ -14,4 +15,12 @@ export const ExternalLink = ({ children, withHighlight, ...props }) => (
   >
     {children}
   </RawExternalLink>
+);
+
+export const PostLink = ({ post }) => (
+  <div>
+    <RouterLink to={post.frontmatter.path}>
+      {post.frontmatter.title} ({post.frontmatter.date})
+    </RouterLink>
+  </div>
 );
