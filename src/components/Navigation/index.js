@@ -6,6 +6,9 @@ export const Navigation = props => (
   <nav {...props}>
     <List>
       <ListItem>
+        <Link to="/blog">Blog</Link>
+      </ListItem>
+      <ListItem>
         <Link to="/cv">Résumé</Link>
       </ListItem>
     </List>
