@@ -112,22 +112,25 @@ export default function Home() {
 
         <Footer>
           <FooterSocial />
-          <Text as="p" small>
-            background courtesy of{" "}
-            <ExternalLink
-              href="https://absurd.design/"
-              aria-label="absurd.design"
-              withHighlight
-            >
-              absurd.design
-            </ExternalLink>
-          </Text>
+
+          <figure>
+            <Image role="img" aria-label="scrolling lightbulbs" />
+            <Text as="figcaption" small>
+              background courtesy of{" "}
+              <ExternalLink
+                href="https://absurd.design/"
+                aria-label="absurd.design"
+                withHighlight
+              >
+                absurd.design
+              </ExternalLink>
+            </Text>
+          </figure>
+
           <Text as="p" small>
             &copy; {currentYear}
           </Text>
         </Footer>
-
-        <Image />
       </Wrapper>
     </Layout>
   );
