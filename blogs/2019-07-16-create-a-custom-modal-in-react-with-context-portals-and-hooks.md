@@ -1,7 +1,8 @@
 ---
-path: "/blog/2019-07-16-create-a-custom-modal-in-react-with-context-portals-and-hooks"
-title: "Create a custom modal in React with context, portals, and hooks"
-date: "2019-07-16"
+path: /blog/2019-07-16-create-a-custom-modal-in-react-with-context-portals-and-hooks
+title: Create a custom modal in React with context, portals, and hooks
+image: ../src/assets/images/portal.jpg
+date: 2019-07-16
 ---
 
 Modals are a great way to display information on top of your application, and usually used for notifications, alerts, or standalone dialogs such as register and login forms. Before jumping ahead and building a custom modal I’d suggest searching for any pre-existing solutions to see if they fit your needs (both Reach UI’s Dialog and react-modal are popular community choices). Failing that, let’s dive in and create a bespoke modal component in React.

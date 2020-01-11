@@ -1,7 +1,8 @@
 ---
-path: "/blog/2018-05-13-bridging-a-gap-between-engineering-and-design-with-a-simple-grid-overlay"
-title: "Bridging a gap between engineering and design with a simple grid overlay"
-date: "2018-05-13"
+path: /blog/2018-05-13-bridging-a-gap-between-engineering-and-design-with-a-simple-grid-overlay
+title: Bridging a gap between engineering and design with a simple grid overlay
+image: ../src/assets/images/bridge-gap.jpg
+date: 2018-05-13
 ---
 
 One of my favourite talks to come out of ReactFest London was Siddharth Kshetrapal’s presentation on Design Systems. As he explained that design systems can fall short due to miscommunication amongst the project disciplines, I was reminded of a similar experience with a designer on a React project. We were discussing the inconsistencies in vertical rhythm between his design and the application’s frontend build. To illustrate his point, he opened the design in Sketch and enabled the grid view.
