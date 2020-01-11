@@ -1,7 +1,8 @@
 ---
-path: "/blog/2018-11-05-a-brief-investigation-into-live-streaming-a-tech-meetup"
-title: "A brief investigation into live streaming a tech meetup"
-date: "2018-11-05"
+path: /blog/2018-11-05-a-brief-investigation-into-live-streaming-a-tech-meetup
+title: A brief investigation into live streaming a tech meetup
+image: ../src/assets/images/live-stream.jpg
+date: 2018-11-05
 ---
 
 One of the favourite parts of my job is being surrounded by creative professionals who are keen to openly discuss ideas to further both their own and our collective understanding. Some have been a part of the industry for well over ten years and although they have certainly formulated their own opinions, they remain open to outside ideas and criticism to continually refine their professional outlook. Around one year ago a group of developers cobbled together the company’s first Egg talk; an in-house meet-up where developers could discuss anything they found interesting: project caveats, office diversity, upcoming technology, banana peeling techniques— anything, really. The talks were well received and events are now scheduled at least once per month with a handful of speakers at each, and have recently begun welcoming talks from other business disciplines.

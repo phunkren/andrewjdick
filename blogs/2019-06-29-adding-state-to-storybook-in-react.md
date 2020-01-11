@@ -1,7 +1,8 @@
 ---
-path: "/blog/2019-06-29-adding-state-to-storybook-in-react"
-title: "Adding state to Storybook in React"
-date: "2019-06-29"
+path: /blog/2019-06-29-adding-state-to-storybook-in-react
+title: Adding state to Storybook in React
+image: ../src/assets/images/storybook.jpg
+date: 2019-06-29
 ---
 
 Storybook is an incredible open-source sandbox for developing UI components in isolation. One of my current projects is a large multi-screen form with various controlled components that rely on their parent container as the single source of truth. I found that while Storybook is great for testing individual component state, I was writing boilerplate code in each of the stories where a controlled component passed state to a parent container.

@@ -1,10 +1,10 @@
 ---
-path: "/blog/2019-11-07-building-a-responsive-camera-component-with-react-hooks"
-title: "Building a responsive camera component with React hooks"
-date: "2019-11-07"
+path: /blog/2019-11-07-building-a-responsive-camera-component-with-react-hooks
+title: Building a responsive camera component with React hooks
+image: ../src/assets/images/camera-lens.jpg
+date: 2019-11-07
 ---
 
-Introduction
 I was recently tasked with building a front-end camera component that allows users to upload images of their identification cards to a back-end service. In this post, I’ll demonstrate how I created the component by explaining how to configure a live media stream, capture a snapshot with React Hooks, and style and position the elements using styled-components.
 
 As such, the article assumes a working knowledge of functional components in React 16.x and the styled-components library. Below, you can see a demo of the component in action, and feel free to play around with the complete solution on my CodeSandbox as you read along. Enjoy!
