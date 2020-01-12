@@ -15,10 +15,10 @@ Let’s begin by accessing the browser navigator and invoking the getUserMedia()
 
 Since the component is designed to take photographs of identity cards, we can pass a configuration object that does not require audio and defaults to the rear-facing camera on mobile devices. By passing an options object to the video property, video is assumed to be true.
 
-```
+```jsx
 const CAPTURE_OPTIONS = {
-    audio: false,
-    video: { facingMode: "environment" },
+  audio: false,
+  video: { facingMode: "environment" }
 };
 ```
 
@@ -30,7 +30,7 @@ With the stream stored in local state, it can then be bound to a `<video />` ele
 
 This implementation is necessary since the video autoPlay attribute does not work consistently across all platforms. We can abstract all of this logic into a custom Hook that takes the configuration object as an argument, creates the cleanup function, and returns the stream to the camera component.
 
-```
+```jsx
 import { useState, useEffect } from "react";
 
 export function useUserMedia(requestedMedia) {
@@ -39,9 +39,11 @@ export function useUserMedia(requestedMedia) {
   useEffect(() => {
     async function enableStream() {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia(requestedMedia);
+        const stream = await navigator.mediaDevices.getUserMedia(
+          requestedMedia
+        );
         setMediaStream(stream);
-      } catch(err) {
+      } catch (err) {
         // Removed for brevity
       }
     }
@@ -53,7 +55,7 @@ export function useUserMedia(requestedMedia) {
         mediaStream.getTracks().forEach(track => {
           track.stop();
         });
-      }
+      };
     }
   }, [mediaStream, requestedMedia]);
 
@@ -61,13 +63,13 @@ export function useUserMedia(requestedMedia) {
 }
 ```
 
-```
-import React, { useRef, useState } from 'react';
-import { useUserMedia } from './useUserMedia';
+```jsx
+import React, { useRef, useState } from "react";
+import { useUserMedia } from "./useUserMedia";
 
 const CAPTURE_OPTIONS = {
-    audio: false,
-    video: { facingMode: "environment" },
+  audio: false,
+  video: { facingMode: "environment" }
 };
 
 function Camera() {
@@ -83,7 +85,13 @@ function Camera() {
   }
 
   return (
-    <video ref={videoRef} onCanPlay={handleCanPlay} autoPlay playsInline muted />
+    <video
+      ref={videoRef}
+      onCanPlay={handleCanPlay}
+      autoPlay
+      playsInline
+      muted
+    />
   );
 }
 ```
@@ -97,7 +105,7 @@ In order for the component to be responsive, it will need to be notified wheneve
 
 Similar to before, the ratio calculation is abstracted into a custom Hook and returns both the calculated ratio and setter function. Since the ratio will remain constant, we can utilize React’s useCallback() Hook to prevent any unnecessary recalculations.
 
-```
+```jsx
 import { useState, useCallback } from "react";
 
 export function useCardRatio(initialRatio) {
@@ -116,15 +124,15 @@ export function useCardRatio(initialRatio) {
 }
 ```
 
-```
-import React, { useRef, useState } from 'react';
-import { Measure } from 'react-measure';
-import { useUserMedia } from './useUserMedia';
-import { useCardRatio } from './useCardRatio';
+```jsx
+import React, { useRef, useState } from "react";
+import { Measure } from "react-measure";
+import { useUserMedia } from "./useUserMedia";
+import { useCardRatio } from "./useCardRatio";
 
 const CAPTURE_OPTIONS = {
-    audio: false,
-    video: { facingMode: "environment" },
+  audio: false,
+  video: { facingMode: "environment" }
 };
 
 function Camera() {
@@ -157,7 +165,13 @@ function Camera() {
     <Measure bounds onResize={handleResize}>
       {({ measureRef }) => (
         <div ref={measureRef} style={{ height: `${container.height}px` }}>
-          <video ref={videoRef} onCanPlay={handleCanPlay} autoPlay playsInline muted />
+          <video
+            ref={videoRef}
+            onCanPlay={handleCanPlay}
+            autoPlay
+            playsInline
+            muted
+          />
         </div>
       )}
     </Measure>
@@ -169,14 +183,14 @@ The current solution works well if the video element is smaller than the parent 
 
 To compensate for this, we center the feed by calculating axis offsets that subtract the dimensions of the video element from the parent container and halve the resulting value.
 
-```
+```jsx
 const offsetX = Math.round((videoWidth - containerWidth) / 2);
 const offsetY = Math.round((videoHeight - containerHeight) / 2);
 ```
 
 We only want to apply the offsets in the event that the video (v) is larger than the parent container (c). We can create another custom Hook that uses an effect to evaluate whether an offset is required and returns the updated results whenever any of the values change.
 
-```
+```jsx
 import { useState, useEffect } from "react";
 
 export function useOffsets(vWidth, vHeight, cWidth, cHeight) {
@@ -184,13 +198,9 @@ export function useOffsets(vWidth, vHeight, cWidth, cHeight) {
 
   useEffect(() => {
     if (vWidth && vHeight && cWidth && cHeight) {
-      const x = vWidth > cWidth
-        ? Math.round((vWidth - cWidth) / 2)
-        : 0;
+      const x = vWidth > cWidth ? Math.round((vWidth - cWidth) / 2) : 0;
 
-      const y = vHeight > cHeight
-        ? Math.round((vHeight - cHeight) / 2)
-        : 0;
+      const y = vHeight > cHeight ? Math.round((vHeight - cHeight) / 2) : 0;
 
       setOffsets({ x, y });
     }
@@ -200,7 +210,7 @@ export function useOffsets(vWidth, vHeight, cWidth, cHeight) {
 }
 ```
 
-```
+```jsx
 import React, { useRef, useState } from 'react';
 import { Measure } fropm 'react-measure';
 import { useUserMedia } from './useUserMedia ';
@@ -264,7 +274,7 @@ To emulate a camera snapshot, a `<canvas/>` element is positioned on top of the 
 
 This is achieved by creating a two-dimensional rendering context on the canvas, drawing the current frame of the video as an image, and then exporting the resulting Blob as an argument in a handleCapture() callback.
 
-```
+```jsx
 function handleCapture() {
   const context = canvasRef.current.getContext("2d");
   context.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
@@ -276,17 +286,17 @@ The arguments supplied to the drawImage() method are broadly split into three gr
 
 We’ll add the offsets to the source image’s starting axis coordinates and use the parent container’s width and height for both the source and destination boundaries. Since we want to draw the snapshot onto the entire canvas, no destination offsets are required.
 
-```
+```jsx
 context.drawImage(
   videoRef.current, // source
-  offsets.x,        // sx
-  offsets.y,        // sy
-  container.width,  // sWidth
+  offsets.x, // sx
+  offsets.y, // sy
+  container.width, // sWidth
   container.height, // sHeight
-  0,                // dx
-  0,                // dy
-  container.width,  // dWidth
-  container.height  // dHeight
+  0, // dx
+  0, // dy
+  container.width, // dWidth
+  container.height // dHeight
 );
 ```
 
@@ -294,7 +304,7 @@ To discard the image, the canvas is reverted to its initial state via a handleCl
 
 We then pass the canvas’s width and height to the context clearRect() function to convert the requested pixels to transparent and resume displaying the video feed.
 
-```
+```jsx
 function handleClear() {
   const context = canvasRef.current.getContext("2d");
   context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
@@ -302,7 +312,7 @@ function handleClear() {
 }
 ```
 
-```
+```jsx
 import React, { useRef, useState } from 'react';
 import { Measure } fropm 'react-measure';
 import { useUserMedia } from './useUserMedia ';
@@ -404,8 +414,8 @@ Its keyframe animation triggers whenever the user captures an image, which brief
 
 We can pass the resolution of the camera as props to the parent container to determine its maximum width and height, add a local state variable — isVideoPlaying — to keep the video and overlay elements hidden until the camera begins streaming, and finally add display: none to -webkit-media-controls-play-button to hide the video’s play symbol on iOS devices. 💥
 
-```
-import styled, { css, keyframes } from 'styled-components';
+```jsx
+import styled, { css, keyframes } from "styled-components";
 
 const flashAnimation = keyframes`
   from {
@@ -486,7 +496,7 @@ export const Button = styled.button`
 `;
 ```
 
-```
+```jsx
 import React, { useState, useRef } from "react";
 import Measure from "react-measure";
 import { useUserMedia } from "../hooks/use-user-media";
