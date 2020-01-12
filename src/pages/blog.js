@@ -4,6 +4,7 @@ import { position, rgba } from "polished";
 import { graphql } from "gatsby";
 import { PostLink } from "../components/Link";
 import { Navigation } from "../components/Navigation";
+import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
 import { Social } from "../components/Social";
 import { Layout } from "../components/Layout";
 import { MEDIA, BREAKPOINTS } from "../styles/media";
@@ -73,6 +74,7 @@ const Blog = ({ data }) => {
 
   return (
     <Layout>
+      <TitleAndMetaTags title="Blog" pathname="blog" />
       <Wrapper>
         <Header>
           <Navigation />
