@@ -36,8 +36,16 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: ${BREAKPOINTS.phone}px;
+  max-width: 100%;
   margin: 0 auto;
+
+  ${MEDIA.tablet`
+    max-width: ${BREAKPOINTS.phone}px;
+  `}
+
+  ${MEDIA.desktop`
+    max-width: ${BREAKPOINTS.tablet}px;
+  `};
 `;
 
 const Article = styled.article``;

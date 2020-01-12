@@ -31,6 +31,7 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 16px;
     font-size: 1rem;
     color: ${rgba(COLORS.black, 0.9)};
+    width: 100%;
 
     ${MEDIA.desktopWide`
       font-size: 1.25rem;
