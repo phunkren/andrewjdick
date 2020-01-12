@@ -3,7 +3,6 @@ import { position, rgba } from "polished";
 import { Link } from "gatsby";
 import { ALPHAS } from "../../styles/alphas";
 import { COLORS } from "../../styles/colors";
-import { MEDIA } from "../../styles/media";
 
 const linkStyles = css`
   color: inherit;
@@ -74,12 +73,3 @@ export const RawExternalLink = styled.a(({ highlight }) => [
       }
     `
 ]);
-
-export const Preview = styled.div`
-  display: flex;
-  flex-flow: column;
-
-  > * {
-    margin-top: 0.5em;
-  }
-`;
