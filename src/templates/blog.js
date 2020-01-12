@@ -65,11 +65,7 @@ function BlogTemplate({ data }) {
         </Header>
 
         <Section>
-          <H2 as="h1">{frontmatter.title}</H2>
-          <Img
-            fluid={frontmatter.image.childImageSharp.fluid}
-            css="margin: 2em 0;"
-          />
+            <Text>{fields.readingTime.text}</Text>
           <Article dangerouslySetInnerHTML={{ __html: html }} />
         </Section>
       </Wrapper>
@@ -91,6 +87,11 @@ export const pageQuery = graphql`
               ...GatsbyImageSharpFluid
             }
           }
+        }
+      }
+      fields {
+        readingTime {
+          text
         }
       }
     }
