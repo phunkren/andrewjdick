@@ -33,7 +33,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${rgba(COLORS.black, 0.9)};
 
     ${MEDIA.desktopWide`
-      font-size: 1.5rem;
+      font-size: 1.25rem;
     `}
   }
   
