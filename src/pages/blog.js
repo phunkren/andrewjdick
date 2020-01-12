@@ -2,11 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { position, rgba } from "polished";
 import { graphql } from "gatsby";
-import { PostLink } from "../components/Link";
+import { BlogPreview } from "../components/BlogPreview";
 import { Navigation } from "../components/Navigation";
+import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
 import { Social } from "../components/Social";
 import { Layout } from "../components/Layout";
 import { MEDIA, BREAKPOINTS } from "../styles/media";
+import { H1 } from "../styles/typography";
 import { COLORS } from "../styles/colors";
 
 const Wrapper = styled.div`
@@ -66,13 +68,14 @@ const Blog = ({ data }) => {
   const posts = edges
     .filter(edge => !!edge.node.frontmatter.date)
     .map(edge => (
-      <ListItem>
-        <PostLink key={edge.node.id} post={edge.node} />
+      <ListItem key={edge.node.id}>
+        <BlogPreview post={edge.node} />
       </ListItem>
     ));
 
   return (
     <Layout>
+      <TitleAndMetaTags title="Blog" pathname="blog" />
       <Wrapper>
         <Header>
           <Navigation />
@@ -80,6 +83,7 @@ const Blog = ({ data }) => {
         </Header>
 
         <Section>
+          <H1 css="margin-bottom: 1em;">Blog</H1>
           <List>{posts}</List>
         </Section>
       </Wrapper>
@@ -93,7 +97,7 @@ export const pageQuery = graphql`
       edges {
         node {
           id
-          excerpt(pruneLength: 150)
+          excerpt(pruneLength: 240)
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             path
@@ -104,6 +108,11 @@ export const pageQuery = graphql`
                   ...GatsbyImageSharpFluid
                 }
               }
+            }
+          }
+          fields {
+            readingTime {
+              text
             }
           }
         }
