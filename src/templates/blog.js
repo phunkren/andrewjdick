@@ -6,17 +6,17 @@ import { Layout } from "../components/Layout";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
 import { Navigation } from "../components/Navigation";
 import { Social } from "../components/Social";
-import { H2 } from "../styles/typography";
+import { H2, Text } from "../styles/typography";
 import { MEDIA, BREAKPOINTS } from "../styles/media";
 
 const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 1em;
+  padding: 2em;
 
   ${MEDIA.desktopWide`
-    padding: 2em;
+    padding: 1em;
   `};
 `;
 
@@ -39,6 +39,10 @@ const Section = styled.section`
   max-width: 100%;
   margin: 0 auto;
 
+  > * + * {
+    margin-top: 2em;
+  }
+
   ${MEDIA.tablet`
     max-width: ${BREAKPOINTS.phone}px;
   `}
@@ -48,11 +52,15 @@ const Section = styled.section`
   `};
 `;
 
-const Article = styled.article``;
+const Article = styled.article`
+  code {
+    font-size: 1rem;
+  }
+`;
 
 function BlogTemplate({ data }) {
   const { markdownRemark } = data;
-  const { frontmatter, html } = markdownRemark;
+  const { frontmatter, fields, html } = markdownRemark;
 
   return (
     <Layout>
@@ -65,7 +73,16 @@ function BlogTemplate({ data }) {
         </Header>
 
         <Section>
+          <div>
+            <H2 as="h1" css="margin-bottom: 0.25em;">
+              {frontmatter.title}
+            </H2>
+            <Text>{frontmatter.date}</Text> |{" "}
             <Text>{fields.readingTime.text}</Text>
+          </div>
+
+          <Img fluid={frontmatter.image.childImageSharp.fluid} />
+
           <Article dangerouslySetInnerHTML={{ __html: html }} />
         </Section>
       </Wrapper>
@@ -83,7 +100,7 @@ export const pageQuery = graphql`
         title
         image {
           childImageSharp {
-            fluid(maxWidth: 576) {
+            fluid(maxWidth: 768) {
               ...GatsbyImageSharpFluid
             }
           }
