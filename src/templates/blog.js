@@ -7,7 +7,7 @@ import { Layout } from "../components/Layout";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
 import { Navigation } from "../components/Navigation";
 import { Social } from "../components/Social";
-import { H2, Text } from "../styles/typography";
+import { H1, Text } from "../styles/typography";
 import { MEDIA, BREAKPOINTS } from "../styles/media";
 import { COLORS } from "../styles/colors";
 
@@ -66,7 +66,8 @@ const Article = styled.article`
     color: ${rgba(COLORS.black, 0.5)};
   }
 
-  iframe {
+  iframe,
+  img {
     display: block;
     margin: 2em auto 0;
   }
@@ -92,9 +93,7 @@ function BlogTemplate({ data }) {
 
         <Section>
           <div>
-            <H2 as="h1" css="margin-bottom: 0.25em;">
-              {frontmatter.title}
-            </H2>
+            <H1 css="margin-bottom: 0.25em;">{frontmatter.title}</H1>
             <Text>{frontmatter.date}</Text> |{" "}
             <Text>{fields.readingTime.text}</Text>
           </div>
