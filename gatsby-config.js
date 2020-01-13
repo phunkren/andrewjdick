@@ -21,6 +21,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          `gatsby-remark-copy-linked-files`,
           `gatsby-remark-reading-time`,
           {
             resolve: `gatsby-remark-prismjs`,
