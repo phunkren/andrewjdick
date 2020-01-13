@@ -55,11 +55,20 @@ const Section = styled.section`
 `;
 
 const Article = styled.article`
+  a {
+    color: inherit;
+  }
+
   figcaption {
     margin-top: 0.5em;
     font-size: 1rem;
     text-align: center;
     color: ${rgba(COLORS.black, 0.5)};
+  }
+
+  iframe {
+    display: block;
+    margin: 2em auto;
   }
 
   code {
