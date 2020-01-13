@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { rgba } from "polished";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
 import { Layout } from "../components/Layout";
@@ -8,6 +9,7 @@ import { Navigation } from "../components/Navigation";
 import { Social } from "../components/Social";
 import { H2, Text } from "../styles/typography";
 import { MEDIA, BREAKPOINTS } from "../styles/media";
+import { COLORS } from "../styles/colors";
 
 const Wrapper = styled.div`
   flex: 1;
@@ -53,6 +55,13 @@ const Section = styled.section`
 `;
 
 const Article = styled.article`
+  figcaption {
+    margin-top: 0.5em;
+    font-size: 1rem;
+    text-align: center;
+    color: ${rgba(COLORS.black, 0.5)};
+  }
+
   code {
     font-size: 1rem;
   }
