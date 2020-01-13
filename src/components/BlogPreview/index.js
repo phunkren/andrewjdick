@@ -14,7 +14,9 @@ export const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
     </PreviewImage>
 
     <PreviewContent>
-      <H3 as="h2">{frontmatter.title}</H3>
+      <Link to={frontmatter.path}>
+        <H3 as="h2">{frontmatter.title}</H3>
+      </Link>
 
       <div>
         <Text>{frontmatter.date}</Text> | <Text>{fields.readingTime.text}</Text>
