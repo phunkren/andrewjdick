@@ -108,3 +108,7 @@ storiesOf("Input", module)
 ```
 
 You can find the repository on GitHub, and here’s a quick look at it in action:
+
+![alt text](../src/assets/images/storybook-state-example.gif)
+
+<figcaption>1.1: Test both controlled and uncontrolled inputs in Storybook</figcaption>
