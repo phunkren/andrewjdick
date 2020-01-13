@@ -7,13 +7,15 @@ date: 2019-11-07
 
 I was recently tasked with building a front-end camera component that allows users to upload images of their identification cards to a back-end service. In this post, I’ll demonstrate how I created the component by explaining how to configure a live media stream, capture a snapshot with React Hooks, and style and position the elements using styled-components.
 
-As such, the article assumes a working knowledge of functional components in React 16.x and the styled-components library. Below, you can see a demo of the component in action, and feel free to play around with the complete solution on my CodeSandbox as you read along. Enjoy!
+As such, the article assumes a working knowledge of functional components in React 16.x and the styled-components library. Below, you can see a demo of the component in action, and feel free to play around with the complete solution on my [CodeSandbox](https://codesandbox.io/s/react-camera-component-with-hooks-mf1i2) as you read along. Enjoy!
 
-Preview Of Our Final App
-Configuration
-Let’s begin by accessing the browser navigator and invoking the getUserMedia() method to display a live video feed from the user’s camera.
+![Camera component demo](../src/assets/images/camera-component-demo.gif)
 
-Since the component is designed to take photographs of identity cards, we can pass a configuration object that does not require audio and defaults to the rear-facing camera on mobile devices. By passing an options object to the video property, video is assumed to be true.
+## Configuration
+
+Let’s begin by accessing the browser navigator and invoking the [getUserMedia()](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia) method to display a live video feed from the user’s camera.
+
+Since the component is designed to take photographs of identity cards, we can pass a configuration object that does not require audio and defaults to the rear-facing camera on mobile devices. By passing an options object to the video property, video is assumed to be `true`.
 
 ```jsx
 const CAPTURE_OPTIONS = {
@@ -22,13 +24,13 @@ const CAPTURE_OPTIONS = {
 };
 ```
 
-The getUserMedia() method requests permission from the user to access the media defined in the configuration. It then returns a promise that will either resolve and return a MediaStream object that can be stored in local state or reject and return an error.
+The `getUserMedia()` method requests permission from the user to access the media defined in the configuration. It then returns a promise that will either resolve and return a [MediaStream](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream) object that can be stored in local state or reject and return an error.
 
-Using one of React’s useEffect() Hooks, we create and store the requested stream if none exists (i.e., our local state is empty) or return a cleanup function to prevent any potential memory leaks when the component unmounts. The cleanup loops through and stops each of the media tracks stored in local state via the getTracks() method.
+Using one of React’s [useEffect()](https://reactjs.org/docs/hooks-effect.html) Hooks, we create and store the requested stream if none exists (i.e., our local state is empty) or return a cleanup function to prevent any potential memory leaks when the component unmounts. The cleanup loops through and stops each of the media tracks stored in local state via the [getTracks()](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/getTracks) method.
 
-With the stream stored in local state, it can then be bound to a `<video />` element. Since React does not support the srcObject attribute, we use a ref to target the video and assign the stream to the srcObject property. With a valid source, the video will trigger an onCanPlay() event where we can begin video playback.
+With the stream stored in local state, it can then be bound to a `<video />` element. Since React [does not support the srcObject attribute](https://github.com/facebook/react/pull/9146#issuecomment-355584767), we use a ref to target the video and assign the stream to the [srcObject](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject) property. With a valid source, the video will trigger an [onCanPlay()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplay_event) event where we can begin video playback.
 
-This implementation is necessary since the video autoPlay attribute does not work consistently across all platforms. We can abstract all of this logic into a custom Hook that takes the configuration object as an argument, creates the cleanup function, and returns the stream to the camera component.
+This implementation is necessary since the video `autoPlay` attribute does not work consistently across all platforms. We can abstract all of this logic into a custom Hook that takes the configuration object as an argument, creates the cleanup function, and returns the stream to the camera component.
 
 ```jsx
 import { useState, useEffect } from "react";
@@ -96,14 +98,15 @@ function Camera() {
 }
 ```
 
-Positioning
+## Positioning
+
 With the media stream configured, we can start to position the video within the component. To enhance the user experience, the camera feed should resemble an identification card. This requires the preview container to maintain a landscape ratio regardless of the native resolution of the camera (desktop cameras typically have a square or landscape ratio, and we assume mobile devices will capture the images in portrait).
 
-This is achieved by calculating a ratio that is ≥ 1 by always dividing by the largest dimension. Once the video is available for playback (i.e., when the onCanPlay() event is invoked), we can evaluate the native resolution of the camera and use it to calculate the desired aspect ratio of the parent container.
+This is achieved by calculating a ratio that is ≥ 1 by always dividing by the largest dimension. Once the video is available for playback (i.e., when the [onCanPlay()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplay_event) event is invoked), we can evaluate the native resolution of the camera and use it to calculate the desired aspect ratio of the parent container.
 
-In order for the component to be responsive, it will need to be notified whenever the width of the parent container has changed so that the height can be recalculated. react-measure exports a `<Measure />` component that provides the boundaries of a referenced element as an argument in an onResize() callback. Whenever the container mounts or is resized, the argument’s contentRect.bounds.width property is used to determine the container height by dividing it by the calculated ratio.
+In order for the component to be responsive, it will need to be notified whenever the width of the parent container has changed so that the height can be recalculated. [react-measure](https://blog.logrocket.com/responsive-camera-component-react-hooks/%22https://www.npmjs.com/package/react-measure) exports a [<Measure />](https://www.npmjs.com/package/react-measure#measure-component) component that provides the boundaries of a referenced element as an argument in an [onResize()](https://www.npmjs.com/package/react-measure#onresize--proptypesfunc) callback. Whenever the container mounts or is resized, the argument’s `contentRect.bounds.width` property is used to determine the container height by dividing it by the calculated ratio.
 
-Similar to before, the ratio calculation is abstracted into a custom Hook and returns both the calculated ratio and setter function. Since the ratio will remain constant, we can utilize React’s useCallback() Hook to prevent any unnecessary recalculations.
+Similar to before, the ratio calculation is abstracted into a custom Hook and returns both the calculated ratio and setter function. Since the ratio will remain constant, we can utilize React’s [useCallback()](https://reactjs.org/docs/hooks-reference.html#usecallback) Hook to prevent any unnecessary recalculations.
 
 ```jsx
 import { useState, useCallback } from "react";
@@ -179,7 +182,7 @@ function Camera() {
 }
 ```
 
-The current solution works well if the video element is smaller than the parent container, but in the event that the native resolution is larger, it will overflow and cause layout issues. Adding overflow: hidden and position: relative to the parent and position : absolute to the video will prevent the break in layout, but the video will appear off-center to the user.
+The current solution works well if the video element is smaller than the parent container, but in the event that the native resolution is larger, it will overflow and cause layout issues. Adding `overflow: hidden` and `position: relative` to the parent and `position: absolute` to the video will prevent the break in layout, but the video will appear off-center to the user.
 
 To compensate for this, we center the feed by calculating axis offsets that subtract the dimensions of the video element from the parent container and halve the resulting value.
 
@@ -188,7 +191,7 @@ const offsetX = Math.round((videoWidth - containerWidth) / 2);
 const offsetY = Math.round((videoHeight - containerHeight) / 2);
 ```
 
-We only want to apply the offsets in the event that the video (v) is larger than the parent container (c). We can create another custom Hook that uses an effect to evaluate whether an offset is required and returns the updated results whenever any of the values change.
+We only want to apply the offsets in the event that the video (`v`) is larger than the parent container (`c`). We can create another custom Hook that uses an effect to evaluate whether an offset is required and returns the updated results whenever any of the values change.
 
 ```jsx
 import { useState, useEffect } from "react";
@@ -269,10 +272,11 @@ function Camera() {
 };
 ```
 
-Capture/clear
+## Capture/clear
+
 To emulate a camera snapshot, a `<canvas/>` element is positioned on top of the video with matching dimensions. Whenever the user initiates a capture, the current frame in the feed will be drawn onto the canvas and cause the video to become temporarily hidden.
 
-This is achieved by creating a two-dimensional rendering context on the canvas, drawing the current frame of the video as an image, and then exporting the resulting Blob as an argument in a handleCapture() callback.
+This is achieved by creating a two-dimensional rendering context on the canvas, drawing the current frame of the video as an image, and then exporting the resulting `Blob` as an argument in a `handleCapture()` callback.
 
 ```jsx
 function handleCapture() {
@@ -282,7 +286,7 @@ function handleCapture() {
 }
 ```
 
-The arguments supplied to the drawImage() method are broadly split into three groups: the source image, the source image parameters (s), and the destination canvas parameters (d). We need to consider the potential axis offsets when drawing the canvas, as we only want to snapshot the section of the video feed that is visible from within the parent container.
+The arguments supplied to the [drawImage()](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage) method are broadly split into three groups: the source image, the source image parameters (`s`), and the destination canvas parameters (`d`). We need to consider the potential axis offsets when drawing the canvas, as we only want to snapshot the section of the video feed that is visible from within the parent container.
 
 We’ll add the offsets to the source image’s starting axis coordinates and use the parent container’s width and height for both the source and destination boundaries. Since we want to draw the snapshot onto the entire canvas, no destination offsets are required.
 
@@ -300,9 +304,9 @@ context.drawImage(
 );
 ```
 
-To discard the image, the canvas is reverted to its initial state via a handleClear() callback. Calling handleClear() will retrieve the same drawing context instance that was previously returned in the handleCapture() function.
+To discard the image, the canvas is reverted to its initial state via a handleClear() callback. Calling `handleClear()` will retrieve the same drawing context instance that was previously returned in the `handleCapture()` function.
 
-We then pass the canvas’s width and height to the context clearRect() function to convert the requested pixels to transparent and resume displaying the video feed.
+We then pass the canvas’s width and height to the context [clearRect()](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect) function to convert the requested pixels to transparent and resume displaying the video feed.
 
 ```jsx
 function handleClear() {
@@ -403,8 +407,9 @@ function Camera() {
   );
 ```
 
-Styling
-With the ability to capture an image, all that remains is to implement a card-aid overlay, a flash animation on capture, and style the elements using styled-components.
+## Styling
+
+With the ability to capture an image, all that remains is to implement a card-aid overlay, a flash animation on capture, and style the elements using [styled-components](https://www.styled-components.com/).
 
 The overlay component is a white, rounded border layered on top of the video to encourage the user to fit their identification card within the boundary, with an outer box-shadowed area acting as a safe-zone to prevent clipping.
 
@@ -412,7 +417,7 @@ The flash component has a solid white background and is also layered on top of t
 
 Its keyframe animation triggers whenever the user captures an image, which briefly sets the opacity to 0.75 before quickly reducing it back to zero to emulate a flash effect.
 
-We can pass the resolution of the camera as props to the parent container to determine its maximum width and height, add a local state variable — isVideoPlaying — to keep the video and overlay elements hidden until the camera begins streaming, and finally add display: none to -webkit-media-controls-play-button to hide the video’s play symbol on iOS devices. 💥
+We can pass the resolution of the camera as props to the parent container to determine its maximum width and height, add a local state variable — `isVideoPlaying` — to keep the video and overlay elements hidden until the camera begins streaming, and finally add `display: none` to `-webkit-media-controls-play-button` to hide the video’s play symbol on iOS devices. 💥
 
 ```jsx
 import styled, { css, keyframes } from "styled-components";
@@ -634,8 +639,8 @@ export function Camera({ onCapture, onClear }) {
 }
 ```
 
-Conclusion
-For the moment, the component serves to provide images as proof of authenticity and is used alongside a form where users manually input field information from the identification cards. I’m hoping to follow this post up with an integration with OCR technology to scrape the fields from the images and remove the requirement for the form altogether.
+## Conclusion
 
-Thanks for reading along, and special thanks to Pete Correia for taking the time to review the component code.
-Like the article? Say thanks on Twitter 🐦
+For the moment, the component serves to provide images as proof of authenticity and is used alongside a form where users manually input field information from the identification cards. I’m hoping to follow this post up with an integration with [OCR technology](https://en.wikipedia.org/wiki/Optical_character_recognition) to scrape the fields from the images and remove the requirement for the form altogether.
+
+Thanks for reading along, and special thanks to [Pete Correia](https://twitter.com/petecorreia) for taking the time to review the component code.
