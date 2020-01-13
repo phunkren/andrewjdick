@@ -19,11 +19,14 @@ Sketch’s grid is a visual overlay allowing designers to create a high precisio
   <figcaption>1.2: Vertical rhythm example</figcaption>
 </figure>
 
-Since the application was designed with a grid overlay, I put together a similar treatment for the frontend. A styled component is added to the application root. It is fixed to the viewport using `position: fixed` with a high `z-index` and `pointer-events` disabled.
+Since the application was designed with a grid overlay, I put together a similar treatment for the frontend by adding a styled component to the application root. The grid will sit on top of the entire application, and so is fixed to the viewport using `position: fixed` with a high `z-index` and `pointer-events` disabled.
 
 The grid is generated using a [repeating-linear-gradient](https://developer.mozilla.org/en-US/docs/Web/CSS/repeating-linear-gradient) on the component's `background` property. The grid lines are comprised of two sections: an opaque coloured grid line, and a transparent interval. Custom props allow the consumer to configure the color, width, interval and direction of each line, with default values serving as a fallback (the values below emulate a 12 column vertical grid layout).
 
 ```jsx
+import styled from "styled-components";
+import { rgba } from "polished";
+
 export const GridOverlay = styled.div(
   ({
     color = "black",
