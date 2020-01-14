@@ -3,7 +3,8 @@ import { isBrowser, isIE } from "react-device-detect";
 import styled from "styled-components";
 import { rgba } from "polished";
 import { Layout } from "../components/Layout";
-import { ExternalLink, Link } from "../components/Link";
+import cv from "../assets/documents/Andrew James CV.pdf";
+import { ExternalLink, Link, DownloadLink } from "../components/Link";
 import { ColouredContainer } from "../components/ColouredContainer";
 import { DownloadIcon } from "../components/icons";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
@@ -170,13 +171,12 @@ export default function CV() {
 
             {isBrowser && !isIE && (
               <HeaderIcons>
-                <Link
-                  href="/AndrewJames-CV.pdf"
-                  aria-label="Download my CV"
-                  download
+                <DownloadLink
+                  css="display: inline-flex; margin-left: 0.5em; padding: 0.5em;"
+                  href={cv}
                 >
-                  <DownloadIcon width="2.25rem" height="2.25rem" />
-                </Link>
+                  <DownloadIcon width="2.5rem" height="2.5rem" />
+                </DownloadLink>
               </HeaderIcons>
             )}
           </Header>
