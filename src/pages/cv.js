@@ -169,7 +169,7 @@ export default function CV() {
           <Header>
             <div>
               <H1>
-                <Link href="/" aria-label="Return to homepage">
+                <Link to="/" aria-label="Return to homepage">
                   {name}
                 </Link>
               </H1>
