@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { COLORS } from "../../styles/colors";
-import { SITE_URL, CONTACT_DETAILS, SOCIAL_LINKS } from "../../constants";
+import { COLORS } from "../styles/colors";
+import { SITE_URL, CONTACT_DETAILS, SOCIAL_LINKS } from "../constants";
 
 // 🚧
 export const TitleAndMetaTags = ({
