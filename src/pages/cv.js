@@ -270,7 +270,7 @@ export default function CV() {
                       <ExternalLink
                         href={url}
                         aria-label={`${company} website`}
-                        withHighlight
+                        highlight
                       >
                         {company}
                       </ExternalLink>{" "}

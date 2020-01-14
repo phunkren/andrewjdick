@@ -102,7 +102,7 @@ export default function Home() {
             <ExternalLink
               href={currentEmployer.url}
               aria-label={`${currentEmployer.company}'s website`}
-              withHighlight
+              highlight
             >
               {currentEmployer.company}
             </ExternalLink>
@@ -120,7 +120,7 @@ export default function Home() {
               <ExternalLink
                 href="https://absurd.design/"
                 aria-label="absurd.design"
-                withHighlight
+                highlight
               >
                 absurd.design
               </ExternalLink>
