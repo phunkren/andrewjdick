@@ -6,7 +6,8 @@ import { Layout } from "../components/Layout";
 import cv from "../assets/documents/Andrew James CV.pdf";
 import { ExternalLink, Link, DownloadLink } from "../components/Link";
 import { ColouredContainer } from "../components/ColouredContainer";
-import { DownloadIcon } from "../components/icons";
+import { IconButton } from "../components/Button";
+import { DownloadIcon, PrintIcon } from "../components/icons";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
 import { Rating } from "../components/Rating";
 import { Contact } from "../components/Contact";
@@ -49,6 +50,10 @@ const HeaderIcons = styled.div`
 
   ${MEDIA.desktop`
     display: block;
+  `};
+
+  ${MEDIA.print`
+    display: none;
   `};
 `;
 
@@ -152,6 +157,10 @@ const Dates = styled(Text)`
 export default function CV() {
   const { name, position, location } = CONTACT_DETAILS;
 
+  function handleCvPrint() {
+    window.print();
+  }
+
   return (
     <Layout>
       <TitleAndMetaTags title="CV" pathname="cv" />
@@ -171,6 +180,9 @@ export default function CV() {
 
             {isBrowser && !isIE && (
               <HeaderIcons>
+                <IconButton onClick={handleCvPrint}>
+                  <PrintIcon width="2.5rem" height="2.5rem" />
+                </IconButton>
                 <DownloadLink
                   css="display: inline-flex; margin-left: 0.5em; padding: 0.5em;"
                   href={cv}
