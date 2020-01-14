@@ -6,4 +6,5 @@ export { TelephoneIcon } from "./TelephoneIcon";
 export { TwitterIcon } from "./TwitterIcon";
 export { StarIcon } from "./StarIcon";
 export { DownloadIcon } from "./DownloadIcon";
-export { GlobeIcon } from "./GlobeIcon";
+export { HomeIcon } from "./HomeIcon";
+export { PrintIcon } from "./PrintIcon";

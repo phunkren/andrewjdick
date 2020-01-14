@@ -3,9 +3,11 @@ import { isBrowser, isIE } from "react-device-detect";
 import styled from "styled-components";
 import { rgba } from "polished";
 import { Layout } from "../components/Layout";
-import { ExternalLink, Link } from "../components/Link";
+import cv from "../assets/documents/Andrew James CV.pdf";
+import { ExternalLink, Link, DownloadLink } from "../components/Link";
 import { ColouredContainer } from "../components/ColouredContainer";
-import { DownloadIcon } from "../components/icons";
+import { IconButton } from "../components/Button";
+import { DownloadIcon, PrintIcon } from "../components/icons";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
 import { Rating } from "../components/Rating";
 import { Contact } from "../components/Contact";
@@ -48,6 +50,10 @@ const HeaderIcons = styled.div`
 
   ${MEDIA.desktop`
     display: block;
+  `};
+
+  ${MEDIA.print`
+    display: none;
   `};
 `;
 
@@ -151,6 +157,10 @@ const Dates = styled(Text)`
 export default function CV() {
   const { name, position, location } = CONTACT_DETAILS;
 
+  function handleCvPrint() {
+    window.print();
+  }
+
   return (
     <Layout>
       <TitleAndMetaTags title="CV" pathname="cv" />
@@ -159,7 +169,7 @@ export default function CV() {
           <Header>
             <div>
               <H1>
-                <Link href="/" aria-label="Return to homepage">
+                <Link to="/" aria-label="Return to homepage">
                   {name}
                 </Link>
               </H1>
@@ -170,13 +180,15 @@ export default function CV() {
 
             {isBrowser && !isIE && (
               <HeaderIcons>
-                <Link
-                  href="/AndrewJames-CV.pdf"
-                  aria-label="Download my CV"
-                  download
+                <IconButton onClick={handleCvPrint}>
+                  <PrintIcon width="2.5rem" height="2.5rem" />
+                </IconButton>
+                <DownloadLink
+                  css="display: inline-flex; margin-left: 0.5em; padding: 0.5em;"
+                  href={cv}
                 >
-                  <DownloadIcon width="2.25rem" height="2.25rem" />
-                </Link>
+                  <DownloadIcon width="2.5rem" height="2.5rem" />
+                </DownloadLink>
               </HeaderIcons>
             )}
           </Header>
@@ -258,7 +270,7 @@ export default function CV() {
                       <ExternalLink
                         href={url}
                         aria-label={`${company} website`}
-                        withHighlight
+                        highlight
                       >
                         {company}
                       </ExternalLink>{" "}

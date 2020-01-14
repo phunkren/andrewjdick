@@ -1,12 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 
-export const RawIcon = ({ width, height, viewBox, children, ...props }) => (
+export const RawIcon = ({
+  height,
+  width,
+  viewBox,
+  fill,
+  stroke,
+  strokeWidth,
+  strokeLinecap,
+  strokeLinejoin,
+  children,
+  ...props
+}) => (
   <svg
     height={height}
     width={width}
     viewBox={viewBox}
-    role="img"
+    fill={fill}
+    stroke={stroke}
+    strokeWidth={strokeWidth}
+    strokeLinecap={strokeLinecap}
+    strokeLinejoin={strokeLinejoin}
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
@@ -15,11 +30,16 @@ export const RawIcon = ({ width, height, viewBox, children, ...props }) => (
 );
 
 RawIcon.defaultProps = {
-  height: "1em",
-  width: "1em",
-  viewBox: "0 0 24 24"
+  height: "1rem",
+  width: "1rem",
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: "2",
+  strokeLinecap: "round",
+  strokeLinejoin: "round"
 };
 
 export const Icon = styled(RawIcon)`
-  fill: currentColor;
+  box-sizing: initial;
 `;

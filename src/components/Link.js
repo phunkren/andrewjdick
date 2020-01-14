@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import { position, rgba } from "polished";
-import { Link } from "gatsby";
-import { ALPHAS } from "../../styles/alphas";
-import { COLORS } from "../../styles/colors";
+import { Link as RouterLink } from "gatsby";
+import { ALPHAS } from "../styles/alphas";
+import { COLORS } from "../styles/colors";
 
 const linkStyles = css`
   color: inherit;
@@ -18,16 +18,29 @@ const linkStyles = css`
     color: ${rgba(COLORS.cadetBlue, ALPHAS.hover)};
   }
 
+  &:focus {
+    outline: 2px solid ${COLORS.wedgewood};
+    color: ${rgba(COLORS.cadetBlue, ALPHAS.focus)};
+  }
+
   &:active {
+    outline: 2px solid ${COLORS.wedgewood};
     color: ${rgba(COLORS.cadetBlue, ALPHAS.pressed)};
   }
 `;
 
-export const RawLink = styled(Link)`
+export const Link = styled(RouterLink)`
   ${linkStyles};
 `;
 
-export const RawExternalLink = styled.a(({ highlight }) => [
+export const DownloadLink = styled.a.attrs(() => ({ download: true }))`
+  ${linkStyles};
+`;
+
+export const ExternalLink = styled.a.attrs(() => ({
+  target: "_blank",
+  rel: "noreferrer"
+}))(({ highlight }) => [
   linkStyles,
   highlight &&
     css`
