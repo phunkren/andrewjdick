@@ -41,6 +41,19 @@ module.exports = {
           }
         ]
       }
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: "Andrew James",
+        short_name: "Andrew James",
+        start_url: "/",
+        background_color: "#fcfcfc",
+        theme_color: "#5f9ea0",
+        display: "standalone",
+        icon: "src/assets/favicon.png",
+        crossOrigin: `use-credentials`
+      }
     }
   ]
 };
