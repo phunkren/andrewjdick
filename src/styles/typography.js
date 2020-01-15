@@ -29,6 +29,14 @@ export const H3 = styled.h3`
   `}
 `;
 
+export const H4 = styled.h4`
+  font-size: 1rem;
+
+  ${MEDIA.desktopWide`
+    font-size: 1.25rem;
+  `}
+`;
+
 export const Text = styled.span(({ small }) => [
   small &&
     css`
