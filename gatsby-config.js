@@ -51,7 +51,7 @@ module.exports = {
         background_color: "#fcfcfc",
         theme_color: "#5f9ea0",
         display: "standalone",
-        icon: "src/assets/favicon.png",
+        icon: "src/assets/images/favicon.png",
         crossOrigin: `use-credentials`
       }
     }
