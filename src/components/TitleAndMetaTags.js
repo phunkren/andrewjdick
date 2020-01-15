@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet";
 import { COLORS } from "../styles/colors";
 import { SITE_URL, CONTACT_DETAILS, SOCIAL_LINKS } from "../constants";
 
-// 🚧
 export const TitleAndMetaTags = ({
   url,
   pathname,
