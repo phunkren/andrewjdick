@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
-import { Text } from "./styles/typography";
+import { H4, Text } from "./styles/typography";
+import { ExternalLink } from "./components/Link";
 
 export const EXPERIENCE = [
   {
@@ -10,21 +11,22 @@ export const EXPERIENCE = [
     description: () => (
       <Fragment>
         <Text as="p">
-          Each digital venture at BCGDV involves members from various cohorts
-          working together to deliver a go-to market product for a startup
-          business. Each development cycle typically lasts betweeen six to nine
-          months with three major milestones (MVP, Alpha, and Beta), which is
-          then handed over to a newly-recruited team to continue development.
+          As a senior engineer I collaborate with design, UX, growth, and
+          product cohorts to engineer a robust and well documented product that
+          can be successfully taken to market by a startup business. It is also
+          my responsibility to support lead and mentor associate engineers
+          wherever possible.
         </Text>
 
-        <Text as="p">
-          As a senior engineer it is my responsibility to support leads in
-          pushing the product forward and mentoring associates wherever
-          possible. I'm ultimately responsible for collaborating with design,
-          UX, growth, and product team members to engineer a robust and well
-          documented product that can be handed over and taken to market by the
-          business.
-        </Text>
+        <H4>Notable work</H4>
+
+        <ul>
+          <li>
+            <ExternalLink href="https://my.beema.ae" highlight>
+              Beema
+            </ExternalLink>
+          </li>
+        </ul>
       </Fragment>
     )
   },
@@ -36,20 +38,37 @@ export const EXPERIENCE = [
     description: () => (
       <Fragment>
         <Text as="p">
-          Working at Fathom provided me with the opportunity of working
-          alongside a number of highly-skilled professionals on a diverse range
-          of challenging frontend web projects. The majority of my time was
-          spent working with React, but was also fortunate enough to acquire
-          hands-on experience with React Native, GatsbyJS and Angular 2.
+          Working at Fathom allowed me to work alongside a number of
+          highly-skilled professionals on a range of challenging fintech
+          projects. The majority of my time was spent working with React, with
+          additional exposure to React Native, GatsbyJS and Angular 2.
         </Text>
 
-        <Text as="p">
-          Over the years, Fathom helped instill a set of base principles to
-          strive towards: complexity should only be introduced when it’s
-          unavoidable; code should be easy to reason with and delete; try to
-          avoid abstracting too early and think too far in the future, and
-          finally, the top priority is always the best possible user experience.
-        </Text>
+        <H4>Notable work</H4>
+
+        <ul>
+          <li>
+            <ExternalLink
+              href="https://help.anaplan.com/anapedia/Content/Mobile/Anaplan-mobile-app.htm"
+              highlight
+            >
+              Anaplan
+            </ExternalLink>
+          </li>
+          <li>
+            <ExternalLink
+              href="https://fath.om/2017/09/11/access-fintech.html"
+              highlight
+            >
+              Access Fintech
+            </ExternalLink>
+          </li>
+          <li>
+            <ExternalLink href="https://www.commerzbank.com/" highlight>
+              Commerzbank
+            </ExternalLink>
+          </li>
+        </ul>
       </Fragment>
     )
   },
@@ -61,29 +80,29 @@ export const EXPERIENCE = [
     description: () => (
       <Fragment>
         <Text as="p">
-          I accrued over two years of experience working at Cohaesus in teams of
-          various sizes on commercial front-end web projects. Originally hired
-          as a Trainee engineer, I progressed through Junior and into the
-          Associate role by completing several technical segments and
-          consistently delivering on time and to the best of my ability.
+          Cohaesus is a commerical advertising agency where I learned the
+          fundamentals of frontend web development. During my time with them I
+          worked both in-house and off-site at some of London's top advertising
+          agencies, on both green field and legacy codebases.
         </Text>
+
+        <H4>Notable work</H4>
 
         <ul>
           <li>
-            HTML and CSS frameworks, but also had the exposure to Unity,
-            Wordpress, and Knockout JS.
+            <ExternalLink href="https://www.highlandparkwhisky.com" highlight>
+              Highland Park
+            </ExternalLink>
           </li>
           <li>
-            Contributed to commercial projects on-site at some of London's top
-            advertising agencies.
+            <ExternalLink href="https://www.fatface.com/" highlight>
+              Fat Face
+            </ExternalLink>
           </li>
           <li>
-            Worked on both green field and legacy projects in both Agile and
-            waterfall project environments.
-          </li>
-          <li>
-            Hosted workshops and technical training sessions for Junior
-            engineers.
+            <ExternalLink href="https://cohaesus.co.uk/work/wwf/" highlight>
+              WWF
+            </ExternalLink>
           </li>
         </ul>
       </Fragment>
@@ -98,22 +117,11 @@ export const EXPERIENCE = [
       <Fragment>
         <Text as="p">
           Credited as a QA Tester on Grand Theft Auto V, I was responsible for
-          identifying defects, errors, and failures in the system software.
-          These were cross-referenced over multiple databases; undiscovered bugs
-          were logged and pre-existing issues were updated.
+          finding, reproducing, and accurately reporting issues in detailed bug
+          reports. It also involved providing clear and concise critical
+          analysis and feedback of reported issues and executing functionality,
+          regression, and user acceptance testing across various platforms.
         </Text>
-
-        <ul>
-          <li>
-            Experience with functionality, regression, and user acceptance
-            testing.
-          </li>
-          <li>
-            Co-ordinated with up to 30 team members across multiple studios, and
-            led a small team of four on previously unreleased alpha content.
-          </li>
-          <li>Software was version controlled with Perforce</li>
-        </ul>
       </Fragment>
     )
   }
@@ -134,38 +142,8 @@ export const EDUCATION = [
   }
 ];
 
-export const EXPERTISE = [
-  {
-    id: "HTML",
-    rating: 4
-  },
-  {
-    id: "CSS",
-    rating: 5
-  },
-  {
-    id: "JS",
-    rating: 3
-  },
-  {
-    id: "Git",
-    rating: 3
-  }
-];
+export const EXPERTISE = ["HTML", "CSS/SCSS", "JavaScript", "React"];
 
-export const INTERESTS = [
-  "react",
-  "react native",
-  "gatsbyjs",
-  "graphQL",
-  "css-in-js"
-];
+export const INTERESTS = ["react native", "gatsbyjs", "graphQL", "css-in-js"];
 
-export const HOBBIES = [
-  "cycling",
-  "boxing",
-  "guitar",
-  "video games",
-  "cooking",
-  "rugby"
-];
+export const HOBBIES = ["cycling", "guitar", "video games", "rugby"];
