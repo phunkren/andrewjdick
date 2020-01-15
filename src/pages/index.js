@@ -60,7 +60,7 @@ const Footer = styled.footer`
 `;
 
 const FooterSocial = styled(Social)`
-  display: block;
+  display: flex;
   margin-bottom: 0.5em;
 
   ${MEDIA.tablet`
