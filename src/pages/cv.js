@@ -134,6 +134,7 @@ const Tag = styled(Text).attrs(() => ({
   border-radius: 4px;
   text-transform: uppercase;
   text-align: center;
+  background-color: ${rgba(COLORS.hippyBlue, 0.4)};
 
   ${MEDIA.print`
     border: 1px solid ${COLORS.black};
@@ -240,14 +241,7 @@ export default function CV() {
                 <BlockHeader>Expertise</BlockHeader>
                 <TagContainer>
                   {EXPERTISE.map((skill, index) => (
-                    <Tag
-                      key={`Skill-${index}`}
-                      css={`
-                        background-color: ${rgba(COLORS.cadetBlue, 0.4)};
-                      `}
-                    >
-                      {skill}
-                    </Tag>
+                    <Tag key={`Skill-${index}`}>{skill}</Tag>
                   ))}
                 </TagContainer>
               </Block>
@@ -256,14 +250,7 @@ export default function CV() {
                 <BlockHeader>Interests</BlockHeader>
                 <TagContainer>
                   {INTERESTS.map((interest, index) => (
-                    <Tag
-                      key={`Interest-${index}`}
-                      css={`
-                        background-color: ${rgba(COLORS.hippyBlue, 0.4)};
-                      `}
-                    >
-                      {interest}
-                    </Tag>
+                    <Tag key={`Interest-${index}`}>{interest}</Tag>
                   ))}
                 </TagContainer>
               </Block>
@@ -272,14 +259,7 @@ export default function CV() {
                 <BlockHeader>Hobbies</BlockHeader>
                 <TagContainer>
                   {HOBBIES.map((hobby, index) => (
-                    <Tag
-                      key={`Hobby-${index}`}
-                      css={`
-                        background-color: ${rgba(COLORS.wedgewood, 0.4)};
-                      `}
-                    >
-                      {hobby}
-                    </Tag>
+                    <Tag key={`Hobby-${index}`}>{hobby}</Tag>
                   ))}
                 </TagContainer>
               </Block>
