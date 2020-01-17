@@ -6,6 +6,7 @@ import { rgba } from "polished";
 import reset from "modern-css-reset";
 import Roboto from "../assets/fonts/Roboto-Regular.woff2";
 import Rubik from "../assets/fonts/Rubik-Regular.woff2";
+import { BreadcrumbPortal } from "../components/breadcrumb";
 import { COLORS } from "../styles/colors";
 import { MEDIA } from "../styles/media";
 
@@ -69,19 +70,29 @@ const Main = styled(animated.main)`
   flex-flow: column;
 `;
 
-const RawLayout = ({ children }) => (
-  <Fragment>
-    <GlobalStyles />
-    <Transition
-      items={true}
-      delay={300}
-      from={{ opacity: 0 }}
-      enter={{ opacity: 1 }}
-      leave={{ opacity: 0 }}
-    >
-      {show => show && (props => <Main style={props}>{children}</Main>)}
-    </Transition>
-  </Fragment>
-);
+const RawLayout = ({ children }) => {
+  return (
+    <Fragment>
+      <GlobalStyles />
+      <Transition
+        items={true}
+        delay={300}
+        from={{ opacity: 0 }}
+        enter={{ opacity: 1 }}
+        leave={{ opacity: 0 }}
+      >
+        {show =>
+          show &&
+          (props => (
+            <Main style={props}>
+              <BreadcrumbPortal />
+              {children}
+            </Main>
+          ))
+        }
+      </Transition>
+    </Fragment>
+  );
+};
 
 export const Layout = styled(RawLayout)``;
