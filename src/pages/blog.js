@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { position, rgba } from "polished";
 import { graphql } from "gatsby";
+import { Breadcrumb } from "../components/Breadcrumb";
 import { BlogPreview } from "../components/BlogPreview";
 import { Navigation } from "../components/Navigation";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
@@ -76,6 +77,7 @@ const Blog = ({ data }) => {
   return (
     <Layout>
       <TitleAndMetaTags title="Blog" pathname="blog" />
+      <Breadcrumb to="/blog">Blog</Breadcrumb>
       <Wrapper>
         <Header>
           <Navigation />
