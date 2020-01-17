@@ -6,7 +6,7 @@ import { rgba } from "polished";
 import reset from "modern-css-reset";
 import Roboto from "../assets/fonts/Roboto-Regular.woff2";
 import Rubik from "../assets/fonts/Rubik-Regular.woff2";
-import { BreadcrumbPortal } from "../components/breadcrumb";
+import { BreadcrumbPortal } from "../components/Breadcrumb";
 import { COLORS } from "../styles/colors";
 import { MEDIA } from "../styles/media";
 
