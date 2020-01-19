@@ -2,11 +2,11 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { position } from "polished";
 import { Layout } from "../components/Layout";
+import { Header } from "../components/Header";
 import { Social } from "../components/Social";
-import lightbulbs from "../assets/images/lightbulbs.png";
 import { ExternalLink } from "../components/Link";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
-import { Navigation } from "../components/Navigation";
+import lightbulbs from "../assets/images/lightbulbs.png";
 import { MEDIA } from "../styles/media";
 import { H1, Text } from "../styles/typography";
 import { CONTACT_DETAILS } from "../constants";
@@ -31,16 +31,6 @@ const Wrapper = styled.div`
 
   ${MEDIA.desktopWide`
     padding: 1em;
-  `};
-`;
-
-const Header = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  ${MEDIA.tablet`
-    justify-content: space-between;
   `};
 `;
 
@@ -90,11 +80,7 @@ export default function Home() {
     <Layout>
       <TitleAndMetaTags />
       <Wrapper>
-        <Header>
-          <Navigation />
-          <Social />
-        </Header>
-
+        <Header />
         <Section>
           <H1>{name}</H1>
           <Text as="p">
