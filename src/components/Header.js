@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Navigation } from "./Navigation";
 import { Social } from "./Social";
@@ -17,12 +17,10 @@ const StyledHeader = styled.header`
 
 const RawHeader = () => {
   return (
-    <Fragment>
-      <StyledHeader>
-        <Navigation />
-        <Social />
-      </StyledHeader>
-    </Fragment>
+    <StyledHeader>
+      <Navigation />
+      <Social />
+    </StyledHeader>
   );
 };
 
