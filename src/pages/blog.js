@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { position, rgba } from "polished";
 import { graphql } from "gatsby";
-import { Header } from "../components/header";
+import { Header } from "../components/Header";
 import { BlogPreview } from "../components/BlogPreview";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
 import { Layout } from "../components/Layout";
