@@ -6,7 +6,6 @@ import { rgba } from "polished";
 import reset from "modern-css-reset";
 import Roboto from "../assets/fonts/Roboto-Regular.woff2";
 import Rubik from "../assets/fonts/Rubik-Regular.woff2";
-import { BreadcrumbPortal } from "../components/Breadcrumb";
 import { COLORS } from "../styles/colors";
 import { MEDIA } from "../styles/media";
 
@@ -81,15 +80,7 @@ const RawLayout = ({ children }) => {
         enter={{ opacity: 1 }}
         leave={{ opacity: 0 }}
       >
-        {show =>
-          show &&
-          (props => (
-            <Main style={props}>
-              <BreadcrumbPortal />
-              {children}
-            </Main>
-          ))
-        }
+        {show => show && (props => <Main style={props}>{children}</Main>)}
       </Transition>
     </Fragment>
   );
