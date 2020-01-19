@@ -2,11 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { position, rgba } from "polished";
 import { graphql } from "gatsby";
-import { Breadcrumb } from "../components/Breadcrumb";
+import { Header } from "../components/header";
 import { BlogPreview } from "../components/BlogPreview";
-import { Navigation } from "../components/Navigation";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
-import { Social } from "../components/Social";
 import { Layout } from "../components/Layout";
 import { MEDIA, BREAKPOINTS } from "../styles/media";
 import { H1 } from "../styles/typography";
@@ -22,17 +20,6 @@ const Wrapper = styled.div`
 
   ${MEDIA.desktopWide`
     padding: 1em;
-  `};
-`;
-
-const Header = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 2em;
-
-  ${MEDIA.tablet`
-    justify-content: space-between;
   `};
 `;
 
@@ -77,13 +64,8 @@ const Blog = ({ data }) => {
   return (
     <Layout>
       <TitleAndMetaTags title="Blog" pathname="blog" />
-      <Breadcrumb to="/blog">Blog</Breadcrumb>
       <Wrapper>
-        <Header>
-          <Navigation />
-          <Social />
-        </Header>
-
+        <Header />
         <Section>
           <H1 css="margin-bottom: 1em;">Blog</H1>
           <List>{posts}</List>
