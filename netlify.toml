@@ -1,5 +1,0 @@
-[[redirects]]
-    from = "https://dazzling-babbage-dde043.netlify.com/*"
-    to = "https://ajames.dev/:splat"
-    status = 301
-    force = true

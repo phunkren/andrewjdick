@@ -9,11 +9,10 @@ import { ColouredContainer } from "../components/ColouredContainer";
 import { IconButton } from "../components/Button";
 import { DownloadIcon, PrintIcon } from "../components/icons";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
-import { Rating } from "../components/Rating";
 import { Contact } from "../components/Contact";
 import { COLORS } from "../styles/colors";
 import { MEDIA, BREAKPOINTS } from "../styles/media";
-import { H1, H2, H3, Text } from "../styles/typography";
+import { H1, H2, H3, H4, Text } from "../styles/typography";
 import { CONTACT_DETAILS } from "../constants";
 import { EDUCATION, EXPERIENCE, EXPERTISE, INTERESTS, HOBBIES } from "../data";
 
@@ -116,30 +115,51 @@ const BlockHeader = styled(H2)`
 `;
 
 const Description = styled.div`
-  ${Text} {
+  ${Text}, ${H4} {
     margin-top: 1em;
     padding-bottom: 0;
   }
 
   ul {
     padding-left: 1.5em;
-    margin-top: 1em;
+    margin-top: 0.5em;
     list-style-type: circle;
   }
 `;
 
-const Tag = styled(Text)`
-  border: 1px solid ${COLORS.black};
-  border-radius: 5px;
-  background-color: ${rgba(COLORS.black, 0.2)};
-  text-transform: uppercase;
+const Tag = styled(Text).attrs(() => ({
+  small: true
+}))`
   padding: 0.5em;
-  margin-bottom: 0.5em;
-  display: inline-block;
+  border-radius: 4px;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: ${rgba(COLORS.hippyBlue, 0.4)};
 
-  &:not(:last-child) {
-    margin-right: 1em;
+  ${MEDIA.print`
+    border: 1px solid ${COLORS.black};
+    background-color: transparent;
+  `}
+`;
+
+const TagContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  ${Tag} {
+    flex: 1 0 100%;
+    margin-bottom: 0.5em;
   }
+
+  ${MEDIA.tablet`
+    flex-direction: row;
+    justify-content: space-between;
+      
+    ${Tag} {
+      flex: 0 1 calc(50% - 0.5em);
+    }
+  `}
 `;
 
 const Dates = styled(Text)`
@@ -219,45 +239,54 @@ export default function CV() {
 
               <Block>
                 <BlockHeader>Expertise</BlockHeader>
-                <Block>
-                  <Rating skills={EXPERTISE} numberOfStars={5} />
-                </Block>
+                <TagContainer>
+                  {EXPERTISE.map((skill, index) => (
+                    <Tag key={`Skill-${index}`}>{skill}</Tag>
+                  ))}
+                </TagContainer>
               </Block>
 
               <Block>
                 <BlockHeader>Interests</BlockHeader>
-
-                {INTERESTS.map((interest, index) => (
-                  <Tag key={`Interest-${index}`} small>
-                    {interest}
-                  </Tag>
-                ))}
+                <TagContainer>
+                  {INTERESTS.map((interest, index) => (
+                    <Tag key={`Interest-${index}`}>{interest}</Tag>
+                  ))}
+                </TagContainer>
               </Block>
 
               <Block>
                 <BlockHeader>Hobbies</BlockHeader>
-                {HOBBIES.map((interest, index) => (
-                  <Tag key={`Hobby-${index}`} small>
-                    {interest}
-                  </Tag>
-                ))}
+                <TagContainer>
+                  {HOBBIES.map((hobby, index) => (
+                    <Tag key={`Hobby-${index}`}>{hobby}</Tag>
+                  ))}
+                </TagContainer>
               </Block>
 
               <Block>
                 <BlockHeader>References</BlockHeader>
-                <Text>Written references available upon request.</Text>
+                <Text>Written references available on request.</Text>
               </Block>
             </Sidebar>
 
             <Section>
               <Block>
                 <BlockHeader>Profile</BlockHeader>
-                <Text>
+                <Text as="p">
                   My passion for digital technology continually drives me to
-                  advance my skill set as a software engineer. With strong
-                  communication and frontend web development skills, I thrive in
-                  environments where I can learn from and inspire those around
-                  me.
+                  advance my skill set as a software engineer. With an
+                  analytical mindset and strong communication and frontend
+                  development skills, I thrive in environments where I can learn
+                  from others and inspire those around me.
+                </Text>
+
+                <Text as="p" css="margin-top: 1em">
+                  Over the years I've refined a set of technical principles to
+                  strive towards, namely: complexity should only be introduced
+                  when it’s unavoidable; code should be easy to reason with and
+                  delete; avoid abstracting too early, and the top priority is
+                  always the best possible user experience.
                 </Text>
               </Block>
 

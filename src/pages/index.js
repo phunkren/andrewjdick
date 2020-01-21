@@ -1,12 +1,13 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 import { position } from "polished";
+import Div100vh from "react-div-100vh";
 import { Layout } from "../components/Layout";
+import { Header } from "../components/Header";
 import { Social } from "../components/Social";
-import lightbulbs from "../assets/images/lightbulbs.png";
 import { ExternalLink } from "../components/Link";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
-import { Navigation } from "../components/Navigation";
+import lightbulbs from "../assets/images/lightbulbs.png";
 import { MEDIA } from "../styles/media";
 import { H1, Text } from "../styles/typography";
 import { CONTACT_DETAILS } from "../constants";
@@ -21,26 +22,23 @@ const infiniteScroll = keyframes`
   }
 `;
 
-const Wrapper = styled.div`
+/* HACK: remove min-width from modern-css-reset */
+const GlobalStyles = createGlobalStyle`
+ body {
+   min-height: 0;
+ }
+`;
+
+const Wrapper = styled(Div100vh)`
   flex: 1;
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
   padding: 2em;
+  overflow: hidden;
 
   ${MEDIA.desktopWide`
     padding: 1em;
-  `};
-`;
-
-const Header = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  ${MEDIA.tablet`
-    justify-content: space-between;
   `};
 `;
 
@@ -89,12 +87,9 @@ export default function Home() {
   return (
     <Layout>
       <TitleAndMetaTags />
+      <GlobalStyles />
       <Wrapper>
-        <Header>
-          <Navigation />
-          <Social />
-        </Header>
-
+        <Header />
         <Section>
           <H1>{name}</H1>
           <Text as="p">

@@ -3,10 +3,9 @@ import styled from "styled-components";
 import { rgba } from "polished";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
+import { Header } from "../components/Header";
 import { Layout } from "../components/Layout";
 import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
-import { Navigation } from "../components/Navigation";
-import { Social } from "../components/Social";
 import { H1, Text } from "../styles/typography";
 import { MEDIA, BREAKPOINTS } from "../styles/media";
 import { COLORS } from "../styles/colors";
@@ -19,17 +18,6 @@ const Wrapper = styled.div`
 
   ${MEDIA.desktopWide`
     padding: 1em;
-  `};
-`;
-
-const Header = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 2em;
-
-  ${MEDIA.tablet`
-    justify-content: space-between;
   `};
 `;
 
@@ -86,11 +74,7 @@ function BlogTemplate({ data }) {
       <TitleAndMetaTags title={frontmatter.title} pathname={frontmatter.path} />
 
       <Wrapper>
-        <Header>
-          <Navigation />
-          <Social />
-        </Header>
-
+        <Header />
         <Section>
           <div>
             <H1 css="margin-bottom: 0.25em;">{frontmatter.title}</H1>
