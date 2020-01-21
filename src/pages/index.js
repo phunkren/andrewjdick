@@ -1,6 +1,7 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 import { position } from "polished";
+import Div100vh from "react-div-100vh";
 import { Layout } from "../components/Layout";
 import { Header } from "../components/Header";
 import { Social } from "../components/Social";
@@ -21,13 +22,20 @@ const infiniteScroll = keyframes`
   }
 `;
 
-const Wrapper = styled.div`
+/* HACK: remove min-width from modern-css-reset */
+const GlobalStyles = createGlobalStyle`
+ body {
+   min-height: 0;
+ }
+`;
+
+const Wrapper = styled(Div100vh)`
   flex: 1;
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
   padding: 2em;
+  overflow: hidden;
 
   ${MEDIA.desktopWide`
     padding: 1em;
@@ -79,6 +87,7 @@ export default function Home() {
   return (
     <Layout>
       <TitleAndMetaTags />
+      <GlobalStyles />
       <Wrapper>
         <Header />
         <Section>
