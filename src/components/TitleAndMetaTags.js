@@ -10,7 +10,11 @@ export const TitleAndMetaTags = ({
   description,
   image
 }) => (
-  <Helmet>
+  <Helmet
+    htmlAttributes={{
+      lang: "en"
+    }}
+  >
     <title>
       {CONTACT_DETAILS.name} | {title}
     </title>

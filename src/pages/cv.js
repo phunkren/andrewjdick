@@ -77,7 +77,7 @@ const Content = styled.div`
   `};
 `;
 
-const Sidebar = styled.aside`
+const Sidebar = styled.div`
   ${MEDIA.tablet`
     flex: 0 1 33%;
     border-right: 2px solid ${COLORS.black};
@@ -200,10 +200,14 @@ export default function CV() {
 
             {isBrowser && !isIE && (
               <HeaderIcons>
-                <IconButton onClick={handleCvPrint}>
+                <IconButton
+                  aria-label="Print my résumé"
+                  onClick={handleCvPrint}
+                >
                   <PrintIcon width="2.5rem" height="2.5rem" />
                 </IconButton>
                 <DownloadLink
+                  aria-label="Download my résumé"
                   css="display: inline-flex; margin-left: 0.5em; padding: 0.5em;"
                   href={cv}
                 >

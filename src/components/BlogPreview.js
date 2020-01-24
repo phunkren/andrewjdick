@@ -38,7 +38,10 @@ const PreviewContent = styled.div`
 const RawBlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
   <Preview>
     <PreviewImage>
-      <Link to={frontmatter.path}>
+      <Link
+        to={frontmatter.path}
+        aria-label={`Read my article on ${frontmatter.title}`}
+      >
         <Img fluid={frontmatter.image.childImageSharp.fluid} />
       </Link>
     </PreviewImage>
