@@ -3,6 +3,7 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-netlify`,
+    `gatsby-plugin-react-axe`,
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
