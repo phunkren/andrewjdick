@@ -1,20 +1,20 @@
-import React from "react";
-import { isBrowser, isIE } from "react-device-detect";
-import styled from "styled-components";
-import { rgba } from "polished";
-import { Layout } from "../components/Layout";
-import cv from "../assets/documents/Andrew James CV.pdf";
-import { ExternalLink, Link, DownloadLink } from "../components/Link";
-import { ColouredContainer } from "../components/ColouredContainer";
-import { IconButton } from "../components/Button";
-import { DownloadIcon, PrintIcon } from "../components/icons";
-import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
-import { Contact } from "../components/Contact";
-import { COLORS } from "../styles/colors";
-import { MEDIA, BREAKPOINTS } from "../styles/media";
-import { H1, H2, H3, H4, Text } from "../styles/typography";
-import { CONTACT_DETAILS } from "../constants";
-import { EDUCATION, EXPERIENCE, EXPERTISE, INTERESTS, HOBBIES } from "../data";
+import React from 'react';
+import { isBrowser, isIE } from 'react-device-detect';
+import styled from 'styled-components';
+import { rgba } from 'polished';
+import { Layout } from '../components/Layout';
+import cv from '../assets/documents/Andrew James CV.pdf';
+import { ExternalLink, Link, DownloadLink } from '../components/Link';
+import { ColouredContainer } from '../components/ColouredContainer';
+import { IconButton } from '../components/Button';
+import { DownloadIcon, PrintIcon } from '../components/icons';
+import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
+import { Contact } from '../components/Contact';
+import { COLORS } from '../styles/colors';
+import { MEDIA, BREAKPOINTS } from '../styles/media';
+import { H1, H2, H3, H4, Text } from '../styles/typography';
+import { CONTACT_DETAILS } from '../constants';
+import { EDUCATION, EXPERIENCE, EXPERTISE, INTERESTS, HOBBIES } from '../data';
 
 const Container = styled.div`
   flex: 1;
@@ -128,7 +128,7 @@ const Description = styled.div`
 `;
 
 const Tag = styled(Text).attrs(() => ({
-  small: true
+  small: true,
 }))`
   padding: 0.5em;
   border-radius: 4px;
@@ -237,7 +237,7 @@ export default function CV() {
                       <Text>{dates}</Text>
                       <br />
                     </Block>
-                  )
+                  ),
                 )}
               </Block>
 
@@ -306,12 +306,12 @@ export default function CV() {
                         highlight
                       >
                         {company}
-                      </ExternalLink>{" "}
+                      </ExternalLink>{' '}
                       <Dates>{dates}</Dates>
                     </Text>
                     <Description>{description()}</Description>
                   </Block>
-                )
+                ),
               )}
             </Section>
           </Content>

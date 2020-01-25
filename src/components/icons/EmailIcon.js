@@ -1,5 +1,5 @@
-import React from "react";
-import { Icon } from "./Icon";
+import React from 'react';
+import { Icon } from './Icon';
 
 export const EmailIcon = props => (
   <Icon {...props}>

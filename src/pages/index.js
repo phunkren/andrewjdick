@@ -1,17 +1,17 @@
-import React from "react";
-import styled, { createGlobalStyle, keyframes } from "styled-components";
-import { position } from "polished";
-import Div100vh from "react-div-100vh";
-import { Layout } from "../components/Layout";
-import { Header } from "../components/Header";
-import { Social } from "../components/Social";
-import { ExternalLink } from "../components/Link";
-import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
-import lightbulbs from "../assets/images/lightbulbs.png";
-import { MEDIA } from "../styles/media";
-import { H1, Text } from "../styles/typography";
-import { CONTACT_DETAILS } from "../constants";
-import { EXPERIENCE } from "../data";
+import React from 'react';
+import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import { position } from 'polished';
+import Div100vh from 'react-div-100vh';
+import { Layout } from '../components/Layout';
+import { Header } from '../components/Header';
+import { Social } from '../components/Social';
+import { ExternalLink } from '../components/Link';
+import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
+import lightbulbs from '../assets/images/lightbulbs.png';
+import { MEDIA } from '../styles/media';
+import { H1, Text } from '../styles/typography';
+import { CONTACT_DETAILS } from '../constants';
+import { EXPERIENCE } from '../data';
 
 const infiniteScroll = keyframes`
   from {
@@ -67,7 +67,7 @@ const FooterSocial = styled(Social)`
 `;
 
 const Image = styled.div`
-  ${position("absolute", "100%", 0, null, 0)};
+  ${position('absolute', '100%', 0, null, 0)};
   background-image: url(${lightbulbs});
   background-repeat: repeat-y;
   background-position: center;
@@ -93,7 +93,7 @@ export default function Home() {
         <Section>
           <H1>{name}</H1>
           <Text as="p">
-            {currentEmployer.position} @{" "}
+            {currentEmployer.position} @{' '}
             <ExternalLink
               href={currentEmployer.url}
               aria-label={`${currentEmployer.company}'s website`}
@@ -111,7 +111,7 @@ export default function Home() {
           <figure>
             <Image role="img" aria-label="scrolling lightbulbs" />
             <Text as="figcaption" small>
-              background courtesy of{" "}
+              background courtesy of{' '}
               <ExternalLink
                 href="https://absurd.design/"
                 aria-label="absurd.design"

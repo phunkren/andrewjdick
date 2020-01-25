@@ -1,7 +1,7 @@
-import styled, { css } from "styled-components";
-import { rgba } from "polished";
-import { COLORS } from "../styles/colors";
-import { ALPHAS } from "../styles/alphas";
+import styled, { css } from 'styled-components';
+import { rgba } from 'polished';
+import { COLORS } from '../styles/colors';
+import { ALPHAS } from '../styles/alphas';
 
 const buttonStyles = css`
   display: inline-flex;
@@ -50,5 +50,5 @@ export const IconButton = styled.button(
     &:active {
       color: ${rgba(COLORS.cadetBlue, ALPHAS.pressed)};
     }
-  `
+  `,
 );

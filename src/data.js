@@ -1,13 +1,13 @@
-import React, { Fragment } from "react";
-import { H4, Text } from "./styles/typography";
-import { ExternalLink } from "./components/Link";
+import React, { Fragment } from 'react';
+import { H4, Text } from './styles/typography';
+import { ExternalLink } from './components/Link';
 
 export const EXPERIENCE = [
   {
-    position: "Senior engineer",
-    company: "BCG Digital Ventures",
-    url: "https://www.bcgdv.com/",
-    dates: "April 2019 - Present",
+    position: 'Senior engineer',
+    company: 'BCG Digital Ventures',
+    url: 'https://www.bcgdv.com/',
+    dates: 'April 2019 - Present',
     description: () => (
       <Fragment>
         <Text as="p">
@@ -28,13 +28,13 @@ export const EXPERIENCE = [
           </li>
         </ul>
       </Fragment>
-    )
+    ),
   },
   {
-    position: "Frontend engineer",
-    company: "Fathom",
-    url: "https://fath.om",
-    dates: "June 2017 - March 2019",
+    position: 'Frontend engineer',
+    company: 'Fathom',
+    url: 'https://fath.om',
+    dates: 'June 2017 - March 2019',
     description: () => (
       <Fragment>
         <Text as="p">
@@ -70,13 +70,13 @@ export const EXPERIENCE = [
           </li>
         </ul>
       </Fragment>
-    )
+    ),
   },
   {
-    position: "Associate engineer",
-    company: "Cohaesus",
-    url: "https://cohaesus.co.uk/",
-    dates: "Feb 2015 - June 2017",
+    position: 'Associate engineer',
+    company: 'Cohaesus',
+    url: 'https://cohaesus.co.uk/',
+    dates: 'Feb 2015 - June 2017',
     description: () => (
       <Fragment>
         <Text as="p">
@@ -106,13 +106,13 @@ export const EXPERIENCE = [
           </li>
         </ul>
       </Fragment>
-    )
+    ),
   },
   {
-    position: "QA tester",
-    company: "Rockstar North",
-    url: "https://www.rockstarnorth.com",
-    dates: "May 2014 – Feb 2015",
+    position: 'QA tester',
+    company: 'Rockstar North',
+    url: 'https://www.rockstarnorth.com',
+    dates: 'May 2014 – Feb 2015',
     description: () => (
       <Fragment>
         <Text as="p">
@@ -123,27 +123,27 @@ export const EXPERIENCE = [
           regression, and user acceptance testing across various platforms.
         </Text>
       </Fragment>
-    )
-  }
+    ),
+  },
 ];
 
 export const EDUCATION = [
   {
-    qualification: "BSc (Hons) 2.1",
-    course: "Audio Technology & Multimedia",
-    institute: "Glasgow Caledonian University",
-    dates: "2010 - 2014"
+    qualification: 'BSc (Hons) 2.1',
+    course: 'Audio Technology & Multimedia',
+    institute: 'Glasgow Caledonian University',
+    dates: '2010 - 2014',
   },
   {
-    qualification: "Graduate",
-    course: "Frontend Nanodegree",
-    institute: "Udacity",
-    dates: "2016"
-  }
+    qualification: 'Graduate',
+    course: 'Frontend Nanodegree',
+    institute: 'Udacity',
+    dates: '2016',
+  },
 ];
 
-export const EXPERTISE = ["HTML", "CSS/SCSS", "JavaScript", "React"];
+export const EXPERTISE = ['HTML', 'CSS/SCSS', 'JavaScript', 'React'];
 
-export const INTERESTS = ["react native", "gatsbyjs", "graphQL", "css-in-js"];
+export const INTERESTS = ['react native', 'gatsbyjs', 'graphQL', 'css-in-js'];
 
-export const HOBBIES = ["cycling", "guitar", "video games", "rugby"];
+export const HOBBIES = ['cycling', 'guitar', 'video games', 'rugby'];

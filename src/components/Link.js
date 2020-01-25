@@ -1,8 +1,8 @@
-import styled, { css } from "styled-components";
-import { position, rgba } from "polished";
-import { Link as RouterLink } from "gatsby";
-import { ALPHAS } from "../styles/alphas";
-import { COLORS } from "../styles/colors";
+import styled, { css } from 'styled-components';
+import { position, rgba } from 'polished';
+import { Link as RouterLink } from 'gatsby';
+import { ALPHAS } from '../styles/alphas';
+import { COLORS } from '../styles/colors';
 
 const linkStyles = css`
   color: inherit;
@@ -38,8 +38,8 @@ export const DownloadLink = styled.a.attrs(() => ({ download: true }))`
 `;
 
 export const ExternalLink = styled.a.attrs(() => ({
-  target: "_blank",
-  rel: "noreferrer"
+  target: '_blank',
+  rel: 'noreferrer',
 }))(({ highlight }) => [
   linkStyles,
   highlight &&
@@ -53,8 +53,8 @@ export const ExternalLink = styled.a.attrs(() => ({
       z-index: 1;
 
       &::before {
-        content: "";
-        ${position("absolute", "0", "0", "0", "0")};
+        content: '';
+        ${position('absolute', '0', '0', '0', '0')};
         opacity: 0;
         z-index: -1;
       }
@@ -84,5 +84,5 @@ export const ExternalLink = styled.a.attrs(() => ({
           );
         }
       }
-    `
+    `,
 ]);

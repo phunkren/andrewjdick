@@ -1,5 +1,5 @@
-import React from "react";
-import { Icon } from "./Icon";
+import React from 'react';
+import { Icon } from './Icon';
 
 export const TelephoneIcon = props => (
   <Icon viewBox="0 0 1000 1000" {...props}>

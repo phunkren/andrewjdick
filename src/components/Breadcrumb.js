@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
-import { createPortal } from "react-dom";
-import { Link } from "gatsby";
-import styled from "styled-components";
-import { BreadcrumbContext } from "../contexts/breadcrumb";
-import { COLORS } from "../styles/colors";
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { createPortal } from 'react-dom';
+import { Link } from 'gatsby';
+import styled from 'styled-components';
+import { BreadcrumbContext } from '../contexts/breadcrumb';
+import { COLORS } from '../styles/colors';
 
 const Items = styled.ol`
   margin: 0;
@@ -15,7 +15,7 @@ const Item = styled.li`
   display: inline;
 
   & + &::before {
-    content: "";
+    content: '';
     display: inline-block;
     transform: rotate(15deg);
     border-right: 1px solid currentColor;
@@ -75,6 +75,6 @@ export const Breadcrumb = ({ children, to, ...props }) => {
     <Item {...props}>
       <ItemLink to={to}>{children}</ItemLink>
     </Item>,
-    portalNode
+    portalNode,
   );
 };
