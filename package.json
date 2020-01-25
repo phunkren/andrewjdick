@@ -1,8 +1,14 @@
 {
   "name": "ajames",
   "version": "0.1.0",
-  "private": true,
+  "description": "Personal website for Andrew James",
+  "homepage": "https://ajames.dev",
+  "bugs": "https://github.com/phunkren/ajames.dev/issues",
+  "license": "MIT",
+  "author": "Andrew James <contact@ajames.dev> (https://ajames.dev)",
+  "repository": "https://github.com/phunkren/ajames.dev",
   "baseUrl": "https://ajames.dev",
+  "private": true,
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.6",
     "eslint": "^6.8.0",
