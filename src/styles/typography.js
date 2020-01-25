@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { MEDIA } from "./media";
+import styled, { css } from 'styled-components';
+import { MEDIA } from './media';
 
 export const H1 = styled.h1`
   font-size: 2rem;
@@ -45,5 +45,5 @@ export const Text = styled.span(({ small }) => [
       ${MEDIA.desktopWide`
         font-size: 1rem;
       `}
-    `
+    `,
 ]);

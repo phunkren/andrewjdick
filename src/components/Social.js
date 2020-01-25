@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { SOCIAL_LINKS } from "../constants";
-import { MEDIA } from "../styles/media";
-import { GitHubIcon, MediumIcon, TwitterIcon, LinkedInIcon } from "./icons";
-import { ExternalLink } from "./Link";
+import React from 'react';
+import styled from 'styled-components';
+import { SOCIAL_LINKS } from '../constants';
+import { MEDIA } from '../styles/media';
+import { GitHubIcon, MediumIcon, TwitterIcon, LinkedInIcon } from './icons';
+import { ExternalLink } from './Link';
 
 const SocialLinks = styled.div`
   display: none;
@@ -28,8 +28,8 @@ const SocialLink = styled(ExternalLink)`
 `;
 
 const iconProps = {
-  width: "1.8em",
-  height: "1.8em"
+  width: '1.8em',
+  height: '1.8em',
 };
 
 const RawSocial = props => {

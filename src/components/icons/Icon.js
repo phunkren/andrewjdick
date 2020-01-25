@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 export const RawIcon = ({
   height,
@@ -30,14 +30,14 @@ export const RawIcon = ({
 );
 
 RawIcon.defaultProps = {
-  height: "1rem",
-  width: "1rem",
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: "2",
-  strokeLinecap: "round",
-  strokeLinejoin: "round"
+  height: '1rem',
+  width: '1rem',
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: '2',
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
 };
 
 export const Icon = styled(RawIcon)`

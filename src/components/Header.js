@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { Navigation } from "./Navigation";
-import { Social } from "./Social";
-import { MEDIA } from "../styles/media";
+import React from 'react';
+import styled from 'styled-components';
+import { Navigation } from './Navigation';
+import { Social } from './Social';
+import { MEDIA } from '../styles/media';
 
 const StyledHeader = styled.header`
   display: flex;

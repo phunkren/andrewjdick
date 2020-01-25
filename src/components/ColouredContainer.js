@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
-import { rgba } from "polished";
+import React, { useState, useRef, useEffect } from 'react';
+import styled from 'styled-components';
+import { rgba } from 'polished';
 
 const Container = styled.div.attrs(
   ({ clientX, clientY, clientWidth, clientHeight, style }) => ({
@@ -9,10 +9,10 @@ const Container = styled.div.attrs(
         Math.round((clientX / clientHeight) * 255),
         255 - Math.round((clientY / clientWidth) * 255),
         255 - Math.round((clientX / clientHeight) * 255),
-        0.75
-      )
-    }
-  })
+        0.75,
+      ),
+    },
+  }),
 )`
   transition: background-color 0.2s linear;
 `;
@@ -32,12 +32,12 @@ const RawColouredContainer = ({ children, ...props }) => {
     }
 
     if (!clientWidth && !clientHeight) {
-      window.addEventListener("resize", updateDimensions);
+      window.addEventListener('resize', updateDimensions);
       updateDimensions();
     }
 
     return function cleanup() {
-      window.removeEventListener("resize", updateDimensions);
+      window.removeEventListener('resize', updateDimensions);
     };
   }, [clientWidth, clientHeight]);
 

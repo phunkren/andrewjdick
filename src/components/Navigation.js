@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { rgba } from "polished";
-import { COLORS } from "../styles/colors";
-import { Link } from "./Link";
+import React from 'react';
+import styled from 'styled-components';
+import { rgba } from 'polished';
+import { COLORS } from '../styles/colors';
+import { Link } from './Link';
 
 const List = styled.ul``;
 
@@ -19,7 +19,7 @@ const ListItem = styled.li`
   }
 
   & + &::before {
-    content: "|";
+    content: '|';
     margin-right: 1em;
     color: ${rgba(COLORS.black, 0.5)};
   }

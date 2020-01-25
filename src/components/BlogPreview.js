@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import Img from "gatsby-image";
-import { H3, Text } from "../styles/typography";
-import { COLORS } from "../styles/colors";
-import { MEDIA } from "../styles/media";
-import { Link } from "./Link";
+import React from 'react';
+import styled from 'styled-components';
+import Img from 'gatsby-image';
+import { H3, Text } from '../styles/typography';
+import { COLORS } from '../styles/colors';
+import { MEDIA } from '../styles/media';
+import { Link } from './Link';
 
 const Preview = styled.div`
   display: flex;

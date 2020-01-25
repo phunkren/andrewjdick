@@ -5,5 +5,5 @@ export const ALPHAS = {
   activated: 0.64,
   pressed: 0.52,
   dragged: 0.68,
-  disabled: 0.38
+  disabled: 0.38,
 };

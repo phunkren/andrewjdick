@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { CONTACT_DETAILS, SOCIAL_LINKS, SITE_URL } from "../constants";
-import { Text } from "../styles/typography";
-import { ExternalLink } from "./Link";
-import { EmailIcon, GitHubIcon, LinkedInIcon, HomeIcon } from "./icons";
+import React from 'react';
+import styled from 'styled-components';
+import { CONTACT_DETAILS, SOCIAL_LINKS, SITE_URL } from '../constants';
+import { Text } from '../styles/typography';
+import { ExternalLink } from './Link';
+import { EmailIcon, GitHubIcon, LinkedInIcon, HomeIcon } from './icons';
 
 const List = styled.ul`
   margin-bottom: 2em;
@@ -23,8 +23,8 @@ const StyledExternalLink = styled(ExternalLink)`
 `;
 
 const iconProps = {
-  width: "2rem",
-  height: "2rem"
+  width: '2rem',
+  height: '2rem',
 };
 
 const RawContact = () => {

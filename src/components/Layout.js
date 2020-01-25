@@ -1,13 +1,13 @@
-import React, { Fragment } from "react";
-import { Transition } from "react-spring/renderprops";
-import { animated } from "react-spring";
-import styled, { createGlobalStyle } from "styled-components";
-import { rgba } from "polished";
-import { reset } from "modern-css-reset";
-import Roboto from "../assets/fonts/Roboto-Regular.woff2";
-import Rubik from "../assets/fonts/Rubik-Regular.woff2";
-import { COLORS } from "../styles/colors";
-import { MEDIA } from "../styles/media";
+import React, { Fragment } from 'react';
+import { Transition } from 'react-spring/renderprops';
+import { animated } from 'react-spring';
+import styled, { createGlobalStyle } from 'styled-components';
+import { rgba } from 'polished';
+import { reset } from 'modern-css-reset';
+import Roboto from '../assets/fonts/Roboto-Regular.woff2';
+import Rubik from '../assets/fonts/Rubik-Regular.woff2';
+import { COLORS } from '../styles/colors';
+import { MEDIA } from '../styles/media';
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
