@@ -18,21 +18,19 @@ const Preview = styled.article`
 const PreviewImage = styled.div`
   flex: 1;
   margin-right: 0;
-  margin-bottom: 2em;
 
   ${MEDIA.desktop`
     flex: 0 1 25%;
-    margin-right: 2em
-    margin-bottom: 0;
+    margin-right: 2em;
   `}
 `;
 
 const PreviewContent = styled.div`
   flex: 1;
 
-  & > * + * {
-    margin-top: 0.5em;
-  }
+  ${MEDIA.desktop`
+    margin-top: 0;
+  `}
 `;
 
 const RawBlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
@@ -47,15 +45,20 @@ const RawBlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
     </PreviewImage>
 
     <PreviewContent>
-      <Link to={frontmatter.path}>
-        <H3 as="h2">{frontmatter.title}</H3>
-      </Link>
+      <div css="margin-bottom: 1em;">
+        <Link to={frontmatter.path}>
+          <H3 as="h2">{frontmatter.title}</H3>
+        </Link>
 
-      <div>
-        <Text>{frontmatter.date}</Text> | <Text>{fields.readingTime.text}</Text>
+        <div>
+          <Text>{frontmatter.date}</Text> |{' '}
+          <Text>{fields.readingTime.text}</Text>
+        </div>
       </div>
 
-      <Text as="p">{excerpt}</Text>
+      <Text as="p" css="padding-bottom: 1em;">
+        {excerpt}
+      </Text>
 
       <Link
         to={frontmatter.path}
