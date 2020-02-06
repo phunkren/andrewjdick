@@ -40,7 +40,10 @@ const RawBlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
         to={frontmatter.path}
         aria-label={`Read my article on ${frontmatter.title}`}
       >
-        <Img fluid={frontmatter.image.childImageSharp.fluid} />
+        <Img
+          alt={frontmatter.imageAlt}
+          fluid={frontmatter.image.childImageSharp.fluid}
+        />
       </Link>
     </PreviewImage>
 

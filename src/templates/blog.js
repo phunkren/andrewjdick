@@ -82,7 +82,10 @@ function BlogTemplate({ data }) {
             <Text>{fields.readingTime.text}</Text>
           </div>
 
-          <Img fluid={frontmatter.image.childImageSharp.fluid} />
+          <Img
+            alt={frontmatter.imageAlt}
+            fluid={frontmatter.image.childImageSharp.fluid}
+          />
 
           <Article dangerouslySetInnerHTML={{ __html: html }} />
         </Main>
@@ -99,6 +102,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         path
         title
+        imageAlt
         image {
           childImageSharp {
             fluid(maxWidth: 768) {
