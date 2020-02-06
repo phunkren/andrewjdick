@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   `};
 `;
 
-const Section = styled.section`
+const Main = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -75,17 +75,20 @@ function BlogTemplate({ data }) {
 
       <Wrapper>
         <Header />
-        <Section>
+        <Main>
           <div>
             <H1 css="margin-bottom: 0.25em;">{frontmatter.title}</H1>
             <Text>{frontmatter.date}</Text> |{' '}
             <Text>{fields.readingTime.text}</Text>
           </div>
 
-          <Img fluid={frontmatter.image.childImageSharp.fluid} />
+          <Img
+            alt={frontmatter.imageAlt}
+            fluid={frontmatter.image.childImageSharp.fluid}
+          />
 
           <Article dangerouslySetInnerHTML={{ __html: html }} />
-        </Section>
+        </Main>
       </Wrapper>
     </Layout>
   );
@@ -99,6 +102,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         path
         title
+        imageAlt
         image {
           childImageSharp {
             fluid(maxWidth: 768) {

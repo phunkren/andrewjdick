@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   `};
 `;
 
-const Section = styled.section`
+const Main = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -66,10 +66,10 @@ const Blog = ({ data }) => {
       <TitleAndMetaTags title="Blog" pathname="blog" />
       <Wrapper>
         <Header />
-        <Section>
+        <Main>
           <H1 css="margin-bottom: 1em;">Blog</H1>
           <List>{posts}</List>
-        </Section>
+        </Main>
       </Wrapper>
     </Layout>
   );

@@ -2,6 +2,7 @@
 path: /blog/2019-06-29-adding-state-to-storybook-in-react
 title: Adding state to Storybook in React
 image: ../src/assets/images/storybook.jpg
+imageAlt: A cartoon fox reading a storybook
 date: 2019-06-29
 ---
 
@@ -9,10 +10,10 @@ Storybook is an incredible open-source sandbox for developing UI components in i
 
 ```jsx
 /* src/stories/index.js */
-import React, { useState } from "react";
-import { storiesOf } from "@storybook/react";
+import React, { useState } from 'react';
+import { storiesOf } from '@storybook/react';
 
-storiesOf("Input", module).add("controlled", () => {
+storiesOf('Input', module).add('controlled', () => {
   function Parent({ children, ...props }) {
     const [state, setState] = useState();
     return <div>{children(state, setState)}</div>;
@@ -91,15 +92,15 @@ Now each component has the option of setting and retrieving hoisted state values
 
 ```jsx
 /* src/stories/index.js */
-import React from "react";
-import { storiesOf } from "@storybook/react";
+import React from 'react';
+import { storiesOf } from '@storybook/react';
 
-storiesOf("Input", module)
+storiesOf('Input', module)
   // stateless
-  .add("uncontrolled", () => <input />)
+  .add('uncontrolled', () => <input />)
 
   // stateful
-  .add("controlled", (state, setState) => (
+  .add('controlled', (state, setState) => (
     <input
       value={state.value}
       onChange={e => setState({ value: e.target.value })}

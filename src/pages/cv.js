@@ -56,7 +56,7 @@ const HeaderIcons = styled.div`
   `};
 `;
 
-const Content = styled.div`
+const Main = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column-reverse;
@@ -91,7 +91,7 @@ const Sidebar = styled.div`
   `};
 `;
 
-const Section = styled.section`
+const Experience = styled.div`
   padding: 0;
 
   ${MEDIA.tablet`
@@ -105,7 +105,7 @@ const Section = styled.section`
   `};
 `;
 
-const Block = styled.div`
+const Block = styled.section`
   margin-bottom: 2em;
 `;
 
@@ -199,15 +199,12 @@ export default function CV() {
             </div>
 
             {isBrowser && !isIE && (
-              <HeaderIcons>
-                <IconButton
-                  aria-label="Print my résumé"
-                  onClick={handleCvPrint}
-                >
+              <HeaderIcons aria-label="Export CV">
+                <IconButton aria-label="Print" onClick={handleCvPrint}>
                   <PrintIcon width="2.5rem" height="2.5rem" />
                 </IconButton>
                 <DownloadLink
-                  aria-label="Download my résumé"
+                  aria-label="Download"
                   css="display: inline-flex; margin-left: 0.5em; padding: 0.5em;"
                   href={cv}
                 >
@@ -217,7 +214,7 @@ export default function CV() {
             )}
           </Header>
 
-          <Content>
+          <Main>
             <Sidebar>
               <Block>
                 <BlockHeader>Contact</BlockHeader>
@@ -274,7 +271,7 @@ export default function CV() {
               </Block>
             </Sidebar>
 
-            <Section>
+            <Experience>
               <Block>
                 <BlockHeader>Profile</BlockHeader>
                 <Text as="p">
@@ -313,8 +310,8 @@ export default function CV() {
                   </Block>
                 ),
               )}
-            </Section>
-          </Content>
+            </Experience>
+          </Main>
         </Container>
       </ColouredContainer>
     </Layout>

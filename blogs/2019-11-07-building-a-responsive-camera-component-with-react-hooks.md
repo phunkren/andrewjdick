@@ -2,6 +2,7 @@
 path: /blog/2019-11-07-building-a-responsive-camera-component-with-react-hooks
 title: Building a responsive camera component with React hooks
 image: ../src/assets/images/camera-lens.jpg
+imageAlt: A camera lens with the React logo on the glass
 date: 2019-11-07
 ---
 
@@ -20,7 +21,7 @@ Since the component is designed to take photographs of identity cards, we can pa
 ```jsx
 const CAPTURE_OPTIONS = {
   audio: false,
-  video: { facingMode: "environment" }
+  video: { facingMode: 'environment' },
 };
 ```
 
@@ -33,7 +34,7 @@ With the stream stored in local state, it can then be bound to a `<video />` ele
 This implementation is necessary since the video `autoPlay` attribute does not work consistently across all platforms. We can abstract all of this logic into a custom Hook that takes the configuration object as an argument, creates the cleanup function, and returns the stream to the camera component.
 
 ```jsx
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 export function useUserMedia(requestedMedia) {
   const [mediaStream, setMediaStream] = useState(null);
@@ -42,7 +43,7 @@ export function useUserMedia(requestedMedia) {
     async function enableStream() {
       try {
         const stream = await navigator.mediaDevices.getUserMedia(
-          requestedMedia
+          requestedMedia,
         );
         setMediaStream(stream);
       } catch (err) {
@@ -66,12 +67,12 @@ export function useUserMedia(requestedMedia) {
 ```
 
 ```jsx
-import React, { useRef, useState } from "react";
-import { useUserMedia } from "./useUserMedia";
+import React, { useRef, useState } from 'react';
+import { useUserMedia } from './useUserMedia';
 
 const CAPTURE_OPTIONS = {
   audio: false,
-  video: { facingMode: "environment" }
+  video: { facingMode: 'environment' },
 };
 
 function Camera() {
@@ -109,7 +110,7 @@ In order for the component to be responsive, it will need to be notified wheneve
 Similar to before, the ratio calculation is abstracted into a custom Hook and returns both the calculated ratio and setter function. Since the ratio will remain constant, we can utilize React’s [useCallback()](https://reactjs.org/docs/hooks-reference.html#usecallback) Hook to prevent any unnecessary recalculations.
 
 ```jsx
-import { useState, useCallback } from "react";
+import { useState, useCallback } from 'react';
 
 export function useCardRatio(initialRatio) {
   const [aspectRatio, setAspectRatio] = useState(initialRatio);
@@ -128,14 +129,14 @@ export function useCardRatio(initialRatio) {
 ```
 
 ```jsx
-import React, { useRef, useState } from "react";
-import { Measure } from "react-measure";
-import { useUserMedia } from "./useUserMedia";
-import { useCardRatio } from "./useCardRatio";
+import React, { useRef, useState } from 'react';
+import { Measure } from 'react-measure';
+import { useUserMedia } from './useUserMedia';
+import { useCardRatio } from './useCardRatio';
 
 const CAPTURE_OPTIONS = {
   audio: false,
-  video: { facingMode: "environment" }
+  video: { facingMode: 'environment' },
 };
 
 function Camera() {
@@ -155,7 +156,7 @@ function Camera() {
 
   function handleResize(contentRect) {
     setContainer({
-      height: Math.round(contentRect.bounds.width / aspectRatio)
+      height: Math.round(contentRect.bounds.width / aspectRatio),
     });
   }
 
@@ -194,7 +195,7 @@ const offsetY = Math.round((videoHeight - containerHeight) / 2);
 We only want to apply the offsets in the event that the video (`v`) is larger than the parent container (`c`). We can create another custom Hook that uses an effect to evaluate whether an offset is required and returns the updated results whenever any of the values change.
 
 ```jsx
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 export function useOffsets(vWidth, vHeight, cWidth, cHeight) {
   const [offsets, setOffsets] = useState({ x: 0, y: 0 });
@@ -280,9 +281,9 @@ This is achieved by creating a two-dimensional rendering context on the canvas, 
 
 ```jsx
 function handleCapture() {
-  const context = canvasRef.current.getContext("2d");
+  const context = canvasRef.current.getContext('2d');
   context.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-  canvasRef.current.toBlob(blob => onCapture(blob), "image/jpeg", 1);
+  canvasRef.current.toBlob(blob => onCapture(blob), 'image/jpeg', 1);
 }
 ```
 
@@ -300,7 +301,7 @@ context.drawImage(
   0, // dx
   0, // dy
   container.width, // dWidth
-  container.height // dHeight
+  container.height, // dHeight
 );
 ```
 
@@ -310,7 +311,7 @@ We then pass the canvas’s width and height to the context [clearRect()](https:
 
 ```jsx
 function handleClear() {
-  const context = canvasRef.current.getContext("2d");
+  const context = canvasRef.current.getContext('2d');
   context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
   onClear();
 }
@@ -420,7 +421,7 @@ Its keyframe animation triggers whenever the user captures an image, which brief
 We can pass the resolution of the camera as props to the parent container to determine its maximum width and height, add a local state variable — `isVideoPlaying` — to keep the video and overlay elements hidden until the camera begins streaming, and finally add `display: none` to `-webkit-media-controls-play-button` to hide the video’s play symbol on iOS devices. 💥
 
 ```jsx
-import styled, { css, keyframes } from "styled-components";
+import styled, { css, keyframes } from 'styled-components';
 
 const flashAnimation = keyframes`
   from {
@@ -502,11 +503,11 @@ export const Button = styled.button`
 ```
 
 ```jsx
-import React, { useState, useRef } from "react";
-import Measure from "react-measure";
-import { useUserMedia } from "../hooks/use-user-media";
-import { useCardRatio } from "../hooks/use-card-ratio";
-import { useOffsets } from "../hooks/use-offsets";
+import React, { useState, useRef } from 'react';
+import Measure from 'react-measure';
+import { useUserMedia } from '../hooks/use-user-media';
+import { useCardRatio } from '../hooks/use-card-ratio';
+import { useOffsets } from '../hooks/use-offsets';
 import {
   Video,
   Canvas,
@@ -514,12 +515,12 @@ import {
   Container,
   Flash,
   Overlay,
-  Button
-} from "./styles";
+  Button,
+} from './styles';
 
 const CAPTURE_OPTIONS = {
   audio: false,
-  video: { facingMode: "environment" }
+  video: { facingMode: 'environment' },
 };
 
 export function Camera({ onCapture, onClear }) {
@@ -537,7 +538,7 @@ export function Camera({ onCapture, onClear }) {
     videoRef.current && videoRef.current.videoWidth,
     videoRef.current && videoRef.current.videoHeight,
     container.width,
-    container.height
+    container.height,
   );
 
   if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
@@ -547,7 +548,7 @@ export function Camera({ onCapture, onClear }) {
   function handleResize(contentRect) {
     setContainer({
       width: contentRect.bounds.width,
-      height: Math.round(contentRect.bounds.width / aspectRatio)
+      height: Math.round(contentRect.bounds.width / aspectRatio),
     });
   }
 
@@ -558,7 +559,7 @@ export function Camera({ onCapture, onClear }) {
   }
 
   function handleCapture() {
-    const context = canvasRef.current.getContext("2d");
+    const context = canvasRef.current.getContext('2d');
 
     context.drawImage(
       videoRef.current,
@@ -569,16 +570,16 @@ export function Camera({ onCapture, onClear }) {
       0,
       0,
       container.width,
-      container.height
+      container.height,
     );
 
-    canvasRef.current.toBlob(blob => onCapture(blob), "image/jpeg", 1);
+    canvasRef.current.toBlob(blob => onCapture(blob), 'image/jpeg', 1);
     setIsCanvasEmpty(false);
     setIsFlashing(true);
   }
 
   function handleClear() {
-    const context = canvasRef.current.getContext("2d");
+    const context = canvasRef.current.getContext('2d');
     context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
     setIsCanvasEmpty(true);
     onClear();
@@ -597,7 +598,7 @@ export function Camera({ onCapture, onClear }) {
             maxHeight={videoRef.current && videoRef.current.videoHeight}
             maxWidth={videoRef.current && videoRef.current.videoWidth}
             style={{
-              height: `${container.height}px`
+              height: `${container.height}px`,
             }}
           >
             <Video
@@ -609,7 +610,7 @@ export function Camera({ onCapture, onClear }) {
               muted
               style={{
                 top: `-${offsets.y}px`,
-                left: `-${offsets.x}px`
+                left: `-${offsets.x}px`,
               }}
             />
 
@@ -629,7 +630,7 @@ export function Camera({ onCapture, onClear }) {
 
           {isVideoPlaying && (
             <Button onClick={isCanvasEmpty ? handleCapture : handleClear}>
-              {isCanvasEmpty ? "Take a picture" : "Take another picture"}
+              {isCanvasEmpty ? 'Take a picture' : 'Take another picture'}
             </Button>
           )}
         </Wrapper>
