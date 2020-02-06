@@ -42,7 +42,7 @@ const Wrapper = styled(Div100vh)`
   `};
 `;
 
-const Section = styled.section`
+const Main = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -90,7 +90,7 @@ export default function Home() {
       <GlobalStyles />
       <Wrapper>
         <Header />
-        <Section>
+        <Main>
           <H1>{name}</H1>
           <Text as="p">
             {currentEmployer.position} @{' '}
@@ -103,7 +103,7 @@ export default function Home() {
             </ExternalLink>
           </Text>
           <Text as="p">{location}</Text>
-        </Section>
+        </Main>
 
         <Footer>
           <FooterSocial />

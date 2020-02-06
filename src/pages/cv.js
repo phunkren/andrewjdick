@@ -56,7 +56,7 @@ const HeaderIcons = styled.div`
   `};
 `;
 
-const Content = styled.div`
+const Main = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column-reverse;
@@ -91,7 +91,7 @@ const Sidebar = styled.div`
   `};
 `;
 
-const Section = styled.section`
+const Experience = styled.div`
   padding: 0;
 
   ${MEDIA.tablet`
@@ -105,7 +105,7 @@ const Section = styled.section`
   `};
 `;
 
-const Block = styled.div`
+const Block = styled.section`
   margin-bottom: 2em;
 `;
 
@@ -217,7 +217,7 @@ export default function CV() {
             )}
           </Header>
 
-          <Content>
+          <Main>
             <Sidebar>
               <Block>
                 <BlockHeader>Contact</BlockHeader>
@@ -274,7 +274,7 @@ export default function CV() {
               </Block>
             </Sidebar>
 
-            <Section>
+            <Experience>
               <Block>
                 <BlockHeader>Profile</BlockHeader>
                 <Text as="p">
@@ -313,8 +313,8 @@ export default function CV() {
                   </Block>
                 ),
               )}
-            </Section>
-          </Content>
+            </Experience>
+          </Main>
         </Container>
       </ColouredContainer>
     </Layout>

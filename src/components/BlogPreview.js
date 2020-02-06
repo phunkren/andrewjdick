@@ -6,7 +6,7 @@ import { COLORS } from '../styles/colors';
 import { MEDIA } from '../styles/media';
 import { Link } from './Link';
 
-const Preview = styled.div`
+const Preview = styled.article`
   display: flex;
   flex-flow: column;
 
