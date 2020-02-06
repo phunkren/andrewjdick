@@ -5,7 +5,7 @@ import { MEDIA } from '../styles/media';
 import { GitHubIcon, MediumIcon, TwitterIcon, LinkedInIcon } from './icons';
 import { ExternalLink } from './Link';
 
-const SocialLinks = styled.div`
+const SocialLinks = styled.nav`
   display: none;
 
   ${MEDIA.tablet`
@@ -36,7 +36,7 @@ const RawSocial = props => {
   const { github, medium, twitter, linkedIn } = SOCIAL_LINKS;
 
   return (
-    <SocialLinks {...props}>
+    <SocialLinks aria-label="Social" {...props}>
       <SocialLink
         href={github.url}
         aria-label={github.label}

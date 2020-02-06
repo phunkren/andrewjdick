@@ -32,35 +32,37 @@ const RawContact = () => {
   const { github, linkedIn } = SOCIAL_LINKS;
 
   return (
-    <List>
-      <ListItem>
-        <StyledExternalLink href={SITE_URL} aria-label="Personal website">
-          <HomeIcon {...iconProps} />
-          <Text>ajames.dev</Text>
-        </StyledExternalLink>
-      </ListItem>
+    <nav aria-label="Contact">
+      <List>
+        <ListItem>
+          <StyledExternalLink href={SITE_URL} aria-label="Personal website">
+            <HomeIcon {...iconProps} />
+            <Text>ajames.dev</Text>
+          </StyledExternalLink>
+        </ListItem>
 
-      <ListItem>
-        <StyledExternalLink href={`mailto:${email}`} aria-label="Email me">
-          <EmailIcon {...iconProps} />
-          <Text>{email}</Text>
-        </StyledExternalLink>
-      </ListItem>
+        <ListItem>
+          <StyledExternalLink href={`mailto:${email}`} aria-label="Email me">
+            <EmailIcon {...iconProps} />
+            <Text>{email}</Text>
+          </StyledExternalLink>
+        </ListItem>
 
-      <ListItem>
-        <StyledExternalLink href={github.url} aria-label="Github profile">
-          <GitHubIcon {...iconProps} />
-          <Text>{github.handle}</Text>
-        </StyledExternalLink>
-      </ListItem>
+        <ListItem>
+          <StyledExternalLink href={github.url} aria-label="Github profile">
+            <GitHubIcon {...iconProps} />
+            <Text>{github.handle}</Text>
+          </StyledExternalLink>
+        </ListItem>
 
-      <ListItem>
-        <StyledExternalLink href={linkedIn.url} aria-label="LinkedIn profile">
-          <LinkedInIcon {...iconProps} />
-          <Text>{linkedIn.handle}</Text>
-        </StyledExternalLink>
-      </ListItem>
-    </List>
+        <ListItem>
+          <StyledExternalLink href={linkedIn.url} aria-label="LinkedIn profile">
+            <LinkedInIcon {...iconProps} />
+            <Text>{linkedIn.handle}</Text>
+          </StyledExternalLink>
+        </ListItem>
+      </List>
+    </nav>
   );
 };
 
