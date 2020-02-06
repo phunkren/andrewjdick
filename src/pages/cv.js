@@ -199,15 +199,12 @@ export default function CV() {
             </div>
 
             {isBrowser && !isIE && (
-              <HeaderIcons>
-                <IconButton
-                  aria-label="Print my résumé"
-                  onClick={handleCvPrint}
-                >
+              <HeaderIcons aria-label="Export CV">
+                <IconButton aria-label="Print" onClick={handleCvPrint}>
                   <PrintIcon width="2.5rem" height="2.5rem" />
                 </IconButton>
                 <DownloadLink
-                  aria-label="Download my résumé"
+                  aria-label="Download"
                   css="display: inline-flex; margin-left: 0.5em; padding: 0.5em;"
                   href={cv}
                 >
