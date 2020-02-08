@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { Fragment } from 'react';
 import { H4, Text } from './styles/typography';
 import { ExternalLink } from './components/Link';
@@ -82,8 +83,8 @@ export const EXPERIENCE = [
         <Text as="p">
           Cohaesus is a commerical advertising agency where I learned the
           fundamentals of frontend web development. During my time with them I
-          worked both in-house and off-site at some of London's top advertising
-          agencies, on both green field and legacy codebases.
+          worked both in-house and off-site at some of London&apos;s top
+          advertising agencies, on both green field and legacy codebases.
         </Text>
 
         <H4>Notable work</H4>
@@ -147,3 +148,4 @@ export const EXPERTISE = ['HTML', 'CSS/SCSS', 'JavaScript', 'React'];
 export const INTERESTS = ['react native', 'gatsbyjs', 'graphQL', 'css-in-js'];
 
 export const HOBBIES = ['cycling', 'guitar', 'video games', 'rugby'];
+/* eslint-enable react/display-name */

@@ -55,8 +55,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "shorten": "netlify-shortener",
-    "lint": "eslint src",
-    "prettier": "prettier --write \"src/**/*.{js,jsx} \""
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "prettier": "prettier --write **/*.js"
   },
   "husky": {
     "hooks": {

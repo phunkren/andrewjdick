@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { element } from 'prop-types';
 import { Transition } from 'react-spring/renderprops';
 import { animated } from 'react-spring';
 import styled, { createGlobalStyle } from 'styled-components';
@@ -88,10 +87,6 @@ const RawLayout = ({ children }) => {
       </Transition>
     </Fragment>
   );
-};
-
-RawLayout.propTypes = {
-  children: element.isRequired,
 };
 
 export const Layout = styled(RawLayout)``;

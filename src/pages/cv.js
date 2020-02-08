@@ -291,11 +291,11 @@ export default function CV() {
                 </Text>
 
                 <Text as="p" css="margin-top: 1em">
-                  Over the years I've refined a set of technical principles to
-                  strive towards, namely: complexity should only be introduced
-                  when it’s unavoidable; code should be easy to reason with and
-                  delete; avoid abstracting too early, and the top priority is
-                  always the best possible user experience.
+                  Over the years I&#39;ve refined a set of technical principles
+                  to strive towards, namely: complexity should only be
+                  introduced when it’s unavoidable; code should be easy to
+                  reason with and delete; avoid abstracting too early, and the
+                  top priority is always the best possible user experience.
                 </Text>
               </Block>
 
