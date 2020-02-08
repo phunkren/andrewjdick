@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
+import { formatId } from '../utils/formatId';
 import { H3, Text } from '../styles/typography';
 import { COLORS } from '../styles/colors';
 import { MEDIA } from '../styles/media';
@@ -34,24 +35,25 @@ const PreviewContent = styled.div`
 `;
 
 const RawBlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
-  <Preview>
-    <PreviewImage>
-      <Link
-        to={frontmatter.path}
-        aria-label={`Read my article on ${frontmatter.title}`}
-      >
-        <Img
-          alt={frontmatter.imageAlt}
-          fluid={frontmatter.image.childImageSharp.fluid}
-        />
-      </Link>
+  <Preview
+    css={`
+      color: ${COLORS.black};
+    `}
+    aria-labelledby={`blog post-${formatId(frontmatter.title)}`}
+  >
+    <PreviewImage aria-hidden="true">
+      <Img
+        role="img"
+        alt={frontmatter.imageAlt}
+        fluid={frontmatter.image.childImageSharp.fluid}
+      />
     </PreviewImage>
 
     <PreviewContent>
       <div css="margin-bottom: 1em;">
-        <Link to={frontmatter.path}>
-          <H3 as="h2">{frontmatter.title}</H3>
-        </Link>
+        <H3 id={`post-${formatId(frontmatter.title)}`} as="h2">
+          {frontmatter.title}
+        </H3>
 
         <div>
           <Text>{frontmatter.date}</Text> |{' '}
@@ -59,12 +61,13 @@ const RawBlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
         </div>
       </div>
 
-      <Text as="p" css="padding-bottom: 1em;">
+      <Text as="p" aria-label="Excerpt" css="padding-bottom: 1em;">
         {excerpt}
       </Text>
 
       <Link
         to={frontmatter.path}
+        aria-label="Click to read the article in full"
         css={`
           display: block;
           color: ${COLORS.cadetBlue};

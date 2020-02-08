@@ -35,7 +35,7 @@ const RawContact = () => {
     <nav aria-label="Contact">
       <List>
         <ListItem>
-          <StyledExternalLink href={SITE_URL} aria-label="Personal website">
+          <StyledExternalLink href={SITE_URL} aria-label="Return to homepage">
             <HomeIcon {...iconProps} />
             <Text>ajames.dev</Text>
           </StyledExternalLink>
@@ -49,7 +49,7 @@ const RawContact = () => {
         </ListItem>
 
         <ListItem>
-          <StyledExternalLink href={github.url} aria-label="Github profile">
+          <StyledExternalLink href={github.url} aria-label="GitHub profile">
             <GitHubIcon {...iconProps} />
             <Text>{github.handle}</Text>
           </StyledExternalLink>

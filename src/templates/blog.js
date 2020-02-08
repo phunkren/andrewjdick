@@ -42,7 +42,7 @@ const Main = styled.main`
   `};
 `;
 
-const Article = styled.article`
+const Section = styled.section`
   a {
     color: inherit;
   }
@@ -63,6 +63,10 @@ const Article = styled.article`
   code {
     font-size: 1rem;
   }
+
+  & > * + * {
+    margin-top: 1em;
+  }
 `;
 
 function BlogTemplate({ data }) {
@@ -76,18 +80,23 @@ function BlogTemplate({ data }) {
       <Wrapper>
         <Header />
         <Main>
-          <div>
-            <H1 css="margin-bottom: 0.25em;">{frontmatter.title}</H1>
-            <Text>{frontmatter.date}</Text> |{' '}
-            <Text>{fields.readingTime.text}</Text>
-          </div>
+          <article>
+            <div>
+              <H1 css="margin-bottom: 0.25em;">{frontmatter.title}</H1>
+              <Text>{frontmatter.date}</Text> |{' '}
+              <Text>{fields.readingTime.text}</Text>
+            </div>
 
-          <Img
-            alt={frontmatter.imageAlt}
-            fluid={frontmatter.image.childImageSharp.fluid}
-          />
+            <div aria-hidden="true">
+              <Img
+                role="img"
+                alt={frontmatter.imageAlt}
+                fluid={frontmatter.image.childImageSharp.fluid}
+              />
+            </div>
 
-          <Article dangerouslySetInnerHTML={{ __html: html }} />
+            <Section dangerouslySetInnerHTML={{ __html: html }} />
+          </article>
         </Main>
       </Wrapper>
     </Layout>

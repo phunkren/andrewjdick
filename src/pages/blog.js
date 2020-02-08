@@ -67,7 +67,9 @@ const Blog = ({ data }) => {
       <Wrapper>
         <Header />
         <Main>
-          <H1 css="margin-bottom: 1em;">Blog</H1>
+          <H1 id="blog" css="margin-bottom: 1em;">
+            Blog
+          </H1>
           <List>{posts}</List>
         </Main>
       </Wrapper>

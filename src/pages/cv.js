@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { rgba } from 'polished';
 import { Layout } from '../components/Layout';
 import cv from '../assets/documents/Andrew James CV.pdf';
+import { formatId } from '../utils/formatId';
 import { ExternalLink, Link, DownloadLink } from '../components/Link';
 import { ColouredContainer } from '../components/ColouredContainer';
 import { IconButton } from '../components/Button';
@@ -216,17 +217,24 @@ export default function CV() {
 
           <Main>
             <Sidebar>
-              <Block>
-                <BlockHeader>Contact</BlockHeader>
+              <Block aria-labelledby="cv-contact">
+                <BlockHeader id="cv-contact">Contact</BlockHeader>
                 <Contact />
               </Block>
 
-              <Block>
-                <BlockHeader>Education</BlockHeader>
+              <Block aria-labelledby="cv-education">
+                <BlockHeader id="cv-education">Education</BlockHeader>
                 {EDUCATION.map(
-                  ({ qualification, course, institute, dates }, index) => (
-                    <Block key={`Education-${index}`}>
-                      <H3>{qualification}</H3>
+                  ({ qualification, course, institute, dates }) => (
+                    <Block
+                      key={institute}
+                      aria-labelledby={`cv-education edu-${formatId(
+                        qualification,
+                      )}`}
+                    >
+                      <H3 id={`edu-${formatId(qualification)}`}>
+                        {qualification}
+                      </H3>
                       <Text>{course}</Text>
                       <br />
                       <Text>{institute}</Text>
@@ -238,8 +246,8 @@ export default function CV() {
                 )}
               </Block>
 
-              <Block>
-                <BlockHeader>Expertise</BlockHeader>
+              <Block aria-labelledby="cv-expertise">
+                <BlockHeader id="cv-expertise">Expertise</BlockHeader>
                 <TagContainer>
                   {EXPERTISE.map((skill, index) => (
                     <Tag key={`Skill-${index}`}>{skill}</Tag>
@@ -247,8 +255,8 @@ export default function CV() {
                 </TagContainer>
               </Block>
 
-              <Block>
-                <BlockHeader>Interests</BlockHeader>
+              <Block aria-labelledby="cv-interests">
+                <BlockHeader id="cv-interests">Interests</BlockHeader>
                 <TagContainer>
                   {INTERESTS.map((interest, index) => (
                     <Tag key={`Interest-${index}`}>{interest}</Tag>
@@ -256,8 +264,8 @@ export default function CV() {
                 </TagContainer>
               </Block>
 
-              <Block>
-                <BlockHeader>Hobbies</BlockHeader>
+              <Block aria-labelledby="cv-hobbies">
+                <BlockHeader id="cv-hobbies">Hobbies</BlockHeader>
                 <TagContainer>
                   {HOBBIES.map((hobby, index) => (
                     <Tag key={`Hobby-${index}`}>{hobby}</Tag>
@@ -265,15 +273,15 @@ export default function CV() {
                 </TagContainer>
               </Block>
 
-              <Block>
-                <BlockHeader>References</BlockHeader>
+              <Block aria-labelledby="cv-references">
+                <BlockHeader id="cv-references">References</BlockHeader>
                 <Text>Written references available on request.</Text>
               </Block>
             </Sidebar>
 
             <Experience>
-              <Block>
-                <BlockHeader>Profile</BlockHeader>
+              <Block aria-labelledby="cv-profile">
+                <BlockHeader id="cv-profile">Profile</BlockHeader>
                 <Text as="p">
                   My passion for digital technology continually drives me to
                   advance my skill set as a software engineer. With an
@@ -291,25 +299,30 @@ export default function CV() {
                 </Text>
               </Block>
 
-              <BlockHeader>Experience</BlockHeader>
-              {EXPERIENCE.map(
-                ({ position, company, url, dates, description }, index) => (
-                  <Block key={`Experience-${index}`}>
-                    <H3>{position}</H3>
-                    <Text>
-                      <ExternalLink
-                        href={url}
-                        aria-label={`${company} website`}
-                        highlight
-                      >
-                        {company}
-                      </ExternalLink>{' '}
-                      <Dates>{dates}</Dates>
-                    </Text>
-                    <Description>{description()}</Description>
-                  </Block>
-                ),
-              )}
+              <Block>
+                <BlockHeader id="cv-experience">Experience</BlockHeader>
+                {EXPERIENCE.map(
+                  ({ position, company, url, dates, description }) => (
+                    <Block
+                      key={company}
+                      aria-labelledBy={`cv-experience exp-${formatId(company)}`}
+                    >
+                      <H3 id={`exp-${formatId(company)}`}>{position}</H3>
+                      <Text>
+                        <ExternalLink
+                          href={url}
+                          aria-label={`${company} website`}
+                          highlight
+                        >
+                          {company}
+                        </ExternalLink>{' '}
+                        <Dates>{dates}</Dates>
+                      </Text>
+                      <Description>{description()}</Description>
+                    </Block>
+                  ),
+                )}
+              </Block>
             </Experience>
           </Main>
         </Container>
