@@ -1,17 +1,17 @@
-import React from "react";
-import styled, { createGlobalStyle, keyframes } from "styled-components";
-import { position } from "polished";
-import Div100vh from "react-div-100vh";
-import { Layout } from "../components/Layout";
-import { Header } from "../components/Header";
-import { Social } from "../components/Social";
-import { ExternalLink } from "../components/Link";
-import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
-import lightbulbs from "../assets/images/lightbulbs.png";
-import { MEDIA } from "../styles/media";
-import { H1, Text } from "../styles/typography";
-import { CONTACT_DETAILS } from "../constants";
-import { EXPERIENCE } from "../data";
+import React from 'react';
+import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import { position } from 'polished';
+import Div100vh from 'react-div-100vh';
+import { Layout } from '../components/Layout';
+import { Header } from '../components/Header';
+import { Social } from '../components/Social';
+import { ExternalLink } from '../components/Link';
+import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
+import lightbulbs from '../assets/images/lightbulbs.png';
+import { MEDIA } from '../styles/media';
+import { H1, Text } from '../styles/typography';
+import { CONTACT_DETAILS } from '../constants';
+import { EXPERIENCE } from '../data';
 
 const infiniteScroll = keyframes`
   from {
@@ -22,7 +22,7 @@ const infiniteScroll = keyframes`
   }
 `;
 
-/* HACK: remove min-width from modern-css-reset */
+/* HACK: For Div100vh to work, we need to remove the min-height from modern-css-reset */
 const GlobalStyles = createGlobalStyle`
  body {
    min-height: 0;
@@ -42,7 +42,7 @@ const Wrapper = styled(Div100vh)`
   `};
 `;
 
-const Section = styled.section`
+const Main = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -67,7 +67,7 @@ const FooterSocial = styled(Social)`
 `;
 
 const Image = styled.div`
-  ${position("absolute", "100%", 0, null, 0)};
+  ${position('absolute', '100%', 0, null, 0)};
   background-image: url(${lightbulbs});
   background-repeat: repeat-y;
   background-position: center;
@@ -90,33 +90,34 @@ export default function Home() {
       <GlobalStyles />
       <Wrapper>
         <Header />
-        <Section>
-          <H1>{name}</H1>
-          <Text as="p">
-            {currentEmployer.position} @{" "}
+        <Main>
+          <section aria-label="Profile">
+            <H1 aria-label={`Name: ${name}`}>{name}</H1>
+            <Text aria-label={`Position: ${currentEmployer.position}`}>
+              {currentEmployer.position}
+            </Text>
+            <Text> @ </Text>
             <ExternalLink
+              aria-label={`Employer: ${currentEmployer.company}`}
               href={currentEmployer.url}
-              aria-label={`${currentEmployer.company}'s website`}
+              css="display: inline-block"
               highlight
             >
               {currentEmployer.company}
             </ExternalLink>
-          </Text>
-          <Text as="p">{location}</Text>
-        </Section>
+            <br />
+            <Text aria-label={`Location: ${location}`}>{location}</Text>
+          </section>
+        </Main>
 
         <Footer>
           <FooterSocial />
 
-          <figure>
-            <Image role="img" aria-label="scrolling lightbulbs" />
+          <figure aria-hidden="true">
+            <Image />
             <Text as="figcaption" small>
-              background courtesy of{" "}
-              <ExternalLink
-                href="https://absurd.design/"
-                aria-label="absurd.design"
-                highlight
-              >
+              background courtesy of{' '}
+              <ExternalLink href="https://absurd.design/" highlight>
                 absurd.design
               </ExternalLink>
             </Text>

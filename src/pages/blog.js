@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import { position, rgba } from "polished";
-import { graphql } from "gatsby";
-import { Header } from "../components/Header";
-import { BlogPreview } from "../components/BlogPreview";
-import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
-import { Layout } from "../components/Layout";
-import { MEDIA, BREAKPOINTS } from "../styles/media";
-import { H1 } from "../styles/typography";
-import { COLORS } from "../styles/colors";
+import React from 'react';
+import styled from 'styled-components';
+import { position, rgba } from 'polished';
+import { graphql } from 'gatsby';
+import { Header } from '../components/Header';
+import { BlogPreview } from '../components/BlogPreview';
+import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
+import { Layout } from '../components/Layout';
+import { MEDIA, BREAKPOINTS } from '../styles/media';
+import { H1 } from '../styles/typography';
+import { COLORS } from '../styles/colors';
 
 const Wrapper = styled.div`
   flex: 1;
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   `};
 `;
 
-const Section = styled.section`
+const Main = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -43,7 +43,7 @@ const List = styled.ul`
     padding-top: 2em;
 
     &::before {
-      ${position("absolute", "0", "0", null, "0")};
+      ${position('absolute', '0', '0', null, '0')};
       content: "";
       height: 1px;
       background-color: ${rgba(COLORS.black, 0.5)};
@@ -61,15 +61,19 @@ const Blog = ({ data }) => {
       </ListItem>
     ));
 
+  console.log({ edges });
+
   return (
     <Layout>
       <TitleAndMetaTags title="Blog" pathname="blog" />
       <Wrapper>
         <Header />
-        <Section>
-          <H1 css="margin-bottom: 1em;">Blog</H1>
+        <Main>
+          <H1 id="blog" css="margin-bottom: 1em;">
+            Blog
+          </H1>
           <List>{posts}</List>
-        </Section>
+        </Main>
       </Wrapper>
     </Layout>
   );

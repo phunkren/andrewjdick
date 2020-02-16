@@ -1,20 +1,22 @@
-import React from "react";
-import { isBrowser, isIE } from "react-device-detect";
-import styled from "styled-components";
-import { rgba } from "polished";
-import { Layout } from "../components/Layout";
-import cv from "../assets/documents/Andrew James CV.pdf";
-import { ExternalLink, Link, DownloadLink } from "../components/Link";
-import { ColouredContainer } from "../components/ColouredContainer";
-import { IconButton } from "../components/Button";
-import { DownloadIcon, PrintIcon } from "../components/icons";
-import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
-import { Contact } from "../components/Contact";
-import { COLORS } from "../styles/colors";
-import { MEDIA, BREAKPOINTS } from "../styles/media";
-import { H1, H2, H3, H4, Text } from "../styles/typography";
-import { CONTACT_DETAILS } from "../constants";
-import { EDUCATION, EXPERIENCE, EXPERTISE, INTERESTS, HOBBIES } from "../data";
+import React from 'react';
+import { isBrowser, isIE } from 'react-device-detect';
+import styled from 'styled-components';
+import { rgba } from 'polished';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
+import { Layout } from '../components/Layout';
+import cv from '../assets/documents/Andrew James CV.pdf';
+import { formatId } from '../utils/formatId';
+import { ExternalLink, Link, DownloadLink } from '../components/Link';
+import { ColouredContainer } from '../components/ColouredContainer';
+import { IconButton } from '../components/Button';
+import { DownloadIcon, PrintIcon } from '../components/icons';
+import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
+import { Contact } from '../components/Contact';
+import { COLORS } from '../styles/colors';
+import { MEDIA, BREAKPOINTS } from '../styles/media';
+import { H1, H2, H3, H4, Text } from '../styles/typography';
+import { CONTACT_DETAILS } from '../constants';
+import { EDUCATION, EXPERIENCE, EXPERTISE, INTERESTS, HOBBIES } from '../data';
 
 const Container = styled.div`
   flex: 1;
@@ -56,7 +58,7 @@ const HeaderIcons = styled.div`
   `};
 `;
 
-const Content = styled.div`
+const Main = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column-reverse;
@@ -91,7 +93,7 @@ const Sidebar = styled.div`
   `};
 `;
 
-const Section = styled.section`
+const Experience = styled.div`
   padding: 0;
 
   ${MEDIA.tablet`
@@ -105,7 +107,7 @@ const Section = styled.section`
   `};
 `;
 
-const Block = styled.div`
+const Block = styled.section`
   margin-bottom: 2em;
 `;
 
@@ -128,7 +130,7 @@ const Description = styled.div`
 `;
 
 const Tag = styled(Text).attrs(() => ({
-  small: true
+  small: true,
 }))`
   padding: 0.5em;
   border-radius: 4px;
@@ -178,7 +180,20 @@ export default function CV() {
   const { name, position, location } = CONTACT_DETAILS;
 
   function handleCvPrint() {
+    trackCustomEvent({
+      category: 'CV print button',
+      action: 'Click',
+      label: 'Print',
+    });
+
     window.print();
+  }
+
+  function handleCvDownload() {
+    trackCustomEvent({
+      category: 'CV download link',
+      action: 'Click',
+    });
   }
 
   return (
@@ -199,17 +214,15 @@ export default function CV() {
             </div>
 
             {isBrowser && !isIE && (
-              <HeaderIcons>
-                <IconButton
-                  aria-label="Print my résumé"
-                  onClick={handleCvPrint}
-                >
+              <HeaderIcons aria-label="Export CV">
+                <IconButton aria-label="Print" onClick={handleCvPrint}>
                   <PrintIcon width="2.5rem" height="2.5rem" />
                 </IconButton>
                 <DownloadLink
-                  aria-label="Download my résumé"
-                  css="display: inline-flex; margin-left: 0.5em; padding: 0.5em;"
+                  aria-label="Download"
                   href={cv}
+                  css="display: inline-flex; margin-left: 0.5em; padding: 0.5em;"
+                  onClick={handleCvDownload}
                 >
                   <DownloadIcon width="2.5rem" height="2.5rem" />
                 </DownloadLink>
@@ -217,19 +230,26 @@ export default function CV() {
             )}
           </Header>
 
-          <Content>
+          <Main>
             <Sidebar>
-              <Block>
-                <BlockHeader>Contact</BlockHeader>
+              <Block aria-labelledby="cv-contact">
+                <BlockHeader id="cv-contact">Contact</BlockHeader>
                 <Contact />
               </Block>
 
-              <Block>
-                <BlockHeader>Education</BlockHeader>
+              <Block aria-labelledby="cv-education">
+                <BlockHeader id="cv-education">Education</BlockHeader>
                 {EDUCATION.map(
-                  ({ qualification, course, institute, dates }, index) => (
-                    <Block key={`Education-${index}`}>
-                      <H3>{qualification}</H3>
+                  ({ qualification, course, institute, dates }) => (
+                    <Block
+                      key={institute}
+                      aria-labelledby={`cv-education edu-${formatId(
+                        qualification,
+                      )}`}
+                    >
+                      <H3 id={`edu-${formatId(qualification)}`}>
+                        {qualification}
+                      </H3>
                       <Text>{course}</Text>
                       <br />
                       <Text>{institute}</Text>
@@ -237,12 +257,12 @@ export default function CV() {
                       <Text>{dates}</Text>
                       <br />
                     </Block>
-                  )
+                  ),
                 )}
               </Block>
 
-              <Block>
-                <BlockHeader>Expertise</BlockHeader>
+              <Block aria-labelledby="cv-expertise">
+                <BlockHeader id="cv-expertise">Expertise</BlockHeader>
                 <TagContainer>
                   {EXPERTISE.map((skill, index) => (
                     <Tag key={`Skill-${index}`}>{skill}</Tag>
@@ -250,8 +270,8 @@ export default function CV() {
                 </TagContainer>
               </Block>
 
-              <Block>
-                <BlockHeader>Interests</BlockHeader>
+              <Block aria-labelledby="cv-interests">
+                <BlockHeader id="cv-interests">Interests</BlockHeader>
                 <TagContainer>
                   {INTERESTS.map((interest, index) => (
                     <Tag key={`Interest-${index}`}>{interest}</Tag>
@@ -259,8 +279,8 @@ export default function CV() {
                 </TagContainer>
               </Block>
 
-              <Block>
-                <BlockHeader>Hobbies</BlockHeader>
+              <Block aria-labelledby="cv-hobbies">
+                <BlockHeader id="cv-hobbies">Hobbies</BlockHeader>
                 <TagContainer>
                   {HOBBIES.map((hobby, index) => (
                     <Tag key={`Hobby-${index}`}>{hobby}</Tag>
@@ -268,15 +288,15 @@ export default function CV() {
                 </TagContainer>
               </Block>
 
-              <Block>
-                <BlockHeader>References</BlockHeader>
+              <Block aria-labelledby="cv-references">
+                <BlockHeader id="cv-references">References</BlockHeader>
                 <Text>Written references available on request.</Text>
               </Block>
             </Sidebar>
 
-            <Section>
-              <Block>
-                <BlockHeader>Profile</BlockHeader>
+            <Experience>
+              <Block aria-labelledby="cv-profile">
+                <BlockHeader id="cv-profile">Profile</BlockHeader>
                 <Text as="p">
                   My passion for digital technology continually drives me to
                   advance my skill set as a software engineer. With an
@@ -286,35 +306,40 @@ export default function CV() {
                 </Text>
 
                 <Text as="p" css="margin-top: 1em">
-                  Over the years I've refined a set of technical principles to
-                  strive towards, namely: complexity should only be introduced
-                  when it’s unavoidable; code should be easy to reason with and
-                  delete; avoid abstracting too early, and the top priority is
-                  always the best possible user experience.
+                  Over the years I&#39;ve refined a set of technical principles
+                  to strive towards, namely: complexity should only be
+                  introduced when it’s unavoidable; code should be easy to
+                  reason with and delete; avoid abstracting too early, and the
+                  top priority is always the best possible user experience.
                 </Text>
               </Block>
 
-              <BlockHeader>Experience</BlockHeader>
-              {EXPERIENCE.map(
-                ({ position, company, url, dates, description }, index) => (
-                  <Block key={`Experience-${index}`}>
-                    <H3>{position}</H3>
-                    <Text>
-                      <ExternalLink
-                        href={url}
-                        aria-label={`${company} website`}
-                        highlight
-                      >
-                        {company}
-                      </ExternalLink>{" "}
-                      <Dates>{dates}</Dates>
-                    </Text>
-                    <Description>{description()}</Description>
-                  </Block>
-                )
-              )}
-            </Section>
-          </Content>
+              <Block>
+                <BlockHeader id="cv-experience">Experience</BlockHeader>
+                {EXPERIENCE.map(
+                  ({ position, company, url, dates, description }) => (
+                    <Block
+                      key={company}
+                      aria-labelledBy={`cv-experience exp-${formatId(company)}`}
+                    >
+                      <H3 id={`exp-${formatId(company)}`}>{position}</H3>
+                      <Text>
+                        <ExternalLink
+                          href={url}
+                          aria-label={`${company} website`}
+                          highlight
+                        >
+                          {company}
+                        </ExternalLink>{' '}
+                        <Dates>{dates}</Dates>
+                      </Text>
+                      <Description>{description()}</Description>
+                    </Block>
+                  ),
+                )}
+              </Block>
+            </Experience>
+          </Main>
         </Container>
       </ColouredContainer>
     </Layout>

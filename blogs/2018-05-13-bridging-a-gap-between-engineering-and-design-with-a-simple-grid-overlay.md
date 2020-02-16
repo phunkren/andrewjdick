@@ -2,6 +2,7 @@
 path: /blog/2018-05-13-bridging-a-gap-between-engineering-and-design-with-a-simple-grid-overlay
 title: Bridging a gap between engineering and design with a simple grid overlay
 image: ../src/assets/images/bridge-gap.jpg
+imageAlt: A pencil drawing a line between two cliff faces
 date: 2018-05-13
 ---
 
@@ -24,19 +25,19 @@ Since the application was designed with a grid overlay, I put together a similar
 The grid is generated using a [repeating-linear-gradient](https://developer.mozilla.org/en-US/docs/Web/CSS/repeating-linear-gradient) on the component's `background` property. The grid lines are comprised of two sections: an opaque coloured grid line, and a transparent interval. Custom props allow the consumer to configure the color, width, interval and direction of each line, with default values serving as a fallback (the values below emulate a 12 column vertical grid layout).
 
 ```jsx
-import styled from "styled-components";
-import { rgba } from "polished";
+import styled from 'styled-components';
+import { rgba } from 'polished';
 
 export const GridOverlay = styled.div(
   ({
-    color = "black",
+    color = 'black',
     width = `${100 / 12}%`,
     interval = `${100 / 12}%`,
-    direction = "vertical"
+    direction = 'vertical',
   }) => css`
-    ${position("fixed", "0", "0", "0", "0")};
+    ${position('fixed', '0', '0', '0', '0')};
     background: repeating-linear-gradient(
-      ${direction === "vertical" ? "-90deg" : "0"},
+      ${direction === 'vertical' ? '-90deg' : '0'},
       ${rgba(color, 0.2)},
       ${rgba(color, 0.2)} ${width},
       transparent ${width},
@@ -44,7 +45,7 @@ export const GridOverlay = styled.div(
     );
     pointer-events: none;
     z-index: 999;
-  `
+  `,
 );
 ```
 

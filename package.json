@@ -1,14 +1,25 @@
 {
   "name": "ajames",
   "version": "0.1.0",
-  "private": true,
+  "description": "Personal website for Andrew James",
+  "homepage": "https://ajames.dev",
+  "bugs": "https://github.com/phunkren/ajames.dev/issues",
+  "license": "MIT",
+  "author": "Andrew James <contact@ajames.dev> (https://ajames.dev)",
+  "repository": "https://github.com/phunkren/ajames.dev",
   "baseUrl": "https://ajames.dev",
+  "private": true,
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.6",
     "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
     "gatsby": "^2.18.17",
     "gatsby-image": "^2.2.38",
+    "gatsby-plugin-google-analytics": "^2.1.35",
     "gatsby-plugin-manifest": "^2.2.37",
     "gatsby-plugin-netlify": "^2.1.31",
     "gatsby-plugin-react-axe": "^0.3.0",
@@ -21,9 +32,12 @@
     "gatsby-source-filesystem": "^2.1.46",
     "gatsby-transformer-remark": "^2.6.48",
     "gatsby-transformer-sharp": "^2.3.12",
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.2",
     "modern-css-reset": "^1.0.4",
     "netlify-shortener": "^1.0.4",
     "polished": "^3.4.2",
+    "prettier": "^1.19.1",
     "prismjs": "^1.18.0",
     "react": "^16.8.0",
     "react-axe": "^3.3.0",
@@ -42,7 +56,19 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "shorten": "netlify-shortener",
-    "lint": "eslint src"
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "prettier": "prettier --write **/*.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint",
+      "prettier --write"
+    ]
   },
   "browserslist": [
     ">0.2%",

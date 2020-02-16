@@ -1,13 +1,13 @@
-import React, { Fragment } from "react";
-import { Transition } from "react-spring/renderprops";
-import { animated } from "react-spring";
-import styled, { createGlobalStyle } from "styled-components";
-import { rgba } from "polished";
-import { reset } from "modern-css-reset";
-import Roboto from "../assets/fonts/Roboto-Regular.woff2";
-import Rubik from "../assets/fonts/Rubik-Regular.woff2";
-import { COLORS } from "../styles/colors";
-import { MEDIA } from "../styles/media";
+import React, { Fragment } from 'react';
+import { Transition } from 'react-spring/renderprops';
+import { animated } from 'react-spring';
+import styled, { createGlobalStyle } from 'styled-components';
+import { rgba } from 'polished';
+import { reset } from 'modern-css-reset';
+import Roboto from '../assets/fonts/Roboto-Regular.woff2';
+import Rubik from '../assets/fonts/Rubik-Regular.woff2';
+import { COLORS } from '../styles/colors';
+import { MEDIA } from '../styles/media';
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -64,7 +64,7 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-const Main = styled(animated.main)`
+const Container = styled(animated.div)`
   flex: 1;
   display: flex;
   flex-flow: column;
@@ -81,7 +81,9 @@ const RawLayout = ({ children }) => {
         enter={{ opacity: 1 }}
         leave={{ opacity: 0 }}
       >
-        {show => show && (props => <Main style={props}>{children}</Main>)}
+        {show =>
+          show && (props => <Container style={props}>{children}</Container>)
+        }
       </Transition>
     </Fragment>
   );

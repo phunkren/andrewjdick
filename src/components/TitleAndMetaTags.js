@@ -1,18 +1,18 @@
-import React from "react";
-import { Helmet } from "react-helmet";
-import { COLORS } from "../styles/colors";
-import { SITE_URL, CONTACT_DETAILS, SOCIAL_LINKS } from "../constants";
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { COLORS } from '../styles/colors';
+import { SITE_URL, CONTACT_DETAILS, SOCIAL_LINKS } from '../constants';
 
 export const TitleAndMetaTags = ({
   url,
   pathname,
   title,
   description,
-  image
+  image,
 }) => (
   <Helmet
     htmlAttributes={{
-      lang: "en"
+      lang: 'en',
     }}
   >
     <title>
@@ -39,8 +39,8 @@ export const TitleAndMetaTags = ({
 
 TitleAndMetaTags.defaultProps = {
   url: `${SITE_URL}`,
-  pathname: ".",
+  pathname: '.',
   title: `${CONTACT_DETAILS.position}`,
   description: `${CONTACT_DETAILS.position} working in ${CONTACT_DETAILS.location}`,
-  image: "profileImage.jpg"
+  image: 'profileImage.jpg',
 };

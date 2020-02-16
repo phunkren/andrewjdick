@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import { rgba } from "polished";
-import { graphql } from "gatsby";
-import Img from "gatsby-image";
-import { Header } from "../components/Header";
-import { Layout } from "../components/Layout";
-import { TitleAndMetaTags } from "../components/TitleAndMetaTags";
-import { H1, Text } from "../styles/typography";
-import { MEDIA, BREAKPOINTS } from "../styles/media";
-import { COLORS } from "../styles/colors";
+import React from 'react';
+import styled from 'styled-components';
+import { rgba } from 'polished';
+import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
+import { Header } from '../components/Header';
+import { Layout } from '../components/Layout';
+import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
+import { H1, Text } from '../styles/typography';
+import { MEDIA, BREAKPOINTS } from '../styles/media';
+import { COLORS } from '../styles/colors';
 
 const Wrapper = styled.div`
   flex: 1;
@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   `};
 `;
 
-const Section = styled.section`
+const Main = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -42,7 +42,7 @@ const Section = styled.section`
   `};
 `;
 
-const Article = styled.article`
+const Section = styled.section`
   a {
     color: inherit;
   }
@@ -63,6 +63,10 @@ const Article = styled.article`
   code {
     font-size: 1rem;
   }
+
+  & > * + * {
+    margin-top: 1em;
+  }
 `;
 
 function BlogTemplate({ data }) {
@@ -75,17 +79,25 @@ function BlogTemplate({ data }) {
 
       <Wrapper>
         <Header />
-        <Section>
-          <div>
-            <H1 css="margin-bottom: 0.25em;">{frontmatter.title}</H1>
-            <Text>{frontmatter.date}</Text> |{" "}
-            <Text>{fields.readingTime.text}</Text>
-          </div>
+        <Main>
+          <article>
+            <div>
+              <H1 css="margin-bottom: 0.25em;">{frontmatter.title}</H1>
+              <Text>{frontmatter.date}</Text> |{' '}
+              <Text>{fields.readingTime.text}</Text>
+            </div>
 
-          <Img fluid={frontmatter.image.childImageSharp.fluid} />
+            <div aria-hidden="true">
+              <Img
+                role="img"
+                alt={frontmatter.imageAlt}
+                fluid={frontmatter.image.childImageSharp.fluid}
+              />
+            </div>
 
-          <Article dangerouslySetInnerHTML={{ __html: html }} />
-        </Section>
+            <Section dangerouslySetInnerHTML={{ __html: html }} />
+          </article>
+        </Main>
       </Wrapper>
     </Layout>
   );
@@ -99,6 +111,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         path
         title
+        imageAlt
         image {
           childImageSharp {
             fluid(maxWidth: 768) {

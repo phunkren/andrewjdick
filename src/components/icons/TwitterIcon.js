@@ -1,5 +1,5 @@
-import React from "react";
-import { Icon } from "./Icon";
+import React from 'react';
+import { Icon } from './Icon';
 
 export const TwitterIcon = props => (
   <Icon stroke="none" fill="currentColor" {...props}>
