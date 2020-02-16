@@ -2,6 +2,7 @@ import React from 'react';
 import { isBrowser, isIE } from 'react-device-detect';
 import styled from 'styled-components';
 import { rgba } from 'polished';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import { Layout } from '../components/Layout';
 import cv from '../assets/documents/Andrew James CV.pdf';
 import { formatId } from '../utils/formatId';
@@ -179,7 +180,20 @@ export default function CV() {
   const { name, position, location } = CONTACT_DETAILS;
 
   function handleCvPrint() {
+    trackCustomEvent({
+      category: 'CV print button',
+      action: 'Click',
+      label: 'Print',
+    });
+
     window.print();
+  }
+
+  function handleCvDownload() {
+    trackCustomEvent({
+      category: 'CV download link',
+      action: 'Click',
+    });
   }
 
   return (
@@ -206,8 +220,9 @@ export default function CV() {
                 </IconButton>
                 <DownloadLink
                   aria-label="Download"
-                  css="display: inline-flex; margin-left: 0.5em; padding: 0.5em;"
                   href={cv}
+                  css="display: inline-flex; margin-left: 0.5em; padding: 0.5em;"
+                  onClick={handleCvDownload}
                 >
                   <DownloadIcon width="2.5rem" height="2.5rem" />
                 </DownloadLink>
