@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   plugins: [
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sharp`,
@@ -57,13 +57,22 @@ module.exports = {
         crossOrigin: `use-credentials`,
       },
     },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: 'UA-158626991-1',
-        anonymize: true,
-        respectDNT: true,
-      },
-    },
   ],
 };
+
+// Prevents GA analytics tracking staging.ajames.dev
+// Sauce: https://www.chaseadams.io/posts/netlify-gatsby-analytics/
+if (process.env.CONTEXT === 'production') {
+  const gaConfig = {
+    resolve: `gatsby-plugin-google-analytics`,
+    options: {
+      trackingId: 'UA-158626991-1',
+      anonymize: true,
+      respectDNT: true,
+    },
+  };
+
+  config.plugins.push(gaConfig);
+}
+
+module.exports = config;
