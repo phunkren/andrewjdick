@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { position, rgba } from 'polished';
 import { Link as RouterLink } from 'gatsby';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { ALPHAS } from '../styles/alphas';
 import { COLORS } from '../styles/colors';
 
@@ -37,9 +38,9 @@ export const DownloadLink = styled.a.attrs(() => ({ download: true }))`
   ${linkStyles};
 `;
 
-export const ExternalLink = styled.a.attrs(() => ({
+export const ExternalLink = styled(OutboundLink).attrs(() => ({
   target: '_blank',
-  rel: 'noreferrer',
+  rel: 'noreferrer noopener',
 }))(({ highlight }) => [
   linkStyles,
   highlight &&
