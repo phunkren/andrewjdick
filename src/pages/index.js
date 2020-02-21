@@ -114,10 +114,13 @@ export default function Home() {
           <FooterSocial />
 
           <figure aria-hidden="true">
-            <Image />
             <Text as="figcaption" small>
-              background courtesy of{' '}
-              <ExternalLink href="https://absurd.design/" highlight>
+              background courtesy of <Image tabIndex="-1" />
+              <ExternalLink
+                href="https://absurd.design/"
+                highlight
+                tabIndex="-1"
+              >
                 absurd.design
               </ExternalLink>
             </Text>
