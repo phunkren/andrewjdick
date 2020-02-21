@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { position, rgba } from 'polished';
 import { Link as RouterLink } from 'gatsby';
@@ -38,10 +39,9 @@ export const DownloadLink = styled.a.attrs(() => ({ download: true }))`
   ${linkStyles};
 `;
 
-export const ExternalLink = styled(OutboundLink).attrs(() => ({
-  target: '_blank',
-  rel: 'noreferrer noopener',
-}))(({ highlight }) => [
+export const ExternalLink = styled(({ highlight, ...props }) => (
+  <OutboundLink target="_blank" rel="noreferrer noopener" {...props} />
+))(({ highlight }) => [
   linkStyles,
   highlight &&
     css`

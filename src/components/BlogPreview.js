@@ -69,7 +69,7 @@ const RawBlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
         to={frontmatter.path}
         aria-label="Click to read the article in full"
         css={`
-          display: block;
+          display: inline-block;
           color: ${COLORS.cadetBlue};
         `}
       >

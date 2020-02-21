@@ -117,7 +117,11 @@ export default function Home() {
             <Image />
             <Text as="figcaption" small>
               background courtesy of{' '}
-              <ExternalLink href="https://absurd.design/" highlight>
+              <ExternalLink
+                href="https://absurd.design/"
+                highlight
+                tabIndex="-1"
+              >
                 absurd.design
               </ExternalLink>
             </Text>

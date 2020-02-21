@@ -61,8 +61,6 @@ const Blog = ({ data }) => {
       </ListItem>
     ));
 
-  console.log({ edges });
-
   return (
     <Layout>
       <TitleAndMetaTags title="Blog" pathname="blog" />
