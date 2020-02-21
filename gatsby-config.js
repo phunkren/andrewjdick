@@ -53,7 +53,7 @@ const config = {
         background_color: '#fcfcfc',
         theme_color: '#5f9ea0',
         display: 'standalone',
-        icon: 'src/assets/images/favicon.png',
+        icon: 'src/assets/images/logo.png',
         crossOrigin: `use-credentials`,
       },
     },
