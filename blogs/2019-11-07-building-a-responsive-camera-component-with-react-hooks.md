@@ -149,11 +149,6 @@ function Camera() {
     videoRef.current.srcObject = mediaStream;
   }
 
-  function handleCanPlay() {
-    calculateRatio(videoRef.current.videoHeight, videoRef.current.videoWidth);
-    videoRef.current.play();
-  }
-
   function handleResize(contentRect) {
     setContainer({
       height: Math.round(contentRect.bounds.width / aspectRatio),
@@ -305,7 +300,7 @@ context.drawImage(
 );
 ```
 
-To discard the image, the canvas is reverted to its initial state via a handleClear() callback. Calling `handleClear()` will retrieve the same drawing context instance that was previously returned in the `handleCapture()` function.
+To discard the image, the canvas is reverted to its initial state via a `handleClear()` callback. Calling `handleClear()` will retrieve the same drawing context instance that was previously returned in the `handleCapture()` function.
 
 We then pass the canvas’s width and height to the context [clearRect()](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect) function to convert the requested pixels to transparent and resume displaying the video feed.
 
