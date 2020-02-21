@@ -114,8 +114,9 @@ export default function Home() {
           <FooterSocial />
 
           <figure aria-hidden="true">
+            <Image />
             <Text as="figcaption" small>
-              background courtesy of <Image />
+              background courtesy of{' '}
               <ExternalLink
                 href="https://absurd.design/"
                 highlight
