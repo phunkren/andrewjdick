@@ -40,11 +40,8 @@ export const DownloadLink = styled.a.attrs(() => ({ download: true }))`
 `;
 
 export const ExternalLink = styled(({ highlight, ...props }) => (
-  <OutboundLink {...props} />
-)).attrs(() => ({
-  target: '_blank',
-  rel: 'noreferrer noopener',
-}))(({ highlight }) => [
+  <OutboundLink target="_blank" rel="noreferrer noopener" {...props} />
+))(({ highlight }) => [
   linkStyles,
   highlight &&
     css`
