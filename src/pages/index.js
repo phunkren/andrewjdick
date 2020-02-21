@@ -115,7 +115,7 @@ export default function Home() {
 
           <figure aria-hidden="true">
             <Text as="figcaption" small>
-              background courtesy of <Image tabIndex="-1" />
+              background courtesy of <Image />
               <ExternalLink
                 href="https://absurd.design/"
                 highlight
