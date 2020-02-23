@@ -28,7 +28,7 @@ const Container = styled.div`
   box-shadow: 0px 0px 5px 1px ${rgba(COLORS.black, 0.5)};
 `;
 
-const Header = styled.header`
+const Title = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -58,7 +58,7 @@ const HeaderIcons = styled.div`
   `};
 `;
 
-const Main = styled.main`
+const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column-reverse;
@@ -200,8 +200,8 @@ export default function CV() {
     <Layout>
       <TitleAndMetaTags title="CV" pathname="cv" />
       <ColouredContainer>
-        <Container>
-          <Header>
+        <Container as="main">
+          <Title>
             <div>
               <H1>
                 <Link to="/" aria-label="Return to homepage">
@@ -228,9 +228,9 @@ export default function CV() {
                 </DownloadLink>
               </HeaderIcons>
             )}
-          </Header>
+          </Title>
 
-          <Main>
+          <Wrapper>
             <Sidebar>
               <Block aria-labelledby="cv-contact">
                 <BlockHeader id="cv-contact">Contact</BlockHeader>
@@ -339,7 +339,7 @@ export default function CV() {
                 )}
               </Block>
             </Experience>
-          </Main>
+          </Wrapper>
         </Container>
       </ColouredContainer>
     </Layout>
