@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { rgba } from 'polished';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
 import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
 import { H1, Text } from '../styles/typography';
@@ -78,7 +77,6 @@ function BlogTemplate({ data }) {
       <TitleAndMetaTags title={frontmatter.title} pathname={frontmatter.path} />
 
       <Wrapper>
-        <Header />
         <Main>
           <article>
             <div>
