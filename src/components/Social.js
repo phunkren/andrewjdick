@@ -31,7 +31,7 @@ const RawSocial = props => {
   const { github, medium, twitter, linkedIn } = SOCIAL_LINKS;
 
   return (
-    <SocialLinks aria-label="Social" {...props}>
+    <SocialLinks {...props}>
       <SocialLink
         href={github.url}
         aria-label={github.label}

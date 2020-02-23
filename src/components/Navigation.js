@@ -23,7 +23,7 @@ const List = styled.ul`
       content: '|';
       position: absolute;
       left: -1em;
-      color: ${rgba(COLORS.black, 0.5)};
+      color: ${rgba(COLORS.black, 0.25)};
       transform: translateX(-50%);
     }
   }
@@ -92,7 +92,7 @@ const RawMobileNavigation = props => (
         <Link to="/cv">Résumé</Link>
       </ListItem>
     </MobileList>
-    <Social css="margin: auto auto 0" />
+    <Social css="margin: auto auto 0" aria-label="Social (navigation)" />
   </MobileNav>
 );
 

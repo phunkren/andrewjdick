@@ -103,7 +103,7 @@ export default function Home() {
         </Main>
 
         <Footer>
-          <Social />
+          <Social aria-label="Social" />
 
           <figure aria-hidden="true">
             <Image />

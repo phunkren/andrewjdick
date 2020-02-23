@@ -320,7 +320,7 @@ export default function CV() {
                   ({ position, company, url, dates, description }) => (
                     <Block
                       key={company}
-                      aria-labelledBy={`cv-experience exp-${formatId(company)}`}
+                      aria-labelledby={`cv-experience exp-${formatId(company)}`}
                     >
                       <H3 id={`exp-${formatId(company)}`}>{position}</H3>
                       <Text>
