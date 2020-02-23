@@ -51,7 +51,6 @@ export const ExternalLink = styled(({ highlight, ...props }) => (
         ${rgba(COLORS.white, 0)} 95%,
         ${COLORS.cadetBlue} 5%
       );
-      z-index: 1;
 
       &::before {
         content: '';
