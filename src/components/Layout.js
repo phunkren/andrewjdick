@@ -77,7 +77,7 @@ const Header = styled.header`
   padding: 0 2em;
   height: 80px;
   border-bottom: 1px solid #eaeaea;
-  background: linear-gradient(
+  background-image: linear-gradient(
     rgba(255, 255, 255, 1),
     rgba(255, 255, 255, 0.9),
     rgba(255, 255, 255, 0.75)
