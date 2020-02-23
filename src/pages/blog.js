@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { position, rgba } from 'polished';
 import { graphql } from 'gatsby';
-import { Header } from '../components/Header';
 import { BlogPreview } from '../components/BlogPreview';
 import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
 import { Layout } from '../components/Layout';
@@ -10,25 +9,17 @@ import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { H1 } from '../styles/typography';
 import { COLORS } from '../styles/colors';
 
-const Wrapper = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-  padding: 2em;
-
-  ${MEDIA.desktopWide`
-    padding: 1em;
-  `};
-`;
-
 const Main = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 2em;
+
+  ${MEDIA.desktopWide`
+    padding: 1em;
+  `};
 `;
 
 const ListItem = styled.li``;
@@ -64,15 +55,12 @@ const Blog = ({ data }) => {
   return (
     <Layout>
       <TitleAndMetaTags title="Blog" pathname="blog" />
-      <Wrapper>
-        <Header />
-        <Main>
-          <H1 id="blog" css="margin-bottom: 1em;">
-            Blog
-          </H1>
-          <List>{posts}</List>
-        </Main>
-      </Wrapper>
+      <Main>
+        <H1 id="blog" css="margin-bottom: 1em;">
+          Blog
+        </H1>
+        <List>{posts}</List>
+      </Main>
     </Layout>
   );
 };
