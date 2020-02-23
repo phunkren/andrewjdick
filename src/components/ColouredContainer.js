@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { rgba } from 'polished';
+import { MEDIA } from '../styles/media';
 
 const Container = styled.div.attrs(
   ({ clientX, clientY, clientWidth, clientHeight, style }) => ({
@@ -15,6 +16,10 @@ const Container = styled.div.attrs(
   }),
 )`
   transition: background-color 0.2s linear;
+
+  ${MEDIA.desktopWide`
+    padding: 2em;
+  `}
 `;
 
 const RawColouredContainer = ({ children, ...props }) => {
