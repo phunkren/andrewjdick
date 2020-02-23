@@ -1,16 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SOCIAL_LINKS } from '../constants';
-import { MEDIA } from '../styles/media';
 import { GitHubIcon, MediumIcon, TwitterIcon, LinkedInIcon } from './icons';
 import { ExternalLink } from './Link';
 
 const SocialLinks = styled.nav`
-  display: none;
-
-  ${MEDIA.tablet`
-    display: flex;
-  `};
+  display: flex;
 `;
 
 const SocialLink = styled(ExternalLink)`
