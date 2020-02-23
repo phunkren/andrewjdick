@@ -36,11 +36,6 @@ const Wrapper = styled.div`
   bottom: 0;
   left: 0;
   overflow: hidden;
-  background-image: radial-gradient(
-    70% 70% at 50% 100%,
-    #e8e8e8 0%,
-    #fafafa 100%
-  );
 `;
 
 const Main = styled.main`

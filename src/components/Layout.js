@@ -98,6 +98,11 @@ const Container = styled.div`
 const Wrapper = styled(animated.div)`
   flex: 1;
   height: 100%;
+  background-image: radial-gradient(
+    70% 70% at 50% 100%,
+    #e8e8e8 0%,
+    #fafafa 100%
+  );
 `;
 
 const MobileNavigationButton = styled(IconButton)`
