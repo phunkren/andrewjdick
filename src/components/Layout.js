@@ -40,6 +40,11 @@ const GlobalStyles = createGlobalStyle`
     font-size: 1rem;
     color: ${rgba(COLORS.black, 0.9)};
     width: 100%;
+    background-image: radial-gradient(
+      70% 70% at 50% 100%,
+      #e8e8e8 0%,
+      #fafafa 100%
+    );
   
 
     *::selection {
@@ -76,12 +81,6 @@ const Header = styled.header`
   align-items: center;
   padding: 0 2em;
   height: 80px;
-  border-bottom: 1px solid #eaeaea;
-  background-image: linear-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0.9),
-    rgba(255, 255, 255, 0.75)
-  );
   z-index: 100;
 
   ${MEDIA.print`
@@ -98,11 +97,6 @@ const Container = styled.div`
 const Wrapper = styled(animated.div)`
   flex: 1;
   height: 100%;
-  background-image: radial-gradient(
-    70% 70% at 50% 100%,
-    #e8e8e8 0%,
-    #fafafa 100%
-  );
 `;
 
 const MobileNavigationButton = styled(IconButton)`
