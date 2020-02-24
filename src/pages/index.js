@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { position } from 'polished';
+import Div100vh from 'react-div-100vh';
 import { Layout } from '../components/Layout';
 import { Social } from '../components/Social';
 import { ExternalLink } from '../components/Link';
@@ -19,19 +20,19 @@ const infiniteScroll = keyframes`
   }
 `;
 
-/* HACK: For the scroll animation to work, we need to remove the min-height from modern-css-reset */
+/* HACK: For Div100vh to work, we need to remove the min-height from modern-css-reset */
 const GlobalStyles = createGlobalStyle`
  body {
    min-height: 0;
  }
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled(Div100vh)`
   flex: 1;
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 80px;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;

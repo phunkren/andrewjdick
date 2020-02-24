@@ -42,6 +42,7 @@
     "react": "^16.8.0",
     "react-axe": "^3.3.0",
     "react-device-detect": "^1.6.2",
+    "react-div-100vh": "^0.3.8",
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^5.1.2",
