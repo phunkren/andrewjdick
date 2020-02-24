@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Transition } from 'react-spring/renderprops';
 import { animated } from 'react-spring';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import { rgba } from 'polished';
 import { reset } from 'modern-css-reset';
 import { Logo } from '../components/Logo';
@@ -39,6 +39,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 16px;
     font-size: 1rem;
     color: ${rgba(COLORS.black, 0.9)};
+    background-color: ${COLORS.white};
     width: 100%;
   
 
@@ -70,18 +71,24 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-const Header = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2em;
-  height: 80px;
-  z-index: 100;
+const Header = styled.header(({ isNavOpen }) => [
+  css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2em;
+    height: 80px;
+    z-index: 100;
 
-  ${MEDIA.print`
-    display: none;
-  `}
-`;
+    ${MEDIA.print`
+      display: none;
+    `}
+  `,
+  isNavOpen &&
+    css`
+      background-color: ${COLORS.white};
+    `,
+]);
 
 const Container = styled.div`
   flex: 1;
@@ -111,7 +118,7 @@ const RawLayout = ({ children }) => {
     <Fragment>
       <GlobalStyles />
       <Container>
-        <Header>
+        <Header isNavOpen={isNavOpen}>
           <Link to="/">
             <Logo />
           </Link>
