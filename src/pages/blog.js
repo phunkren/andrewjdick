@@ -15,18 +15,17 @@ const Main = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2em;
+  padding: 1em;
 
-  ${MEDIA.desktopWide`
-    padding: 1em;
+  ${MEDIA.desktop`
+    padding: 2em;
   `};
 `;
 
 const ListItem = styled.li``;
 
 const List = styled.ul`
-  max-width: ${BREAKPOINTS.tablet}px;
-  margin: 0 auto;
+  max-width: 100%;
   
   ${ListItem} + ${ListItem} {
     position: relative;
@@ -40,6 +39,15 @@ const List = styled.ul`
       background-color: ${rgba(COLORS.black, 0.5)};
     }
   }
+
+  ${MEDIA.tablet`
+    max-width: ${BREAKPOINTS.phone}px;
+    margin: 0 auto;
+  `}
+
+  ${MEDIA.desktop`
+    max-width: ${BREAKPOINTS.tablet}px;
+  `}
 `;
 
 const Blog = ({ data }) => {
