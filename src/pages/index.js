@@ -47,11 +47,17 @@ const Main = styled.main`
   text-align: center;
 `;
 
+const Section = styled.section`
+  position: relative;
+  top: 40px;
+`;
+
 const Footer = styled.footer`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 80px;
   padding: 0 2em 1em;
 `;
 
@@ -72,7 +78,6 @@ const Image = styled.div`
 export default function Home() {
   const { name, location } = CONTACT_DETAILS;
   const currentEmployer = EXPERIENCE[0];
-  const currentYear = new Date().getFullYear();
 
   return (
     <Layout>
@@ -80,7 +85,7 @@ export default function Home() {
       <GlobalStyles />
       <Wrapper>
         <Main>
-          <section aria-label="Profile">
+          <Section aria-label="Profile">
             <H1 aria-label={`Name: ${name}`}>{name}</H1>
             <Text aria-label={`Position: ${currentEmployer.position}`}>
               {currentEmployer.position}
@@ -95,7 +100,7 @@ export default function Home() {
             </ExternalLink>
             <br />
             <Text aria-label={`Location: ${location}`}>{location}</Text>
-          </section>
+          </Section>
         </Main>
 
         <Footer>
@@ -114,10 +119,6 @@ export default function Home() {
               </ExternalLink>
             </Text>
           </figure>
-
-          <Text as="p" small>
-            &copy; {currentYear}
-          </Text>
         </Footer>
       </Wrapper>
     </Layout>
