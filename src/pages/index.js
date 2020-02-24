@@ -78,7 +78,6 @@ const Image = styled.div`
 export default function Home() {
   const { name, location } = CONTACT_DETAILS;
   const currentEmployer = EXPERIENCE[0];
-  const currentYear = new Date().getFullYear();
 
   return (
     <Layout>
@@ -120,10 +119,6 @@ export default function Home() {
               </ExternalLink>
             </Text>
           </figure>
-
-          <Text as="p" small>
-            &copy; {currentYear}
-          </Text>
         </Footer>
       </Wrapper>
     </Layout>

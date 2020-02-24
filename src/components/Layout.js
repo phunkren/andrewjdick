@@ -3,17 +3,17 @@ import { Transition } from 'react-spring/renderprops';
 import { animated } from 'react-spring';
 import styled, { createGlobalStyle, css } from 'styled-components';
 import { rgba } from 'polished';
+import { Link } from 'gatsby';
 import { reset } from 'modern-css-reset';
 import { Logo } from '../components/Logo';
+import { Navigation, MobileNavigation } from '../components/Navigation';
 import { IconButton } from '../components/Button';
 import { CrossIcon } from './icons/CrossIcon';
 import { HamburgerIcon } from './icons/HamburgerIcon';
-import { Navigation, MobileNavigation } from '../components/Navigation';
 import Roboto from '../assets/fonts/Roboto-Regular.woff2';
 import Rubik from '../assets/fonts/Rubik-Regular.woff2';
 import { MEDIA } from '../styles/media';
 import { COLORS } from '../styles/colors';
-import { Link } from 'gatsby';
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -53,6 +53,10 @@ const GlobalStyles = createGlobalStyle`
 
     ${MEDIA.desktopWide`
       font-size: 1.25rem;
+    `}
+
+    ${MEDIA.print`
+      font-size: 12pt;
     `}
   }
   
