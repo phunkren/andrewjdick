@@ -25,14 +25,17 @@ const Container = styled.div`
   max-width: ${BREAKPOINTS.desktopWide}px;
   margin: 0 auto;
   background-color: ${COLORS.white};
-  box-shadow: 0px 0px 5px 1px ${rgba(COLORS.black, 0.5)};
+
+  ${MEDIA.desktopWide`
+    box-shadow: 0px 0px 5px 1px ${rgba(COLORS.black, 0.5)};
+  `}
 `;
 
-const Header = styled.header`
+const Title = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  padding: 2em;
+  padding: 0 2em 2em;
   text-align: center;
 
   ${MEDIA.desktop`
@@ -40,8 +43,13 @@ const Header = styled.header`
     text-align: left;
   `}
 
+  ${MEDIA.desktopWide`
+    padding: 2em;
+  `}
+
   ${MEDIA.print`
     justify-content: space-between;
+    padding: 2em;
     text-align: left;
   `};
 `;
@@ -58,7 +66,7 @@ const HeaderIcons = styled.div`
   `};
 `;
 
-const Main = styled.main`
+const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column-reverse;
@@ -136,7 +144,7 @@ const Tag = styled(Text).attrs(() => ({
   border-radius: 4px;
   text-transform: uppercase;
   text-align: center;
-  background-color: ${rgba(COLORS.hippyBlue, 0.4)};
+  background-color: ${rgba(COLORS.black, 0.1)};
 
   ${MEDIA.print`
     border: 1px solid ${COLORS.black};
@@ -200,8 +208,8 @@ export default function CV() {
     <Layout>
       <TitleAndMetaTags title="CV" pathname="cv" />
       <ColouredContainer>
-        <Container>
-          <Header>
+        <Container as="main">
+          <Title>
             <div>
               <H1>
                 <Link to="/" aria-label="Return to homepage">
@@ -228,9 +236,9 @@ export default function CV() {
                 </DownloadLink>
               </HeaderIcons>
             )}
-          </Header>
+          </Title>
 
-          <Main>
+          <Wrapper>
             <Sidebar>
               <Block aria-labelledby="cv-contact">
                 <BlockHeader id="cv-contact">Contact</BlockHeader>
@@ -320,7 +328,7 @@ export default function CV() {
                   ({ position, company, url, dates, description }) => (
                     <Block
                       key={company}
-                      aria-labelledBy={`cv-experience exp-${formatId(company)}`}
+                      aria-labelledby={`cv-experience exp-${formatId(company)}`}
                     >
                       <H3 id={`exp-${formatId(company)}`}>{position}</H3>
                       <Text>
@@ -339,7 +347,7 @@ export default function CV() {
                 )}
               </Block>
             </Experience>
-          </Main>
+          </Wrapper>
         </Container>
       </ColouredContainer>
     </Layout>

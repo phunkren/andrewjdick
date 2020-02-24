@@ -10,16 +10,10 @@ export const BREAKPOINTS = {
 
 export const MEDIA = Object.keys(BREAKPOINTS).reduce((acc, label) => {
   acc[label] = (...args) => {
-    if (label === 'print') {
-      return css`
-        @media print {
-          ${css(...args)}
-        }
-      `;
-    }
+    const mediaQuery = createMediaQuery(label);
 
     return css`
-      @media (min-width: ${BREAKPOINTS[label] / 16}em) {
+      @media ${mediaQuery} {
         ${css(...args)}
       }
     `;
@@ -27,3 +21,8 @@ export const MEDIA = Object.keys(BREAKPOINTS).reduce((acc, label) => {
 
   return acc;
 }, {});
+
+export function createMediaQuery(breakpoint) {
+  if (breakpoint === 'print') return 'print';
+  return `(min-width: ${BREAKPOINTS[breakpoint] / 16}em)`;
+}

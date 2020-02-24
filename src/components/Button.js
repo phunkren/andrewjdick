@@ -36,8 +36,10 @@ const buttonStyles = css`
 export const IconButton = styled.button(
   () => css`
     ${buttonStyles};
-    padding: 0.5em;
+    padding: 0;
     background-color: transparent;
+    min-width: 44px;
+    min-height: 44px;
 
     &:focus {
       color: ${rgba(COLORS.cadetBlue, ALPHAS.focus)};

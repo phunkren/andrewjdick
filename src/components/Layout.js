@@ -1,13 +1,19 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Transition } from 'react-spring/renderprops';
 import { animated } from 'react-spring';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import { rgba } from 'polished';
 import { reset } from 'modern-css-reset';
+import { Logo } from '../components/Logo';
+import { IconButton } from '../components/Button';
+import { CrossIcon } from './icons/CrossIcon';
+import { HamburgerIcon } from './icons/HamburgerIcon';
+import { Navigation, MobileNavigation } from '../components/Navigation';
 import Roboto from '../assets/fonts/Roboto-Regular.woff2';
 import Rubik from '../assets/fonts/Rubik-Regular.woff2';
-import { COLORS } from '../styles/colors';
 import { MEDIA } from '../styles/media';
+import { COLORS } from '../styles/colors';
+import { Link } from 'gatsby';
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -33,6 +39,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 16px;
     font-size: 1rem;
     color: ${rgba(COLORS.black, 0.9)};
+    background-color: ${COLORS.white};
     width: 100%;
   
 
@@ -64,27 +71,85 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-const Container = styled(animated.div)`
+const Header = styled.header(({ isNavOpen }) => [
+  css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2em;
+    height: 80px;
+    z-index: 100;
+
+    ${MEDIA.print`
+      display: none;
+    `}
+  `,
+  isNavOpen &&
+    css`
+      background-color: ${COLORS.white};
+    `,
+]);
+
+const Container = styled.div`
   flex: 1;
   display: flex;
   flex-flow: column;
 `;
 
+const Wrapper = styled(animated.div)`
+  flex: 1;
+  height: 100%;
+`;
+
+const MobileNavigationButton = styled(IconButton)`
+  ${MEDIA.desktop`
+    display: none;  
+  `}
+`;
+
 const RawLayout = ({ children }) => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  function toggleMobileNavigation() {
+    setIsNavOpen(!isNavOpen);
+  }
+
   return (
     <Fragment>
       <GlobalStyles />
-      <Transition
-        items={true}
-        delay={300}
-        from={{ opacity: 0 }}
-        enter={{ opacity: 1 }}
-        leave={{ opacity: 0 }}
-      >
-        {show =>
-          show && (props => <Container style={props}>{children}</Container>)
-        }
-      </Transition>
+      <Container>
+        <Header isNavOpen={isNavOpen}>
+          <Link to="/">
+            <Logo />
+          </Link>
+
+          <Navigation />
+
+          <MobileNavigationButton
+            aria-label="Navigation menu"
+            onClick={toggleMobileNavigation}
+          >
+            {isNavOpen ? (
+              <CrossIcon width="1.5em" height="1.5em" />
+            ) : (
+              <HamburgerIcon width="1.5em" height="1.5em" />
+            )}
+          </MobileNavigationButton>
+        </Header>
+
+        <Transition
+          items={true}
+          from={{ opacity: 0 }}
+          enter={{ opacity: 1 }}
+          leave={{ opacity: 0 }}
+        >
+          {show =>
+            show && (props => <Wrapper style={props}>{children}</Wrapper>)
+          }
+        </Transition>
+
+        {isNavOpen && <MobileNavigation />}
+      </Container>
     </Fragment>
   );
 };

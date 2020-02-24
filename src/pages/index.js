@@ -3,12 +3,10 @@ import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { position } from 'polished';
 import Div100vh from 'react-div-100vh';
 import { Layout } from '../components/Layout';
-import { Header } from '../components/Header';
 import { Social } from '../components/Social';
 import { ExternalLink } from '../components/Link';
 import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
 import lightbulbs from '../assets/images/lightbulbs.png';
-import { MEDIA } from '../styles/media';
 import { H1, Text } from '../styles/typography';
 import { CONTACT_DETAILS } from '../constants';
 import { EXPERIENCE } from '../data';
@@ -33,13 +31,12 @@ const Wrapper = styled(Div100vh)`
   flex: 1;
   display: flex;
   flex-direction: column;
-  position: relative;
-  padding: 2em;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   overflow: hidden;
-
-  ${MEDIA.desktopWide`
-    padding: 1em;
-  `};
 `;
 
 const Main = styled.main`
@@ -55,19 +52,11 @@ const Footer = styled.footer`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const FooterSocial = styled(Social)`
-  display: flex;
-  margin-bottom: 0.5em;
-
-  ${MEDIA.tablet`
-    display: none;
-  `};
+  padding: 0 2em 1em;
 `;
 
 const Image = styled.div`
-  ${position('absolute', '100%', 0, null, 0)};
+  ${position('fixed', '100%', 0, null, 0)};
   background-image: url(${lightbulbs});
   background-repeat: repeat-y;
   background-position: center;
@@ -77,6 +66,7 @@ const Image = styled.div`
   opacity: 0.075;
   pointer-events: none;
   animation: ${infiniteScroll} 30s linear infinite;
+  z-index: -1;
 `;
 
 export default function Home() {
@@ -89,7 +79,6 @@ export default function Home() {
       <TitleAndMetaTags />
       <GlobalStyles />
       <Wrapper>
-        <Header />
         <Main>
           <section aria-label="Profile">
             <H1 aria-label={`Name: ${name}`}>{name}</H1>
@@ -100,7 +89,6 @@ export default function Home() {
             <ExternalLink
               aria-label={`Employer: ${currentEmployer.company}`}
               href={currentEmployer.url}
-              css="display: inline-block"
               highlight
             >
               {currentEmployer.company}
@@ -111,7 +99,7 @@ export default function Home() {
         </Main>
 
         <Footer>
-          <FooterSocial />
+          <Social aria-label="Social" />
 
           <figure aria-hidden="true">
             <Image />
