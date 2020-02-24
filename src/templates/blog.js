@@ -13,10 +13,10 @@ const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 2em;
+  padding: 1em;
 
-  ${MEDIA.desktopWide`
-    padding: 1em;
+  ${MEDIA.desktop`
+    padding: 2em;
   `};
 `;
 

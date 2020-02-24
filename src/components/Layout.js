@@ -76,9 +76,13 @@ const Header = styled.header(({ isNavOpen }) => [
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2em;
+    padding: 0 1em;
     height: 80px;
     z-index: 100;
+
+    ${MEDIA.desktop`
+      padding: 0 2em;
+    `}
 
     ${MEDIA.print`
       display: none;
