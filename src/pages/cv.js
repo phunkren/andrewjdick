@@ -6,7 +6,7 @@ import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import { Layout } from '../components/Layout';
 import cv from '../assets/documents/Andrew James CV.pdf';
 import { formatId } from '../utils/formatId';
-import { ExternalLink, Link, DownloadLink } from '../components/Link';
+import { ExternalLink, DownloadLink } from '../components/Link';
 import { ColouredContainer } from '../components/ColouredContainer';
 import { IconButton } from '../components/Button';
 import { DownloadIcon, PrintIcon } from '../components/icons';
@@ -43,7 +43,7 @@ const Title = styled.div`
     text-align: left;
   `}
 
-  ${MEDIA.desktopWide`
+  ${MEDIA.desktop`
     padding: 2em;
   `}
 
@@ -211,11 +211,7 @@ export default function CV() {
         <Container as="main">
           <Title>
             <div>
-              <H1>
-                <Link to="/" aria-label="Return to homepage">
-                  {name}
-                </Link>
-              </H1>
+              <H1>{name}</H1>
               <Text as="p">
                 {position} | {location}
               </Text>
