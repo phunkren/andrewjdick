@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { position } from 'polished';
 import { Layout } from '../components/Layout';
 import { Social } from '../components/Social';
@@ -17,13 +17,6 @@ const infiniteScroll = keyframes`
   to {
     transform: translate3d(0, -300vh, 0);
   }
-`;
-
-/* HACK: For Div100vh to work, we need to remove the min-height from modern-css-reset */
-const GlobalStyles = createGlobalStyle`
- body {
-   min-height: 0;
- }
 `;
 
 const Wrapper = styled.div`
@@ -76,7 +69,6 @@ export default function Home() {
   return (
     <Layout>
       <TitleAndMetaTags />
-      <GlobalStyles />
       <Wrapper>
         <Main>
           <section aria-label="Profile">
