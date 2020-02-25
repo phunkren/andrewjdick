@@ -127,8 +127,8 @@ const RawLayout = ({ children }) => {
       <GlobalStyles />
       <Container>
         <Header isNavOpen={isNavOpen}>
-          <Link to="/">
-            <Logo />
+          <Link to="/" aria-label="Return to homepage">
+            <Logo alt="Website logo" />
           </Link>
 
           <Navigation />
