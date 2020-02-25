@@ -2,7 +2,6 @@
 path: /blog/2018-05-13-bridging-a-gap-between-engineering-and-design-with-a-simple-grid-overlay
 title: Bridging a gap between engineering and design with a simple grid overlay
 image: ../src/assets/images/bridge-gap.jpg
-imageAlt: A pencil drawing a line between two cliff faces
 date: 2018-05-13
 ---
 

@@ -90,7 +90,7 @@ function BlogTemplate({ data }) {
             <div aria-hidden="true">
               <Img
                 role="img"
-                alt={frontmatter.imageAlt}
+                alt=""
                 fluid={frontmatter.image.childImageSharp.fluid}
               />
             </div>
@@ -111,7 +111,6 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         path
         title
-        imageAlt
         image {
           childImageSharp {
             fluid(maxWidth: 768) {

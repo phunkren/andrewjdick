@@ -2,7 +2,6 @@
 path: /blog/2018-11-05-a-brief-investigation-into-live-streaming-a-tech-meetup
 title: A brief investigation into live streaming a tech meetup
 image: ../src/assets/images/live-stream.jpg
-imageAlt: A poster for Egg, a tech meetup hosted at Fathom London
 date: 2018-11-05
 ---
 
