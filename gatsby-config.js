@@ -8,10 +8,7 @@ const config = {
       location: `London, UK`,
       summary: `Frontend engineer living and working in London.`,
     },
-    siteUrl: {
-      href: `https://ajames.dev/`,
-      display: `ajames.dev`,
-    },
+    siteUrl: `https://ajames.dev`,
   },
   plugins: [
     `gatsby-plugin-styled-components`,
