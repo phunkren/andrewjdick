@@ -5,6 +5,7 @@ const config = {
     `gatsby-plugin-netlify`,
     `gatsby-plugin-react-axe`,
     `gatsby-transformer-sharp`,
+    `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
