@@ -1,4 +1,18 @@
 const config = {
+  siteMetadata: {
+    title: `Andrew James`,
+    description: `My personal website`,
+    author: {
+      name: `Andrew James`,
+      email: `contact@ajames.dev`,
+      location: `London, UK`,
+      summary: `Frontend engineer living and working in London.`,
+    },
+    siteUrl: {
+      href: `https://ajames.dev/`,
+      display: `ajames.dev`,
+    },
+  },
   plugins: [
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sharp`,
