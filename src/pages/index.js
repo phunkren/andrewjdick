@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import { graphql } from 'gatsby';
 import { position } from 'polished';
 import Div100vh from 'react-div-100vh';
 import { Layout } from '../components/Layout';
@@ -8,8 +9,6 @@ import { ExternalLink } from '../components/Link';
 import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
 import lightbulbs from '../assets/images/lightbulbs.png';
 import { H1, Text } from '../styles/typography';
-import { CONTACT_DETAILS } from '../constants';
-import { EXPERIENCE } from '../data';
 
 const infiniteScroll = keyframes`
   from {
@@ -75,9 +74,10 @@ const Image = styled.div`
   z-index: -1;
 `;
 
-export default function Home() {
-  const { name, location } = CONTACT_DETAILS;
-  const currentEmployer = EXPERIENCE[0];
+export default function Home({ data }) {
+  const { experience } = data.experienceJson;
+  const { author } = data.site.siteMetadata;
+  const currentEmployer = experience[0];
 
   return (
     <Layout>
@@ -86,7 +86,7 @@ export default function Home() {
       <Wrapper>
         <Main>
           <Section aria-label="Profile">
-            <H1 aria-label={`Name: ${name}`}>{name}</H1>
+            <H1 aria-label={`Name: ${author.name}`}>{author.name}</H1>
             <Text aria-label={`Position: ${currentEmployer.position}`}>
               {currentEmployer.position}
             </Text>
@@ -99,7 +99,9 @@ export default function Home() {
               {currentEmployer.company}
             </ExternalLink>
             <br />
-            <Text aria-label={`Location: ${location}`}>{location}</Text>
+            <Text aria-label={`Location: ${author.location}`}>
+              {author.location}
+            </Text>
           </Section>
         </Main>
 
@@ -124,3 +126,23 @@ export default function Home() {
     </Layout>
   );
 }
+
+export const query = graphql`
+  query HomeQuery {
+    site {
+      siteMetadata {
+        author {
+          name
+          location
+        }
+      }
+    }
+    experienceJson {
+      experience {
+        company
+        position
+        url
+      }
+    }
+  }
+`;
