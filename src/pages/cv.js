@@ -17,7 +17,7 @@ import { ExternalLink, DownloadLink } from '../components/Link';
 import { ColouredContainer } from '../components/ColouredContainer';
 import { IconButton } from '../components/Button';
 import { DownloadIcon, PrintIcon } from '../components/icons';
-import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
+import SEO from '../components/SEO';
 import { COLORS } from '../styles/colors';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { H1, H2, H3, H4, Text } from '../styles/typography';
@@ -209,10 +209,10 @@ export default function CV({ data }) {
   const { education } = data.educationJson;
   const { experience } = data.experienceJson;
   const { social } = data.socialJson;
-  const { author, siteUrl } = data.site.siteMetadata;
+  const { author, url } = data.site.siteMetadata;
 
   const currentPosition = experience[0].position;
-  const siteDisplayUrl = siteUrl.split('https://')[1];
+  const siteDisplayUrl = url.split('https://')[1];
   const expertise = ['html', 'css/scss', 'javascript', 'react'];
   const interests = ['react native', 'gatsbyjs', 'graphQL', 'css-in-js'];
   const hobbies = ['cycling', 'guitar', 'video games', 'rugby'];
@@ -236,7 +236,7 @@ export default function CV({ data }) {
 
   return (
     <Layout>
-      <TitleAndMetaTags title="CV" pathname="cv" />
+      <SEO title="CV" pathname="/cv" />
       <ColouredContainer>
         <Container as="main">
           <Title>
@@ -282,7 +282,7 @@ export default function CV({ data }) {
 
                     <ListItem>
                       <StyledExternalLink
-                        href={siteUrl}
+                        href={url}
                         aria-label="Return to homepage"
                       >
                         <HomeIcon />
@@ -443,7 +443,7 @@ export const query = graphql`
           location
           email
         }
-        siteUrl
+        url
       }
     }
     educationJson {
