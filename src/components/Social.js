@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SOCIAL_LINKS } from '../constants';
+import { useStaticQuery, graphql } from 'gatsby';
 import { GitHubIcon, MediumIcon, TwitterIcon, LinkedInIcon } from './icons';
 import { ExternalLink } from './Link';
 
@@ -22,9 +22,37 @@ const SocialLink = styled(ExternalLink)`
   }
 `;
 
-
 const RawSocial = props => {
-  const { github, medium, twitter, linkedIn } = SOCIAL_LINKS;
+  const data = useStaticQuery(graphql`
+    query {
+      socialJson {
+        social {
+          github {
+            handle
+            label
+            url
+          }
+          twitter {
+            handle
+            label
+            url
+          }
+          medium {
+            handle
+            label
+            url
+          }
+          linkedIn {
+            handle
+            label
+            url
+          }
+        }
+      }
+    }
+  `);
+
+  const { github, medium, twitter, linkedIn } = data.socialJson.social;
 
   return (
     <SocialLinks {...props}>
