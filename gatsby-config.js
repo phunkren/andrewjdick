@@ -1,14 +1,15 @@
 const config = {
   siteMetadata: {
     title: `Andrew James`,
-    description: `My personal website`,
+    titleTemplate: `Andrew James | %s`,
+    description: `Frontend engineer living and working in London.`,
     author: {
       name: `Andrew James`,
       email: `contact@ajames.dev`,
       location: `London, UK`,
-      summary: `Frontend engineer living and working in London.`,
     },
     siteUrl: `https://ajames.dev`,
+    image: '/images/logo.png',
   },
   plugins: [
     `gatsby-plugin-styled-components`,

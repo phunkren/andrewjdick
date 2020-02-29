@@ -74,7 +74,11 @@ function BlogTemplate({ data }) {
 
   return (
     <Layout>
-      <SEO title={frontmatter.title} pathname={frontmatter.path} />
+      <SEO
+        title={frontmatter.title}
+        pathname={`/${frontmatter.path}`}
+        article
+      />
 
       <Wrapper>
         <Main>

@@ -62,7 +62,7 @@ export default function Blog({ data }) {
 
   return (
     <Layout>
-      <SEO title="Blog" pathname="blog" />
+      <SEO title="Blog" pathname="/blog" />
       <Main>
         <H1 id="blog" css="margin-bottom: 1em;">
           Blog

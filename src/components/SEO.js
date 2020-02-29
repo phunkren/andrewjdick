@@ -1,81 +1,87 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, StaticQuery } from 'gatsby';
 
-export const SEO = ({
-  description,
-  lang,
-  meta,
-  title,
-  type,
-  image,
-  pathname,
-}) => {
-  const data = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-          author {
-            name
-          }
-          description
-          siteUrl
-        }
+export const SEO = ({ title, description, image, pathname, article }) => (
+  <StaticQuery
+    query={query}
+    render={({
+      site: {
+        siteMetadata: {
+          defaultTitle,
+          titleTemplate,
+          defaultDescription,
+          siteUrl,
+          defaultImage,
+          twitterUsername,
+        },
+      },
+      socialJson: {
+        social: {
+          twitter: { twitterHandle, twitterUrl },
+        },
+      },
+    }) => {
+      const seo = {
+        title: title || defaultTitle,
+        description: description || defaultDescription,
+        image: `${siteUrl}${image || defaultImage}`,
+        url: `${siteUrl}${pathname || '/'}`,
+        type: article ? 'article' : 'website',
+      };
+
+      return (
+        <>
+          <Helmet
+            htmlAttributes={{ lang: 'en' }}
+            title={seo.title}
+            titleTemplate={title && titleTemplate}
+          >
+            <meta name="description" content={seo.description} />
+            <meta name="image" content={seo.image} />
+            <meta property="og:url" content={seo.url} />
+            <meta property="og:type" content={seo.type} />
+            <meta property="og:title" content={seo.title} />
+            <meta property="og:description" content={seo.description} />
+            <meta property="og:image" content={seo.image} />
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:creator" content={twitterHandle} />
+            <meta name="twitter:title" content={seo.title} />
+            <meta name="twitter:description" content={seo.description} />
+            <meta name="twitter:image" content={seo.image} />
+          </Helmet>
+        </>
+      );
+    }}
+  />
+);
+
+const query = graphql`
+  query SEO {
+    site {
+      siteMetadata {
+        defaultTitle: title
+        defaultDescription: description
+        defaultImage: image
+        titleTemplate
+        siteUrl
       }
-      socialJson {
-        social {
-          twitter {
-            handle
-            label
-            url
-          }
+    }
+    socialJson {
+      social {
+        twitter {
+          twitterHandle: handle
+          twitterUrl: url
         }
       }
     }
-  `);
-
-  const { social } = data.socialJson;
-  const { siteMetadata } = data.site;
-
-  const metaTitle = title
-    ? `${siteMetadata.author.name} | ${title}`
-    : `${siteMetadata.author.name}`;
-
-  const metaUrl = pathname
-    ? `${siteMetadata.siteUrl}${pathname}`
-    : siteMetadata.siteUrl;
-
-  const metaDescription = description || siteMetadata.description;
-  const metaImage = `${siteMetadata.siteUrl}/${image}`;
-
-  return (
-    <Helmet htmlAttributes={{ lang }}>
-      <title>{metaTitle}</title>
-      <meta name="description" content={metaDescription} />
-
-      <meta property="og:title" content={metaTitle} />
-      <meta property="og:description" content={metaDescription} />
-      <meta property="og:image" content={metaImage} />
-      <meta property="og:url" content={metaUrl} />
-      <meta property="og:type" content={type} />
-
-      <meta name="twitter:title" content={metaTitle} />
-      <meta name="twitter:description" content={metaDescription} />
-      <meta name="twitter:image" content={metaImage} />
-      <meta name="twitter:url" content={metaUrl} />
-      <meta name="twitter:site" content={social.twitter.url} />
-      <meta name="twitter:creator" content={social.twitter.handle} />
-      <meta name="twitter:card" content="summary_large_image" />
-    </Helmet>
-  );
-};
+  }
+`;
 
 SEO.defaultProps = {
-  lang: 'en',
   title: null,
   description: null,
-  image: 'logo.png',
-  pathname: '/',
-  type: 'website',
+  image: null,
+  pathname: null,
+  article: false,
 };

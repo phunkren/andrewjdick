@@ -236,7 +236,7 @@ export default function CV({ data }) {
 
   return (
     <Layout>
-      <SEO title="CV" pathname="cv" />
+      <SEO title="CV" pathname="/cv" />
       <ColouredContainer>
         <Container as="main">
           <Title>
