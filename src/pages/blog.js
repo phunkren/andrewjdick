@@ -50,7 +50,7 @@ const List = styled.ul`
   `}
 `;
 
-const Blog = ({ data }) => {
+export default function Blog({ data }) {
   const { edges } = data.allMarkdownRemark;
   const posts = edges
     .filter(edge => !!edge.node.frontmatter.date)
@@ -71,7 +71,7 @@ const Blog = ({ data }) => {
       </Main>
     </Layout>
   );
-};
+}
 
 export const pageQuery = graphql`
   query {
@@ -102,5 +102,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-
-export default Blog;
