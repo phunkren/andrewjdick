@@ -22,10 +22,6 @@ const SocialLink = styled(ExternalLink)`
   }
 `;
 
-const iconProps = {
-  width: '1.8em',
-  height: '1.8em',
-};
 
 const RawSocial = props => {
   const { github, medium, twitter, linkedIn } = SOCIAL_LINKS;
@@ -37,7 +33,7 @@ const RawSocial = props => {
         aria-label={github.label}
         title={github.label}
       >
-        <GitHubIcon {...iconProps} />
+        <GitHubIcon />
       </SocialLink>
 
       <SocialLink
@@ -45,7 +41,7 @@ const RawSocial = props => {
         aria-label={medium.label}
         title={medium.label}
       >
-        <MediumIcon {...iconProps} />
+        <MediumIcon />
       </SocialLink>
 
       <SocialLink
@@ -53,7 +49,7 @@ const RawSocial = props => {
         aria-label={twitter.label}
         title={twitter.label}
       >
-        <TwitterIcon {...iconProps} />
+        <TwitterIcon />
       </SocialLink>
 
       <SocialLink
@@ -61,7 +57,7 @@ const RawSocial = props => {
         aria-label={linkedIn.label}
         title={linkedIn.label}
       >
-        <LinkedInIcon {...iconProps} />
+        <LinkedInIcon />
       </SocialLink>
     </SocialLinks>
   );
