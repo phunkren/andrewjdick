@@ -42,11 +42,7 @@ const RawBlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
     aria-labelledby={`blog post-${formatId(frontmatter.title)}`}
   >
     <PreviewImage aria-hidden="true">
-      <Img
-        role="img"
-        alt={frontmatter.imageAlt}
-        fluid={frontmatter.image.childImageSharp.fluid}
-      />
+      <Img role="img" alt="" fluid={frontmatter.image.childImageSharp.fluid} />
     </PreviewImage>
 
     <PreviewContent>

@@ -14,6 +14,8 @@ export const RawIcon = ({
   ...props
 }) => (
   <svg
+    role="img"
+    css="pointer-events: none"
     height={height}
     width={width}
     viewBox={viewBox}
