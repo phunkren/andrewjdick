@@ -6,17 +6,37 @@ import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import { Layout } from '../components/Layout';
 import cv from '../assets/documents/Andrew James CV.pdf';
 import { formatId } from '../utils/formatId';
+import {
+  EmailIcon,
+  GitHubIcon,
+  LinkedInIcon,
+  HomeIcon,
+} from '../components/icons';
 import { ExternalLink, DownloadLink } from '../components/Link';
 import { ColouredContainer } from '../components/ColouredContainer';
 import { IconButton } from '../components/Button';
 import { DownloadIcon, PrintIcon } from '../components/icons';
 import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
-import { Contact } from '../components/Contact';
 import { COLORS } from '../styles/colors';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { H1, H2, H3, H4, Text } from '../styles/typography';
-import { CONTACT_DETAILS } from '../constants';
-import { EDUCATION, EXPERIENCE, EXPERTISE, INTERESTS, HOBBIES } from '../data';
+
+const List = styled.ul`
+  margin-bottom: 2em;
+`;
+
+const ListItem = styled.li`
+  margin-bottom: 1em;
+
+  ${Text} {
+    margin-left: 1em;
+  }
+`;
+
+const StyledExternalLink = styled(ExternalLink)`
+  display: flex;
+  align-items: center;
+`;
 
 const Container = styled.div`
   flex: 1;
@@ -238,7 +258,49 @@ export default function CV() {
             <Sidebar>
               <Block aria-labelledby="cv-contact">
                 <BlockHeader id="cv-contact">Contact</BlockHeader>
-                <Contact />
+                <nav aria-label="Contact">
+                  <List>
+                    <ListItem>
+                      <StyledExternalLink
+                        href={`mailto:${author.email}`}
+                        aria-label="Email me"
+                      >
+                        <EmailIcon />
+                        <Text>{author.email}</Text>
+                      </StyledExternalLink>
+                    </ListItem>
+
+                    <ListItem>
+                      <StyledExternalLink
+                        href={siteUrl.href}
+                        aria-label="Return to homepage"
+                      >
+                        <HomeIcon />
+                        <Text>{siteUrl.display}</Text>
+                      </StyledExternalLink>
+                    </ListItem>
+
+                    <ListItem>
+                      <StyledExternalLink
+                        href={social.github.url}
+                        aria-label={`${social.github.label} profile`}
+                      >
+                        <GitHubIcon />
+                        <Text>{social.github.handle}</Text>
+                      </StyledExternalLink>
+                    </ListItem>
+
+                    <ListItem>
+                      <StyledExternalLink
+                        href={social.linkedIn.url}
+                        aria-label={`${social.linkedIn.label} profile`}
+                      >
+                        <LinkedInIcon />
+                        <Text>{social.linkedIn.handle}</Text>
+                      </StyledExternalLink>
+                    </ListItem>
+                  </List>
+                </nav>
               </Block>
 
               <Block aria-labelledby="cv-education">
