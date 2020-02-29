@@ -6,7 +6,7 @@ import Div100vh from 'react-div-100vh';
 import { Layout } from '../components/Layout';
 import { Social } from '../components/Social';
 import { ExternalLink } from '../components/Link';
-import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
+import { SEO } from '../components/SEO';
 import lightbulbs from '../assets/images/lightbulbs.png';
 import { H1, Text } from '../styles/typography';
 
@@ -81,7 +81,7 @@ export default function Home({ data }) {
 
   return (
     <Layout>
-      <TitleAndMetaTags />
+      <SEO />
       <GlobalStyles />
       <Wrapper>
         <Main>

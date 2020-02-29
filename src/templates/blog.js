@@ -4,7 +4,7 @@ import { rgba } from 'polished';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { Layout } from '../components/Layout';
-import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
+import { SEO } from '../components/SEO';
 import { H2, Text } from '../styles/typography';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { COLORS } from '../styles/colors';
@@ -74,7 +74,7 @@ function BlogTemplate({ data }) {
 
   return (
     <Layout>
-      <TitleAndMetaTags title={frontmatter.title} pathname={frontmatter.path} />
+      <SEO title={frontmatter.title} pathname={frontmatter.path} />
 
       <Wrapper>
         <Main>

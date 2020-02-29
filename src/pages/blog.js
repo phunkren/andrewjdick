@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { position, rgba } from 'polished';
 import { graphql } from 'gatsby';
 import { BlogPreview } from '../components/BlogPreview';
-import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
+import { SEO } from '../components/SEO';
 import { Layout } from '../components/Layout';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { H1 } from '../styles/typography';
@@ -62,7 +62,7 @@ export default function Blog({ data }) {
 
   return (
     <Layout>
-      <TitleAndMetaTags title="Blog" pathname="blog" />
+      <SEO title="Blog" pathname="blog" />
       <Main>
         <H1 id="blog" css="margin-bottom: 1em;">
           Blog
