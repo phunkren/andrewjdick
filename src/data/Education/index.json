@@ -1,0 +1,16 @@
+{
+  "education": [
+    {
+      "qualification": "BSc (Hons) 2.1",
+      "course": "Audio Technology & Multimedia",
+      "institute": "Glasgow Caledonian University",
+      "dates": "2010 - 2014"
+    },
+    {
+      "qualification": "Graduate",
+      "course": "Frontend Nanodegree",
+      "institute": "Udacity",
+      "dates": "2016"
+    }
+  ]
+}

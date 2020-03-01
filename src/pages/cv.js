@@ -1,22 +1,43 @@
 import React from 'react';
 import { isBrowser, isIE } from 'react-device-detect';
+import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import { rgba } from 'polished';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import { Layout } from '../components/Layout';
 import cv from '../assets/documents/Andrew James CV.pdf';
 import { formatId } from '../utils/formatId';
+import {
+  EmailIcon,
+  GitHubIcon,
+  LinkedInIcon,
+  HomeIcon,
+} from '../components/icons';
 import { ExternalLink, DownloadLink } from '../components/Link';
 import { ColouredContainer } from '../components/ColouredContainer';
 import { IconButton } from '../components/Button';
 import { DownloadIcon, PrintIcon } from '../components/icons';
 import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
-import { Contact } from '../components/Contact';
 import { COLORS } from '../styles/colors';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { H1, H2, H3, H4, Text } from '../styles/typography';
-import { CONTACT_DETAILS } from '../constants';
-import { EDUCATION, EXPERIENCE, EXPERTISE, INTERESTS, HOBBIES } from '../data';
+
+const List = styled.ul`
+  margin-bottom: 2em;
+`;
+
+const ListItem = styled.li`
+  margin-bottom: 1em;
+
+  ${Text} {
+    margin-left: 1em;
+  }
+`;
+
+const StyledExternalLink = styled(ExternalLink)`
+  display: flex;
+  align-items: center;
+`;
 
 const Container = styled.div`
   flex: 1;
@@ -184,8 +205,17 @@ const Dates = styled(Text)`
   `};
 `;
 
-export default function CV() {
-  const { name, position, location } = CONTACT_DETAILS;
+export default function CV({ data }) {
+  const { education } = data.educationJson;
+  const { experience } = data.experienceJson;
+  const { social } = data.socialJson;
+  const { author, siteUrl } = data.site.siteMetadata;
+
+  const currentPosition = experience[0].position;
+  const siteDisplayUrl = siteUrl.split('https://')[1];
+  const expertise = ['html', 'css/scss', 'javascript', 'react'];
+  const interests = ['react native', 'gatsbyjs', 'graphQL', 'css-in-js'];
+  const hobbies = ['cycling', 'guitar', 'video games', 'rugby'];
 
   function handleCvPrint() {
     trackCustomEvent({
@@ -211,9 +241,9 @@ export default function CV() {
         <Container as="main">
           <Title>
             <div>
-              <H1>{name}</H1>
+              <H1>{author.name}</H1>
               <Text as="p">
-                {position} | {location}
+                {currentPosition} | {author.location}
               </Text>
             </div>
 
@@ -238,12 +268,54 @@ export default function CV() {
             <Sidebar>
               <Block aria-labelledby="cv-contact">
                 <BlockHeader id="cv-contact">Contact</BlockHeader>
-                <Contact />
+                <nav aria-label="Contact">
+                  <List>
+                    <ListItem>
+                      <StyledExternalLink
+                        href={`mailto:${author.email}`}
+                        aria-label="Email me"
+                      >
+                        <EmailIcon />
+                        <Text>{author.email}</Text>
+                      </StyledExternalLink>
+                    </ListItem>
+
+                    <ListItem>
+                      <StyledExternalLink
+                        href={siteUrl}
+                        aria-label="Return to homepage"
+                      >
+                        <HomeIcon />
+                        <Text>{siteDisplayUrl}</Text>
+                      </StyledExternalLink>
+                    </ListItem>
+
+                    <ListItem>
+                      <StyledExternalLink
+                        href={social.github.url}
+                        aria-label={`${social.github.label} profile`}
+                      >
+                        <GitHubIcon />
+                        <Text>{social.github.handle}</Text>
+                      </StyledExternalLink>
+                    </ListItem>
+
+                    <ListItem>
+                      <StyledExternalLink
+                        href={social.linkedIn.url}
+                        aria-label={`${social.linkedIn.label} profile`}
+                      >
+                        <LinkedInIcon />
+                        <Text>{social.linkedIn.handle}</Text>
+                      </StyledExternalLink>
+                    </ListItem>
+                  </List>
+                </nav>
               </Block>
 
               <Block aria-labelledby="cv-education">
                 <BlockHeader id="cv-education">Education</BlockHeader>
-                {EDUCATION.map(
+                {education.map(
                   ({ qualification, course, institute, dates }) => (
                     <Block
                       key={institute}
@@ -268,7 +340,7 @@ export default function CV() {
               <Block aria-labelledby="cv-expertise">
                 <BlockHeader id="cv-expertise">Expertise</BlockHeader>
                 <TagContainer>
-                  {EXPERTISE.map((skill, index) => (
+                  {expertise.map((skill, index) => (
                     <Tag key={`Skill-${index}`}>{skill}</Tag>
                   ))}
                 </TagContainer>
@@ -277,7 +349,7 @@ export default function CV() {
               <Block aria-labelledby="cv-interests">
                 <BlockHeader id="cv-interests">Interests</BlockHeader>
                 <TagContainer>
-                  {INTERESTS.map((interest, index) => (
+                  {interests.map((interest, index) => (
                     <Tag key={`Interest-${index}`}>{interest}</Tag>
                   ))}
                 </TagContainer>
@@ -286,7 +358,7 @@ export default function CV() {
               <Block aria-labelledby="cv-hobbies">
                 <BlockHeader id="cv-hobbies">Hobbies</BlockHeader>
                 <TagContainer>
-                  {HOBBIES.map((hobby, index) => (
+                  {hobbies.map((hobby, index) => (
                     <Tag key={`Hobby-${index}`}>{hobby}</Tag>
                   ))}
                 </TagContainer>
@@ -320,8 +392,8 @@ export default function CV() {
 
               <Block>
                 <BlockHeader id="cv-experience">Experience</BlockHeader>
-                {EXPERIENCE.map(
-                  ({ position, company, url, dates, description }) => (
+                {experience.map(
+                  ({ position, company, url, dates, blurb, portfolio }) => (
                     <Block
                       key={company}
                       aria-labelledby={`cv-experience exp-${formatId(company)}`}
@@ -337,7 +409,19 @@ export default function CV() {
                         </ExternalLink>{' '}
                         <Dates>{dates}</Dates>
                       </Text>
-                      <Description>{description()}</Description>
+                      <Description>
+                        <Text as="p">{blurb}</Text>
+                        <H4>Notable work</H4>
+                        <ul>
+                          {portfolio.map(({ name, href }) => (
+                            <li key={name}>
+                              <ExternalLink href={href} highlight>
+                                {name}
+                              </ExternalLink>
+                            </li>
+                          ))}
+                        </ul>
+                      </Description>
                     </Block>
                   ),
                 )}
@@ -349,3 +433,53 @@ export default function CV() {
     </Layout>
   );
 }
+
+export const query = graphql`
+  query CvQuery {
+    site {
+      siteMetadata {
+        author {
+          name
+          location
+          email
+        }
+        siteUrl
+      }
+    }
+    educationJson {
+      education {
+        course
+        dates
+        institute
+        qualification
+      }
+    }
+    experienceJson {
+      experience {
+        blurb
+        company
+        dates
+        portfolio {
+          href
+          name
+        }
+        position
+        url
+      }
+    }
+    socialJson {
+      social {
+        github {
+          handle
+          label
+          url
+        }
+        linkedIn {
+          handle
+          label
+          url
+        }
+      }
+    }
+  }
+`;

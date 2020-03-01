@@ -1,10 +1,22 @@
 const config = {
+  siteMetadata: {
+    title: `Andrew James`,
+    description: `My personal website`,
+    author: {
+      name: `Andrew James`,
+      email: `contact@ajames.dev`,
+      location: `London, UK`,
+      summary: `Frontend engineer living and working in London.`,
+    },
+    siteUrl: `https://ajames.dev`,
+  },
   plugins: [
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-netlify`,
     `gatsby-plugin-react-axe`,
     `gatsby-transformer-sharp`,
+    `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -17,6 +29,13 @@ const config = {
       options: {
         name: `assets`,
         path: `${__dirname}/src/assets`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `${__dirname}/src/data`,
       },
     },
     {

@@ -1,0 +1,24 @@
+{
+  "social": {
+    "github": {
+      "handle": "phunkren",
+      "url": "https://github.com/phunkren/",
+      "label": "GitHub"
+    },
+    "linkedIn": {
+      "handle": "Andrew James",
+      "url": "https://www.linkedin.com/in/ajamesdev/",
+      "label": "LinkedIn"
+    },
+    "medium": {
+      "handle": "@phunkren",
+      "url": "https://medium.com/@phunkren/",
+      "label": "Medium"
+    },
+    "twitter": {
+      "handle": "@phunkren",
+      "url": "https://twitter.com/phunkren/",
+      "label": "Twitter"
+    }
+  }
+}
