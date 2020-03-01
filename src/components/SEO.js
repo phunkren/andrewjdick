@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql, StaticQuery } from 'gatsby';
 
-export const SEO = ({ title, description, image, pathname, meta, article }) => (
+export const SEO = ({ title, description, image, pathname, article }) => (
   <StaticQuery
     query={query}
     render={({
@@ -30,49 +30,27 @@ export const SEO = ({ title, description, image, pathname, meta, article }) => (
         type: article ? 'article' : 'website',
       };
 
-      const seoMeta = [
-        {
-          name: `description`,
-          content: seo.description,
-        },
-        {
-          property: `og:title`,
-          content: seo.title,
-        },
-        {
-          property: `og:description`,
-          content: seo.description,
-        },
-        {
-          property: `og:type`,
-          content: seo.type,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: twitterHandle,
-        },
-        {
-          name: `twitter:title`,
-          content: seo.title,
-        },
-        {
-          name: `twitter:description`,
-          content: seo.description,
-        },
-        ...meta,
-      ];
-
       return (
-        <Helmet
-          htmlAttributes={{ lang: 'en' }}
-          title={seo.title}
-          titleTemplate={title && titleTemplate}
-          meta={seoMeta}
-        />
+        <>
+          <Helmet
+            htmlAttributes={{ lang: 'en' }}
+            title={seo.title}
+            titleTemplate={title && titleTemplate}
+          >
+            <meta name="description" content={seo.description} />
+            <meta name="image" content={seo.image} />
+            <meta property="og:url" content={seo.url} />
+            <meta property="og:type" content={seo.type} />
+            <meta property="og:title" content={seo.title} />
+            <meta property="og:description" content={seo.description} />
+            <meta property="og:image" content={seo.image} />
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:creator" content={twitterHandle} />
+            <meta name="twitter:title" content={seo.title} />
+            <meta name="twitter:description" content={seo.description} />
+            <meta name="twitter:image" content={seo.image} />
+          </Helmet>
+        </>
       );
     }}
   />
@@ -104,21 +82,6 @@ SEO.defaultProps = {
   title: null,
   description: null,
   image: null,
-  meta: [],
   pathname: null,
   article: false,
 };
-
-//  <meta name="description" content={seo.description} />
-// <meta name="image" content={seo.image} />
-// <meta property="og:url" content={seo.url} />
-// <meta property="og:type" content={seo.type} />
-// <meta property="og:title" content={seo.title} />
-// <meta property="og:description" content={seo.description} />
-// <meta property="og:image" content={seo.image} />
-// <meta name="twitter:card" content="summary" />
-// <meta name="twitter:creator" content={twitterHandle} />
-// <meta name="twitter:title" content={seo.title} />
-// <meta name="twitter:description" content={seo.description} />
-// <meta name="twitter:image" content={seo.image} />
-// </Helmet>
