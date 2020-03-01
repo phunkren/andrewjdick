@@ -21,11 +21,12 @@ export const SEO = ({ title, description, image, pathname, article }) => (
           twitter: { twitterHandle, twitterUrl },
         },
       },
+      fileName: { imagePath },
     }) => {
       const seo = {
         title: title || defaultTitle,
         description: description || defaultDescription,
-        image: `${siteUrl}${image || defaultImage}`,
+        image: image ? `${siteUrl}${image}` : imagePath,
         url: `${siteUrl}${pathname || '/'}`,
         type: article ? 'article' : 'website',
       };
@@ -44,11 +45,11 @@ export const SEO = ({ title, description, image, pathname, article }) => (
             <meta property="og:title" content={seo.title} />
             <meta property="og:description" content={seo.description} />
             <meta property="og:image" content={seo.image} />
-            <meta name="twitter:card" content="summary" />
-            <meta name="twitter:creator" content={twitterHandle} />
-            <meta name="twitter:title" content={seo.title} />
-            <meta name="twitter:description" content={seo.description} />
-            <meta name="twitter:image" content={seo.image} />
+            <meta property="twitter:card" content="summary" />
+            <meta property="twitter:creator" content={twitterHandle} />
+            <meta property="twitter:title" content={seo.title} />
+            <meta property="twitter:description" content={seo.description} />
+            <meta property="twitter:image" content={seo.image} />
           </Helmet>
         </>
       );
@@ -74,6 +75,9 @@ const query = graphql`
           twitterUrl: url
         }
       }
+    }
+    fileName: file(relativePath: { eq: "images/logo.png" }) {
+      imagePath: absolutePath
     }
   }
 `;
