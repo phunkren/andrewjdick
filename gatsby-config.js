@@ -3,13 +3,14 @@ const config = {
     title: `Andrew James`,
     titleTemplate: `Andrew James | %s`,
     description: `Frontend engineer living and working in London.`,
+    url: `https://ajames.dev`,
+    image: '/images/logo.jpg',
+    twitterUsername: '@phunkren',
     author: {
       name: `Andrew James`,
       email: `contact@ajames.dev`,
       location: `London, UK`,
     },
-    siteUrl: `https://ajames.dev`,
-    image: '/images/logo.png',
   },
   plugins: [
     `gatsby-plugin-styled-components`,

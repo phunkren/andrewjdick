@@ -4,7 +4,7 @@ import { rgba } from 'polished';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { Layout } from '../components/Layout';
-import { SEO } from '../components/SEO';
+import SEO from '../components/SEO';
 import { H2, Text } from '../styles/typography';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { COLORS } from '../styles/colors';
