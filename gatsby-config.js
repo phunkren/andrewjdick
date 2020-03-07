@@ -4,7 +4,7 @@ const config = {
     titleTemplate: `Andrew James | %s`,
     description: `Frontend engineer living and working in London.`,
     url: `https://ajames.dev`,
-    image: '/images/logo.jpg',
+    image: '/assets/images/logo.jpg',
     twitterUsername: '@phunkren',
     author: {
       name: `Andrew James`,
