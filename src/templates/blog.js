@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { rgba } from 'polished';
+import { rgba, position } from 'polished';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { Layout } from '../components/Layout';
@@ -42,8 +42,53 @@ const Main = styled.main`
 `;
 
 const Section = styled.section`
+  p {
+    font-size: 1.25rem;
+    line-height: 2rem;
+  }
+
   a {
     color: inherit;
+    position: relative;
+    text-decoration: none;
+    background: linear-gradient(
+      180deg,
+      ${rgba(COLORS.white, 0)} 95%,
+      ${COLORS.cadetBlue} 5%
+    );
+
+    &::before {
+      content: '';
+      ${position('absolute', '0', '0', '0', '0')};
+      opacity: 0;
+      z-index: -1;
+    }
+
+    &:hover {
+      color: inherit;
+
+      &::before {
+        opacity: 1;
+        background: linear-gradient(
+          180deg,
+          ${rgba(COLORS.white, 0)} 66%,
+          ${COLORS.cadetBlue} 33%
+        );
+      }
+    }
+
+    &:active {
+      color: inherit;
+
+      &::before {
+        opacity: 1;
+        background: linear-gradient(
+          180deg,
+          ${rgba(COLORS.white, 0)} 1%,
+          ${COLORS.cadetBlue} 99%
+        );
+      }
+    }
   }
 
   figcaption {
@@ -59,12 +104,21 @@ const Section = styled.section`
     margin: 2em auto 0;
   }
 
-  code {
-    font-size: 1rem;
+  p > code[class*='language-'] {
+    font-size: 0.95rem;
+    border-radius: 0.25rem;
+    color: ${COLORS.cadetBlue};
+    padding: 4px;
+    background-color: ${rgba(COLORS.cadetBlue, 0.1)};
+  }
+
+  pre > code[class*='language-'] {
+    font-size: 0.75rem;
+    line-height: normal;
   }
 
   & > * + * {
-    margin-top: 1em;
+    margin-top: 2rem;
   }
 `;
 
@@ -92,6 +146,7 @@ function BlogTemplate({ data }) {
                 role="img"
                 alt={frontmatter.imageAlt}
                 fluid={frontmatter.image.childImageSharp.fluid}
+                css="margin: 4rem 0;"
               />
             </div>
 
