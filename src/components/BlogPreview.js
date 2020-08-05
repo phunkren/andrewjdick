@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { formatId } from '../utils/formatId';
 import { H3, Text } from '../styles/typography';
-import { COLORS } from '../styles/colors';
 import { MEDIA } from '../styles/media';
 import { Link } from './Link';
 
@@ -35,12 +34,7 @@ const PreviewContent = styled.div`
 `;
 
 const RawBlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
-  <Preview
-    css={`
-      color: ${COLORS.black};
-    `}
-    aria-labelledby={`blog post-${formatId(frontmatter.title)}`}
-  >
+  <Preview aria-labelledby={`blog post-${formatId(frontmatter.title)}`}>
     <PreviewImage aria-hidden="true">
       <Img role="img" alt="" fluid={frontmatter.image.childImageSharp.fluid} />
     </PreviewImage>
@@ -51,7 +45,7 @@ const RawBlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
           {frontmatter.title}
         </H3>
 
-        <div>
+        <div css="color: var(--color-gray-600);">
           <Text>{frontmatter.date}</Text> |{' '}
           <Text>{fields.readingTime.text}</Text>
         </div>
@@ -64,10 +58,7 @@ const RawBlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
       <Link
         to={frontmatter.path}
         aria-label="Click to read the article in full"
-        css={`
-          display: inline-block;
-          color: ${COLORS.cadetBlue};
-        `}
+        css="display: inline-block; color: var(--color-blue-600);"
       >
         Read more →
       </Link>

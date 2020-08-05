@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { rgba, position } from 'polished';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { Layout } from '../components/Layout';
 import SEO from '../components/SEO';
 import { H2, Text } from '../styles/typography';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { COLORS } from '../styles/colors';
+import { linkStyles, highlightStyles } from '../components/Link';
 
 const Wrapper = styled.div`
   flex: 1;
@@ -47,55 +46,16 @@ const Section = styled.section`
     line-height: 2rem;
   }
 
-  a {
-    color: inherit;
-    position: relative;
-    text-decoration: none;
-    background: linear-gradient(
-      180deg,
-      ${rgba(COLORS.white, 0)} 95%,
-      ${COLORS.cadetBlue} 5%
-    );
-
-    &::before {
-      content: '';
-      ${position('absolute', '0', '0', '0', '0')};
-      opacity: 0;
-      z-index: -1;
-    }
-
-    &:hover {
-      color: inherit;
-
-      &::before {
-        opacity: 1;
-        background: linear-gradient(
-          180deg,
-          ${rgba(COLORS.white, 0)} 66%,
-          ${COLORS.cadetBlue} 33%
-        );
-      }
-    }
-
-    &:active {
-      color: inherit;
-
-      &::before {
-        opacity: 1;
-        background: linear-gradient(
-          180deg,
-          ${rgba(COLORS.white, 0)} 1%,
-          ${COLORS.cadetBlue} 99%
-        );
-      }
-    }
+  a:not(.gatsby-resp-image-link) {
+    ${linkStyles};
+    ${highlightStyles};
   }
 
   figcaption {
     margin-top: 0.5em;
     font-size: 1rem;
     text-align: center;
-    color: ${rgba(COLORS.black, 0.5)};
+    color: var(--color-black);
   }
 
   iframe,
@@ -107,9 +67,9 @@ const Section = styled.section`
   p > code[class*='language-'] {
     font-size: 0.95rem;
     border-radius: 0.25rem;
-    color: ${COLORS.cadetBlue};
+    color: var(--color-indigo-600);
     padding: 4px;
-    background-color: ${rgba(COLORS.cadetBlue, 0.1)};
+    background-color: var(--color-indigo-200);
   }
 
   pre > code[class*='language-'] {
@@ -137,12 +97,14 @@ function BlogTemplate({ data }) {
       <Wrapper>
         <Main>
           <article>
-            <div>
-              <H2 as="h1" css="margin-bottom: 0.25em;">
-                {frontmatter.title}
-              </H2>
+            <H2 as="h1" css="margin-bottom: 0.25em;">
+              {frontmatter.title}
+            </H2>
+            <div css="color: var(--color-gray-600);">
               <Text>{frontmatter.date}</Text> |{' '}
-              <Text>{fields.readingTime.text}</Text>
+              <Text css="color: var(--color-gray-600);">
+                {fields.readingTime.text}
+              </Text>
             </div>
 
             <div aria-hidden="true">

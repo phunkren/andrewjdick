@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { rgba, position } from 'polished';
+import { position } from 'polished';
 import { Social } from '../components/Social';
 import { MEDIA } from '../styles/media';
-import { COLORS } from '../styles/colors';
 import { Link } from './Link';
 
 const ListItem = styled.li`
@@ -23,7 +22,7 @@ const List = styled.ul`
       content: '|';
       position: absolute;
       left: -1em;
-      color: ${rgba(COLORS.black, 0.25)};
+      color: var(--color-gray-400);
       transform: translateX(-50%);
     }
   }

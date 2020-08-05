@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { position, rgba } from 'polished';
+import { position } from 'polished';
 import { graphql } from 'gatsby';
 import { BlogPreview } from '../components/BlogPreview';
 import SEO from '../components/SEO';
 import { Layout } from '../components/Layout';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { H1 } from '../styles/typography';
-import { COLORS } from '../styles/colors';
 
 const Main = styled.main`
   flex: 1;
@@ -33,10 +32,10 @@ const List = styled.ul`
     padding-top: 2em;
 
     &::before {
-      ${position('absolute', '0', '0', null, '0')};
+      ${position('absolute', '0', '5%', null, '5%')};
       content: "";
       height: 1px;
-      background-color: ${rgba(COLORS.black, 0.5)};
+      background-color: var(--color-gray-200);
     }
   }
 

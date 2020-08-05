@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { BreadcrumbContext } from '../contexts/breadcrumb';
-import { COLORS } from '../styles/colors';
 
 const Items = styled.ol`
   margin: 0;
@@ -25,7 +24,7 @@ const Item = styled.li`
 `;
 
 const ItemLink = styled(Link)`
-  color: ${COLORS.cadetBlue};
+  color: var(--color-blue-400);
   text-decoration: none;
   border-bottom: 1px solid transparent;
 

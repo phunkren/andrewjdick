@@ -1,6 +1,4 @@
 import styled, { css } from 'styled-components';
-import { rgba } from 'polished';
-import { COLORS } from '../styles/colors';
 import { ALPHAS } from '../styles/alphas';
 
 const buttonStyles = css`
@@ -11,7 +9,6 @@ const buttonStyles = css`
   padding: 1em 2em;
   border: none;
   text-decoration: none;
-  color: inherit;
   cursor: pointer;
   transition: color 200ms ease-out, transform 150ms ease;
 
@@ -22,15 +19,6 @@ const buttonStyles = css`
     opacity: ${ALPHAS.disabled};
     pointer-events: none;
   }
-
-  &:active {
-    outline: 2px solid ${COLORS.wedgewood};
-    transform: scale(0.9);
-  }
-
-  &:focus {
-    outline: 2px solid ${COLORS.wedgewood};
-  }
 `;
 
 export const IconButton = styled.button(
@@ -40,17 +28,14 @@ export const IconButton = styled.button(
     background-color: transparent;
     min-width: 44px;
     min-height: 44px;
-
-    &:focus {
-      color: ${rgba(COLORS.cadetBlue, ALPHAS.focus)};
-    }
+    color: inherit;
 
     &:hover {
-      color: ${rgba(COLORS.cadetBlue, ALPHAS.hover)};
+      color: var(--color-blue-600);
     }
 
     &:active {
-      color: ${rgba(COLORS.cadetBlue, ALPHAS.pressed)};
+      color: var(--color-orange-400);
     }
   `,
 );
