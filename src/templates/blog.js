@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { rgba, position } from 'polished';
+import { position } from 'polished';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { Layout } from '../components/Layout';
 import SEO from '../components/SEO';
 import { H2, Text } from '../styles/typography';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { COLORS } from '../styles/colors';
 
 const Wrapper = styled.div`
   flex: 1;
@@ -53,8 +52,8 @@ const Section = styled.section`
     text-decoration: none;
     background: linear-gradient(
       180deg,
-      ${rgba(COLORS.white, 0)} 95%,
-      ${COLORS.cadetBlue} 5%
+      var(--color-white) 95%,
+      var(--color-cadetBlue) 5%
     );
 
     &::before {
@@ -71,8 +70,8 @@ const Section = styled.section`
         opacity: 1;
         background: linear-gradient(
           180deg,
-          ${rgba(COLORS.white, 0)} 66%,
-          ${COLORS.cadetBlue} 33%
+          var(--color-white) 66%,
+          var(--color-cadetBlue) 33%
         );
       }
     }
@@ -84,8 +83,8 @@ const Section = styled.section`
         opacity: 1;
         background: linear-gradient(
           180deg,
-          ${rgba(COLORS.white, 0)} 1%,
-          ${COLORS.cadetBlue} 99%
+          var(--color-white) 1%,
+          var(--color-cadetBlue) 99%
         );
       }
     }
@@ -95,7 +94,7 @@ const Section = styled.section`
     margin-top: 0.5em;
     font-size: 1rem;
     text-align: center;
-    color: ${rgba(COLORS.black, 0.5)};
+    color: var(--color-black);
   }
 
   iframe,
@@ -107,9 +106,9 @@ const Section = styled.section`
   p > code[class*='language-'] {
     font-size: 0.95rem;
     border-radius: 0.25rem;
-    color: ${COLORS.cadetBlue};
+    color: var(--color-cadetBlue);
     padding: 4px;
-    background-color: ${rgba(COLORS.cadetBlue, 0.1)};
+    background-color: var(--color-cadetBlue);
   }
 
   pre > code[class*='language-'] {

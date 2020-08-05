@@ -2,7 +2,6 @@ import React, { Fragment, useState } from 'react';
 import { Transition } from 'react-spring/renderprops';
 import { animated } from 'react-spring';
 import styled, { createGlobalStyle, css } from 'styled-components';
-import { rgba } from 'polished';
 import { Link } from 'gatsby';
 import { reset } from 'modern-css-reset';
 import { Logo } from '../components/Logo';
@@ -13,10 +12,17 @@ import { HamburgerIcon } from './icons/HamburgerIcon';
 import Roboto from '../assets/fonts/Roboto-Regular.woff2';
 import Rubik from '../assets/fonts/Rubik-Regular.woff2';
 import { MEDIA } from '../styles/media';
-import { COLORS } from '../styles/colors';
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
+
+  :root { 
+    --color-black: #1d1d1c;
+    --color-white: #fcfcfc;
+    --color-cadetBlue: #5f9ea0;
+    --color-hippyBlue: #4D91A9;
+    --color-wedgewood: #5681ab;
+  }
 
   @font-face {
     src: url(${Rubik}) format('woff2');
@@ -38,17 +44,17 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Roboto', serif;
     font-size: 16px;
     font-size: 1rem;
-    color: ${rgba(COLORS.black, 0.9)};
-    background-color: ${COLORS.white};
+    color: var(--color-black);
+    background-color: var(--color-white);
     width: 100%;
   
 
     *::selection {
-      background: ${rgba(COLORS.wedgewood, 0.25)};
+      var(--color-wedgewood);
     }
 
     *::moz-selection {
-      background: ${rgba(COLORS.wedgewood, 0.25)};
+      background: var(--color-wedgewood);
     }
 
     ${MEDIA.desktopWide`
@@ -69,7 +75,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   h1, h2, h3, h4 {
-    color: ${COLORS.black};
+    color: var(--color-black);
     font-family: 'Rubik', sans-serif;
     font-weight: 300;
   }
@@ -94,7 +100,7 @@ const Header = styled.header(({ isNavOpen }) => [
   `,
   isNavOpen &&
     css`
-      background-color: ${COLORS.white};
+      background-color: var(--color-white);
     `,
 ]);
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { isBrowser, isIE } from 'react-device-detect';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import { rgba } from 'polished';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import { Layout } from '../components/Layout';
 import cv from '../assets/documents/Andrew James CV.pdf';
@@ -18,7 +17,6 @@ import { ColouredContainer } from '../components/ColouredContainer';
 import { IconButton } from '../components/Button';
 import { DownloadIcon, PrintIcon } from '../components/icons';
 import SEO from '../components/SEO';
-import { COLORS } from '../styles/colors';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { H1, H2, H3, H4, Text } from '../styles/typography';
 
@@ -45,10 +43,10 @@ const Container = styled.div`
   flex-direction: column;
   max-width: ${BREAKPOINTS.desktopWide}px;
   margin: 0 auto;
-  background-color: ${COLORS.white};
+  background-color: var(--color-white);
 
   ${MEDIA.desktopWide`
-    box-shadow: 0px 0px 5px 1px ${rgba(COLORS.black, 0.5)};
+    box-shadow: 0px 0px 5px 1px var(--color-black);
   `}
 `;
 
@@ -92,8 +90,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column-reverse;
   padding: 1em;
-  border-top: 5px solid ${COLORS.black};
-  border-bottom: 5px solid ${COLORS.black};
+  border-top: 5px solid var(--color-black);
+  border-bottom: 5px solid var(--color-black);
 
   ${MEDIA.tablet`
     display: inline-flex;
@@ -111,13 +109,13 @@ const Wrapper = styled.div`
 const Sidebar = styled.div`
   ${MEDIA.tablet`
     flex: 0 1 33%;
-    border-right: 2px solid ${COLORS.black};
+    border-right: 2px solid var(--color-black);
     padding: 0 2em 0 0;
   `};
 
   ${MEDIA.print`
     flex: 0 1 33%;
-    border-right: 2px solid ${COLORS.black};
+    border-right: 2px solid var(--color-black);
     padding: 0 2em 0 0;
   `};
 `;
@@ -142,7 +140,7 @@ const Block = styled.section`
 
 const BlockHeader = styled(H2)`
   margin-bottom: 0.75em;
-  border-bottom: 1px solid ${COLORS.black};
+  border-bottom: 1px solid var(--color-black);
 `;
 
 const Description = styled.div`
@@ -165,10 +163,10 @@ const Tag = styled(Text).attrs(() => ({
   border-radius: 4px;
   text-transform: uppercase;
   text-align: center;
-  background-color: ${rgba(COLORS.black, 0.1)};
+  background-color: var(--color-black);
 
   ${MEDIA.print`
-    border: 1px solid ${COLORS.black};
+    border: 1px solid var(--color-black);
     background-color: transparent;
   `}
 `;

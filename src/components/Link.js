@@ -1,10 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { position, rgba } from 'polished';
+import { position } from 'polished';
 import { Link as RouterLink } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { ALPHAS } from '../styles/alphas';
-import { COLORS } from '../styles/colors';
 
 const linkStyles = css`
   color: inherit;
@@ -17,17 +16,17 @@ const linkStyles = css`
   }
 
   &:hover {
-    color: ${rgba(COLORS.cadetBlue, ALPHAS.hover)};
+    color: var(--color-cadetBlue);
   }
 
   &:focus {
-    outline: 2px solid ${COLORS.wedgewood};
-    color: ${rgba(COLORS.cadetBlue, ALPHAS.focus)};
+    outline: 2px solid var(--color-wedgewood);
+    color: var(--color-cadetBlue);
   }
 
   &:active {
-    outline: 2px solid ${COLORS.wedgewood};
-    color: ${rgba(COLORS.cadetBlue, ALPHAS.pressed)};
+    outline: 2px solid var(--color-wedgewood);
+    color: var(--color-cadetBlue);
   }
 `;
 
@@ -48,8 +47,8 @@ export const ExternalLink = styled(({ highlight, ...props }) => (
       position: relative;
       background: linear-gradient(
         180deg,
-        ${rgba(COLORS.white, 0)} 95%,
-        ${COLORS.cadetBlue} 5%
+        var(--color-white) 95%,
+        var(--color-cadetBlue) 5%
       );
 
       &::before {
@@ -66,8 +65,8 @@ export const ExternalLink = styled(({ highlight, ...props }) => (
           opacity: 1;
           background: linear-gradient(
             180deg,
-            ${rgba(COLORS.white, 0)} 66%,
-            ${COLORS.cadetBlue} 33%
+            var(--color-white) 66%,
+            var(--color-cadetBlue) 33%
           );
         }
       }
@@ -79,8 +78,8 @@ export const ExternalLink = styled(({ highlight, ...props }) => (
           opacity: 1;
           background: linear-gradient(
             180deg,
-            ${rgba(COLORS.white, 0)} 1%,
-            ${COLORS.cadetBlue} 99%
+            var(--color-white) 1%,
+            var(--color-cadetBlue) 99%
           );
         }
       }

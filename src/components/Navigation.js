@@ -1,9 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-import { rgba, position } from 'polished';
+import styled, { css } from 'styled-components';
+import { position } from 'polished';
 import { Social } from '../components/Social';
 import { MEDIA } from '../styles/media';
-import { COLORS } from '../styles/colors';
 import { Link } from './Link';
 
 const ListItem = styled.li`
@@ -23,7 +22,7 @@ const List = styled.ul`
       content: '|';
       position: absolute;
       left: -1em;
-      color: ${rgba(COLORS.black, 0.25)};
+      color: var(--color-black);
       transform: translateX(-50%);
     }
   }
@@ -69,14 +68,32 @@ const MobileNav = styled.nav`
   `}
 `;
 
+const linkProps = ({ isPartiallyCurrent }) =>
+  isPartiallyCurrent ? { classwerk: 'goat' } : { classwerk: 'potato' };
+
+const StyledLink = styled(Link)(props => {
+  console.log(props);
+
+  return [
+    props.className === 'goat' &&
+      css`
+        color: blue;
+      `,
+  ];
+});
+
 const RawNavigation = props => (
   <Nav aria-label="Main" {...props}>
     <List>
       <ListItem>
-        <Link to="/blog">Blog</Link>
+        <StyledLink partiallyActive to="/blog">
+          Blog
+        </StyledLink>
       </ListItem>
       <ListItem>
-        <Link to="/cv">Résumé</Link>
+        <StyledLink getProps={linkProps} to="/cv">
+          Résumé
+        </StyledLink>
       </ListItem>
     </List>
   </Nav>
@@ -86,10 +103,14 @@ const RawMobileNavigation = props => (
   <MobileNav aria-label="Main" {...props}>
     <MobileList>
       <ListItem>
-        <Link to="/blog">Blog</Link>
+        <StyledLink getProps={linkProps} to="/blog">
+          Blog
+        </StyledLink>
       </ListItem>
       <ListItem>
-        <Link to="/cv">Résumé</Link>
+        <StyledLink getProps={linkProps} to="/cv">
+          Résumé
+        </StyledLink>
       </ListItem>
     </MobileList>
     <Social css="margin: auto auto 0" aria-label="Social (navigation)" />

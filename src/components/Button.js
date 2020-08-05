@@ -1,6 +1,4 @@
 import styled, { css } from 'styled-components';
-import { rgba } from 'polished';
-import { COLORS } from '../styles/colors';
 import { ALPHAS } from '../styles/alphas';
 
 const buttonStyles = css`
@@ -24,12 +22,12 @@ const buttonStyles = css`
   }
 
   &:active {
-    outline: 2px solid ${COLORS.wedgewood};
+    outline: 2px solid var(--color-wedgewood);
     transform: scale(0.9);
   }
 
   &:focus {
-    outline: 2px solid ${COLORS.wedgewood};
+    outline: 2px solid var(--color-wedgewood);
   }
 `;
 
@@ -42,15 +40,15 @@ export const IconButton = styled.button(
     min-height: 44px;
 
     &:focus {
-      color: ${rgba(COLORS.cadetBlue, ALPHAS.focus)};
+      color: var(--color-cadetBlue);
     }
 
     &:hover {
-      color: ${rgba(COLORS.cadetBlue, ALPHAS.hover)};
+      color: var(--color-cadetBlue);
     }
 
     &:active {
-      color: ${rgba(COLORS.cadetBlue, ALPHAS.pressed)};
+      color: var(--color-cadetBlue);
     }
   `,
 );
