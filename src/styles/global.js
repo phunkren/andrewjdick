@@ -73,11 +73,15 @@ export const GlobalStyles = createGlobalStyle`
   
 
     *::selection {
-      background: var(--color-green-200);
+      background: var(--color-orange-200);
     }
 
     *::moz-selection {
-      background: var(--color-green-200);
+      background: var(--color-orange-200);
+    }
+
+    *:focus {
+      outline: 2px solid var(--color-blue-600);
     }
 
     ${MEDIA.desktopWide`
@@ -101,4 +105,5 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Rubik', sans-serif;
     font-weight: 300;
   }
+
 `;

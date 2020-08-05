@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { position } from 'polished';
 import { Social } from '../components/Social';
 import { MEDIA } from '../styles/media';
@@ -22,7 +22,7 @@ const List = styled.ul`
       content: '|';
       position: absolute;
       left: -1em;
-      color: var(--color-black);
+      color: var(--color-gray-400);
       transform: translateX(-50%);
     }
   }
@@ -68,32 +68,14 @@ const MobileNav = styled.nav`
   `}
 `;
 
-const linkProps = ({ isPartiallyCurrent }) =>
-  isPartiallyCurrent ? { classwerk: 'goat' } : { classwerk: 'potato' };
-
-const StyledLink = styled(Link)(props => {
-  console.log(props);
-
-  return [
-    props.className === 'goat' &&
-      css`
-        color: blue;
-      `,
-  ];
-});
-
 const RawNavigation = props => (
   <Nav aria-label="Main" {...props}>
     <List>
       <ListItem>
-        <StyledLink partiallyActive to="/blog">
-          Blog
-        </StyledLink>
+        <Link to="/blog">Blog</Link>
       </ListItem>
       <ListItem>
-        <StyledLink getProps={linkProps} to="/cv">
-          Résumé
-        </StyledLink>
+        <Link to="/cv">Résumé</Link>
       </ListItem>
     </List>
   </Nav>
@@ -103,14 +85,10 @@ const RawMobileNavigation = props => (
   <MobileNav aria-label="Main" {...props}>
     <MobileList>
       <ListItem>
-        <StyledLink getProps={linkProps} to="/blog">
-          Blog
-        </StyledLink>
+        <Link to="/blog">Blog</Link>
       </ListItem>
       <ListItem>
-        <StyledLink getProps={linkProps} to="/cv">
-          Résumé
-        </StyledLink>
+        <Link to="/cv">Résumé</Link>
       </ListItem>
     </MobileList>
     <Social css="margin: auto auto 0" aria-label="Social (navigation)" />

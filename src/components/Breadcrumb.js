@@ -24,7 +24,7 @@ const Item = styled.li`
 `;
 
 const ItemLink = styled(Link)`
-  color: var(--color-cadetBlue);
+  color: var(--color-blue-400);
   text-decoration: none;
   border-bottom: 1px solid transparent;
 

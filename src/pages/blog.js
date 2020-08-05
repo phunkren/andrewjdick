@@ -32,10 +32,10 @@ const List = styled.ul`
     padding-top: 2em;
 
     &::before {
-      ${position('absolute', '0', '0', null, '0')};
+      ${position('absolute', '0', '5%', null, '5%')};
       content: "";
       height: 1px;
-      background-color: var(--color-black);
+      background-color: var(--color-gray-200);
     }
   }
 

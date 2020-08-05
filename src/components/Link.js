@@ -5,10 +5,11 @@ import { Link as RouterLink } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { ALPHAS } from '../styles/alphas';
 
-const linkStyles = css`
+export const linkStyles = css`
   color: inherit;
   text-decoration: none;
   transition: color 0.2s ease-out;
+  font-weight: 500;
 
   &:disabled {
     opacity: ${ALPHAS.disabled};
@@ -16,17 +17,52 @@ const linkStyles = css`
   }
 
   &:hover {
-    color: var(--color-cadetBlue);
-  }
-
-  &:focus {
-    outline: 2px solid var(--color-wedgewood);
-    color: var(--color-cadetBlue);
+    color: var(--color-blue-600);
   }
 
   &:active {
-    outline: 2px solid var(--color-wedgewood);
-    color: var(--color-cadetBlue);
+    color: var(--color-orange-400);
+  }
+`;
+
+export const highlightStyles = css`
+  position: relative;
+  color: inherit;
+  white-space: no-wrap;
+
+  &::before {
+    content: '';
+    ${position('absolute', '0', '-2px', '0', '4px')};
+    z-index: -1;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 85%,
+      var(--color-orange-400) 15%
+    );
+  }
+
+  &:hover {
+    color: var(--color-blue-600);
+
+    &::before {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 95%,
+        var(--color-orange-400) 5%
+      );
+    }
+  }
+
+  &:active {
+    color: var(--color-orange-400);
+
+    &::before {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 95%,
+        var(--color-blue-400) 5%
+      );
+    }
   }
 `;
 
@@ -40,48 +76,4 @@ export const DownloadLink = styled.a.attrs(() => ({ download: true }))`
 
 export const ExternalLink = styled(({ highlight, ...props }) => (
   <OutboundLink target="_blank" rel="noreferrer noopener" {...props} />
-))(({ highlight }) => [
-  linkStyles,
-  highlight &&
-    css`
-      position: relative;
-      background: linear-gradient(
-        180deg,
-        var(--color-white) 95%,
-        var(--color-cadetBlue) 5%
-      );
-
-      &::before {
-        content: '';
-        ${position('absolute', '0', '0', '0', '0')};
-        opacity: 0;
-        z-index: -1;
-      }
-
-      &:hover {
-        color: inherit;
-
-        &::before {
-          opacity: 1;
-          background: linear-gradient(
-            180deg,
-            var(--color-white) 66%,
-            var(--color-cadetBlue) 33%
-          );
-        }
-      }
-
-      &:active {
-        color: inherit;
-
-        &::before {
-          opacity: 1;
-          background: linear-gradient(
-            180deg,
-            var(--color-white) 1%,
-            var(--color-cadetBlue) 99%
-          );
-        }
-      }
-    `,
-]);
+))(({ highlight }) => [linkStyles, highlight && highlightStyles]);
