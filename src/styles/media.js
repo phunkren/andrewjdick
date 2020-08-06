@@ -1,10 +1,10 @@
 import { css } from 'styled-components';
 
 export const BREAKPOINTS = {
-  desktopWide: 1440,
-  desktop: 992,
+  desktopWide: 1200,
+  desktop: 1080,
   tablet: 768,
-  phone: 576,
+  phone: 320,
   print: 'print',
 };
 
