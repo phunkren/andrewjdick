@@ -6,9 +6,10 @@ import Div100vh from 'react-div-100vh';
 import { Layout } from '../components/Layout';
 import { Social } from '../components/Social';
 import { ExternalLink } from '../components/Link';
+import { Text } from '../components/Text';
 import SEO from '../components/SEO';
 import lightbulbs from '../assets/images/lightbulbs.png';
-import { H1, Text } from '../styles/typography';
+import { MEDIA } from '../styles/media';
 
 const infiniteScroll = keyframes`
   from {
@@ -43,12 +44,22 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
+
+  ${MEDIA.tablet`
+    text-align: center;
+  `};
 `;
 
 const Section = styled.section`
-  position: relative;
-  top: 40px;
+  position: absolute;
+  top: 50%;
+  left: 1.5rem;
+  transform: translateY(-50%);
+
+  ${MEDIA.tablet`
+    left: 50%;
+    transform: translate(-50%, -50%);
+  `}
 `;
 
 const Footer = styled.footer`
@@ -56,8 +67,6 @@ const Footer = styled.footer`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80px;
-  padding: 0 2em 1em;
 `;
 
 const Image = styled.div`
@@ -68,10 +77,16 @@ const Image = styled.div`
   background-size: cover;
   height: 200vh;
   margin-bottom: 100vh;
-  opacity: 0.075;
+  opacity: 0.025;
   pointer-events: none;
   animation: ${infiniteScroll} 30s linear infinite;
   z-index: -1;
+`;
+
+const Break = styled.br`
+  ${MEDIA.tablet`
+    display: none;
+  `}
 `;
 
 export default function Home({ data }) {
@@ -86,17 +101,20 @@ export default function Home({ data }) {
       <Wrapper>
         <Main>
           <Section aria-label="Profile">
-            <H1 aria-label={`Name: ${author.name}`}>{author.name}</H1>
+            <Text as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
+              {author.name}
+            </Text>
             <Text aria-label={`Position: ${currentEmployer.position}`}>
               {currentEmployer.position}
             </Text>
-            <Text> @ </Text>
+            <Text size="m"> @ </Text>
+            <Break />
             <ExternalLink
               aria-label={`Employer: ${currentEmployer.company}`}
               href={currentEmployer.url}
               highlight
             >
-              {currentEmployer.company}
+              <Text>{currentEmployer.company}</Text>
             </ExternalLink>
             <br />
             <Text aria-label={`Location: ${author.location}`}>
@@ -105,12 +123,12 @@ export default function Home({ data }) {
           </Section>
         </Main>
 
-        <Footer>
-          <Social aria-label="Social" />
+        <Footer css="padding: 1.5rem;">
+          <Social aria-label="Social" css="margin-bottom: 0.5rem;" />
 
           <figure aria-hidden="true">
             <Image />
-            <Text as="figcaption" small>
+            <Text as="figcaption" size="ps">
               background courtesy of{' '}
               <ExternalLink
                 href="https://absurd.design/"

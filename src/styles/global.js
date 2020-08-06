@@ -3,11 +3,12 @@ import { reset } from 'modern-css-reset';
 import Roboto from '../assets/fonts/Roboto-Regular.woff2';
 import Rubik from '../assets/fonts/Rubik-Regular.woff2';
 import { MEDIA } from '../styles/media';
+import { SIZES } from '../components/Text';
 
 /* https://tailwindcss.com/docs/customizing-colors */
 const colors = css`
-  --color-black: #1d1d1c;
-  --color-white: #fcfcfc;
+  --color-black: #000000;
+  --color-white: #ffffff;
   --color-gray-200: #edf2f7;
   --color-gray-400: #cbd5e0;
   --color-gray-600: #718096;
@@ -40,6 +41,36 @@ const colors = css`
   --color-pink-600: #d53f8c;
 `;
 
+const typography = css`
+  @font-face {
+    src: url(${Rubik}) format('woff2');
+    font-family: 'Rubik';
+  }
+
+  @font-face {
+    src: url(${Roboto}) format('woff2');
+    font-family: 'Roboto';
+  }
+
+  body {
+    font-family: 'Roboto', serif;
+    ${SIZES['s']};
+
+    ${MEDIA.print`
+      ${SIZES['ps']};
+    `}
+  }
+
+  * {
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  ul {
+    list-style-type: circle;
+  }
+`;
+
 export const GlobalStyles = createGlobalStyle`
   ${reset};
 
@@ -47,30 +78,15 @@ export const GlobalStyles = createGlobalStyle`
     ${colors};
   }
 
-  @font-face {
-    src: url(${Rubik}) format('woff2');
-    font-family: 'Rubik';
-    font-display: swap;
-  }
-
-  @font-face {
-    src: url(${Roboto}) format('woff2');
-    font-family: 'Roboto';
-    font-display: swap;
-  }
+  ${typography};
 
   html {
     display: flex;
   }
 
   body {
-    font-family: 'Roboto', serif;
-    font-size: 16px;
-    font-size: 1rem;
     color: var(--color-black);
     background-color: var(--color-white);
-    width: 100%;
-  
 
     *::selection {
       background: var(--color-orange-200);
@@ -82,15 +98,8 @@ export const GlobalStyles = createGlobalStyle`
 
     *:focus {
       outline: 2px solid var(--color-blue-600);
+      outline-offset: 4px;
     }
-
-    ${MEDIA.desktopWide`
-      font-size: 1.25rem;
-    `}
-
-    ${MEDIA.print`
-      font-size: 12pt;
-    `}
   }
   
   body, 
@@ -99,11 +108,6 @@ export const GlobalStyles = createGlobalStyle`
     flex: 1;
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
-
-  h1, h2, h3, h4 {
-    font-family: 'Rubik', sans-serif;
-    font-weight: 300;
-  }
-
 `;

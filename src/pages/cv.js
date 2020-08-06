@@ -14,10 +14,10 @@ import {
 } from '../components/icons';
 import { ExternalLink, DownloadLink } from '../components/Link';
 import { IconButton } from '../components/Button';
+import { Text } from '../components/Text';
 import { DownloadIcon, PrintIcon } from '../components/icons';
 import SEO from '../components/SEO';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { H1, H2, H3, H4, Text } from '../styles/typography';
 
 const List = styled.ul`
   margin-bottom: 2em;
@@ -42,10 +42,14 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   max-width: ${BREAKPOINTS.desktopWide}px;
-  margin: 0 auto;
+  margin: 2em auto;
 
   ${MEDIA.desktopWide`
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, .2);
+  `}
+
+  ${MEDIA.print`
+    margin: 0;
   `}
 `;
 
@@ -134,38 +138,36 @@ const Experience = styled.div`
 `;
 
 const Block = styled.section`
-  margin-bottom: 2em;
+  margin-bottom: 3rem;
 `;
 
-const BlockHeader = styled(H2)`
-  margin-bottom: 0.75em;
+const BlockHeader = styled(props => <Text as="h2" size="l" {...props} />)`
+  margin-bottom: 1em;
   border-bottom: 1px solid var(--color-gray-400);
 `;
 
 const Description = styled.div`
-  ${Text}, ${H4} {
-    margin-top: 1em;
+  ${Text} {
+    margin-top: 1.5em;
     padding-bottom: 0;
   }
 
   ul {
     padding-left: 1.5em;
-    margin-top: 0.5em;
-    list-style-type: circle;
+    margin-top: 0.25em;
+    margin-bottom: 0;
   }
 `;
 
-const Tag = styled(Text).attrs(() => ({
-  small: true,
-}))`
+const Tag = styled(props => <Text size="xs" {...props} />)`
   padding: 0.5em;
   border-radius: 4px;
   text-transform: uppercase;
   text-align: center;
-  background-color: var(--color-gray-400);
+  background-color: var(--color-gray-200);
+  border: 1px solid var(--color-gray-400);
 
   ${MEDIA.print`
-    border: 1px solid var(--color-black);
     background-color: transparent;
   `}
 `;
@@ -195,10 +197,8 @@ const Dates = styled(Text)`
 
   ${MEDIA.tablet`
     display: inline-block;
-
-    &:before {
-      content: ' / '
-    }
+    position: relative;
+    margin-left: 2rem;
   `};
 `;
 
@@ -211,8 +211,8 @@ export default function CV({ data }) {
   const currentPosition = experience[0].position;
   const siteDisplayUrl = url.split('https://')[1];
   const expertise = ['html', 'css/scss', 'javascript', 'react'];
-  const interests = ['react native', 'gatsbyjs', 'graphQL', 'css-in-js'];
-  const hobbies = ['cycling', 'guitar', 'video games', 'rugby'];
+  const interests = ['react native', 'a11y', 'graphQL', 'css-in-js'];
+  const hobbies = ['cycling', 'guitar', 'gaming', 'rugby'];
 
   function handleCvPrint() {
     trackCustomEvent({
@@ -237,9 +237,11 @@ export default function CV({ data }) {
       <Container as="main">
         <Title>
           <div>
-            <H1>{author.name}</H1>
-            <Text as="p">
-              {currentPosition} | {author.location}
+            <Text as="h1" size="4xl">
+              {author.name}
+            </Text>
+            <Text size="m">
+              {currentPosition} / {author.location}
             </Text>
           </div>
 
@@ -271,8 +273,8 @@ export default function CV({ data }) {
                       href={`mailto:${author.email}`}
                       aria-label="Email me"
                     >
-                      <EmailIcon />
-                      <Text>{author.email}</Text>
+                      <EmailIcon width="1.5rem" height="1.5rem" />
+                      <Text size="s">{author.email}</Text>
                     </StyledExternalLink>
                   </ListItem>
 
@@ -281,8 +283,8 @@ export default function CV({ data }) {
                       href={url}
                       aria-label="Return to homepage"
                     >
-                      <HomeIcon />
-                      <Text>{siteDisplayUrl}</Text>
+                      <HomeIcon width="1.5rem" height="1.5rem" />
+                      <Text size="s">{siteDisplayUrl}</Text>
                     </StyledExternalLink>
                   </ListItem>
 
@@ -291,8 +293,8 @@ export default function CV({ data }) {
                       href={social.github.url}
                       aria-label={`${social.github.label} profile`}
                     >
-                      <GitHubIcon />
-                      <Text>{social.github.handle}</Text>
+                      <GitHubIcon width="1.5rem" height="1.5rem" />
+                      <Text size="s">{social.github.handle}</Text>
                     </StyledExternalLink>
                   </ListItem>
 
@@ -301,8 +303,8 @@ export default function CV({ data }) {
                       href={social.linkedIn.url}
                       aria-label={`${social.linkedIn.label} profile`}
                     >
-                      <LinkedInIcon />
-                      <Text>{social.linkedIn.handle}</Text>
+                      <LinkedInIcon width="1.5rem" height="1.5rem" />
+                      <Text size="s">{social.linkedIn.handle}</Text>
                     </StyledExternalLink>
                   </ListItem>
                 </List>
@@ -314,16 +316,19 @@ export default function CV({ data }) {
               {education.map(({ qualification, course, institute, dates }) => (
                 <Block
                   key={institute}
+                  css="margin-bottom: 1.5rem;"
                   aria-labelledby={`cv-education edu-${formatId(
                     qualification,
                   )}`}
                 >
-                  <H3 id={`edu-${formatId(qualification)}`}>{qualification}</H3>
-                  <Text>{course}</Text>
+                  <Text as="h3" size="m" id={`edu-${formatId(qualification)}`}>
+                    {qualification}
+                  </Text>
+                  <Text size="pb">{course}</Text>
                   <br />
-                  <Text>{institute}</Text>
+                  <Text size="pb">{institute}</Text>
                   <br />
-                  <Text>{dates}</Text>
+                  <Text size="xs">{dates}</Text>
                   <br />
                 </Block>
               ))}
@@ -389,24 +394,31 @@ export default function CV({ data }) {
                   <Block
                     key={company}
                     aria-labelledby={`cv-experience exp-${formatId(company)}`}
+                    css="margin-bottom: 3rem;"
                   >
-                    <H3 id={`exp-${formatId(company)}`}>{position}</H3>
-                    <ExternalLink
-                      href={url}
-                      aria-label={`${company} website`}
-                      highlight
-                    >
-                      {company}
-                    </ExternalLink>{' '}
-                    <Dates>{dates}</Dates>
+                    <Text as="h3" size="xl" id={`exp-${formatId(company)}`}>
+                      {position}
+                    </Text>
+                    <div css="display: flex; align-items: baseline; justify-content: space-between; margin-top: 0.25rem;">
+                      <ExternalLink
+                        href={url}
+                        aria-label={`${company} website`}
+                        highlight
+                      >
+                        <Text>{company}</Text>
+                      </ExternalLink>{' '}
+                      <Dates size="xs">{dates}</Dates>
+                    </div>
                     <Description>
                       <Text as="p">{blurb}</Text>
-                      <H4>Notable work</H4>
+                      <Text as="h4" size="m">
+                        Notable work
+                      </Text>
                       <ul>
                         {portfolio.map(({ name, href }) => (
                           <li key={name}>
                             <ExternalLink href={href} highlight>
-                              {name}
+                              <Text size="pb">{name}</Text>
                             </ExternalLink>
                           </li>
                         ))}

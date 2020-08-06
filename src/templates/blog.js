@@ -4,9 +4,10 @@ import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { Layout } from '../components/Layout';
 import SEO from '../components/SEO';
-import { H2, Text } from '../styles/typography';
+import { Text } from '../components/Text';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { linkStyles, highlightStyles } from '../components/Link';
+import { SIZES } from '../components/Text';
 
 const Wrapper = styled.div`
   flex: 1;
@@ -41,9 +42,26 @@ const Main = styled.main`
 `;
 
 const Section = styled.section`
+  h2 {
+    ${SIZES['xl']};
+  }
+
+  h3 {
+    ${SIZES['l']};
+  }
+
+  h4 {
+    ${SIZES['m']};
+  }
+
   p {
-    font-size: 1.25rem;
-    line-height: 2rem;
+    ${SIZES['s']};
+
+    ${MEDIA.desktop`
+      line-height: 1.7;
+    `};
+
+    padding: 0 2em;
   }
 
   a:not(.gatsby-resp-image-link) {
@@ -53,7 +71,7 @@ const Section = styled.section`
 
   figcaption {
     margin-top: 0.5em;
-    font-size: 1rem;
+    ${SIZES['xs']};
     text-align: center;
     color: var(--color-black);
   }
@@ -65,16 +83,15 @@ const Section = styled.section`
   }
 
   p > code[class*='language-'] {
-    font-size: 0.95rem;
+    ${SIZES['pb']};
     border-radius: 0.25rem;
-    color: var(--color-indigo-600);
+    color: var(--color-gray-600);
     padding: 4px;
-    background-color: var(--color-indigo-200);
+    background-color: var(--color-gray-200);
   }
 
   pre > code[class*='language-'] {
-    font-size: 0.75rem;
-    line-height: normal;
+    ${SIZES['ps']};
   }
 
   & > * + * {
@@ -97,15 +114,13 @@ function BlogTemplate({ data }) {
       <Wrapper>
         <Main>
           <article>
-            <H2 as="h1" css="margin-bottom: 0.25em;">
+            <Text as="h1" size="xl" css="margin-bottom: 0.25em;">
               {frontmatter.title}
-            </H2>
-            <div css="color: var(--color-gray-600);">
-              <Text>{frontmatter.date}</Text> |{' '}
-              <Text css="color: var(--color-gray-600);">
-                {fields.readingTime.text}
-              </Text>
-            </div>
+            </Text>
+
+            <Text size="xs" css="color: var(--color-gray-600);">
+              {frontmatter.date} | {fields.readingTime.text}
+            </Text>
 
             <div aria-hidden="true">
               <Img
