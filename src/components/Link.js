@@ -4,6 +4,7 @@ import { position } from 'polished';
 import { Link as RouterLink } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { ALPHAS } from '../styles/alphas';
+import { MEDIA } from '../styles/media';
 
 export const linkStyles = css`
   color: inherit;
@@ -17,12 +18,17 @@ export const linkStyles = css`
   }
 
   &:hover {
-    color: var(--color-blue-600);
+    color: var(--color-blue-400);
   }
 
   &:active {
     color: var(--color-orange-400);
   }
+
+  ${MEDIA.print`
+    text-decoration: underline;
+    text-decoration-color: var(--color-orange-400);
+  `}
 `;
 
 export const highlightStyles = css`

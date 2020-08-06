@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { formatId } from '../utils/formatId';
-import { H3, Text } from '../styles/typography';
+import { Text } from '../components/Text';
 import { MEDIA } from '../styles/media';
 import { Link } from './Link';
 
@@ -41,14 +41,13 @@ const RawBlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
 
     <PreviewContent>
       <div css="margin-bottom: 1em;">
-        <H3 id={`post-${formatId(frontmatter.title)}`} as="h2">
+        <Text as="h2" size="xl" id={`post-${formatId(frontmatter.title)}`}>
           {frontmatter.title}
-        </H3>
+        </Text>
 
-        <div css="color: var(--color-gray-600);">
-          <Text>{frontmatter.date}</Text> |{' '}
-          <Text>{fields.readingTime.text}</Text>
-        </div>
+        <Text size="xs" css="color: var(--color-gray-600);">
+          {frontmatter.date} | {fields.readingTime.text}
+        </Text>
       </div>
 
       <Text as="p" aria-label="Excerpt" css="padding-bottom: 1em;">

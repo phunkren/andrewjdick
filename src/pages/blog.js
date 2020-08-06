@@ -5,8 +5,8 @@ import { graphql } from 'gatsby';
 import { BlogPreview } from '../components/BlogPreview';
 import SEO from '../components/SEO';
 import { Layout } from '../components/Layout';
+import { Text } from '../components/Text';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { H1 } from '../styles/typography';
 
 const Main = styled.main`
   flex: 1;
@@ -63,9 +63,9 @@ export default function Blog({ data }) {
     <Layout>
       <SEO title="Blog" pathname="/blog" />
       <Main>
-        <H1 id="blog" css="margin-bottom: 1em;">
+        <Text as="h1" size="xxxl" id="blog" css="margin-bottom: 1em;">
           Blog
-        </H1>
+        </Text>
         <List>{posts}</List>
       </Main>
     </Layout>

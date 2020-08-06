@@ -4,10 +4,11 @@ import { position } from 'polished';
 import { Social } from '../components/Social';
 import { MEDIA } from '../styles/media';
 import { Link } from './Link';
+import { SIZES } from './Text';
 
 const ListItem = styled.li`
   display: inline;
-  text-transform: uppercase;
+  ${SIZES['l']};
 `;
 
 const List = styled.ul`
@@ -15,16 +16,7 @@ const List = styled.ul`
   flex-flow: row;
 
   ${ListItem} + ${ListItem} {
-    position: relative;
     margin-left: 2em;
-
-    &::before {
-      content: '|';
-      position: absolute;
-      left: -1em;
-      color: var(--color-gray-400);
-      transform: translateX(-50%);
-    }
   }
 `;
 
