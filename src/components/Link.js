@@ -35,11 +35,12 @@ export const highlightStyles = css`
   position: relative;
   color: inherit;
   white-space: no-wrap;
+  z-index: 1;
 
   &::before {
     content: '';
     ${position('absolute', '0', '-2px', '0', '4px')};
-    z-index: -1;
+    z-index: 0;
     background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 0) 85%,
@@ -72,9 +73,27 @@ export const highlightStyles = css`
   }
 `;
 
-export const Link = styled(RouterLink)`
-  ${linkStyles};
-`;
+const isPartiallyActive = ({ isCurrent, isPartiallyCurrent }) => {
+  console.log({ isPartiallyCurrent });
+  return isPartiallyCurrent
+    ? {
+        style: {
+          color: 'var(--color-orange-400)',
+          textDecoration: 'underline',
+        },
+      }
+    : {};
+};
+
+export const Link = styled(props => (
+  <RouterLink getProps={isPartiallyActive} {...props} />
+))(
+  ({ theme }) => css`
+    ${linkStyles};
+    color: ${theme.primary};
+    text-shadow: 1px 1px 1px ${theme.secondary};
+  `,
+);
 
 export const DownloadLink = styled.a.attrs(() => ({ download: true }))`
   ${linkStyles};

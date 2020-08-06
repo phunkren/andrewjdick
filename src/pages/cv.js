@@ -18,6 +18,9 @@ import { Text } from '../components/Text';
 import { DownloadIcon, PrintIcon } from '../components/icons';
 import SEO from '../components/SEO';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
+import { Hero } from '../components/Hero';
+import { Header } from '../components/Header';
+import { Theme } from '../components/Theme';
 
 const List = styled.ul`
   margin-bottom: 2em;
@@ -41,11 +44,17 @@ const Container = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  margin: 80px auto 0;
   max-width: ${BREAKPOINTS.desktopWide}px;
-  margin: 2em auto;
+  background-color: var(--color-white);
+  z-index: -2;
+
+  ${MEDIA.tablet`
+    margin: 160px auto 2rem;
+  `}
 
   ${MEDIA.desktopWide`
-    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, .2);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
   `}
 
   ${MEDIA.print`
@@ -53,25 +62,21 @@ const Container = styled.div`
   `}
 `;
 
-const Title = styled.div`
+const Heading = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  padding: 0 2em 2em;
+  padding: 2em 1em;
   text-align: center;
 
-  ${MEDIA.desktop`
+  ${MEDIA.tablet`
     justify-content: space-between;
-    text-align: left;
-  `}
-
-  ${MEDIA.desktop`
     padding: 2em;
+    text-align: left;
   `}
 
   ${MEDIA.print`
     justify-content: space-between;
-    padding: 2em;
     text-align: left;
   `};
 `;
@@ -202,6 +207,29 @@ const Dates = styled(Text)`
   `};
 `;
 
+const ExperienceInfo = styled.div`
+  display: flex;
+  flex-flow: column;
+  margin-top: 0.25rem;
+
+  ${MEDIA.tablet`
+    flex-flow: row;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: 0;
+  `};
+`;
+
+const Title = styled(Text)`
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+`;
+
 export default function CV({ data }) {
   const { education } = data.educationJson;
   const { experience } = data.experienceJson;
@@ -234,8 +262,15 @@ export default function CV({ data }) {
   return (
     <Layout>
       <SEO title="CV" pathname="/cv" />
+      <Theme theme="dark">
+        <Header />
+      </Theme>
+      <Hero />
       <Container as="main">
-        <Title>
+        <Title as="h1" id="cv">
+          Résumé
+        </Title>
+        <Heading>
           <div>
             <Text as="h1" size="4xl">
               {author.name}
@@ -260,7 +295,7 @@ export default function CV({ data }) {
               </DownloadLink>
             </HeaderIcons>
           )}
-        </Title>
+        </Heading>
 
         <Wrapper>
           <Sidebar>
@@ -399,7 +434,7 @@ export default function CV({ data }) {
                     <Text as="h3" size="xl" id={`exp-${formatId(company)}`}>
                       {position}
                     </Text>
-                    <div css="display: flex; align-items: baseline; justify-content: space-between; margin-top: 0.25rem;">
+                    <ExperienceInfo>
                       <ExternalLink
                         href={url}
                         aria-label={`${company} website`}
@@ -408,7 +443,7 @@ export default function CV({ data }) {
                         <Text>{company}</Text>
                       </ExternalLink>{' '}
                       <Dates size="xs">{dates}</Dates>
-                    </div>
+                    </ExperienceInfo>
                     <Description>
                       <Text as="p">{blurb}</Text>
                       <Text as="h4" size="m">

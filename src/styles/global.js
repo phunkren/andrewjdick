@@ -86,7 +86,9 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     color: var(--color-black);
-    background-color: var(--color-white);
+    background-color: rgb(250, 250, 250);
+
+ 
 
     *::selection {
       background: var(--color-orange-200);

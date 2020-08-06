@@ -10,7 +10,7 @@ const SocialLinks = styled.nav`
 
 const SocialLink = styled(ExternalLink)`
   display: flex;
-  padding: 0.5em;
+  padding: 6px;
 
   &:not(:first-child) {
     margin-left: 0.5em;
