@@ -33,7 +33,7 @@ const MobileList = styled.ul`
 const Nav = styled.nav`
   display: none;
 
-  ${MEDIA.desktop`
+  ${MEDIA.tablet`
     display: flex;
   `}
 `;

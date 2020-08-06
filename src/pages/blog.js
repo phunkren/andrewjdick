@@ -1,12 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import { position } from 'polished';
 import { graphql } from 'gatsby';
-import { BlogPreview } from '../components/BlogPreview';
+import Img from 'gatsby-image';
+import { formatId } from '../utils/formatId';
 import SEO from '../components/SEO';
 import { Layout } from '../components/Layout';
 import { Text } from '../components/Text';
+import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
+import { Hero } from '../components/Hero';
+import { Header } from '../components/Header';
+import { Theme } from '../components/Theme';
 
 const Main = styled.main`
   flex: 1;
@@ -14,11 +18,13 @@ const Main = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1em;
+  margin: 80px auto 2rem;
+  padding: 0 1rem;
 
-  ${MEDIA.desktop`
-    padding: 2em;
-  `};
+  ${MEDIA.tablet`
+    margin: 160px auto 2rem;
+    padding: 0 2rem;
+  `}
 `;
 
 const ListItem = styled.li``;
@@ -29,25 +35,106 @@ const List = styled.ul`
   ${ListItem} + ${ListItem} {
     position: relative;
     margin-top: 2em;
-    padding-top: 2em;
-
-    &::before {
-      ${position('absolute', '0', '5%', null, '5%')};
-      content: "";
-      height: 1px;
-      background-color: var(--color-gray-200);
-    }
   }
 
   ${MEDIA.tablet`
-    max-width: ${BREAKPOINTS.phone}px;
+    max-width: ${BREAKPOINTS.tablet}px;
     margin: 0 auto;
   `}
+`;
 
-  ${MEDIA.desktop`
-    max-width: ${BREAKPOINTS.tablet}px;
+const Preview = styled.article`
+  display: flex;
+  flex-flow: column;
+  background-color: var(--color-white);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+  border-radius: 4px;
+  padding: 2rem 1rem;
+
+  ${MEDIA.tablet`
+    padding: 2rem;
+    flex-flow: row;
   `}
 `;
+
+const PreviewImage = styled.div`
+  flex: 1;
+  margin-top: -2rem;
+  margin-right: 0;
+  margin-left: -1rem;
+  width: calc(100% + 2rem);
+
+  & > div:first-child {
+    height: 150px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 4px;
+  }
+
+  ${MEDIA.tablet`
+    flex: 0 1 150px;
+    margin-top: 0;
+    margin-right: 2em;
+    margin-left: 0;
+    width: 100%;
+
+    & > div:first-child {
+      border-bottom-right-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+  `}
+`;
+
+const PreviewContent = styled.div`
+  flex: 1;
+
+  ${MEDIA.tablet`
+    margin-top: 0;
+  `}
+`;
+
+const Title = styled(Text)`
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+`;
+
+const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
+  <Preview aria-labelledby={`blog post-${formatId(frontmatter.title)}`}>
+    <PreviewImage aria-hidden="true">
+      <Img role="img" alt="" fluid={frontmatter.image.childImageSharp.fluid} />
+    </PreviewImage>
+
+    <PreviewContent>
+      <div css="margin-bottom: 1em;">
+        <Text as="h2" size="xl" id={`post-${formatId(frontmatter.title)}`}>
+          {frontmatter.title}
+        </Text>
+
+        <Text size="xs" css="color: var(--color-gray-600);">
+          {frontmatter.date} | {fields.readingTime.text}
+        </Text>
+      </div>
+
+      <Text as="p" aria-label="Excerpt" css="padding-bottom: 1em;">
+        {excerpt}
+      </Text>
+
+      <Link
+        to={frontmatter.path}
+        aria-label="Click to read the article in full"
+        css="display: inline-block; color: var(--color-blue-600);"
+      >
+        Read more →
+      </Link>
+    </PreviewContent>
+  </Preview>
+);
 
 export default function Blog({ data }) {
   const { edges } = data.allMarkdownRemark;
@@ -62,10 +149,14 @@ export default function Blog({ data }) {
   return (
     <Layout>
       <SEO title="Blog" pathname="/blog" />
+      <Theme theme="dark">
+        <Header />
+      </Theme>
+      <Hero />
       <Main>
-        <Text as="h1" size="xxxl" id="blog" css="margin-bottom: 1em;">
+        <Title as="h1" id="blog">
           Blog
-        </Text>
+        </Title>
         <List>{posts}</List>
       </Main>
     </Layout>

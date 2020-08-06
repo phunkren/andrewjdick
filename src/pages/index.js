@@ -10,6 +10,7 @@ import { Text } from '../components/Text';
 import SEO from '../components/SEO';
 import lightbulbs from '../assets/images/lightbulbs.png';
 import { MEDIA } from '../styles/media';
+import { Header } from '../components/Header';
 
 const infiniteScroll = keyframes`
   from {
@@ -41,24 +42,21 @@ const Wrapper = styled(Div100vh)`
 
 const Main = styled.main`
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  ${MEDIA.tablet`
-    text-align: center;
-  `};
+  text-align: center;
 `;
 
 const Section = styled.section`
   position: absolute;
   top: 50%;
-  left: 1.5rem;
+  left: 0;
+  right: 0;
   transform: translateY(-50%);
+  padding: 0 1rem;
 
   ${MEDIA.tablet`
     left: 50%;
     transform: translate(-50%, -50%);
+    paddding: 0 2em;
   `}
 `;
 
@@ -67,10 +65,15 @@ const Footer = styled.footer`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 1rem 1rem;
+
+  ${MEDIA.tablet`
+    padding: 0 2em 2em;
+  `};
 `;
 
 const Image = styled.div`
-  ${position('fixed', '100%', 0, null, 0)};
+  ${position('absolute', '100%', 0, null, 0)};
   background-image: url(${lightbulbs});
   background-repeat: repeat-y;
   background-position: center;
@@ -83,12 +86,6 @@ const Image = styled.div`
   z-index: -1;
 `;
 
-const Break = styled.br`
-  ${MEDIA.tablet`
-    display: none;
-  `}
-`;
-
 export default function Home({ data }) {
   const { experience } = data.experienceJson;
   const { author } = data.site.siteMetadata;
@@ -99,6 +96,8 @@ export default function Home({ data }) {
       <SEO />
       <GlobalStyles />
       <Wrapper>
+        <Header />
+
         <Main>
           <Section aria-label="Profile">
             <Text as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
@@ -108,7 +107,6 @@ export default function Home({ data }) {
               {currentEmployer.position}
             </Text>
             <Text size="m"> @ </Text>
-            <Break />
             <ExternalLink
               aria-label={`Employer: ${currentEmployer.company}`}
               href={currentEmployer.url}
@@ -123,8 +121,8 @@ export default function Home({ data }) {
           </Section>
         </Main>
 
-        <Footer css="padding: 1.5rem;">
-          <Social aria-label="Social" css="margin-bottom: 0.5rem;" />
+        <Footer>
+          <Social aria-label="Social" />
 
           <figure aria-hidden="true">
             <Image />

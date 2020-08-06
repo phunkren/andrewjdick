@@ -8,15 +8,19 @@ import { Text } from '../components/Text';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { linkStyles, highlightStyles } from '../components/Link';
 import { SIZES } from '../components/Text';
+import { Header } from '../components/Header';
+import { Hero } from '../components/Hero';
+import { Theme } from '../components/Theme';
 
 const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 1em;
+  padding: 2rem 1rem;
+  margin: 400px auto 0;
 
-  ${MEDIA.desktop`
-    padding: 2em;
+  ${MEDIA.tablet`
+    padding: 2rem;
   `};
 `;
 
@@ -29,16 +33,12 @@ const Main = styled.main`
   margin: 0 auto;
 
   > * + * {
-    margin-top: 2em;
+    margin-top: 1rem;
   }
 
   ${MEDIA.tablet`
-    max-width: ${BREAKPOINTS.phone}px;
-  `}
-
-  ${MEDIA.desktop`
     max-width: ${BREAKPOINTS.tablet}px;
-  `};
+  `}
 `;
 
 const Section = styled.section`
@@ -57,11 +57,24 @@ const Section = styled.section`
   p {
     ${SIZES['s']};
 
-    ${MEDIA.desktop`
+    ${MEDIA.tablet`
+      padding: 0 2em;
       line-height: 1.7;
     `};
+  }
 
-    padding: 0 2em;
+  div.gatsby-highlight {
+    border-radius: 0;
+    margin-left: -1rem;
+    width: calc(100% + 2rem);
+
+    pre {
+      border-radius: 0;
+
+      code {
+        padding: 1em;
+      }
+    }
   }
 
   a:not(.gatsby-resp-image-link) {
@@ -92,11 +105,42 @@ const Section = styled.section`
 
   pre > code[class*='language-'] {
     ${SIZES['ps']};
+    margin-left: -1rem;
+  }
+
+  pre[class*='language-'] {
+    padding: 2rem;
+    margin: 0;
   }
 
   & > * + * {
     margin-top: 2rem;
   }
+
+  ${MEDIA.tablet`
+    div.gatsby-highlight {
+      margin-left: 0;
+      width: 100%;
+    }
+  `}
+`;
+
+const Title = styled(Text)`
+  position: absolute;
+  top: 200px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  left: 50%;
+  text-shadow: 1px 1px 1px var(--color-black);
+
+  width: 100%;
+  padding: 0 1rem;
+
+  ${MEDIA.tablet`
+    width: auto;
+    padding: 0;
+  `}
 `;
 
 function BlogTemplate({ data }) {
@@ -111,25 +155,29 @@ function BlogTemplate({ data }) {
         article
       />
 
+      <Theme theme="dark">
+        <Header />
+      </Theme>
+
+      <Hero>
+        <Img
+          role="img"
+          alt=""
+          fluid={frontmatter.image.childImageSharp.fluid}
+          css="margin: 4rem 0;"
+        />
+      </Hero>
+
       <Wrapper>
         <Main>
           <article>
-            <Text as="h1" size="xl" css="margin-bottom: 0.25em;">
+            <Title as="h1" size="xxxl">
               {frontmatter.title}
-            </Text>
+            </Title>
 
             <Text size="xs" css="color: var(--color-gray-600);">
               {frontmatter.date} | {fields.readingTime.text}
             </Text>
-
-            <div aria-hidden="true">
-              <Img
-                role="img"
-                alt=""
-                fluid={frontmatter.image.childImageSharp.fluid}
-                css="margin: 4rem 0;"
-              />
-            </div>
 
             <Section dangerouslySetInnerHTML={{ __html: html }} />
           </article>
