@@ -62,6 +62,7 @@ const LogoLink = styled(Link)(({ theme }) => [
     background-color: var(--color-white);
     border-radius: 50%;
     overflow: hidden;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
 
     &:hover {
       border-color: var(--color-blue-400);
