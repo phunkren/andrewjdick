@@ -2,29 +2,25 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
 import { Logo } from '../components/Logo';
-import { Navigation, MobileNavigation } from '../components/Navigation';
+import { Navigation } from '../components/Navigation';
 import { IconButton } from '../components/Button';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { CrossIcon } from './icons/CrossIcon';
 import { HamburgerIcon } from './icons/HamburgerIcon';
 import { convertPxToRem } from '../utils/unitConversion';
+import { Drawer } from './Drawer';
 
-const Outer = styled.header(({ isNavOpen }) => [
+const Outer = styled.header(() => [
   css`
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
-    z-index: 10;
+    z-index: 5;
 
     ${MEDIA.print`
       display: none;
     `};
   `,
-  isNavOpen &&
-    css`
-      background-color: var(--color-white);
-    `,
 ]);
 
 const Inner = styled.div`
@@ -41,11 +37,23 @@ const Inner = styled.div`
     `};
 `;
 
-const MobileNavigationButton = styled(IconButton)`
+const DesktopNavigation = styled(Navigation)`
+  display: none;
+
   ${MEDIA.tablet`
-    display: none;  
+    display: block;  
   `}
 `;
+
+const MobileNavigationButton = styled(IconButton)(
+  ({ theme }) => css`
+    color: ${theme.primary};
+
+    ${MEDIA.tablet`
+    display: none;  
+  `}
+  `,
+);
 
 const LogoLink = styled(Link)(({ theme }) => [
   css`
@@ -74,28 +82,24 @@ export const Header = () => {
 
   return (
     <>
-      <Outer isNavOpen={isNavOpen}>
+      <Outer>
         <Inner>
           <LogoLink to="/" aria-label="Return to homepage">
             <Logo />
           </LogoLink>
 
-          <Navigation />
+          <DesktopNavigation />
 
           <MobileNavigationButton
             aria-label="Navigation menu"
             onClick={toggleMobileNavigation}
           >
-            {isNavOpen ? (
-              <CrossIcon width="1.5em" height="1.5em" />
-            ) : (
-              <HamburgerIcon width="1.5em" height="1.5em" />
-            )}
+            <HamburgerIcon width="1.5rem" height="1.5rem" />
           </MobileNavigationButton>
         </Inner>
       </Outer>
 
-      {isNavOpen && <MobileNavigation />}
+      <Drawer isOpen={isNavOpen} onDismiss={toggleMobileNavigation} />
     </>
   );
 };
