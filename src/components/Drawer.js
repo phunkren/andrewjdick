@@ -1,5 +1,6 @@
 import React from 'react';
-import { DialogOverlay, DialogContent } from '@reach/dialog';
+import { DialogOverlay } from '@reach/dialog';
+import Div100vh from 'react-div-100vh';
 import styled from 'styled-components';
 import '@reach/dialog/styles.css';
 import { Social } from './Social';
@@ -8,9 +9,7 @@ import { IconButton } from './Button';
 import { CrossIcon } from './icons/CrossIcon';
 import { Theme } from './Theme';
 
-const Content = styled(DialogContent)`
-  &[data-reach-dialog-content] {
-    height: 100vh;
+const Content = styled(Div100vh)`
     display: flex;
     flex-flow: column;
     justify-content: space-between;
@@ -18,6 +17,7 @@ const Content = styled(DialogContent)`
     width: 75vw;
     margin-left: auto;
     padding: 100px var(--spacing-massive) var(--spacing-huge);
+    background-color: var(--color-white);
   }
 `;
 
