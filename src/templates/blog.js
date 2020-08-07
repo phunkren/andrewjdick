@@ -107,6 +107,7 @@ const Section = styled.section`
 
     ${MEDIA.tablet`
       margin-left: calc(var(--spacing-huge) * -1);
+      max-width: calc(100% + var(--spacing-huge) + var(--spacing-huge));
     `}
   }
 
