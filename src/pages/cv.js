@@ -235,6 +235,7 @@ const Dates = styled(Text)`
 const ExperienceInfo = styled.div`
   display: flex;
   flex-flow: column;
+  align-items: flex-start;
 
   > * {
     margin-top: var(--spacing-tiny);
