@@ -34,7 +34,12 @@ const Main = styled.main`
 
 const Wrapper = styled.div`
   width: 100%;
-  background-color: var(--color-gray-200);
+  background: linear-gradient(
+    90deg,
+    var(--color-white) 0%,
+    var(--color-gray-200) 50%,
+    var(--color-white) 100%
+  );
 `;
 
 const ListItem = styled.li``;

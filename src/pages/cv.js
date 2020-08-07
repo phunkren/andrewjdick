@@ -22,6 +22,7 @@ import { Hero } from '../components/Hero';
 import { Header } from '../components/Header';
 import { Theme } from '../components/Theme';
 import { convertPxToRem } from '../utils/unitConversion';
+import { Icon } from '../components/icons/Icon';
 
 const List = styled.ul`
   margin-bottom: var(--spacing-huge);
@@ -33,6 +34,10 @@ const ListItem = styled.li`
   ${Text} {
     margin-left: var(--spacing-medium);
   }
+
+  ${Icon} {
+    opacity: 0.75;
+  }
 `;
 
 const StyledExternalLink = styled(ExternalLink)`
@@ -43,7 +48,12 @@ const StyledExternalLink = styled(ExternalLink)`
 
 const Wrap = styled.div`
   width: 100%;
-  background-color: var(--color-gray-200);
+  background: linear-gradient(
+    90deg,
+    var(--color-white) 0%,
+    var(--color-gray-200) 50%,
+    var(--color-white) 100%
+  );
 `;
 
 const Container = styled.div`
@@ -88,6 +98,7 @@ const Heading = styled.div`
 
   ${MEDIA.print`
     justify-content: space-between;
+    padding: var(--spacing-huge);
     text-align: left;
   `};
 `;
@@ -186,9 +197,9 @@ const Description = styled.div`
 const Tag = styled(props => <Text size="xs" {...props} />)`
   padding: var(--spacing-small);
   border-radius: 4px;
-  text-transform: uppercase;
   text-align: center;
-  border: 1px solid var(--color-gray-400);
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.25);
 `;
 
 const TagContainer = styled.div`
@@ -224,7 +235,6 @@ const Dates = styled(Text)`
 const ExperienceInfo = styled.div`
   display: flex;
   flex-flow: column;
-  align-items: flex-start;
 
   > * {
     margin-top: var(--spacing-tiny);
@@ -257,8 +267,8 @@ export default function CV({ data }) {
   const currentPosition = experience[0].position;
   const siteDisplayUrl = url.split('https://')[1];
   const expertise = ['html', 'css/scss', 'javascript', 'react'];
-  const interests = ['react native', 'a11y', 'graphQL', 'css-in-js'];
-  const hobbies = ['cycling', 'guitar', 'gaming', 'rugby'];
+  const interests = ['design systems', 'a11y', 'graphQL', 'react native'];
+  const hobbies = ['cycling', 'guitar', 'gaming', 'writing'];
 
   function handleCvPrint() {
     trackCustomEvent({
