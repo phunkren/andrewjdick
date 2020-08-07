@@ -3,14 +3,14 @@ import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { graphql } from 'gatsby';
 import { position } from 'polished';
 import Div100vh from 'react-div-100vh';
+import lightbulbs from '../assets/images/lightbulbs.png';
 import { Layout } from '../components/Layout';
 import { Social } from '../components/Social';
 import { ExternalLink } from '../components/Link';
+import { Header } from '../components/Header';
 import { Text } from '../components/Text';
 import SEO from '../components/SEO';
-import lightbulbs from '../assets/images/lightbulbs.png';
 import { MEDIA } from '../styles/media';
-import { Header } from '../components/Header';
 
 const infiniteScroll = keyframes`
   from {
@@ -51,12 +51,12 @@ const Section = styled.section`
   left: 0;
   right: 0;
   transform: translateY(-50%);
-  padding: 0 1rem;
+  padding: 0 var(--spacing-medium);
 
   ${MEDIA.tablet`
     left: 50%;
     transform: translate(-50%, -50%);
-    paddding: 0 2em;
+    paddding: 0 var(--spacing-large);
   `}
 `;
 
@@ -65,10 +65,10 @@ const Footer = styled.footer`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 1rem 1rem;
+  padding: 0 var(--spacing-medium) var(--spacing-medium);
 
   ${MEDIA.tablet`
-    padding: 0 2em 2em;
+    padding: 0 var(--spacing-huge) var(--spacing-huge);
   `};
 `;
 

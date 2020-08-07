@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { ALPHAS } from '../styles/alphas';
 
@@ -6,7 +7,7 @@ const buttonStyles = css`
   align-items: center;
   justify-content: center;
   margin: 0;
-  padding: 1em 2em;
+  padding: var(--spacing-medium) var(--spacing-large);
   border: none;
   text-decoration: none;
   cursor: pointer;
@@ -21,13 +22,14 @@ const buttonStyles = css`
   }
 `;
 
-export const IconButton = styled.button(
+export const IconButton = styled(props => <button type="button" {...props} />)(
   () => css`
     ${buttonStyles};
+
     padding: 0;
-    background-color: transparent;
     min-width: 44px;
     min-height: 44px;
+    background-color: transparent;
     color: inherit;
 
     &:hover {

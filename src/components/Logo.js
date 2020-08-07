@@ -6,11 +6,11 @@ import { MEDIA } from '../styles/media';
 
 const Image = styled(Img)`
   width: 100%;
-  min-width: 50px;
+  min-width: 44px;
   border-radius: 50%;
 
   ${MEDIA.tablet`
-    min-width: 70px;
+    min-width: 66px;
   `}
 `;
 

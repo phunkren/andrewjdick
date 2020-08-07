@@ -11,6 +11,7 @@ import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { Hero } from '../components/Hero';
 import { Header } from '../components/Header';
 import { Theme } from '../components/Theme';
+import { convertPxToRem } from '../utils/unitConversion';
 
 const Main = styled.main`
   flex: 1;
@@ -18,13 +19,22 @@ const Main = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 80px auto 2rem;
-  padding: 0 1rem;
+  position: relative;
+  margin-top: 100px;
+  margin-right: auto;
+  margin-bottom: var(--spacing-huge);
+  margin-left: auto;
+  padding: 0 var(--spacing-medium);
 
   ${MEDIA.tablet`
-    margin: 160px auto 2rem;
-    padding: 0 2rem;
+    margin-top: 150px;
+    padding: 0 var(--spacing-huge);
   `}
+`;
+
+const Wrapper = styled.div`
+  width: 100%;
+  background-color: var(--color-gray-200);
 `;
 
 const ListItem = styled.li``;
@@ -34,11 +44,11 @@ const List = styled.ul`
   
   ${ListItem} + ${ListItem} {
     position: relative;
-    margin-top: 2em;
+    margin-top: var(--spacing-huge);
   }
 
   ${MEDIA.tablet`
-    max-width: ${BREAKPOINTS.tablet}px;
+    max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
     margin: 0 auto;
   `}
 `;
@@ -46,23 +56,23 @@ const List = styled.ul`
 const Preview = styled.article`
   display: flex;
   flex-flow: column;
-  background-color: var(--color-white);
+  padding: var(--spacing-huge) var(--spacing-medium);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
   border-radius: 4px;
-  padding: 2rem 1rem;
+  background-color: var(--color-white);
 
   ${MEDIA.tablet`
-    padding: 2rem;
     flex-flow: row;
+    padding: var(--spacing-huge);
   `}
 `;
 
 const PreviewImage = styled.div`
   flex: 1;
-  margin-top: -2rem;
+  margin-top: calc(var(--spacing-huge) * -1);
   margin-right: 0;
-  margin-left: -1rem;
-  width: calc(100% + 2rem);
+  margin-left: calc(var(--spacing-medium) * -1);
+  width: calc(100% + var(--spacing-huge));
 
   & > div:first-child {
     height: 150px;
@@ -75,7 +85,7 @@ const PreviewImage = styled.div`
   ${MEDIA.tablet`
     flex: 0 1 150px;
     margin-top: 0;
-    margin-right: 2em;
+    margin-right: var(--spacing-huge);
     margin-left: 0;
     width: 100%;
 
@@ -152,13 +162,15 @@ export default function Blog({ data }) {
       <Theme theme="dark">
         <Header />
       </Theme>
-      <Hero />
-      <Main>
-        <Title as="h1" id="blog">
-          Blog
-        </Title>
-        <List>{posts}</List>
-      </Main>
+      <Wrapper>
+        <Hero />
+        <Main>
+          <Title as="h1" id="blog">
+            Blog
+          </Title>
+          <List>{posts}</List>
+        </Main>
+      </Wrapper>
     </Layout>
   );
 }

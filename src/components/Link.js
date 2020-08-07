@@ -40,12 +40,12 @@ export const highlightStyles = css`
   &::before {
     content: '';
     ${position('absolute', '0', '-2px', '0', '4px')};
-    z-index: 0;
     background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 0) 85%,
       var(--color-orange-400) 15%
     );
+    z-index: 0;
   }
 
   &:hover {
@@ -73,9 +73,8 @@ export const highlightStyles = css`
   }
 `;
 
-const isPartiallyActive = ({ isCurrent, isPartiallyCurrent }) => {
-  console.log({ isPartiallyCurrent });
-  return isPartiallyCurrent
+const isPartiallyActive = ({ isCurrent, isPartiallyCurrent }) =>
+  isPartiallyCurrent
     ? {
         style: {
           color: 'var(--color-orange-400)',
@@ -83,7 +82,6 @@ const isPartiallyActive = ({ isCurrent, isPartiallyCurrent }) => {
         },
       }
     : {};
-};
 
 export const Link = styled(props => (
   <RouterLink getProps={isPartiallyActive} {...props} />
@@ -95,7 +93,11 @@ export const Link = styled(props => (
   `,
 );
 
-export const DownloadLink = styled.a.attrs(() => ({ download: true }))`
+export const DownloadLink = styled(({ children, props }) => (
+  <a download {...props}>
+    {children}
+  </a>
+))`
   ${linkStyles};
 `;
 

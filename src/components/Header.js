@@ -4,26 +4,18 @@ import { Link } from 'gatsby';
 import { Logo } from '../components/Logo';
 import { Navigation, MobileNavigation } from '../components/Navigation';
 import { IconButton } from '../components/Button';
-import { MEDIA } from '../styles/media';
+import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { CrossIcon } from './icons/CrossIcon';
 import { HamburgerIcon } from './icons/HamburgerIcon';
+import { convertPxToRem } from '../utils/unitConversion';
 
-const Container = styled.header(({ isNavOpen }) => [
+const Outer = styled.header(({ isNavOpen }) => [
   css`
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1rem;
-    height: 80px;
-
-    ${MEDIA.tablet`
-      height: 100px;
-      padding: 0 2em;
-    `};
+    z-index: 10;
 
     ${MEDIA.print`
       display: none;
@@ -35,18 +27,33 @@ const Container = styled.header(({ isNavOpen }) => [
     `,
 ]);
 
+const Inner = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 var(--spacing-medium);
+  max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
+  height: 100px;
+
+  ${MEDIA.tablet`
+      padding: 0 var(--spacing-huge);
+    `};
+`;
+
 const MobileNavigationButton = styled(IconButton)`
   ${MEDIA.tablet`
     display: none;  
   `}
 `;
 
-const StyledLink = styled(Link)(({ theme }) => [
+const LogoLink = styled(Link)(({ theme }) => [
   css`
     border: 2px solid;
     border-color: var(--color-black);
     background-color: var(--color-white);
     border-radius: 50%;
+    overflow: hidden;
 
     &:hover {
       border-color: var(--color-blue-400);
@@ -67,24 +74,26 @@ export const Header = () => {
 
   return (
     <>
-      <Container isNavOpen={isNavOpen}>
-        <StyledLink to="/" aria-label="Return to homepage">
-          <Logo alt="Website logo" />
-        </StyledLink>
+      <Outer isNavOpen={isNavOpen}>
+        <Inner>
+          <LogoLink to="/" aria-label="Return to homepage">
+            <Logo />
+          </LogoLink>
 
-        <Navigation />
+          <Navigation />
 
-        <MobileNavigationButton
-          aria-label="Navigation menu"
-          onClick={toggleMobileNavigation}
-        >
-          {isNavOpen ? (
-            <CrossIcon width="1.5em" height="1.5em" />
-          ) : (
-            <HamburgerIcon width="1.5em" height="1.5em" />
-          )}
-        </MobileNavigationButton>
-      </Container>
+          <MobileNavigationButton
+            aria-label="Navigation menu"
+            onClick={toggleMobileNavigation}
+          >
+            {isNavOpen ? (
+              <CrossIcon width="1.5em" height="1.5em" />
+            ) : (
+              <HamburgerIcon width="1.5em" height="1.5em" />
+            )}
+          </MobileNavigationButton>
+        </Inner>
+      </Outer>
 
       {isNavOpen && <MobileNavigation />}
     </>

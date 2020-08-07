@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { position } from 'polished';
 import { Social } from '../components/Social';
 import { MEDIA } from '../styles/media';
-import { Link } from './Link';
 import { SIZES } from './Text';
+import { Link } from './Link';
 
 const ListItem = styled.li`
   display: inline;
@@ -16,7 +16,7 @@ const List = styled.ul`
   flex-flow: row;
 
   ${ListItem} + ${ListItem} {
-    margin-left: 2em;
+    margin-left: var(--spacing-massive);
   }
 `;
 
@@ -26,7 +26,7 @@ const MobileList = styled.ul`
 
   ${ListItem} + ${ListItem} {
     position: relative;
-    margin-top: 2em;
+    margin-top: var(--spacing-massive);
   }
 `;
 
@@ -42,7 +42,7 @@ const MobileNav = styled.nav`
   ${position('absolute', '80px', '0', '0', '0')};
   display: flex;
   flex-flow: column;
-  padding: 2em 2em 1em;
+  padding: var(--spacing-huge) var(--spacing-huge) var(--spacing-medium);
   background-image: radial-gradient(
     70% 70% at 50% 100%,
     #e8e8e8 0%,
