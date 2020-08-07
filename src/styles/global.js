@@ -2,6 +2,7 @@ import { css, createGlobalStyle } from 'styled-components';
 import { reset } from 'modern-css-reset';
 import Roboto from '../assets/fonts/Roboto-Regular.woff2';
 import Rubik from '../assets/fonts/Rubik-Regular.woff2';
+import { convertPxToRem } from '../utils/unitConversion';
 import { MEDIA } from '../styles/media';
 import { SIZES } from '../components/Text';
 
@@ -41,6 +42,16 @@ const colors = css`
   --color-pink-600: #d53f8c;
 `;
 
+const spacing = css`
+  --spacing-tiny: ${convertPxToRem(4)};
+  --spacing-small: ${convertPxToRem(8)};
+  --spacing-medium: ${convertPxToRem(16)};
+  --spacing-large: ${convertPxToRem(24)};
+  --spacing-huge: ${convertPxToRem(32)};
+  --spacing-giant: ${convertPxToRem(40)};
+  --spacing-massive: ${convertPxToRem(48)};
+`;
+
 const typography = css`
   @font-face {
     src: url(${Rubik}) format('woff2');
@@ -76,6 +87,7 @@ export const GlobalStyles = createGlobalStyle`
 
   :root {
     ${colors};
+    ${spacing};
   }
 
   ${typography};
@@ -86,9 +98,6 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     color: var(--color-black);
-    background-color: rgb(250, 250, 250);
-
- 
 
     *::selection {
       background: var(--color-orange-200);
@@ -102,7 +111,7 @@ export const GlobalStyles = createGlobalStyle`
       outline: 2px solid var(--color-blue-600);
       outline-offset: 4px;
     }
-  }
+  } 
   
   body, 
   div#___gatsby, 

@@ -9,23 +9,21 @@ Modals are a great way to display information on top of your application, and us
 
 Let’s start by creating a basic modal that conditionally renders depending on some local state. Clicking a button in the application root should trigger the modal, and clicking the button inside the modal should close it.
 
-  <iframe
-     src="https://codesandbox.io/embed/zen-pare-76gl3?fontsize=14&hidenavigation=1&theme=dark&view=editor"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="zen-pare-76gl3"
-     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-   ></iframe>
-   <figcaption>1.1: Basic modal implementation</figcaption>
+  <iframe src="https://codesandbox.io/embed/zen-pare-76gl3?autoresize=1&fontsize=14&hidenavigation=1&theme=dark&view=preview"
+    style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+    title="zen-pare-76gl3"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+  ></iframe>
+  <figcaption>1.1: Basic modal implementation</figcaption>
 
 This is only really useful if you need to trigger the modal from within `<App/>`, but what if you wanted the same functionality from a nested component? One option would be to pass the setState action `setIsModalOpen` as a prop and trigger the modal as a callback whenever a button within the nested component is clicked.
 
-  <iframe
-     src="https://codesandbox.io/embed/peaceful-bardeen-7jexx?fontsize=14&hidenavigation=1&theme=dark&view=editor"
+  <iframe src="https://codesandbox.io/embed/peaceful-bardeen-7jexx?autoresize=1&fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
      title="peaceful-bardeen-7jexx"
-     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
    <figcaption>1.2: Triggering the modal via a callback prop</figcaption>
 
@@ -33,12 +31,11 @@ This works for a single level of nesting, but it probably won’t scale very wel
 
 In short, React’s Context API allows you to store a value in a [Provider](https://reactjs.org/docs/context.html#contextprovider) that can be accessed from anywhere in your application via a [Consumer](https://reactjs.org/docs/context.html#contextconsumer). Whenever a Consumer is declared, React will search up the component tree for the first Provider that matches the consumer’s context, return its value, and then subscribe to any further changes. Let’s wrap the previous example with a Provider, set the `setIsModalOpen` callback as its value, then utilise the [useContext()](https://reactjs.org/docs/hooks-reference.html#usecontext) hook to consume it in a nested component.
 
-  <iframe
-     src="https://codesandbox.io/embed/sweet-brown-yn44i?fontsize=14&hidenavigation=1&theme=dark&view=editor"
+  <iframe src="https://codesandbox.io/embed/sweet-brown-yn44i?autoresize=1&fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
      title="sweet-brown-yn44i"
-     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
    <figcaption>1.3: Triggering the modal via React context</figcaption>
 
@@ -46,12 +43,11 @@ Now we have a modal that can be triggered from anywhere in our application, but 
 
 Enter the coding powerhouse that is [Jenna Smith](https://twitter.com/jjenzz), an incredibly talented frontend developer and former colleague. She proposed [React Portal](https://reactjs.org/docs/portals.html) as a solution, since they are explicitly designed to pass children to a DOM node that exists outside the hierarchy of the parent component. Creating a portal requires two arguments: any renderable React element (our dynamic content) and a DOM element to inject the content into (the modal’s container).
 
-  <iframe
-     src="https://codesandbox.io/embed/7w6mq72l2q?fontsize=14&hidenavigation=1&theme=dark&view=editor"
+  <iframe src="https://codesandbox.io/embed/7w6mq72l2q?autoresize=1&fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
      title="Modal"
-     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
    <figcaption>1.4: Jenna Smith’s solution using React’s createPortal method</figcaption>
 
