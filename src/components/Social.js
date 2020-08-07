@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
-import { GitHubIcon, MediumIcon, TwitterIcon, LinkedInIcon } from './icons';
+import { GitHubIcon, NotionIcon, TwitterIcon, LinkedInIcon } from './icons';
 import { ExternalLink } from './Link';
 
 const SocialLinks = styled.nav`
@@ -37,7 +37,7 @@ const RawSocial = props => {
             label
             url
           }
-          medium {
+          notion {
             handle
             label
             url
@@ -52,7 +52,7 @@ const RawSocial = props => {
     }
   `);
 
-  const { github, medium, twitter, linkedIn } = data.socialJson.social;
+  const { github, notion, twitter, linkedIn } = data.socialJson.social;
 
   return (
     <SocialLinks {...props}>
@@ -65,11 +65,11 @@ const RawSocial = props => {
       </SocialLink>
 
       <SocialLink
-        href={medium.url}
-        aria-label={medium.label}
-        title={medium.label}
+        href={notion.url}
+        aria-label={notion.label}
+        title={notion.label}
       >
-        <MediumIcon />
+        <NotionIcon />
       </SocialLink>
 
       <SocialLink
