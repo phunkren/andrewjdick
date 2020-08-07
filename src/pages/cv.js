@@ -434,7 +434,7 @@ export default function CV({ data }) {
                   from others and inspire those around me.
                 </Text>
 
-                <Text as="p" css="margin-top: 1em">
+                <Text as="p" css="margin-top: var(--spacing-medium);">
                   Over the years I&#39;ve refined a set of technical principles
                   to strive towards, namely: complexity should only be
                   introduced when it’s unavoidable; code should be easy to

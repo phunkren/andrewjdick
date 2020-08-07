@@ -112,7 +112,7 @@ const Section = styled.section`
   }
 
   figcaption {
-    margin-top: 0.5em;
+    margin-top: var(--spacing-small);
     ${SIZES['xs']};
     text-align: center;
     color: var(--color-black);

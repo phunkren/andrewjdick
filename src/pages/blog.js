@@ -121,7 +121,7 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
     </PreviewImage>
 
     <PreviewContent>
-      <div css="margin-bottom: 1em;">
+      <div css="margin-bottom: var(--spacing-medium);">
         <Text as="h2" size="xl" id={`post-${formatId(frontmatter.title)}`}>
           {frontmatter.title}
         </Text>
@@ -131,7 +131,11 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
         </Text>
       </div>
 
-      <Text as="p" aria-label="Excerpt" css="padding-bottom: 1em;">
+      <Text
+        as="p"
+        aria-label="Excerpt"
+        css="padding-bottom: var(--spacing-medium);"
+      >
         {excerpt}
       </Text>
 
