@@ -34,7 +34,7 @@ export const linkStyles = css`
 export const highlightStyles = css`
   position: relative;
   color: inherit;
-  white-space: no-wrap;
+  white-space: nowrap;
   z-index: 1;
 
   &::before {
