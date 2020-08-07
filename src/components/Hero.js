@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import squares from '../assets/images/squares.svg';
+import lightbulbsDark from '../assets/images/lightbulbs-dark.png';
 import { MEDIA } from '../styles/media';
 
 export const Hero = styled.div`
   height: 200px;
-  background-image: url(${squares});
+  background-color: var(--color-gray-600);
+  background-image: url(${lightbulbsDark});
+  background-position: center center;
   position: absolute;
   top: 0;
   right: 0;
