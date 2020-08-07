@@ -2,6 +2,7 @@ import { css, createGlobalStyle } from 'styled-components';
 import { reset } from 'modern-css-reset';
 import Roboto from '../assets/fonts/Roboto-Regular.woff2';
 import Rubik from '../assets/fonts/Rubik-Regular.woff2';
+import MonoLisa from '../assets/fonts/MonoLisa-Regular.woff2';
 import { convertPxToRem } from '../utils/unitConversion';
 import { MEDIA } from '../styles/media';
 import { SIZES } from '../components/Text';
@@ -63,13 +64,26 @@ const typography = css`
     font-family: 'Roboto';
   }
 
+  @font-face {
+    src: url(${MonoLisa}) format('woff2');
+    font-family: 'MonoLisa';
+  }
+
   body {
-    font-family: 'Roboto', serif;
     ${SIZES['s']};
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
     ${MEDIA.print`
       ${SIZES['ps']};
     `}
+  }
+
+  code[class*='language-'],
+  pre[class*='language-'] {
+    font-family: 'MonoLisa', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+      sans-serif;
   }
 
   * {
