@@ -122,6 +122,8 @@ const Section = styled.section`
   img {
     display: block;
     margin: var(--spacing-huge) auto 0;
+    width: 100%;
+    height: auto;
   }
 
   p > code[class*='language-'] {
