@@ -25,7 +25,7 @@ export const Hero = styled.div`
     bottom: 0;
     left: 0;
     background-color: var(--color-black);
-    opacity: 0.75;
+    opacity: 0.85;
   }
 
   ${MEDIA.tablet`
