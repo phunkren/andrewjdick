@@ -71,6 +71,12 @@ export const highlightStyles = css`
       );
     }
   }
+
+  ${MEDIA.print`
+    &::before {
+      display: none;
+    }
+  `}
 `;
 
 const isPartiallyActive = ({ isCurrent, isPartiallyCurrent }) =>
@@ -93,7 +99,7 @@ export const Link = styled(props => (
   `,
 );
 
-export const DownloadLink = styled(({ children, props }) => (
+export const DownloadLink = styled(({ children, ...props }) => (
   <a download {...props}>
     {children}
   </a>
