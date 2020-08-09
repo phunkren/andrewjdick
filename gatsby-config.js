@@ -3,7 +3,7 @@ const config = {
     title: 'Andrew James',
     description: 'Frontend-focused software engineer',
     url: 'https://ajames.dev',
-    image: '/assets/images/logo.jpg',
+    image: '/assets/images/lightbulbs.png',
     imageAlt: 'A series of interconnected lightbulbs',
     twitter: '@phunkren',
     author: {
