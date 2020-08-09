@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
 function SEO({ title, subtitle, image, canonical, article }) {
@@ -64,21 +64,6 @@ function SEO({ title, subtitle, image, canonical, article }) {
       <meta property="og:url" content={seo.url} />
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.description} />
-
-      {article && (
-        <>
-          <meta property="og:type" content="article" />
-          <meta
-            property="og:article:author"
-            content={site.siteMetadata.author.name}
-          />
-          <meta property="og:article:section" content="technology" />
-          <meta property="og:article:tag" content="web" />
-          <meta property="og:article:tag" content="frontend" />
-          <meta property="og:article:tag" content="software" />
-          <meta property="og:article:tag" content="engineering" />
-        </>
-      )}
     </Helmet>
   );
 }
