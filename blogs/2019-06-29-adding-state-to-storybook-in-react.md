@@ -1,8 +1,9 @@
 ---
 path: /blog/2019-06-29-adding-state-to-storybook-in-react
 title: Adding state to Storybook in React
+staticImage: storybook.jpg
 image: ../src/assets/images/storybook.jpg
-seoImage: storybook.jpg
+imageAlt: A fox reading a book
 date: 2019-06-29
 ---
 
