@@ -1,23 +1,18 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-function SEO({ description, lang, meta, title }) {
+function SEO({ title, subtitle, image, imageAlt, canonical, article }) {
   const { site } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
             title
+            url
             description
+            twitter
             author {
               name
             }
@@ -27,64 +22,56 @@ function SEO({ description, lang, meta, title }) {
     `,
   );
 
-  const metaDescription = description || site.siteMetadata.description;
+  const seo = {
+    title: title || site.siteMetadata.title,
+    subtitle: article && subtitle ? subtitle : site.siteMetadata.title,
+    description: site.siteMetadata.description,
+    siteName: `${site.siteMetadata.author.name} | ${site.siteMetadata.description}`,
+    url: canonical || site.siteMetadata.url,
+    content: article ? 'article' : 'website',
+    imgAlt: imageAlt || '',
+  };
+
+  const microLinkApi = 'https://i.microlink.io/';
+  const microCardQuery = `https://cards.microlink.io/?preset=ajames&title=${seo.title}&subtitle=${seo.subtitle}&bg.image=${image}`;
+  const microCardUrl = `${microLinkApi}${encodeURIComponent(microCardQuery)}`;
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.name,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
-    />
+    <Helmet title={seo.title} titleTemplate={`%s | ${site.siteMetadata.title}`}>
+      <html lang="en" amp />
+
+      <link rel="canonical" href={seo.url} />
+
+      <meta name="title" content={seo.title} />
+      <meta name="description" content={seo.description} />
+      <meta name="image" content={microCardUrl} />
+      <meta itemProp="image" content={microCardUrl} />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={seo.title} />
+      <meta name="twitter:description" content={seo.description} />
+      <meta name="twitter:site" content={site.siteMetadata.twitter} />
+      <meta name="twitter:creator" content={site.siteMetadata.twitter} />
+      <meta name="twitter:image" content={microCardUrl} />
+      <meta name="twitter:image:alt" content={seo.imgAlt} />
+
+      <meta property="og:type" content={seo.content} />
+      <meta property="og:image" content={microCardUrl} />
+      <meta property="og:url" content={seo.url} />
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:description" content={seo.description} />
+      <meta property="og:site_name" content={seo.siteName} />
+    </Helmet>
   );
 }
 
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
-};
-
 SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  image: PropTypes.string,
+  imageAlt: PropTypes.string,
+  canonical: PropTypes.string,
+  article: PropTypes.bool,
 };
 
 export default SEO;

@@ -154,7 +154,7 @@ const Section = styled.section`
   }
 `;
 
-function BlogTemplate({ data }) {
+function BlogTemplate({ data, location }) {
   const { markdownRemark } = data;
   const { frontmatter, fields, html } = markdownRemark;
 
@@ -162,7 +162,10 @@ function BlogTemplate({ data }) {
     <Layout>
       <SEO
         title={frontmatter.title}
-        pathname={`/${frontmatter.path}`}
+        subtitle={`${frontmatter.date} | ${fields.readingTime.text}`}
+        image={`${location.origin}/${frontmatter.staticImage}`}
+        imageAlt={frontmatter.imageAlt}
+        canonical={frontmatter.canonical}
         article
       />
 
@@ -173,7 +176,7 @@ function BlogTemplate({ data }) {
       <ArticleHero>
         <Img
           role="img"
-          alt=""
+          alt={frontmatter.imageAlt}
           fluid={frontmatter.image.childImageSharp.fluid}
         />
       </ArticleHero>
@@ -205,6 +208,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         path
         title
+        canonical
         image {
           childImageSharp {
             fluid(maxWidth: 768) {
@@ -212,6 +216,8 @@ export const pageQuery = graphql`
             }
           }
         }
+        imageAlt
+        staticImage
       }
       fields {
         readingTime {

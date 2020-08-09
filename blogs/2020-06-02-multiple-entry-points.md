@@ -1,6 +1,8 @@
 ---
 path: /blog/2020-06-02-multiple-entry-points-in-create-react-app-without-ejecting
 title: Multiple entry points in Create React App without ejecting
+canonical: https://blog.logrocket.com/multiple-entry-points-in-create-react-app-without-ejecting/
+staticImage: multiple-entry.jpg
 image: ../src/assets/images/multiple-entry.jpg
 imageAlt: An apartment block with a series of coloured doors
 date: 2020-06-02

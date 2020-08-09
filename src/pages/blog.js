@@ -167,7 +167,10 @@ export default function Blog({ data }) {
 
   return (
     <Layout>
-      <SEO title="Blog" pathname="/blog" />
+      <SEO
+        title="Blog"
+        description="A collection of technical articles focused on frontend web development"
+      />
       <Theme theme="dark">
         <Header />
       </Theme>

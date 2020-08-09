@@ -290,7 +290,7 @@ export default function CV({ data }) {
 
   return (
     <Layout>
-      <SEO title="CV" pathname="/cv" />
+      <SEO title="CV" description="My experience and technical expertise" />
       <Theme theme="dark">
         <Header />
       </Theme>

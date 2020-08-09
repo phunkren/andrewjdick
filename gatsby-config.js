@@ -1,11 +1,10 @@
 const config = {
   siteMetadata: {
     title: `Andrew James`,
-    titleTemplate: `Andrew James | %s`,
-    description: `Frontend engineer living and working in London.`,
+    description: `Software engineer focused on frontend web development`,
     url: `https://ajames.dev`,
     image: '/assets/images/logo.jpg',
-    twitterUsername: '@phunkren',
+    twitter: '@phunkren',
     author: {
       name: `Andrew James`,
       email: `contact@ajames.dev`,

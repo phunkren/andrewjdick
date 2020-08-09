@@ -1,7 +1,9 @@
 ---
 path: /blog/2018-11-05-a-brief-investigation-into-live-streaming-a-tech-meetup
 title: A brief investigation into live streaming a tech meetup
+staticImage: live-stream.jpg
 image: ../src/assets/images/live-stream.jpg
+imageAlt: A poster image for the Egg tech meetup
 date: 2018-11-05
 ---
 
