@@ -13,7 +13,7 @@ export const SEO = ({
   canonical,
   article,
 }) => {
-  const { origin, pathname } = useLocation();
+  const { origin, pathname } = useLocation() || {};
   const { site } = useStaticQuery(query);
 
   const {
