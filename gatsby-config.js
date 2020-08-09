@@ -1,53 +1,54 @@
 const config = {
   siteMetadata: {
-    title: `Andrew James`,
-    description: `Software engineer focused on frontend web development`,
-    url: `https://ajames.dev`,
+    title: 'Andrew James',
+    description: 'Frontend-focused software engineer',
+    url: 'https://ajames.dev',
     image: '/assets/images/logo.jpg',
+    imageAlt: 'A series of interconnected lightbulbs',
     twitter: '@phunkren',
     author: {
-      name: `Andrew James`,
-      email: `contact@ajames.dev`,
-      location: `London, UK`,
+      name: 'Andrew James',
+      email: 'contact@ajames.dev',
+      location: 'London, UK',
     },
   },
   plugins: [
-    `gatsby-plugin-styled-components`,
-    `gatsby-plugin-sharp`,
-    `gatsby-plugin-netlify`,
-    `gatsby-plugin-react-axe`,
-    `gatsby-plugin-react-helmet`,
-    `gatsby-transformer-sharp`,
-    `gatsby-transformer-json`,
+    'gatsby-plugin-styled-components',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-netlify',
+    'gatsby-plugin-react-axe',
+    'gatsby-plugin-react-helmet',
+    'gatsby-transformer-sharp',
+    'gatsby-transformer-json',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `blogs`,
+        name: 'blogs',
         path: `${__dirname}/blogs`,
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `assets`,
+        name: 'assets',
         path: `${__dirname}/src/assets`,
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `data`,
+        name: 'data',
         path: `${__dirname}/src/data`,
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-reading-time`,
+          'gatsby-remark-copy-linked-files',
+          'gatsby-remark-reading-time',
           {
-            resolve: `gatsby-remark-prismjs`,
+            resolve: 'gatsby-remark-prismjs',
             options: {
               classPrefix: 'language-',
               inlineCodeMarker: null,
@@ -57,7 +58,7 @@ const config = {
             },
           },
           {
-            resolve: `gatsby-remark-images`,
+            resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 768,
             },
@@ -66,7 +67,7 @@ const config = {
       },
     },
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Andrew James',
         short_name: 'Andrew James',
@@ -75,7 +76,7 @@ const config = {
         theme_color: '#5f9ea0',
         display: 'standalone',
         icon: 'src/assets/images/logo.png',
-        crossOrigin: `use-credentials`,
+        crossOrigin: 'use-credentials',
       },
     },
   ],
@@ -85,7 +86,7 @@ const config = {
 // Sauce: https://www.chaseadams.io/posts/netlify-gatsby-analytics/
 if (process.env.CONTEXT === 'production') {
   const gaConfig = {
-    resolve: `gatsby-plugin-google-analytics`,
+    resolve: 'gatsby-plugin-google-analytics',
     options: {
       trackingId: 'UA-158626991-1',
       anonymize: true,
