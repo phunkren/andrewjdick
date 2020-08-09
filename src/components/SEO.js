@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-function SEO({ title, subtitle, image, canonical, article }) {
+function SEO({ title, subtitle, image, imageAlt, canonical, article }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -24,8 +24,10 @@ function SEO({ title, subtitle, image, canonical, article }) {
   const seo = {
     title: title || site.siteMetadata.title,
     description: subtitle || site.siteMetadata.description,
+    siteName: `${site.siteMetadata.author.name} | ${site.siteMetadata.description}`,
     url: canonical || site.siteMetadata.url,
     content: article ? 'article' : 'website',
+    imgAlt: imageAlt || '',
   };
 
   const microCardStyles = {
@@ -53,17 +55,20 @@ function SEO({ title, subtitle, image, canonical, article }) {
       <meta name="image" content={microCardUrl} />
       <meta itemProp="image" content={microCardUrl} />
 
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:title" content={seo.title} />
-      <meta property="twitter:description" content={seo.description} />
-      <meta property="twitter:creator" content={site.siteMetadata.twitter} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={seo.title} />
+      <meta name="twitter:description" content={seo.description} />
+      <meta name="twitter:site" content={site.siteMetadata.twitter} />
+      <meta name="twitter:creator" content={site.siteMetadata.twitter} />
       <meta name="twitter:image" content={microCardUrl} />
+      <meta name="twitter:image:alt" content={seo.imgAlt} />
 
       <meta property="og:type" content={seo.content} />
       <meta property="og:image" content={microCardUrl} />
       <meta property="og:url" content={seo.url} />
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.description} />
+      <meta property="og:site_name" content={seo.siteName} />
     </Helmet>
   );
 }

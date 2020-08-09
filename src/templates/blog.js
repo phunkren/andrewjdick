@@ -164,6 +164,7 @@ function BlogTemplate({ data, location }) {
         title={frontmatter.title}
         subtitle={`${frontmatter.date} | ${fields.readingTime.text}`}
         image={`${location.origin}/${frontmatter.staticImage}`}
+        imageAlt={frontmatter.imageAlt}
         canonical={frontmatter.canonical}
         article
       />

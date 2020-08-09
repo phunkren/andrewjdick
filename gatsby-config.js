@@ -1,7 +1,6 @@
 const config = {
   siteMetadata: {
     title: `Andrew James`,
-    titleTemplate: `Andrew James | %s`,
     description: `Frontend engineer living and working in London.`,
     url: `https://ajames.dev`,
     image: '/assets/images/logo.jpg',
