@@ -12,6 +12,7 @@ function SEO({ title, subtitle, image, imageAlt, canonical, article }) {
             title
             url
             description
+            twitter
             author {
               name
             }
@@ -23,25 +24,16 @@ function SEO({ title, subtitle, image, imageAlt, canonical, article }) {
 
   const seo = {
     title: title || site.siteMetadata.title,
-    description: subtitle || site.siteMetadata.description,
+    subtitle: article && subtitle ? subtitle : site.siteMetadata.title,
+    description: site.siteMetadata.description,
     siteName: `${site.siteMetadata.author.name} | ${site.siteMetadata.description}`,
     url: canonical || site.siteMetadata.url,
     content: article ? 'article' : 'website',
     imgAlt: imageAlt || '',
   };
 
-  const microCardStyles = {
-    mask: encodeURI(
-      'linear-gradient(75deg,rgba(0,0,0,0.75)0%,rgba(0,0,0,0.5)75%,rgba(0,0,0,0.25)100%)',
-    ),
-    primary: encodeURI(
-      'linear-gradient(75deg,rgb(255,255,255)0%,rgba(255,255,255,0.95)70%,rgba(255,255,255,0)0%)',
-    ),
-    secondary: encodeURI('rgb(0,0,0)'),
-  };
-
   const microLinkApi = 'https://i.microlink.io/';
-  const microCardQuery = `https://cards.microlink.io/?preset=ajames&title=${seo.title}&subtitle=${seo.description}&bg.mask=${microCardStyles.mask}&bg.primary=${microCardStyles.primary}&bg.secondary=${microCardStyles.secondary}&bg.image=${image}`;
+  const microCardQuery = `https://cards.microlink.io/?preset=ajames&title=${seo.title}&subtitle=${seo.subtitle}&bg.image=${image}`;
   const microCardUrl = `${microLinkApi}${encodeURIComponent(microCardQuery)}`;
 
   return (
@@ -77,6 +69,7 @@ SEO.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   image: PropTypes.string,
+  imageAlt: PropTypes.string,
   canonical: PropTypes.string,
   article: PropTypes.bool,
 };
