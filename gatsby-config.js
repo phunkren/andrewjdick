@@ -1,7 +1,7 @@
 const config = {
   siteMetadata: {
     title: `Andrew James`,
-    description: `Frontend engineer living and working in London.`,
+    description: `Software engineer focused on frontend web development`,
     url: `https://ajames.dev`,
     image: '/assets/images/logo.jpg',
     twitter: '@phunkren',
