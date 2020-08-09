@@ -163,7 +163,8 @@ function BlogTemplate({ data, location }) {
       <SEO
         title={frontmatter.title}
         subtitle={`${frontmatter.date} | ${fields.readingTime.text}`}
-        image={`${location.origin}/${frontmatter.seoImage}`}
+        image={`${location.origin}/${frontmatter.staticImage}`}
+        canonical={frontmatter.canonical}
       />
 
       <Theme theme="dark">
@@ -173,7 +174,7 @@ function BlogTemplate({ data, location }) {
       <ArticleHero>
         <Img
           role="img"
-          alt=""
+          alt={frontmatter.imageAlt}
           fluid={frontmatter.image.childImageSharp.fluid}
         />
       </ArticleHero>
@@ -205,7 +206,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         path
         title
-        seoImage
+        canonical
         image {
           childImageSharp {
             fluid(maxWidth: 768) {
@@ -213,6 +214,8 @@ export const pageQuery = graphql`
             }
           }
         }
+        imageAlt
+        staticImage
       }
       fields {
         readingTime {
