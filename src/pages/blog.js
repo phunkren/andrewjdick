@@ -155,7 +155,7 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
   </Preview>
 );
 
-export default function Blog({ data }) {
+export default function Blog({ data, location: { pathname } }) {
   const { edges } = data.allMarkdownRemark;
   const posts = edges
     .filter(edge => !!edge.node.frontmatter.date)
@@ -168,8 +168,9 @@ export default function Blog({ data }) {
   return (
     <Layout>
       <SEO
+        path={pathname}
         title="Blog"
-        description="A collection of technical articles focused on modern frontend web development"
+        description="Technical articles focused on modern frontend web development"
       />
       <Theme theme="dark">
         <Header />

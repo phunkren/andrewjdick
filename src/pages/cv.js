@@ -259,7 +259,7 @@ const Title = styled(Text)`
   width: 1px;
 `;
 
-export default function CV({ data }) {
+export default function CV({ data, location: { pathname } }) {
   const { education } = data.educationJson;
   const { experience } = data.experienceJson;
   const { social } = data.socialJson;
@@ -290,7 +290,11 @@ export default function CV({ data }) {
 
   return (
     <Layout>
-      <SEO title="CV" description="My experience and technical expertise" />
+      <SEO
+        path={pathname}
+        title="CV"
+        description="My experience and technical expertise"
+      />
       <Theme theme="dark">
         <Header />
       </Theme>

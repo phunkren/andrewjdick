@@ -154,16 +154,17 @@ const Section = styled.section`
   }
 `;
 
-function BlogTemplate({ data }) {
+function BlogTemplate({ data, location }) {
   const { markdownRemark } = data;
   const { frontmatter, fields, html } = markdownRemark;
 
   return (
     <Layout>
       <SEO
+        path={frontmatter.path}
         title={frontmatter.title}
         description={`${frontmatter.date} | ${fields.readingTime.text}`}
-        image={frontmatter.staticImage}
+        image={`${location.origin}/${frontmatter.staticImage}`}
         imageAlt={frontmatter.imageAlt}
         canonical={frontmatter.canonical}
         published={frontmatter.date}

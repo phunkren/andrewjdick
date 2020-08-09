@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import { useLocation } from '@reach/router';
 import { useStaticQuery, graphql } from 'gatsby';
+import { generateMicroCardUrl } from '../utils/generateMicroCardUrl';
 
 export const SEO = ({
+  path,
   title,
   description,
   image,
@@ -13,41 +14,42 @@ export const SEO = ({
   canonical,
   article,
 }) => {
-  const { origin, pathname } = useLocation() || {};
-  const { site } = useStaticQuery(query);
-
   const {
-    defaultTitle,
-    defaultDescription,
-    defaultImage,
-    defaultImageAlt,
-    siteUrl,
-    author: { name },
-    twitter,
-  } = site.siteMetadata;
+    site: {
+      siteMetadata: {
+        defaultTitle,
+        defaultDescription,
+        defaultImageAlt,
+        siteUrl,
+        author: { name },
+        twitter,
+      },
+    },
+  } = useStaticQuery(query);
 
   const seo = {
     name: siteUrl,
     title: title ? `${title} | Andrew James` : defaultTitle,
     description: description || defaultDescription,
-    image: `${origin}/${image || defaultImage}`,
     imageAlt: imageAlt || defaultImageAlt,
-    url: `${origin}${pathname}`,
-    canonical: canonical || `${origin}${pathname}`,
+    url: path ? `${siteUrl}${path}` : siteUrl,
     content: article ? 'article' : 'website',
-    published: published ? new Date(published).toISOString() : null,
+    article: {
+      section: 'technology',
+      published: published ? new Date(published).toISOString() : null,
+      tags: ['web', 'frontend', 'software', 'engineering'],
+    },
   };
 
-  const microLinkApi = 'https://i.microlink.io/';
-  const microCardTitle = title || defaultTitle;
-  const microCardQuery = `https://cards.microlink.io/?preset=ajames&title=${microCardTitle}&subtitle=${seo.description}&image=${image}`;
-  const microCardUrl = `${microLinkApi}${encodeURIComponent(microCardQuery)}`;
+  const microCardUrl = generateMicroCardUrl({
+    title: title || defaultTitle,
+    description: description || defaultDescription,
+    image,
+  });
 
   return (
     <Helmet title={seo.title}>
       <html lang="en" amp />
-
-      <link rel="canonical" href={seo.canonical} />
 
       <meta name="title" content={seo.title} />
       <meta name="description" content={seo.description} />
@@ -69,15 +71,22 @@ export const SEO = ({
       <meta name="twitter:image" content={microCardUrl} />
       <meta name="twitter:image:alt" content={seo.imageAlt} />
 
+      {canonical && <link rel="canonical" href={seo.canonical} />}
+
       {article && <meta property="article:author" content={name} />}
       {article && (
-        <meta property="article:published_time" content={seo.published} />
+        <meta property="article:section" content={seo.article.section} />
       )}
-      {article && <meta property="article:section" content="technology" />}
-      {article && <meta property="article:tag" content="web" />}
-      {article && <meta property="article:tag" content="frontend" />}
-      {article && <meta property="article:tag" content="software" />}
-      {article && <meta property="article:tag" content="engineering" />}
+      {article && (
+        <meta
+          property="article:published_time"
+          content={seo.article.published}
+        />
+      )}
+      {article &&
+        seo.article.tags.map(tag => (
+          <meta key={tag} property="article:tag" content={tag} />
+        ))}
     </Helmet>
   );
 };
@@ -108,7 +117,6 @@ const query = graphql`
       siteMetadata {
         defaultTitle: title
         defaultDescription: description
-        defaultImage: image
         defaultImageAlt: imageAlt
         siteUrl: url
         twitter
