@@ -2,6 +2,7 @@
 path: /blog/2020-06-02-multiple-entry-points-in-create-react-app-without-ejecting
 title: Multiple entry points in Create React App without ejecting
 image: ../src/assets/images/multiple-entry.jpg
+seoImage: multiple-entry.jpg
 imageAlt: An apartment block with a series of coloured doors
 date: 2020-06-02
 ---

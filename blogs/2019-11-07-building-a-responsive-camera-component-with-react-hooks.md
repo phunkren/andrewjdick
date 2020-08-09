@@ -2,6 +2,7 @@
 path: /blog/2019-11-07-building-a-responsive-camera-component-with-react-hooks
 title: Building a responsive camera component with React hooks
 image: ../src/assets/images/camera-lens.jpg
+seoImage: camera-lens.jpg
 date: 2019-11-07
 ---
 

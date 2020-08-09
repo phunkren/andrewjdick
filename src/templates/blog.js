@@ -154,7 +154,7 @@ const Section = styled.section`
   }
 `;
 
-function BlogTemplate({ data }) {
+function BlogTemplate({ data, location }) {
   const { markdownRemark } = data;
   const { frontmatter, fields, html } = markdownRemark;
 
@@ -162,8 +162,8 @@ function BlogTemplate({ data }) {
     <Layout>
       <SEO
         title={frontmatter.title}
-        pathname={`/${frontmatter.path}`}
-        article
+        subtitle={`${frontmatter.date} | ${fields.readingTime.text}`}
+        image={`${location.origin}/${frontmatter.seoImage}`}
       />
 
       <Theme theme="dark">
@@ -205,6 +205,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         path
         title
+        seoImage
         image {
           childImageSharp {
             fluid(maxWidth: 768) {

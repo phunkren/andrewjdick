@@ -5,7 +5,7 @@ const config = {
     description: `Frontend engineer living and working in London.`,
     url: `https://ajames.dev`,
     image: '/assets/images/logo.jpg',
-    twitterUsername: '@phunkren',
+    twitter: '@phunkren',
     author: {
       name: `Andrew James`,
       email: `contact@ajames.dev`,

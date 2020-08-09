@@ -10,13 +10,14 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-function SEO({ description, lang, meta, title }) {
+function SEO({ title, subtitle, image, canonical }) {
   const { site } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
             title
+            url
             description
             author {
               name
@@ -27,64 +28,48 @@ function SEO({ description, lang, meta, title }) {
     `,
   );
 
-  const metaDescription = description || site.siteMetadata.description;
+  const seo = {
+    title: title || site.siteMetadata.title,
+    description: subtitle || site.siteMetadata.description,
+    url: canonical || site.siteMetadata.url,
+  };
 
+  const microLinkApi = 'https://i.microlink.io/';
+  const microCardUrl = `https://cards.microlink.io/?preset=ajames&title=${seo.title}&subtitle=${seo.description}&bg.image="https://ajames.dev/logo.jpg"`;
+  const microCard = `${microLinkApi}${encodeURIComponent(microCardUrl)}`;
+
+  console.log(microCard);
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.name,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
-    />
+    <Helmet title={seo.title} titleTemplate={`%s | ${site.siteMetadata.title}`}>
+      <html lang="en" amp />
+
+      <link rel="canonical" href={seo.url} />
+
+      <meta name="title" content={seo.title} />
+      <meta name="description" content={seo.description} />
+      <meta name="image" content={microCard} />
+      <meta itemProp="image" content={microCard} />
+
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content={microCard} />
+      <meta property="og:url" content={seo.url} />
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:description" content={seo.description} />
+
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:title" content={seo.title} />
+      <meta property="twitter:description" content={seo.description} />
+      <meta property="twitter:creator" content={site.siteMetadata.twitter} />
+      <meta name="twitter:image" content={microCard} />
+    </Helmet>
   );
 }
 
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
-};
-
 SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  image: PropTypes.string,
+  canonical: PropTypes.string,
 };
 
 export default SEO;
