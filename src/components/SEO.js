@@ -1,10 +1,3 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
@@ -34,11 +27,20 @@ function SEO({ title, subtitle, image, canonical }) {
     url: canonical || site.siteMetadata.url,
   };
 
-  const microLinkApi = 'https://i.microlink.io/';
-  const microCardUrl = `https://cards.microlink.io/?preset=ajames&title=${seo.title}&subtitle=${seo.description}&bg.image="https://ajames.dev/logo.jpg"`;
-  const microCard = `${microLinkApi}${encodeURIComponent(microCardUrl)}`;
+  const microCardStyles = {
+    mask: encodeURI(
+      'linear-gradient(75deg,rgba(0,0,0,0.75)0%,rgba(0,0,0,0.5)75%,rgba(0,0,0,0.25)100%)',
+    ),
+    primary: encodeURI(
+      'linear-gradient(75deg,rgb(255,255,255)0%,rgba(255,255,255,0.95)70%,rgba(255,255,255,0)0%)',
+    ),
+    secondary: encodeURI('rgb(0,0,0)'),
+  };
 
-  console.log(microCard);
+  const microLinkApi = 'https://i.microlink.io/';
+  const microCardQuery = `https://cards.microlink.io/?preset=ajames&title=${seo.title}&subtitle=${seo.description}&bg.mask=${microCardStyles.mask}&bg.primary=${microCardStyles.primary}&bg.secondary=${microCardStyles.secondary}&bg.image=${image}`;
+  const microCardUrl = `${microLinkApi}${encodeURIComponent(microCardQuery)}`;
+
   return (
     <Helmet title={seo.title} titleTemplate={`%s | ${site.siteMetadata.title}`}>
       <html lang="en" amp />
@@ -47,11 +49,11 @@ function SEO({ title, subtitle, image, canonical }) {
 
       <meta name="title" content={seo.title} />
       <meta name="description" content={seo.description} />
-      <meta name="image" content={microCard} />
-      <meta itemProp="image" content={microCard} />
+      <meta name="image" content={microCardUrl} />
+      <meta itemProp="image" content={microCardUrl} />
 
       <meta property="og:type" content="website" />
-      <meta property="og:image" content={microCard} />
+      <meta property="og:image" content={microCardUrl} />
       <meta property="og:url" content={seo.url} />
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.description} />
@@ -60,7 +62,7 @@ function SEO({ title, subtitle, image, canonical }) {
       <meta property="twitter:title" content={seo.title} />
       <meta property="twitter:description" content={seo.description} />
       <meta property="twitter:creator" content={site.siteMetadata.twitter} />
-      <meta name="twitter:image" content={microCard} />
+      <meta name="twitter:image" content={microCardUrl} />
     </Helmet>
   );
 }
