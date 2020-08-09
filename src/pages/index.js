@@ -93,7 +93,7 @@ export default function Home({ data }) {
 
   return (
     <Layout>
-      <SEO />
+      <SEO title="Home" />
       <GlobalStyles />
       <Wrapper>
         <Header />
