@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { Layout } from '../components/Layout';
-import SEO from '../components/SEO';
+import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { linkStyles, highlightStyles } from '../components/Link';
@@ -154,7 +154,7 @@ const Section = styled.section`
   }
 `;
 
-function BlogTemplate({ data, location }) {
+function BlogTemplate({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, fields, html } = markdownRemark;
 
@@ -162,10 +162,11 @@ function BlogTemplate({ data, location }) {
     <Layout>
       <SEO
         title={frontmatter.title}
-        subtitle={`${frontmatter.date} | ${fields.readingTime.text}`}
-        image={`${location.origin}/${frontmatter.staticImage}`}
+        description={`${frontmatter.date} | ${fields.readingTime.text}`}
+        image={frontmatter.staticImage}
         imageAlt={frontmatter.imageAlt}
         canonical={frontmatter.canonical}
+        published={frontmatter.date}
         article
       />
 

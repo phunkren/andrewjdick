@@ -9,7 +9,7 @@ import { Social } from '../components/Social';
 import { ExternalLink } from '../components/Link';
 import { Header } from '../components/Header';
 import { Text } from '../components/Text';
-import SEO from '../components/SEO';
+import { SEO } from '../components/SEO';
 import { MEDIA } from '../styles/media';
 
 const infiniteScroll = keyframes`
@@ -93,7 +93,7 @@ export default function Home({ data }) {
 
   return (
     <Layout>
-      <SEO title="👋" />
+      <SEO />
       <GlobalStyles />
       <Wrapper>
         <Header />

@@ -16,7 +16,7 @@ import { ExternalLink, DownloadLink } from '../components/Link';
 import { IconButton } from '../components/Button';
 import { Text } from '../components/Text';
 import { DownloadIcon, PrintIcon } from '../components/icons';
-import SEO from '../components/SEO';
+import { SEO } from '../components/SEO';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { Hero } from '../components/Hero';
 import { Header } from '../components/Header';

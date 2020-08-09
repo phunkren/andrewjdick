@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { formatId } from '../utils/formatId';
-import SEO from '../components/SEO';
+import { SEO } from '../components/SEO';
 import { Layout } from '../components/Layout';
 import { Text } from '../components/Text';
 import { Link } from '../components/Link';
@@ -169,7 +169,7 @@ export default function Blog({ data }) {
     <Layout>
       <SEO
         title="Blog"
-        description="A collection of technical articles focused on frontend web development"
+        description="A collection of technical articles focused on modern frontend web development"
       />
       <Theme theme="dark">
         <Header />
