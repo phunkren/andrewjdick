@@ -71,7 +71,7 @@ export const SEO = ({
       <meta name="twitter:image" content={microCardUrl} />
       <meta name="twitter:image:alt" content={seo.imageAlt} />
 
-      {canonical && <link rel="canonical" href={seo.canonical} />}
+      {canonical && <link rel="canonical" href={canonical} />}
 
       {article && <meta property="article:author" content={name} />}
       {article && (
