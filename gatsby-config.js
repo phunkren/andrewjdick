@@ -1,10 +1,13 @@
 const config = {
   siteMetadata: {
     title: 'Andrew James',
-    description: 'Frontend-focused software engineer',
-    url: 'https://ajames.dev',
-    image: '/assets/images/lightbulbs.png',
-    imageAlt: 'A series of interconnected lightbulbs',
+    description: 'Software engineer focused on modern frontend web development',
+    url:
+      process.env.CONTEXT === 'production'
+        ? 'https://ajames.dev'
+        : 'https://staging.ajames.dev',
+    image: '/assets/images/avatar.jpg',
+    imageAlt: 'My headshot',
     twitter: '@phunkren',
     author: {
       name: 'Andrew James',

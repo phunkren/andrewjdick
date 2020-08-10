@@ -163,9 +163,7 @@ function BlogTemplate({ data, location }) {
       <SEO
         path={frontmatter.path}
         title={frontmatter.title}
-        description={`${frontmatter.date} | ${fields.readingTime.text}`}
-        image={`${location.origin}/${frontmatter.staticImage}`}
-        imageAlt={frontmatter.imageAlt}
+        description={`🗓 ${frontmatter.date} · ⏱ ${fields.readingTime.text}`}
         canonical={frontmatter.canonical}
         published={frontmatter.date}
         article

@@ -1,28 +1,17 @@
-function generateQuery({ title, description, image }) {
+function generateQueryString(queryParams) {
   const preset = 'preset=ajames';
-  let query = `?${preset}`;
+  const params = Object.keys(queryParams)
+    .map(key => `&${key}=${queryParams[key]}`)
+    .join('');
 
-  if (title) {
-    query = query.concat('&', `title=${title}`);
-  }
-
-  if (description) {
-    query = query.concat('&', `subtitle=${description}`);
-  }
-
-  if (image) {
-    query = query.concat('&', `image=${image}`);
-  }
-
-  return query;
+  return `?${preset}${params}`;
 }
 
 export function generateMicroCardUrl(queryParams) {
-  const microLinkApi = 'https://i.microlink.io/';
-  const microCardApi = 'https://cards.microlink.io/';
-  const microCardQuery = encodeURIComponent(generateQuery(queryParams));
+  const api = 'https://i.microlink.io/';
+  const query = generateQueryString(queryParams);
+  const cardUrl = `https://cards.microlink.io/${query}`;
+  const image = `${api}${encodeURIComponent(cardUrl)}`;
 
-  console.log(microCardQuery);
-
-  return `${microLinkApi}${microCardApi}${microCardQuery}`;
+  return image;
 }

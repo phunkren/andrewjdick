@@ -293,7 +293,7 @@ export default function CV({ data, location: { pathname } }) {
       <SEO
         path={pathname}
         title="CV"
-        description="My experience and technical expertise"
+        description="An overview of my experience and technical expertise"
       />
       <Theme theme="dark">
         <Header />

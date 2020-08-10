@@ -170,7 +170,7 @@ export default function Blog({ data, location: { pathname } }) {
       <SEO
         path={pathname}
         title="Blog"
-        description="Technical articles focused on modern frontend web development"
+        description="Personal contributions to modern frontend web development"
       />
       <Theme theme="dark">
         <Header />
