@@ -8,8 +8,6 @@ export const SEO = ({
   path,
   title,
   description,
-  image,
-  imageAlt,
   published,
   canonical,
   article,
@@ -19,7 +17,6 @@ export const SEO = ({
       siteMetadata: {
         defaultTitle,
         defaultDescription,
-        defaultImage,
         defaultImageAlt,
         siteUrl,
         author: { name },
@@ -32,7 +29,7 @@ export const SEO = ({
     name: siteUrl,
     title: title ? `${title} | Andrew James` : defaultTitle,
     description: description || defaultDescription,
-    imageAlt: imageAlt || defaultImageAlt,
+    imageAlt: defaultImageAlt,
     url: path ? `${siteUrl}${path}` : siteUrl,
     content: article ? 'article' : 'website',
     article: {
@@ -40,13 +37,13 @@ export const SEO = ({
       published: published ? new Date(published).toISOString() : null,
       tags: ['web', 'frontend', 'software', 'engineering'],
     },
+    microCard: {
+      title: title || defaultTitle,
+      subtitle: description || defaultDescription,
+    },
   };
 
-  const microCardUrl = generateMicroCardUrl({
-    title: title || defaultTitle,
-    subtitle: description || defaultDescription,
-    image: image || defaultImage,
-  });
+  const microCardUrl = generateMicroCardUrl(seo.microCard);
 
   return (
     <Helmet title={seo.title}>
@@ -95,8 +92,6 @@ export const SEO = ({
 SEO.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  image: PropTypes.string,
-  imageAlt: PropTypes.string,
   canonical: PropTypes.string,
   published: PropTypes.string,
   article: PropTypes.bool,
@@ -104,9 +99,7 @@ SEO.propTypes = {
 
 SEO.defaultProps = {
   title: null,
-  description: null,
-  image: null,
-  imageAlt: null,
+  subtitle: null,
   canonical: null,
   published: null,
   article: false,
@@ -118,8 +111,6 @@ const query = graphql`
       siteMetadata {
         defaultTitle: title
         defaultDescription: description
-        defaultImage: image
-        defaultImageAlt: imageAlt
         siteUrl: url
         twitter
         author {
