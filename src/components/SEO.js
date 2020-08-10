@@ -17,6 +17,7 @@ export const SEO = ({
       siteMetadata: {
         defaultTitle,
         defaultDescription,
+        defaultImage,
         defaultImageAlt,
         siteUrl,
         author: { name },
@@ -51,7 +52,7 @@ export const SEO = ({
 
       <meta name="title" content={seo.title} />
       <meta name="description" content={seo.description} />
-      <meta name="image" content={microCardUrl} />
+      <meta name="image" content={defaultImage} />
       <meta itemProp="image" content={microCardUrl} />
 
       <meta property="og:site_name" content={seo.siteName} />
@@ -92,6 +93,8 @@ export const SEO = ({
 SEO.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
+  defaultImageAlt: PropTypes.string,
+  defaultImage: PropTypes.string,
   canonical: PropTypes.string,
   published: PropTypes.string,
   article: PropTypes.bool,
@@ -100,6 +103,8 @@ SEO.propTypes = {
 SEO.defaultProps = {
   title: null,
   subtitle: null,
+  defaultImageAlt: null,
+  defaultImage: null,
   canonical: null,
   published: null,
   article: false,
@@ -111,6 +116,8 @@ const query = graphql`
       siteMetadata {
         defaultTitle: title
         defaultDescription: description
+        defaultImageAlt: imageAlt
+        defaultImage: image
         siteUrl: url
         twitter
         author {
