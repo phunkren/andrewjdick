@@ -19,6 +19,7 @@ export const SEO = ({
       siteMetadata: {
         defaultTitle,
         defaultDescription,
+        defaultImage,
         defaultImageAlt,
         siteUrl,
         author: { name },
@@ -43,8 +44,8 @@ export const SEO = ({
 
   const microCardUrl = generateMicroCardUrl({
     title: title || defaultTitle,
-    description: description || defaultDescription,
-    image,
+    subtitle: description || defaultDescription,
+    image: image || defaultImage,
   });
 
   return (
@@ -117,6 +118,7 @@ const query = graphql`
       siteMetadata {
         defaultTitle: title
         defaultDescription: description
+        defaultImage: image
         defaultImageAlt: imageAlt
         siteUrl: url
         twitter
