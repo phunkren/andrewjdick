@@ -10,7 +10,7 @@ const Image = styled(Img)`
   border-radius: 50%;
 
   ${MEDIA.tablet`
-    min-width: 66px;
+    width: 60px;
   `}
 `;
 
