@@ -85,38 +85,34 @@ const Container = styled.div`
 
 const Heading = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-end;
   padding: var(--spacing-huge) var(--spacing-medium);
-  text-align: center;
 
   ${MEDIA.tablet`
-    justify-content: space-between;
     padding: var(--spacing-huge);
-    text-align: left;
   `}
 
   ${MEDIA.print`
-    justify-content: space-between;
     padding: var(--spacing-huge);
-    text-align: left;
   `};
 `;
 
 const HeaderIcons = styled.div`
-  display: none;
+  display: flex;
+  align-items: center;
 
-  ${MEDIA.desktop`
-    display: flex;
+  & > ${DownloadLink} {
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
 
-    & > ${DownloadLink} {
-      display: inline-flex;
-      min-width: 44px;
-      min-height: 44px;
-      margin-left: var(--spacing-medium);
-    }
-  `};
+  & > * + * {
+    margin-left: var(--spacing-medium);
+  }
 
   ${MEDIA.print`
     display: none;
@@ -314,11 +310,13 @@ export default function CV({ data, location: { pathname } }) {
               </Text>
             </div>
 
-            {isBrowser && !isIE && (
-              <HeaderIcons aria-label="Export CV">
+            <HeaderIcons aria-label="Export CV">
+              {isBrowser && (
                 <IconButton aria-label="Print" onClick={handleCvPrint}>
                   <PrintIcon width="2.5rem" height="2.5rem" />
                 </IconButton>
+              )}
+              {!isIE && (
                 <DownloadLink
                   aria-label="Download"
                   href={cv}
@@ -326,8 +324,8 @@ export default function CV({ data, location: { pathname } }) {
                 >
                   <DownloadIcon width="2.5rem" height="2.5rem" />
                 </DownloadLink>
-              </HeaderIcons>
-            )}
+              )}
+            </HeaderIcons>
           </Heading>
 
           <Wrapper>
