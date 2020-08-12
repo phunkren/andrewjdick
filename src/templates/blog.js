@@ -84,11 +84,8 @@ const Section = styled.section`
   }
 
   p {
-    ${SIZES['s']};
-
     ${MEDIA.tablet`
       padding: 0 var(--spacing-huge);
-      line-height: 1.7;
     `};
   }
 

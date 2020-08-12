@@ -70,7 +70,7 @@ const typography = css`
   }
 
   body {
-    ${SIZES['s']};
+    ${SIZES['pb']};
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
       Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
@@ -84,11 +84,6 @@ const typography = css`
     font-family: 'MonoLisa', -apple-system, BlinkMacSystemFont, 'Segoe UI',
       Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
       sans-serif;
-  }
-
-  * {
-    font-size: inherit;
-    line-height: inherit;
   }
 
   ul {

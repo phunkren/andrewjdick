@@ -18,25 +18,14 @@ export const SIZES = {
     text-transform: uppercase;
   `,
   'ps': css`
-    font-size: 14px;
-    font-size: ${convertPxToRem(14)};
-    line-height: 1.6;
-  `,
-  'pb': css`
     font-size: 16px;
     font-size: ${convertPxToRem(16)};
     line-height: 1.5;
   `,
-  's': css`
+  'pb': css`
     font-size: 18px;
     font-size: ${convertPxToRem(18)};
-    line-height: 1.444;
-
-    ${MEDIA.desktop`
-      font-size: 20px;
-      font-size: ${convertPxToRem(20)};
-      line-height: 1.4;
-    `}
+    line-height: 1.7;
   `,
   'm': css`
     font-family: 'Rubik', Arial, sans-serif;
