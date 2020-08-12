@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import lightbulbsDark from '../assets/images/lightbulbs-dark.png';
-import { MEDIA } from '../styles/media';
 
 export const Hero = styled.div`
   height: 200px;
@@ -29,8 +28,4 @@ export const Hero = styled.div`
     background-color: var(--color-black);
     opacity: 0.85;
   }
-
-  ${MEDIA.tablet`
-    height: 300px;
-  `}
 `;

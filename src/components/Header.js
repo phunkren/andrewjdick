@@ -28,10 +28,10 @@ const Inner = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
+  margin: var(--spacing-medium) auto 0;
   padding: 0 var(--spacing-medium);
   max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
-  height: 100px;
+  height: 60px;
 
   ${MEDIA.tablet`
       padding: 0 var(--spacing-huge);

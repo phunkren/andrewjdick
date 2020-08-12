@@ -20,14 +20,13 @@ const Main = styled.main`
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-top: 100px;
+  margin-top: 76px;
   margin-right: auto;
   margin-bottom: var(--spacing-huge);
   margin-left: auto;
   padding: 0 var(--spacing-medium);
 
   ${MEDIA.tablet`
-    margin-top: 150px;
     padding: 0 var(--spacing-huge);
   `}
 `;
@@ -109,16 +108,6 @@ const PreviewContent = styled.div`
   `}
 `;
 
-const Title = styled(Text)`
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-`;
-
 const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
   <Preview aria-labelledby={`blog post-${formatId(frontmatter.title)}`}>
     <PreviewImage aria-hidden="true">
@@ -178,9 +167,14 @@ export default function Blog({ data, location: { pathname } }) {
       <Wrapper>
         <Hero />
         <Main>
-          <Title as="h1" id="blog">
+          <Text
+            as="h1"
+            size="4xl"
+            id="blog"
+            css="color: white; margin-bottom: var(--spacing-large);"
+          >
             Blog
-          </Title>
+          </Text>
           <List>{posts}</List>
         </Main>
       </Wrapper>

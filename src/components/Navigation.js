@@ -36,7 +36,7 @@ export const Navigation = styled(({ column = false, ...props }) => (
         <Link to="/blog">Blog</Link>
       </ListItem>
       <ListItem>
-        <Link to="/cv">Résumé</Link>
+        <Link to="/cv">CV</Link>
       </ListItem>
     </List>
   </nav>
