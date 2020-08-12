@@ -133,10 +133,10 @@ const Section = styled.section`
 
   p > code[class*='language-'] {
     ${SIZES['pb']};
-    padding: 2px;
-    border-radius: 2px;
-    color: var(--color-gray-600);
-    background-color: transparent;
+    border-radius: 4px;
+    color: var(--color-black);
+    padding: var(--spacing-tiny);
+    background-color: var(--color-gray-200);
   }
 
   pre > code[class*='language-'] {
