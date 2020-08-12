@@ -7,6 +7,7 @@ import { IconButton } from '../components/Button';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { HamburgerIcon } from './icons/HamburgerIcon';
 import { convertPxToRem } from '../utils/unitConversion';
+import { isIOS } from 'react-device-detect';
 import { Drawer } from './Drawer';
 
 const Outer = styled.header(() => [
@@ -62,7 +63,11 @@ const LogoLink = styled(Link)(({ theme }) => [
     background-color: var(--color-white);
     border-radius: 50%;
     overflow: hidden;
-    -webkit-mask-image: -webkit-radial-gradient(white, black);
+
+    ${isIOS &&
+      css`
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
+      `}
 
     &:hover {
       border-color: var(--color-blue-400);
