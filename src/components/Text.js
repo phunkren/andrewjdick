@@ -28,14 +28,14 @@ export const SIZES = {
     line-height: 1.5;
   `,
   's': css`
-    font-size: 16px;
-    font-size: ${convertPxToRem(16)};
-    line-height: 1.5;
+    font-size: 18px;
+    font-size: ${convertPxToRem(18)};
+    line-height: 1.444;
 
     ${MEDIA.desktop`
-      font-size: 18px;
-      font-size: ${convertPxToRem(18)};
-      line-height: 1.444;
+      font-size: 20px;
+      font-size: ${convertPxToRem(20)};
+      line-height: 1.4;
     `}
   `,
   'm': css`
