@@ -7,3 +7,4 @@ export { TwitterIcon } from './TwitterIcon';
 export { DownloadIcon } from './DownloadIcon';
 export { HomeIcon } from './HomeIcon';
 export { PrintIcon } from './PrintIcon';
+export { RssIcon } from './RssIcon';
