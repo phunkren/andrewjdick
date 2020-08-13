@@ -70,10 +70,10 @@ const config = {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Andrew James',
-        short_name: 'Andrew James',
+        short_name: 'ajames.dev',
         start_url: '/',
-        background_color: '#fcfcfc',
-        theme_color: '#5f9ea0',
+        background_color: '#000',
+        theme_color: '#fff',
         display: 'standalone',
         icon: 'src/assets/images/logo.png',
         crossOrigin: 'use-credentials',
@@ -99,9 +99,13 @@ const config = {
                     {
                       'content:encoded': `<div style="width: 100%; margin: 0 auto; max-width: 800px; padding: 40px 40px;">
                         <p>
-                          I've posted a new article <em>"${title}"</em> and you can <a href="${url}">read it online</a>.
+                          I've posted a new article: 
+                          <br> 
+                          ${title}
                           <br>
-                          🗓 ${date} · ⏱ ${readingTime.text}                          
+                          🗓 ${date} · ⏱ ${readingTime.text}       
+                          <br>
+                          <a href="${url}">Read it online →</a>.                   
                         </p>
                       </div>`,
                     },

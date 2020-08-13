@@ -5,7 +5,7 @@ import { Link } from './Link';
 
 const ListItem = styled.li`
   display: inline;
-  ${SIZES['l']};
+  ${SIZES['xl']};
 `;
 
 const List = styled.ul(({ column }) => [
