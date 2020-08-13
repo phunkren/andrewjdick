@@ -1,13 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { position, rgba } from 'polished';
 import { graphql } from 'gatsby';
-import { BlogPreview } from '../components/BlogPreview';
-import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
+import Img from 'gatsby-image';
+import { formatId } from '../utils/formatId';
+import { SEO } from '../components/SEO';
 import { Layout } from '../components/Layout';
+import { Text } from '../components/Text';
+import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { H1 } from '../styles/typography';
-import { COLORS } from '../styles/colors';
+import { Hero } from '../components/Hero';
+import { Header } from '../components/Header';
+import { Theme } from '../components/Theme';
+import { convertPxToRem } from '../utils/unitConversion';
 
 const Main = styled.main`
   flex: 1;
@@ -15,11 +19,26 @@ const Main = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1em;
+  position: relative;
+  margin-top: 76px;
+  margin-right: auto;
+  margin-bottom: var(--spacing-huge);
+  margin-left: auto;
+  padding: 0 var(--spacing-medium);
 
-  ${MEDIA.desktop`
-    padding: 2em;
-  `};
+  ${MEDIA.tablet`
+    padding: 0 var(--spacing-huge);
+  `}
+`;
+
+const Wrapper = styled.div`
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-white) 0%,
+    var(--color-gray-200) 50%,
+    var(--color-white) 100%
+  );
 `;
 
 const ListItem = styled.li``;
@@ -29,28 +48,103 @@ const List = styled.ul`
   
   ${ListItem} + ${ListItem} {
     position: relative;
-    margin-top: 2em;
-    padding-top: 2em;
-
-    &::before {
-      ${position('absolute', '0', '0', null, '0')};
-      content: "";
-      height: 1px;
-      background-color: ${rgba(COLORS.black, 0.5)};
-    }
+    margin-top: var(--spacing-huge);
   }
 
   ${MEDIA.tablet`
-    max-width: ${BREAKPOINTS.phone}px;
+    max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
     margin: 0 auto;
-  `}
-
-  ${MEDIA.desktop`
-    max-width: ${BREAKPOINTS.tablet}px;
   `}
 `;
 
-const Blog = ({ data }) => {
+const Preview = styled.article`
+  display: flex;
+  flex-flow: column;
+  padding: var(--spacing-huge) var(--spacing-medium);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+  border-radius: 4px;
+  background-color: var(--color-white);
+
+  ${MEDIA.tablet`
+    flex-flow: row;
+    padding: var(--spacing-huge);
+  `}
+`;
+
+const PreviewImage = styled.div`
+  flex: 1;
+  margin-top: calc(var(--spacing-huge) * -1);
+  margin-right: 0;
+  margin-left: calc(var(--spacing-medium) * -1);
+  width: calc(100% + var(--spacing-huge));
+
+  & > div:first-child {
+    height: 150px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 4px;
+  }
+
+  ${MEDIA.tablet`
+    flex: 0 1 150px;
+    margin-top: 0;
+    margin-right: var(--spacing-huge);
+    margin-left: 0;
+    width: 100%;
+
+    & > div:first-child {
+      border-bottom-right-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+  `}
+`;
+
+const PreviewContent = styled.div`
+  flex: 1;
+
+  ${MEDIA.tablet`
+    margin-top: 0;
+  `}
+`;
+
+const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
+  <Preview aria-labelledby={`blog post-${formatId(frontmatter.title)}`}>
+    <PreviewImage aria-hidden="true">
+      <Img role="img" alt="" fluid={frontmatter.image.childImageSharp.fluid} />
+    </PreviewImage>
+
+    <PreviewContent>
+      <div css="margin-bottom: var(--spacing-medium);">
+        <Text as="h2" size="xl" id={`post-${formatId(frontmatter.title)}`}>
+          {frontmatter.title}
+        </Text>
+
+        <Text size="xs" css="color: var(--color-gray-600);">
+          {frontmatter.date} | {fields.readingTime.text}
+        </Text>
+      </div>
+
+      <Text
+        as="p"
+        aria-label="Excerpt"
+        css="padding-bottom: var(--spacing-medium);"
+      >
+        {excerpt}
+      </Text>
+
+      <Link
+        to={fields.slug}
+        aria-label="Click to read the article in full"
+        css="display: inline-block; color: var(--color-blue-600);"
+      >
+        Read more →
+      </Link>
+    </PreviewContent>
+  </Preview>
+);
+
+export default function Blog({ data, location: { pathname } }) {
   const { edges } = data.allMarkdownRemark;
   const posts = edges
     .filter(edge => !!edge.node.frontmatter.date)
@@ -62,16 +156,31 @@ const Blog = ({ data }) => {
 
   return (
     <Layout>
-      <TitleAndMetaTags title="Blog" pathname="blog" />
-      <Main>
-        <H1 id="blog" css="margin-bottom: 1em;">
-          Blog
-        </H1>
-        <List>{posts}</List>
-      </Main>
+      <SEO
+        path={pathname}
+        title="Blog"
+        description="Personal contributions to modern frontend web development"
+      />
+      <Theme theme="dark">
+        <Header />
+      </Theme>
+      <Wrapper>
+        <Hero />
+        <Main>
+          <Text
+            as="h1"
+            size="4xl"
+            id="blog"
+            css="color: white; margin-bottom: var(--spacing-large);"
+          >
+            Blog
+          </Text>
+          <List>{posts}</List>
+        </Main>
+      </Wrapper>
     </Layout>
   );
-};
+}
 
 export const pageQuery = graphql`
   query {
@@ -82,7 +191,6 @@ export const pageQuery = graphql`
           excerpt(pruneLength: 240)
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
-            path
             title
             image {
               childImageSharp {
@@ -93,6 +201,7 @@ export const pageQuery = graphql`
             }
           }
           fields {
+            slug
             readingTime {
               text
             }
@@ -102,5 +211,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-
-export default Blog;

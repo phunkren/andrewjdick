@@ -1,6 +1,6 @@
 ---
-path: /blog/2020-06-02-multiple-entry-points-in-create-react-app-without-ejecting
 title: Multiple entry points in Create React App without ejecting
+canonical: https://blog.logrocket.com/multiple-entry-points-in-create-react-app-without-ejecting/
 image: ../src/assets/images/multiple-entry.jpg
 imageAlt: An apartment block with a series of coloured doors
 date: 2020-06-02
@@ -72,7 +72,6 @@ Let’s tighten this up by creating a `.env` file with a [custom environment var
 ```jsx
 /* .env */
 REACT_APP_BUILD_TARGET=
-
 
 /* index.js */
 import React from "react";
@@ -150,9 +149,9 @@ You can create multiple entry points in a CRA application without ejecting by us
 
 **Resources**
 
-- GitHub: [https://github.com/phunkren/multiple-entry-points](https://github.com/phunkren/multiple-entry-points)
-- Entry point A: [https://multiple-entry-points-app.netlify.app](https://multiple-entry-points-app.netlify.app)
-- Entry point B: [https://multiple-entry-points-test.netlify.app](https://multiple-entry-points-test.netlify.app)
+- [GitHub](https://github.com/phunkren/multiple-entry-points)
+- [Netlify (App)](https://multiple-entry-points-app.netlify.app)
+- [Netlify (Test)](https://multiple-entry-points-test.netlify.app)
 
 Special thanks to [Stephen Taylor](https://twitter.com/meandmycode) and [Robin Weston](https://twitter.com/robinweston) for their valuable input.
 

@@ -1,10 +1,11 @@
 import { css } from 'styled-components';
 
 export const BREAKPOINTS = {
-  desktopWide: 1440,
-  desktop: 992,
+  desktopUltraWide: 1400,
+  desktopWide: 1200,
+  desktop: 1080,
   tablet: 768,
-  phone: 576,
+  phone: 320,
   print: 'print',
 };
 
@@ -24,5 +25,5 @@ export const MEDIA = Object.keys(BREAKPOINTS).reduce((acc, label) => {
 
 export function createMediaQuery(breakpoint) {
   if (breakpoint === 'print') return 'print';
-  return `(min-width: ${BREAKPOINTS[breakpoint] / 16}em)`;
+  return `(min-width: ${BREAKPOINTS[breakpoint] / 16}rem)`;
 }

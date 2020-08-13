@@ -19,10 +19,12 @@
     "eslint-plugin-react-hooks": "^2.3.0",
     "gatsby": "^2.18.17",
     "gatsby-image": "^2.2.38",
+    "gatsby-plugin-feed": "^2.5.11",
     "gatsby-plugin-google-analytics": "^2.1.35",
     "gatsby-plugin-manifest": "^2.2.37",
     "gatsby-plugin-netlify": "^2.1.31",
     "gatsby-plugin-react-axe": "^0.3.0",
+    "gatsby-plugin-react-helmet": "^3.1.22",
     "gatsby-plugin-sharp": "^2.3.13",
     "gatsby-plugin-styled-components": "^3.1.16",
     "gatsby-remark-copy-linked-files": "^2.1.36",
@@ -30,6 +32,7 @@
     "gatsby-remark-prismjs": "^3.3.30",
     "gatsby-remark-reading-time": "^1.1.0",
     "gatsby-source-filesystem": "^2.1.46",
+    "gatsby-transformer-json": "^2.2.26",
     "gatsby-transformer-remark": "^2.6.48",
     "gatsby-transformer-sharp": "^2.3.12",
     "husky": "^4.2.1",
@@ -75,5 +78,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@reach/dialog": "^0.10.5"
+  }
 }

@@ -1,15 +1,16 @@
 import React from 'react';
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import { graphql } from 'gatsby';
 import { position } from 'polished';
 import Div100vh from 'react-div-100vh';
+import lightbulbs from '../assets/images/lightbulbs.png';
 import { Layout } from '../components/Layout';
 import { Social } from '../components/Social';
 import { ExternalLink } from '../components/Link';
-import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
-import lightbulbs from '../assets/images/lightbulbs.png';
-import { H1, Text } from '../styles/typography';
-import { CONTACT_DETAILS } from '../constants';
-import { EXPERIENCE } from '../data';
+import { Header } from '../components/Header';
+import { Text } from '../components/Text';
+import { SEO } from '../components/SEO';
+import { MEDIA } from '../styles/media';
 
 const infiniteScroll = keyframes`
   from {
@@ -41,15 +42,22 @@ const Wrapper = styled(Div100vh)`
 
 const Main = styled.main`
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   text-align: center;
 `;
 
 const Section = styled.section`
-  position: relative;
-  top: 40px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 0 var(--spacing-medium);
+
+  ${MEDIA.tablet`
+    left: 50%;
+    transform: translate(-50%, -50%);
+    paddding: 0 var(--spacing-large);
+  `}
 `;
 
 const Footer = styled.footer`
@@ -57,49 +65,59 @@ const Footer = styled.footer`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80px;
-  padding: 0 2em 1em;
+  padding: 0 var(--spacing-medium) var(--spacing-medium);
+
+  ${MEDIA.tablet`
+    padding: 0 var(--spacing-huge) var(--spacing-huge);
+  `};
 `;
 
 const Image = styled.div`
-  ${position('fixed', '100%', 0, null, 0)};
+  ${position('absolute', '100%', 0, null, 0)};
   background-image: url(${lightbulbs});
   background-repeat: repeat-y;
   background-position: center;
   background-size: cover;
   height: 200vh;
   margin-bottom: 100vh;
-  opacity: 0.075;
+  opacity: 0.025;
   pointer-events: none;
   animation: ${infiniteScroll} 30s linear infinite;
   z-index: -1;
 `;
 
-export default function Home() {
-  const { name, location } = CONTACT_DETAILS;
-  const currentEmployer = EXPERIENCE[0];
+export default function Home({ data }) {
+  const { experience } = data.experienceJson;
+  const { author } = data.site.siteMetadata;
+  const currentEmployer = experience[0];
 
   return (
     <Layout>
-      <TitleAndMetaTags />
+      <SEO />
       <GlobalStyles />
       <Wrapper>
+        <Header />
+
         <Main>
           <Section aria-label="Profile">
-            <H1 aria-label={`Name: ${name}`}>{name}</H1>
+            <Text as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
+              {author.name}
+            </Text>
             <Text aria-label={`Position: ${currentEmployer.position}`}>
               {currentEmployer.position}
             </Text>
-            <Text> @ </Text>
+            <Text size="m"> @ </Text>
             <ExternalLink
               aria-label={`Employer: ${currentEmployer.company}`}
               href={currentEmployer.url}
               highlight
             >
-              {currentEmployer.company}
+              <Text>{currentEmployer.company}</Text>
             </ExternalLink>
             <br />
-            <Text aria-label={`Location: ${location}`}>{location}</Text>
+            <Text aria-label={`Location: ${author.location}`}>
+              {author.location}
+            </Text>
           </Section>
         </Main>
 
@@ -108,7 +126,7 @@ export default function Home() {
 
           <figure aria-hidden="true">
             <Image />
-            <Text as="figcaption" small>
+            <Text as="figcaption" size="ps">
               background courtesy of{' '}
               <ExternalLink
                 href="https://absurd.design/"
@@ -124,3 +142,23 @@ export default function Home() {
     </Layout>
   );
 }
+
+export const query = graphql`
+  query HomeQuery {
+    site {
+      siteMetadata {
+        author {
+          name
+          location
+        }
+      }
+    }
+    experienceJson {
+      experience {
+        company
+        position
+        url
+      }
+    }
+  }
+`;

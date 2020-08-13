@@ -1,0 +1,28 @@
+{
+  "social": {
+    "github": {
+      "handle": "phunkren",
+      "url": "https://github.com/phunkren/",
+      "label": "GitHub"
+    },
+    "linkedIn": {
+      "handle": "Andrew James",
+      "url": "https://www.linkedin.com/in/ajamesdev/",
+      "label": "LinkedIn"
+    },
+    "notion": {
+      "handle": "phunkren",
+      "url": "https://www.notion.so/phunkren/448d3a6426dd4fac81603c512a9dcb92?v=8c3db54c23e54c6a9a661897db151441",
+      "label": "Notion"
+    },
+    "twitter": {
+      "handle": "@phunkren",
+      "url": "https://twitter.com/phunkren/",
+      "label": "Twitter"
+    },
+    "rss": {
+      "url": "https://ajames.dev/blog/rss.xml",
+      "label": "RSS Feed"
+    }
+  }
+}

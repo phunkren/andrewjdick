@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SOCIAL_LINKS } from '../constants';
-import { GitHubIcon, MediumIcon, TwitterIcon, LinkedInIcon } from './icons';
+import { useStaticQuery, graphql } from 'gatsby';
+import { GitHubIcon, NotionIcon, TwitterIcon, RssIcon } from './icons';
 import { ExternalLink } from './Link';
 
 const SocialLinks = styled.nav`
@@ -10,10 +10,10 @@ const SocialLinks = styled.nav`
 
 const SocialLink = styled(ExternalLink)`
   display: flex;
-  padding: 0.5em;
+  padding: var(--spacing-small);
 
   &:not(:first-child) {
-    margin-left: 0.5em;
+    margin-left: var(--spacing-small);
   }
 
   &:active {
@@ -22,13 +22,9 @@ const SocialLink = styled(ExternalLink)`
   }
 `;
 
-const iconProps = {
-  width: '1.8em',
-  height: '1.8em',
-};
-
-const RawSocial = props => {
-  const { github, medium, twitter, linkedIn } = SOCIAL_LINKS;
+export const Social = styled(props => {
+  const data = useStaticQuery(query);
+  const { github, notion, twitter, rss } = data.socialJson.social;
 
   return (
     <SocialLinks {...props}>
@@ -37,15 +33,15 @@ const RawSocial = props => {
         aria-label={github.label}
         title={github.label}
       >
-        <GitHubIcon {...iconProps} />
+        <GitHubIcon />
       </SocialLink>
 
       <SocialLink
-        href={medium.url}
-        aria-label={medium.label}
-        title={medium.label}
+        href={notion.url}
+        aria-label={notion.label}
+        title={notion.label}
       >
-        <MediumIcon {...iconProps} />
+        <NotionIcon />
       </SocialLink>
 
       <SocialLink
@@ -53,18 +49,45 @@ const RawSocial = props => {
         aria-label={twitter.label}
         title={twitter.label}
       >
-        <TwitterIcon {...iconProps} />
+        <TwitterIcon />
       </SocialLink>
 
       <SocialLink
-        href={linkedIn.url}
-        aria-label={linkedIn.label}
-        title={linkedIn.label}
+        target="_self"
+        href={rss.url}
+        aria-label={rss.label}
+        title={rss.label}
       >
-        <LinkedInIcon {...iconProps} />
+        <RssIcon />
       </SocialLink>
     </SocialLinks>
   );
-};
+})``;
 
-export const Social = styled(RawSocial)``;
+const query = graphql`
+  query Social {
+    socialJson {
+      social {
+        github {
+          handle
+          label
+          url
+        }
+        twitter {
+          handle
+          label
+          url
+        }
+        notion {
+          handle
+          label
+          url
+        }
+        rss {
+          label
+          url
+        }
+      }
+    }
+  }
+`;

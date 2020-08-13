@@ -1,22 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
-import { rgba, position } from 'polished';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { Layout } from '../components/Layout';
-import { TitleAndMetaTags } from '../components/TitleAndMetaTags';
-import { H2, Text } from '../styles/typography';
+import { SEO } from '../components/SEO';
+import { Text } from '../components/Text';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { COLORS } from '../styles/colors';
+import { linkStyles, highlightStyles } from '../components/Link';
+import { SIZES } from '../components/Text';
+import { Header } from '../components/Header';
+import { Hero } from '../components/Hero';
+import { Theme } from '../components/Theme';
+import { convertPxToRem } from '../utils/unitConversion';
 
 const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 1em;
+  padding: var(--spacing-huge) var(--spacing-medium);
+  margin: 300px auto 0;
+  width: 100%;
 
-  ${MEDIA.desktop`
-    padding: 2em;
+  ${MEDIA.tablet`
+    margin-top: 400px;
+    padding: var(--spacing-huge);
   `};
 `;
 
@@ -29,126 +36,158 @@ const Main = styled.main`
   margin: 0 auto;
 
   > * + * {
-    margin-top: 2em;
+    margin-top: var(--spacing-medium);
   }
 
   ${MEDIA.tablet`
-    max-width: ${BREAKPOINTS.phone}px;
+    max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
   `}
+`;
 
-  ${MEDIA.desktop`
-    max-width: ${BREAKPOINTS.tablet}px;
-  `};
+const ArticleHero = styled(Hero)`
+  height: 300px;
+
+  ${MEDIA.tablet`
+    height: 400px;
+  `}
+`;
+
+const Title = styled(Text)`
+  position: absolute;
+  top: 175px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  left: 50%;
+  text-shadow: 1px 1px 1px var(--color-black);
+  width: 100%;
+  padding: 0 var(--spacing-large);
+
+  ${MEDIA.tablet`
+    top: 200px;
+    max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
+    padding: 0 var(--spacing-huge);
+  `}
 `;
 
 const Section = styled.section`
-  p {
-    font-size: 1.25rem;
-    line-height: 2rem;
+  h2 {
+    ${SIZES['xl']};
   }
 
-  a {
-    color: inherit;
-    position: relative;
-    text-decoration: none;
-    background: linear-gradient(
-      180deg,
-      ${rgba(COLORS.white, 0)} 95%,
-      ${COLORS.cadetBlue} 5%
-    );
+  h3 {
+    ${SIZES['l']};
+  }
 
-    &::before {
-      content: '';
-      ${position('absolute', '0', '0', '0', '0')};
-      opacity: 0;
-      z-index: -1;
-    }
+  h4 {
+    ${SIZES['m']};
+  }
 
-    &:hover {
-      color: inherit;
+  p {
+    ${MEDIA.tablet`
+      padding: 0 var(--spacing-huge);
+    `};
+  }
 
-      &::before {
-        opacity: 1;
-        background: linear-gradient(
-          180deg,
-          ${rgba(COLORS.white, 0)} 66%,
-          ${COLORS.cadetBlue} 33%
-        );
+  div.gatsby-highlight {
+    border-radius: 0;
+    margin-left: calc(var(--spacing-medium) * -1);
+    width: 100vw;
+
+    pre {
+      border-radius: 0;
+
+      code {
+        padding: var(--spacing-medium);
       }
     }
 
-    &:active {
-      color: inherit;
+    ${MEDIA.tablet`
+      margin-left: calc(var(--spacing-huge) * -1);
+      max-width: calc(100% + var(--spacing-huge) + var(--spacing-huge));
+    `}
+  }
 
-      &::before {
-        opacity: 1;
-        background: linear-gradient(
-          180deg,
-          ${rgba(COLORS.white, 0)} 1%,
-          ${COLORS.cadetBlue} 99%
-        );
-      }
-    }
+  a:not(.gatsby-resp-image-link) {
+    ${linkStyles};
+    ${highlightStyles};
   }
 
   figcaption {
-    margin-top: 0.5em;
-    font-size: 1rem;
+    margin-top: var(--spacing-small);
+    ${SIZES['xs']};
     text-align: center;
-    color: ${rgba(COLORS.black, 0.5)};
+    color: var(--color-black);
   }
 
   iframe,
   img {
     display: block;
-    margin: 2em auto 0;
+    margin: var(--spacing-huge) auto 0;
+    width: 100%;
+    height: auto;
   }
 
   p > code[class*='language-'] {
-    font-size: 0.95rem;
-    border-radius: 0.25rem;
-    color: ${COLORS.cadetBlue};
-    padding: 4px;
-    background-color: ${rgba(COLORS.cadetBlue, 0.1)};
+    ${SIZES['pb']};
+    border-radius: 4px;
+    color: var(--color-black);
+    padding: var(--spacing-tiny);
+    background-color: var(--color-gray-200);
   }
 
   pre > code[class*='language-'] {
-    font-size: 0.75rem;
-    line-height: normal;
+    ${SIZES['ps']};
+    margin-left: calc(var(--spacing-medium) * -1);
+  }
+
+  pre[class*='language-'] {
+    padding: var(--spacing-huge);
+    margin: 0;
   }
 
   & > * + * {
-    margin-top: 2rem;
+    margin-top: var(--spacing-huge);
   }
 `;
 
-function BlogTemplate({ data }) {
+function BlogTemplate({ data, location }) {
   const { markdownRemark } = data;
   const { frontmatter, fields, html } = markdownRemark;
 
   return (
     <Layout>
-      <TitleAndMetaTags title={frontmatter.title} pathname={frontmatter.path} />
+      <SEO
+        path={fields.slug}
+        title={frontmatter.title}
+        description={`🗓 ${frontmatter.date} · ⏱ ${fields.readingTime.text}`}
+        canonical={frontmatter.canonical}
+        published={frontmatter.date}
+        article
+      />
+
+      <Theme theme="dark">
+        <Header />
+      </Theme>
+
+      <ArticleHero>
+        <Img
+          role="img"
+          alt={frontmatter.imageAlt}
+          fluid={frontmatter.image.childImageSharp.fluid}
+        />
+      </ArticleHero>
 
       <Wrapper>
         <Main>
           <article>
-            <div>
-              <H2 as="h1" css="margin-bottom: 0.25em;">
-                {frontmatter.title}
-              </H2>
-              <Text>{frontmatter.date}</Text> |{' '}
-              <Text>{fields.readingTime.text}</Text>
-            </div>
+            <Title as="h1" size="xxxl">
+              {frontmatter.title}
+            </Title>
 
-            <div aria-hidden="true">
-              <Img
-                role="img"
-                alt={frontmatter.imageAlt}
-                fluid={frontmatter.image.childImageSharp.fluid}
-                css="margin: 4rem 0;"
-              />
-            </div>
+            <Text size="xs" css="color: var(--color-gray-600);">
+              {frontmatter.date} | {fields.readingTime.text}
+            </Text>
 
             <Section dangerouslySetInnerHTML={{ __html: html }} />
           </article>
@@ -159,14 +198,13 @@ function BlogTemplate({ data }) {
 }
 
 export const pageQuery = graphql`
-  query($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+  query($slug: String!) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
-        path
         title
-        imageAlt
+        canonical
         image {
           childImageSharp {
             fluid(maxWidth: 768) {
@@ -174,8 +212,10 @@ export const pageQuery = graphql`
             }
           }
         }
+        imageAlt
       }
       fields {
+        slug
         readingTime {
           text
         }

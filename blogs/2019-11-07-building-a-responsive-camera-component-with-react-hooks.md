@@ -1,8 +1,8 @@
 ---
-path: /blog/2019-11-07-building-a-responsive-camera-component-with-react-hooks
 title: Building a responsive camera component with React hooks
+canonical: https://blog.logrocket.com/responsive-camera-component-react-hooks/
 image: ../src/assets/images/camera-lens.jpg
-imageAlt: A camera lens with the React logo on the glass
+imageAlt: A camera lens embossed with the React logo
 date: 2019-11-07
 ---
 
