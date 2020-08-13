@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import lightbulbsDark from '../assets/images/lightbulbs-dark.png';
+import lightbulbs from '../assets/images/lightbulbs.png';
 
 export const Hero = styled.div`
   height: 200px;
   background-color: var(--color-gray-600);
-  background-image: url(${lightbulbsDark});
+  background-image: url(${lightbulbs});
   background-position: center center;
   position: absolute;
   top: 0;
