@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
-import { GitHubIcon, NotionIcon, TwitterIcon, LinkedInIcon } from './icons';
+import { GitHubIcon, NotionIcon, TwitterIcon, RssIcon } from './icons';
 import { ExternalLink } from './Link';
 
 const SocialLinks = styled.nav`
@@ -22,37 +22,9 @@ const SocialLink = styled(ExternalLink)`
   }
 `;
 
-const RawSocial = props => {
-  const data = useStaticQuery(graphql`
-    query {
-      socialJson {
-        social {
-          github {
-            handle
-            label
-            url
-          }
-          twitter {
-            handle
-            label
-            url
-          }
-          notion {
-            handle
-            label
-            url
-          }
-          linkedIn {
-            handle
-            label
-            url
-          }
-        }
-      }
-    }
-  `);
-
-  const { github, notion, twitter, linkedIn } = data.socialJson.social;
+export const Social = styled(props => {
+  const data = useStaticQuery(query);
+  const { github, notion, twitter, rss } = data.socialJson.social;
 
   return (
     <SocialLinks {...props}>
@@ -81,14 +53,41 @@ const RawSocial = props => {
       </SocialLink>
 
       <SocialLink
-        href={linkedIn.url}
-        aria-label={linkedIn.label}
-        title={linkedIn.label}
+        target="_self"
+        href={rss.url}
+        aria-label={rss.label}
+        title={rss.label}
       >
-        <LinkedInIcon />
+        <RssIcon />
       </SocialLink>
     </SocialLinks>
   );
-};
+})``;
 
-export const Social = styled(RawSocial)``;
+const query = graphql`
+  query Social {
+    socialJson {
+      social {
+        github {
+          handle
+          label
+          url
+        }
+        twitter {
+          handle
+          label
+          url
+        }
+        notion {
+          handle
+          label
+          url
+        }
+        rss {
+          label
+          url
+        }
+      }
+    }
+  }
+`;

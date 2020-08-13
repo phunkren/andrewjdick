@@ -19,6 +19,10 @@
       "handle": "@phunkren",
       "url": "https://twitter.com/phunkren/",
       "label": "Twitter"
+    },
+    "rss": {
+      "url": "https://ajames.dev/blog/rss.xml",
+      "label": "RSS Feed"
     }
   }
 }

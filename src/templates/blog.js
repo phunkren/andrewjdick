@@ -158,7 +158,7 @@ function BlogTemplate({ data, location }) {
   return (
     <Layout>
       <SEO
-        path={frontmatter.path}
+        path={fields.slug}
         title={frontmatter.title}
         description={`🗓 ${frontmatter.date} · ⏱ ${fields.readingTime.text}`}
         canonical={frontmatter.canonical}
@@ -198,12 +198,11 @@ function BlogTemplate({ data, location }) {
 }
 
 export const pageQuery = graphql`
-  query($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+  query($slug: String!) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
-        path
         title
         canonical
         image {
@@ -214,9 +213,9 @@ export const pageQuery = graphql`
           }
         }
         imageAlt
-        staticImage
       }
       fields {
+        slug
         readingTime {
           text
         }

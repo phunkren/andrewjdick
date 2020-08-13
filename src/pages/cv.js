@@ -247,10 +247,9 @@ export default function CV({ data, location: { pathname } }) {
   const { education } = data.educationJson;
   const { experience } = data.experienceJson;
   const { social } = data.socialJson;
-  const { author, url } = data.site.siteMetadata;
-
+  const { author, siteUrl } = data.site.siteMetadata;
   const currentPosition = experience[0].position;
-  const siteDisplayUrl = url.split('https://')[1];
+  const siteDisplayUrl = siteUrl.split('https://')[1];
   const expertise = ['html', 'css/scss', 'javascript', 'react'];
   const interests = ['design systems', 'a11y', 'graphQL', 'react native'];
   const hobbies = ['cycling', 'guitar', 'gaming', 'writing'];
@@ -340,7 +339,7 @@ export default function CV({ data, location: { pathname } }) {
 
                       <ListItem>
                         <StyledExternalLink
-                          href={url}
+                          href={siteUrl}
                           aria-label="Return to homepage"
                         >
                           <HomeIcon width="1.5rem" height="1.5rem" />
@@ -511,7 +510,7 @@ export const query = graphql`
           location
           email
         }
-        url
+        siteUrl
       }
     }
     educationJson {
