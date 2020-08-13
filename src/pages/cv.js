@@ -23,6 +23,7 @@ import { Header } from '../components/Header';
 import { Theme } from '../components/Theme';
 import { convertPxToRem } from '../utils/unitConversion';
 import { Icon } from '../components/icons/Icon';
+import { Footer } from '../components/Footer';
 
 const List = styled.ul`
   margin-bottom: var(--spacing-huge);
@@ -72,7 +73,7 @@ const Container = styled.div`
   background-color: var(--color-white);
 
   ${MEDIA.desktopWide`
-    margin-bottom: var(--spacing-huge);
+    margin-bottom: var(--spacing-massive);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
   `}
 
@@ -123,13 +124,16 @@ const Wrapper = styled.div`
   flex-direction: column-reverse;
   padding: var(--spacing-huge) var(--spacing-medium);
   border-top: 5px solid var(--color-black);
-  border-bottom: 5px solid var(--color-black);
 
   ${MEDIA.tablet`
     display: inline-flex;
     flex-direction: row;
     padding: var(--spacing-huge);
   `};
+
+  ${MEDIA.desktop`
+    border-bottom: 5px solid var(--color-black);
+  `}
 
   ${MEDIA.print`
     display: inline-flex;
@@ -497,6 +501,7 @@ export default function CV({ data, location: { pathname } }) {
           </Container>
         </Main>
       </Wrap>
+      <Footer />
     </Layout>
   );
 }

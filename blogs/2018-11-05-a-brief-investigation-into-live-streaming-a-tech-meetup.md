@@ -55,4 +55,6 @@ There were a number of compromises in achieving the end result. A thick red bord
 
 With that in mind, the stream still provided a noticeable improvement in quality from the initial talks. The event is now immediately available to anyone with permission and access to the link and YouTube automatically archives the broadcast for later viewing. The presenter’s voice is clearer and the background noise has faded since the microphone faces away from the audience. The slides are now the broadcast’s focal point which can be seen without any visual impairment, and the camera gives viewers a feel for the room. Further refinements are certainly achievable with some modest upgrades; the benefits of which remain to be seen.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/hX_pJPaqVSA" title="Egg livestream" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+<div class="iframeWrapper">
+  <iframe src="https://www.youtube.com/embed/hX_pJPaqVSA" title="Egg livestream" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+</div>
