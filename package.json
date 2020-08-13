@@ -10,6 +10,7 @@
   "baseUrl": "https://ajames.dev",
   "private": true,
   "dependencies": {
+    "@reach/dialog": "^0.10.5",
     "babel-plugin-styled-components": "^1.10.6",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.9.0",
@@ -27,6 +28,7 @@
     "gatsby-plugin-react-helmet": "^3.1.22",
     "gatsby-plugin-sharp": "^2.3.13",
     "gatsby-plugin-styled-components": "^3.1.16",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-remark-copy-linked-files": "^2.1.36",
     "gatsby-remark-images": "^3.1.42",
     "gatsby-remark-prismjs": "^3.3.30",
@@ -78,8 +80,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "@reach/dialog": "^0.10.5"
-  }
+  ]
 }
