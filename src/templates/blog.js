@@ -128,6 +128,22 @@ const Section = styled.section`
     height: auto;
   }
 
+  div.iframeWrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    width: 100%;
+    max-width: 100%;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   p > code[class*='language-'] {
     ${SIZES['pb']};
     border-radius: 4px;
