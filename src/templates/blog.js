@@ -132,7 +132,7 @@ const Section = styled.section`
     ${SIZES['pb']};
     border-radius: 4px;
     color: var(--color-black);
-    padding: var(--spacing-tiny);
+    padding: 0 var(--spacing-tiny);
     background-color: var(--color-gray-200);
   }
 

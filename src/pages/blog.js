@@ -134,7 +134,7 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
       </Text>
 
       <Link
-        to={fields.slug}
+        to={`blog${fields.slug}`}
         aria-label="Click to read the article in full"
         css="display: inline-block; color: var(--color-blue-600);"
       >

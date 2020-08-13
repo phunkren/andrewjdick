@@ -28,7 +28,9 @@ export const SIZES = {
     line-height: 1.7;
   `,
   'm': css`
-    font-family: 'Rubik', Arial, sans-serif;
+    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-display: swap;
     font-weight: 300;
     font-size: 18px;
     font-size: ${convertPxToRem(18)};
@@ -41,7 +43,9 @@ export const SIZES = {
     `}
   `,
   'l': css`
-    font-family: 'Rubik', Arial, sans-serif;
+    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-display: swap;
     font-weight: 300;
     font-size: 20px;
     font-size: ${convertPxToRem(20)};
@@ -60,7 +64,9 @@ export const SIZES = {
     `};
   `,
   'xl': css`
-    font-family: 'Rubik', Arial, sans-serif;
+    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-display: swap;
     font-weight: 300;
     font-size: 24px;
     font-size: ${convertPxToRem(24)};
@@ -79,7 +85,9 @@ export const SIZES = {
     `};
   `,
   'xxl': css`
-    font-family: 'Rubik', Arial, sans-serif;
+    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-display: swap;
     font-weight: 300;
     font-size: 28px;
     font-size: ${convertPxToRem(28)};
@@ -98,7 +106,9 @@ export const SIZES = {
     `};
   `,
   'xxxl': css`
-    font-family: 'Rubik', Arial, sans-serif;
+    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-display: swap;
     font-weight: 300;
     font-size: 32px;
     font-size: ${convertPxToRem(32)};
@@ -117,7 +127,9 @@ export const SIZES = {
     `};
   `,
   '4xl': css`
-    font-family: 'Rubik', Arial, sans-serif;
+    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-display: swap;
     font-weight: 300;
     font-size: 38px;
     font-size: ${convertPxToRem(38)};
@@ -136,7 +148,9 @@ export const SIZES = {
     `};
   `,
   '5xl': css`
-    font-family: 'Rubik', Arial, sans-serif;
+    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-display: swap;
     font-weight: 300;
     font-size: 40px;
     font-size: ${convertPxToRem(40)};
