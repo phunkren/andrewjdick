@@ -89,7 +89,7 @@ const config = {
                 const { siteUrl } = site.siteMetadata;
                 const { slug, readingTime } = edge.node.fields;
                 const { title, date } = edge.node.frontmatter;
-                const url = `${siteUrl}${slug}`;
+                const url = `${siteUrl}/blog${slug}`;
 
                 return Object.assign({}, edge.node.frontmatter, {
                   date,
