@@ -12,18 +12,19 @@ import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
 import { Theme } from '../components/Theme';
 import { convertPxToRem } from '../utils/unitConversion';
+import { Footer } from '../components/Footer';
 
 const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: var(--spacing-huge) var(--spacing-medium);
+  padding: var(--spacing-huge) var(--spacing-medium) var(--spacing-massive);
   margin: 300px auto 0;
   width: 100%;
 
   ${MEDIA.tablet`
     margin-top: 400px;
-    padding: var(--spacing-huge);
+    padding: var(--spacing-huge) var(--spacing-huge) var(--spacing-massive);
   `};
 `;
 
@@ -120,7 +121,6 @@ const Section = styled.section`
     color: var(--color-black);
   }
 
-  iframe,
   img {
     display: block;
     margin: var(--spacing-huge) auto 0;
@@ -209,6 +209,8 @@ function BlogTemplate({ data, location }) {
           </article>
         </Main>
       </Wrapper>
+
+      <Footer />
     </Layout>
   );
 }

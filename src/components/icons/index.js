@@ -1,3 +1,4 @@
+export { Icon } from './Icon';
 export { GitHubIcon } from './GitHubIcon';
 export { EmailIcon } from './EmailIcon';
 export { LinkedInIcon } from './LinkedInIcon';

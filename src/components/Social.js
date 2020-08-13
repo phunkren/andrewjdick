@@ -22,7 +22,7 @@ const SocialLink = styled(ExternalLink)`
   }
 `;
 
-export const Social = styled(props => {
+export const Social = styled(({ size, ...props }) => {
   const data = useStaticQuery(query);
   const { github, notion, twitter, rss } = data.socialJson.social;
 
@@ -33,7 +33,7 @@ export const Social = styled(props => {
         aria-label={github.label}
         title={github.label}
       >
-        <GitHubIcon />
+        <GitHubIcon width={size} height={size} />
       </SocialLink>
 
       <SocialLink
@@ -41,7 +41,7 @@ export const Social = styled(props => {
         aria-label={notion.label}
         title={notion.label}
       >
-        <NotionIcon />
+        <NotionIcon width={size} height={size} />
       </SocialLink>
 
       <SocialLink
@@ -49,7 +49,7 @@ export const Social = styled(props => {
         aria-label={twitter.label}
         title={twitter.label}
       >
-        <TwitterIcon />
+        <TwitterIcon width={size} height={size} />
       </SocialLink>
 
       <SocialLink
@@ -58,7 +58,7 @@ export const Social = styled(props => {
         aria-label={rss.label}
         title={rss.label}
       >
-        <RssIcon />
+        <RssIcon width={size} height={size} />
       </SocialLink>
     </SocialLinks>
   );

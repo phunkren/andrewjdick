@@ -12,6 +12,7 @@ import { Hero } from '../components/Hero';
 import { Header } from '../components/Header';
 import { Theme } from '../components/Theme';
 import { convertPxToRem } from '../utils/unitConversion';
+import { Footer } from '../components/Footer';
 
 const Main = styled.main`
   flex: 1;
@@ -22,7 +23,7 @@ const Main = styled.main`
   position: relative;
   margin-top: 76px;
   margin-right: auto;
-  margin-bottom: var(--spacing-huge);
+  margin-bottom: var(--spacing-massive);
   margin-left: auto;
   padding: 0 var(--spacing-medium);
 
@@ -134,7 +135,7 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
       </Text>
 
       <Link
-        to={`blog${fields.slug}`}
+        to={`/blog${fields.slug}`}
         aria-label="Click to read the article in full"
         css="display: inline-block; color: var(--color-blue-600);"
       >
@@ -177,6 +178,7 @@ export default function Blog({ data, location: { pathname } }) {
           </Text>
           <List>{posts}</List>
         </Main>
+        <Footer />
       </Wrapper>
     </Layout>
   );
