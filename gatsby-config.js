@@ -2,10 +2,7 @@ const config = {
   siteMetadata: {
     title: 'Andrew James',
     description: 'Software engineer focused on modern frontend web development',
-    url:
-      process.env.CONTEXT === 'production'
-        ? 'https://ajames.dev'
-        : 'https://staging.ajames.dev',
+    siteUrl: 'https://ajames.dev',
     image: '/assets/images/avatar.jpg',
     imageAlt: 'My headshot',
     twitter: '@phunkren',
@@ -80,6 +77,64 @@ const config = {
         display: 'standalone',
         icon: 'src/assets/images/logo.png',
         crossOrigin: 'use-credentials',
+      },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
+                const { siteUrl } = site.siteMetadata;
+                const { slug, readingTime } = edge.node.fields;
+                const { title, date } = edge.node.frontmatter;
+                const url = `${siteUrl}${slug}`;
+
+                return Object.assign({}, edge.node.frontmatter, {
+                  date,
+                  url,
+                  guid: url,
+                  custom_elements: [
+                    {
+                      'content:encoded': `<div style="width: 100%; margin: 0 auto; max-width: 800px; padding: 40px 40px;">
+                        <p>
+                          I've posted a new article <em>"${title}"</em> and you can <a href="${url}">read it online</a>.
+                          <br>
+                          🗓 ${date} · ⏱ ${readingTime.text}                          
+                        </p>
+                      </div>`,
+                    },
+                  ],
+                });
+              });
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  edges {
+                    node {
+                      frontmatter {
+                        date(formatString: "MMMM DD, YYYY")
+                        title
+                      }
+                      fields { 
+                        slug 
+                        readingTime {
+                          text
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/blog/rss.xml',
+            title: 'Blog: RSS Feed | Andrew James',
+          },
+        ],
       },
     },
   ],

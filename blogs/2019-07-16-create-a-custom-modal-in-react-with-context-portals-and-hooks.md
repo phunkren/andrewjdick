@@ -1,7 +1,5 @@
 ---
-path: /blog/2019-07-16-create-a-custom-modal-in-react-with-context-portals-and-hooks
 title: Create a custom modal in React with context, portals, and hooks
-staticImage: portal.jpg
 image: ../src/assets/images/portal.jpg
 imageAlt: A long exposure of steel wool spinning that resembles a portal
 date: 2019-07-16

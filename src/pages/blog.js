@@ -134,7 +134,7 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
       </Text>
 
       <Link
-        to={frontmatter.path}
+        to={fields.slug}
         aria-label="Click to read the article in full"
         css="display: inline-block; color: var(--color-blue-600);"
       >
@@ -191,7 +191,6 @@ export const pageQuery = graphql`
           excerpt(pruneLength: 240)
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
-            path
             title
             image {
               childImageSharp {
@@ -202,6 +201,7 @@ export const pageQuery = graphql`
             }
           }
           fields {
+            slug
             readingTime {
               text
             }
