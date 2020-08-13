@@ -100,11 +100,11 @@ const config = {
                       'content:encoded': `<div style="width: 100%; margin: 0 auto; max-width: 800px; padding: 40px 40px;">
                         <p>
                           I've posted a new article: 
-                          <br> 
+                          <br><br>
                           ${title}
                           <br>
                           🗓 ${date} · ⏱ ${readingTime.text}       
-                          <br>
+                          <br><br>
                           <a href="${url}">Read it online →</a>.                   
                         </p>
                       </div>`,
@@ -135,7 +135,7 @@ const config = {
                 }
               }
             `,
-            output: '/rss.xml',
+            output: '/rss-blog.xml',
             title: 'Blog: RSS | Andrew James',
           },
         ],
