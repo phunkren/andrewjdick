@@ -137,6 +137,15 @@ const config = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        google: {
+          families: ['Roboto:400', 'Rubik:300'],
+          text: `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@£#$%^&*()-_=+{[]};:'"|,<.>/?~`,
+        },
+      },
+    },
   ],
 };
 

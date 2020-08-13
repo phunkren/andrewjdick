@@ -1,7 +1,5 @@
 import { css, createGlobalStyle } from 'styled-components';
 import { reset } from 'modern-css-reset';
-import Roboto from '../assets/fonts/Roboto-Regular.woff2';
-import Rubik from '../assets/fonts/Rubik-Regular.woff2';
 import MonoLisa from '../assets/fonts/MonoLisa-Regular.woff2';
 import { convertPxToRem } from '../utils/unitConversion';
 import { MEDIA } from '../styles/media';
@@ -55,24 +53,17 @@ const spacing = css`
 
 const typography = css`
   @font-face {
-    src: url(${Rubik}) format('woff2');
-    font-family: 'Rubik';
-  }
-
-  @font-face {
-    src: url(${Roboto}) format('woff2');
-    font-family: 'Roboto';
-  }
-
-  @font-face {
     src: url(${MonoLisa}) format('woff2');
     font-family: 'MonoLisa';
+    font-display: swap;
   }
 
   body {
-    ${SIZES['pb']};
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
       Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-display: swap;
+
+    ${SIZES['pb']};
 
     ${MEDIA.print`
       ${SIZES['ps']};
