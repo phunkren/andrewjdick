@@ -135,7 +135,7 @@ const config = {
                 }
               }
             `,
-            output: '/blog/rss.xml',
+            output: '/rss.xml',
             title: 'Blog: RSS | Andrew James',
           },
         ],
