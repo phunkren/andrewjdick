@@ -38,6 +38,9 @@ export const Navigation = styled(({ column = false, ...props }) => (
       <ListItem>
         <Link to="/cv">CV</Link>
       </ListItem>
+      <ListItem>
+        <Link to="/contact">Contact</Link>
+      </ListItem>
     </List>
   </nav>
 ))``;
