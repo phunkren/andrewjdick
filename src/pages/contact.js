@@ -21,14 +21,8 @@ const Main = styled.main`
   margin-bottom: var(--spacing-massive);
   margin-left: auto;
   padding: 0;
-
   width: 100%;
-
-  ${MEDIA.tablet`
-    max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
-    margin-left: auto;
-    margin-right: auto;
-  `}
+  max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
 
   ${MEDIA.tablet`
     padding: 0 var(--spacing-huge);
@@ -67,14 +61,7 @@ const Input = styled.input`
   }
 `;
 
-const Label = styled.label`
-  &:hover {
-    span {
-      color: var(--color-blue-400);
-      transition: color 0.2s ease-out;
-    }
-  }
-`;
+const Label = styled.label``;
 
 const TextArea = styled.textarea`
   display: block;
@@ -87,7 +74,7 @@ const TextArea = styled.textarea`
 const Button = styled.button`
   padding: var(--spacing-small) var(--spacing-large);
   background-color: var(--color-blue-600);
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--color-white);
   border: 0;
   min-width: 150px;
   border-radius: 4px;
@@ -107,12 +94,13 @@ const Button = styled.button`
   `}
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
-  background-color: var(--color-white);
-  padding: var(--spacing-massive) var(--spacing-medium);
   width: 100%;
+  padding: var(--spacing-massive) var(--spacing-medium);
+  background-color: var(--color-white);
+  border-radius: 4px;
 
   ${MEDIA.tablet`
     margin-bottom: var(--spacing-massive);
@@ -141,13 +129,13 @@ export default function Contact() {
           </Text>
           <Form
             name="contact"
-            method="post"
+            method="POST"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
           >
             <Label hidden>
-              <Text>Don’t fill this out:</Text>
-              <Input name="form-contact" value="contact" />
+              <Text>Netlify requires this:</Text>
+              <Input name="form-name" value="contact" readOnly />
             </Label>
 
             <Label hidden>
@@ -179,7 +167,6 @@ export default function Contact() {
               </Text>
               <Input
                 required
-                type="text"
                 name="contact-subject"
                 placeholder="Let's get in touch"
               />
@@ -192,7 +179,12 @@ export default function Contact() {
               >
                 Message
               </Text>
-              <TextArea required name="contact-body" rows="6" minlength="20" />
+              <TextArea
+                required
+                name="contact-message"
+                rows="6"
+                minlength="20"
+              />
             </Label>
 
             <Button type="submit">Send</Button>
