@@ -100,9 +100,12 @@ const Form = styled.form`
   width: 100%;
   padding: var(--spacing-massive) var(--spacing-medium);
   background-color: var(--color-white);
-  border-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
 
   ${MEDIA.tablet`
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
     margin-bottom: var(--spacing-massive);
     padding: var(--spacing-massive);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
