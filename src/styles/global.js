@@ -18,6 +18,9 @@ const colors = css`
   --color-blue-200: #bee3f8;
   --color-blue-400: #63b3ed;
   --color-blue-600: #3182ce;
+  --color-green-200: #c6f6d5;
+  --color-green-400: #68d391;
+  --color-green-600: #38a169;
 `;
 
 const spacing = css`
