@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { navigate } from 'gatsby-link';
 import { SEO } from '../components/SEO';
 import { Layout } from '../components/Layout';
 import { Text } from '../components/Text';
 import { Hero } from '../components/Hero';
 import { Header } from '../components/Header';
 import { Theme } from '../components/Theme';
+import { TickIcon } from '../components/icons';
+import { Link } from '../components/Link';
 import { Footer } from '../components/Footer';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
+import { encode } from '../utils/encode';
 
 const Main = styled.main`
   flex: 1;
@@ -112,7 +116,49 @@ const Form = styled.form`
   `}
 `;
 
-export default function Contact() {
+const StyledLink = styled(Link)`
+  display: block;
+  color: var(--color-blue-600);
+
+  ${MEDIA.tablet`
+    display: inline-block;
+  `}
+`;
+
+export default function Contact({ location }) {
+  const [state, setState] = useState({});
+  const { success } = location.state || {};
+
+  function handleChange(event) {
+    setState({
+      ...state,
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+
+    fetch('/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: encode({
+        'form-name': form.getAttribute('name'),
+        ...state,
+      }),
+    })
+      .then(() =>
+        navigate(form.getAttribute('action'), {
+          state: { success: true },
+          replace: true,
+        }),
+      )
+      .catch(error => alert(error));
+  }
+
   return (
     <Layout>
       <SEO path="/contact" title="Contact" description="Get in touch with me" />
@@ -133,64 +179,98 @@ export default function Contact() {
           <Form
             name="contact"
             method="POST"
+            action="/contact"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
+            onSubmit={handleSubmit}
           >
-            <Label hidden>
-              <Text>Netlify requires this:</Text>
-              <Input name="form-name" value="contact" readOnly />
-            </Label>
+            {success ? (
+              <>
+                <TickIcon
+                  width="3rem"
+                  height="3rem"
+                  css="color: var(--color-green-400); margin-bottom: var(--spacing-huge);"
+                />
+                <Text
+                  size="xxxl"
+                  as="h2"
+                  css="margin-bottom: var(--spacing-huge);"
+                >
+                  Thanks!
+                </Text>
+                <Text as="p" css="margin-bottom: var(--spacing-medium);">
+                  Your message has been successfully submitted. I&apos;ll be in
+                  touch shortly.
+                </Text>
+                <Text as="p" css="margin-bottom: var(--spacing-medium);">
+                  Forget to ask something?{' '}
+                  <StyledLink to="/contact" getProps={() => {}}>
+                    Submit another message
+                  </StyledLink>
+                </Text>
+              </>
+            ) : (
+              <>
+                <Label hidden>
+                  <Text>Netlify requires this:</Text>
+                  <Input name="form-name" value="contact" readOnly />
+                </Label>
 
-            <Label hidden>
-              <Text>Don’t fill this out:</Text>
-              <Input name="bot-field" />
-            </Label>
+                <Label hidden>
+                  <Text>Don’t fill this out:</Text>
+                  <Input name="bot-field" />
+                </Label>
 
-            <Label css="margin-bottom: var(--spacing-huge);">
-              <Text
-                size="xs"
-                css="display: block; margin-bottom: var(--spacing-tiny);"
-              >
-                From
-              </Text>
-              <Input
-                required
-                type="email"
-                name="contact-email"
-                placeholder="your@email.com"
-              />
-            </Label>
+                <Label css="margin-bottom: var(--spacing-huge);">
+                  <Text
+                    size="xs"
+                    css="display: block; margin-bottom: var(--spacing-tiny);"
+                  >
+                    From
+                  </Text>
+                  <Input
+                    required
+                    type="email"
+                    name="contact-email"
+                    placeholder="your@email.com"
+                    onChange={handleChange}
+                  />
+                </Label>
 
-            <Label css="margin-bottom: var(--spacing-huge);">
-              <Text
-                size="xs"
-                css="display: block; margin-bottom: var(--spacing-tiny);"
-              >
-                Subject
-              </Text>
-              <Input
-                required
-                name="contact-subject"
-                placeholder="Let's get in touch"
-              />
-            </Label>
+                <Label css="margin-bottom: var(--spacing-huge);">
+                  <Text
+                    size="xs"
+                    css="display: block; margin-bottom: var(--spacing-tiny);"
+                  >
+                    Subject
+                  </Text>
+                  <Input
+                    required
+                    name="contact-subject"
+                    placeholder="Let's get in touch"
+                    onChange={handleChange}
+                  />
+                </Label>
 
-            <Label css="margin-bottom: var(--spacing-massive);">
-              <Text
-                size="xs"
-                css="display: block; margin-bottom: var(--spacing-medium);"
-              >
-                Message
-              </Text>
-              <TextArea
-                required
-                name="contact-message"
-                rows="6"
-                minlength="20"
-              />
-            </Label>
+                <Label css="margin-bottom: var(--spacing-massive);">
+                  <Text
+                    size="xs"
+                    css="display: block; margin-bottom: var(--spacing-medium);"
+                  >
+                    Message
+                  </Text>
+                  <TextArea
+                    required
+                    name="contact-message"
+                    rows="6"
+                    minlength="20"
+                    onChange={handleChange}
+                  />
+                </Label>
 
-            <Button type="submit">Send</Button>
+                <Button type="submit">Send</Button>
+              </>
+            )}
           </Form>
         </Main>
         <Footer />
