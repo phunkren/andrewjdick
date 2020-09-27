@@ -10,6 +10,7 @@
   "baseUrl": "https://ajames.dev",
   "private": true,
   "dependencies": {
+    "@reach/checkbox": "^0.11.2",
     "@reach/dialog": "^0.10.5",
     "babel-plugin-styled-components": "^1.10.6",
     "eslint": "^6.8.0",

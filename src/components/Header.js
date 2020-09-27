@@ -9,6 +9,7 @@ import { HamburgerIcon } from './icons/HamburgerIcon';
 import { convertPxToRem } from '../utils/unitConversion';
 import { isIOS } from 'react-device-detect';
 import { Drawer } from './Drawer';
+import { ThemeToggle } from './Theme';
 
 const Outer = styled.header(() => [
   css`
@@ -34,8 +35,8 @@ const Inner = styled.div`
   height: 60px;
 
   ${MEDIA.tablet`
-      padding: 0 var(--spacing-huge);
-    `};
+    padding: 0 var(--spacing-huge);
+  `};
 `;
 
 const DesktopNavigation = styled(Navigation)`
@@ -43,6 +44,8 @@ const DesktopNavigation = styled(Navigation)`
 
   ${MEDIA.tablet`
     display: block;  
+    margin-left: auto;
+    margin-right: var(--spacing-massive);
   `}
 `;
 
@@ -95,6 +98,8 @@ export const Header = () => {
           </LogoLink>
 
           <DesktopNavigation />
+
+          <ThemeToggle />
 
           <MobileNavigationButton
             aria-label="Navigation menu"
