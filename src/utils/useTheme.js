@@ -3,9 +3,10 @@ import { THEMES, DEFAULT_THEME } from '../styles/themes';
 
 export function useTheme() {
   const [theme, setTheme] = useState(null);
+  const windowGlobal = typeof window !== 'undefined' && window;
 
-  const retrieve = () => window.localStorage.getItem('theme');
-  const persist = () => window.localStorage.setItem('theme', theme);
+  const retrieve = () => windowGlobal?.localStorage?.getItem('theme');
+  const persist = () => windowGlobal?.localStorage?.setItem('theme', theme);
   const validate = t => Object.keys(THEMES).includes(t);
   const update = t => validate(t) && setTheme(t);
 
