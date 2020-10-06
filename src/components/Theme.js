@@ -1,8 +1,18 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import { CustomCheckbox } from '@reach/checkbox';
+import styled, { ThemeProvider } from 'styled-components';
+import { CustomCheckboxContainer, CustomCheckboxInput } from '@reach/checkbox';
+import '@reach/checkbox/styles.css';
 import { useTheme } from '../utils/useTheme';
 import { THEMES } from '../styles/themes';
+import { LightIcon } from './icons/LightIcon';
+
+const Container = styled(CustomCheckboxContainer)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+`;
 
 export const Theme = ({ theme = 'light', ...props }) => (
   <ThemeProvider theme={THEMES[theme]} {...props} />
@@ -10,16 +20,20 @@ export const Theme = ({ theme = 'light', ...props }) => (
 
 export const ThemeToggle = props => {
   const { theme, update } = useTheme();
+  const isLightTheme = theme === 'light';
 
   function handleChange(e) {
     update(e.target.checked ? 'light' : 'dark');
   }
 
   return (
-    <CustomCheckbox
-      checked={theme === 'light'}
-      onChange={handleChange}
-      {...props}
-    />
+    <Container checked={isLightTheme} onChange={handleChange}>
+      <LightIcon on={!isLightTheme} />
+      <CustomCheckboxInput
+        checked={isLightTheme}
+        onChange={handleChange}
+        {...props}
+      />
+    </Container>
   );
 };
