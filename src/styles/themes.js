@@ -1,11 +1,11 @@
 const LIGHT_THEME = {
-  primary: 'var(--color-black)',
-  secondary: 'var(--color-white)',
+  background: 'var(--color-white)',
+  foreground: 'var(--color-black)',
 };
 
 const DARK_THEME = {
-  primary: 'var(--color-white)',
-  secondary: 'var(--color-black)',
+  background: 'var(--color-black)',
+  foreground: 'var(--color-white)',
 };
 
 export const THEMES = {

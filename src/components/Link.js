@@ -94,8 +94,8 @@ export const Link = styled(props => (
 ))(
   ({ theme }) => css`
     ${linkStyles};
-    color: ${theme.primary};
-    text-shadow: 1px 1px 1px ${theme.secondary};
+    color: ${theme.foreground};
+    text-shadow: 1px 1px 1px ${theme.background};
   `,
 );
 

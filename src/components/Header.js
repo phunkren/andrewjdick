@@ -51,7 +51,7 @@ const DesktopNavigation = styled(Navigation)`
 
 const MobileNavigationButton = styled(IconButton)(
   ({ theme }) => css`
-    color: ${theme.primary};
+    color: ${theme.foreground};
 
     ${MEDIA.tablet`
     display: none;  
