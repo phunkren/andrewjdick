@@ -64,43 +64,46 @@ const typography = css`
   }
 `;
 
-export const GlobalStyles = createGlobalStyle`
-  ${reset};
+export const GlobalStyles = createGlobalStyle(
+  ({ theme }) => css`
+    ${reset};
 
-  :root {
-    ${colors};
-    ${spacing};
-  }
-
-  ${typography};
-
-  html {
-    display: flex;
-  }
-
-  body {
-    color: var(--color-black);
-
-    *::selection {
-      background: var(--color-orange-200);
+    :root {
+      ${colors};
+      ${spacing};
     }
 
-    *::moz-selection {
-      background: var(--color-orange-200);
+    ${typography};
+
+    html {
+      display: flex;
     }
 
-    *:focus {
-      outline: 2px solid var(--color-blue-600);
-      outline-offset: 4px;
+    body {
+      background-color: ${theme.background};
+      color: ${theme.foreground};
+
+      *::selection {
+        background: var(--color-orange-200);
+      }
+
+      *::moz-selection {
+        background: var(--color-orange-200);
+      }
+
+      *:focus {
+        outline: 2px solid var(--color-blue-600);
+        outline-offset: 4px;
+      }
     }
-  } 
-  
-  body, 
-  div#___gatsby, 
-  div#gatsby-focus-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-`;
+
+    body,
+    div#___gatsby,
+    div#gatsby-focus-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  `,
+);
