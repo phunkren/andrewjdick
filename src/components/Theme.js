@@ -14,9 +14,10 @@ const Container = styled(CustomCheckboxContainer)`
   height: 40px;
 `;
 
-export const Theme = ({ theme = 'light', ...props }) => (
-  <ThemeProvider theme={THEMES[theme]} {...props} />
-);
+export const Theme = () => {
+  const { theme } = useTheme();
+  return <ThemeProvider theme={THEMES[theme]} />;
+};
 
 export const ThemeToggle = props => {
   const { theme, update } = useTheme();
