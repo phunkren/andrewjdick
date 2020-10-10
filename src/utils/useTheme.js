@@ -1,20 +1,17 @@
-import { useEffect, useState } from 'react';
-import { THEMES, DEFAULT_THEME } from '../styles/themes';
+import { useEffect, useContext } from 'react';
+import { ThemeContext } from '../components/Theme';
+import { THEMES } from '../styles/themes';
 
 export function useTheme() {
-  const retrieve = () => windowGlobal?.localStorage?.getItem('theme');
-  const persist = () => windowGlobal?.localStorage?.setItem('theme', theme);
+  const { theme, setTheme } = useContext(ThemeContext) || {};
+  const _window = typeof window !== 'undefined' && window;
+
   const validate = t => Object.keys(THEMES).includes(t);
   const update = t => validate(t) && setTheme(t);
-
-  const [theme, setTheme] = useState(retrieve());
-  const windowGlobal = typeof window !== 'undefined' && window;
-
-  if (theme === null) {
-    setTheme(DEFAULT_THEME);
-  }
+  const retrieve = () => _window?.localStorage?.getItem('theme');
+  const persist = () => theme && _window?.localStorage?.setItem('theme', theme);
 
   useEffect(persist, [theme]);
 
-  return { theme, update };
+  return { theme, update, retrieve };
 }

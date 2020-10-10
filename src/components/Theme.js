@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, createContext } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { CustomCheckboxContainer, CustomCheckboxInput } from '@reach/checkbox';
 import '@reach/checkbox/styles.css';
 import { useTheme } from '../utils/useTheme';
-import { THEMES } from '../styles/themes';
+import { DEFAULT_THEME, THEMES } from '../styles/themes';
 import { LightIcon } from './icons/LightIcon';
+
+export const ThemeContext = createContext(null);
 
 const Container = styled(CustomCheckboxContainer)`
   display: flex;
@@ -14,24 +16,30 @@ const Container = styled(CustomCheckboxContainer)`
   height: 40px;
 `;
 
-export const Theme = () => {
-  const { theme } = useTheme();
-  return <ThemeProvider theme={THEMES[theme]} />;
+export const Theme = props => {
+  const { retrieve } = useTheme();
+  const [theme, setTheme] = useState(retrieve() || DEFAULT_THEME);
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <ThemeProvider theme={THEMES[theme]} {...props} />
+    </ThemeContext.Provider>
+  );
 };
 
 export const ThemeToggle = props => {
   const { theme, update } = useTheme();
-  const isLightTheme = theme === 'light';
+  const checked = theme === 'light';
 
   function handleChange(e) {
     update(e.target.checked ? 'light' : 'dark');
   }
 
   return (
-    <Container checked={isLightTheme} onChange={handleChange}>
-      <LightIcon on={!isLightTheme} />
+    <Container checked={checked} onChange={handleChange}>
+      <LightIcon on={!checked} />
       <CustomCheckboxInput
-        checked={isLightTheme}
+        checked={checked}
         onChange={handleChange}
         {...props}
       />
