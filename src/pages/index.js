@@ -11,7 +11,6 @@ import { Header } from '../components/Header';
 import { Text } from '../components/Text';
 import { SEO } from '../components/SEO';
 import { MEDIA } from '../styles/media';
-import { Theme } from '../components/Theme';
 
 const infiniteScroll = keyframes`
   from {
@@ -23,7 +22,7 @@ const infiniteScroll = keyframes`
 `;
 
 /* HACK: For Div100vh to work, we need to remove the min-height from modern-css-reset */
-const GlobalStyles = createGlobalStyle`
+const GlobalStylesOverride = createGlobalStyle`
  body {
    min-height: 0;
  }
@@ -93,56 +92,54 @@ export default function Home({ data }) {
   const currentEmployer = experience[0];
 
   return (
-    <Theme>
-      <Layout>
-        <SEO />
-        <GlobalStyles />
-        <Wrapper>
-          <Header />
+    <Layout>
+      <SEO />
+      <GlobalStylesOverride />
+      <Wrapper>
+        <Header />
 
-          <Main>
-            <Section aria-label="Profile">
-              <Text as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
-                {author.name}
-              </Text>
-              <Text aria-label={`Position: ${currentEmployer.position}`}>
-                {currentEmployer.position}
-              </Text>
-              <Text size="m"> @ </Text>
+        <Main>
+          <Section aria-label="Profile">
+            <Text as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
+              {author.name}
+            </Text>
+            <Text aria-label={`Position: ${currentEmployer.position}`}>
+              {currentEmployer.position}
+            </Text>
+            <Text size="m"> @ </Text>
+            <ExternalLink
+              aria-label={`Employer: ${currentEmployer.company}`}
+              href={currentEmployer.url}
+              highlight
+            >
+              <Text>{currentEmployer.company}</Text>
+            </ExternalLink>
+            <br />
+            <Text aria-label={`Location: ${author.location}`}>
+              {author.location}
+            </Text>
+          </Section>
+        </Main>
+
+        <Footer>
+          <Social aria-label="Social" />
+
+          <figure aria-hidden="true">
+            <Image />
+            <Text as="figcaption" size="ps">
+              background courtesy of{' '}
               <ExternalLink
-                aria-label={`Employer: ${currentEmployer.company}`}
-                href={currentEmployer.url}
+                href="https://absurd.design/"
                 highlight
+                tabIndex="-1"
               >
-                <Text>{currentEmployer.company}</Text>
+                absurd.design
               </ExternalLink>
-              <br />
-              <Text aria-label={`Location: ${author.location}`}>
-                {author.location}
-              </Text>
-            </Section>
-          </Main>
-
-          <Footer>
-            <Social aria-label="Social" />
-
-            <figure aria-hidden="true">
-              <Image />
-              <Text as="figcaption" size="ps">
-                background courtesy of{' '}
-                <ExternalLink
-                  href="https://absurd.design/"
-                  highlight
-                  tabIndex="-1"
-                >
-                  absurd.design
-                </ExternalLink>
-              </Text>
-            </figure>
-          </Footer>
-        </Wrapper>
-      </Layout>
-    </Theme>
+            </Text>
+          </figure>
+        </Footer>
+      </Wrapper>
+    </Layout>
   );
 }
 
