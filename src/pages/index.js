@@ -11,6 +11,7 @@ import { Header } from '../components/Header';
 import { Text } from '../components/Text';
 import { SEO } from '../components/SEO';
 import { MEDIA } from '../styles/media';
+import { Theme } from '../components/Theme';
 
 const infiniteScroll = keyframes`
   from {
@@ -92,54 +93,56 @@ export default function Home({ data }) {
   const currentEmployer = experience[0];
 
   return (
-    <Layout>
-      <SEO />
-      <GlobalStyles />
-      <Wrapper>
-        <Header />
+    <Theme>
+      <Layout>
+        <SEO />
+        <GlobalStyles />
+        <Wrapper>
+          <Header />
 
-        <Main>
-          <Section aria-label="Profile">
-            <Text as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
-              {author.name}
-            </Text>
-            <Text aria-label={`Position: ${currentEmployer.position}`}>
-              {currentEmployer.position}
-            </Text>
-            <Text size="m"> @ </Text>
-            <ExternalLink
-              aria-label={`Employer: ${currentEmployer.company}`}
-              href={currentEmployer.url}
-              highlight
-            >
-              <Text>{currentEmployer.company}</Text>
-            </ExternalLink>
-            <br />
-            <Text aria-label={`Location: ${author.location}`}>
-              {author.location}
-            </Text>
-          </Section>
-        </Main>
-
-        <Footer>
-          <Social aria-label="Social" />
-
-          <figure aria-hidden="true">
-            <Image />
-            <Text as="figcaption" size="ps">
-              background courtesy of{' '}
+          <Main>
+            <Section aria-label="Profile">
+              <Text as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
+                {author.name}
+              </Text>
+              <Text aria-label={`Position: ${currentEmployer.position}`}>
+                {currentEmployer.position}
+              </Text>
+              <Text size="m"> @ </Text>
               <ExternalLink
-                href="https://absurd.design/"
+                aria-label={`Employer: ${currentEmployer.company}`}
+                href={currentEmployer.url}
                 highlight
-                tabIndex="-1"
               >
-                absurd.design
+                <Text>{currentEmployer.company}</Text>
               </ExternalLink>
-            </Text>
-          </figure>
-        </Footer>
-      </Wrapper>
-    </Layout>
+              <br />
+              <Text aria-label={`Location: ${author.location}`}>
+                {author.location}
+              </Text>
+            </Section>
+          </Main>
+
+          <Footer>
+            <Social aria-label="Social" />
+
+            <figure aria-hidden="true">
+              <Image />
+              <Text as="figcaption" size="ps">
+                background courtesy of{' '}
+                <ExternalLink
+                  href="https://absurd.design/"
+                  highlight
+                  tabIndex="-1"
+                >
+                  absurd.design
+                </ExternalLink>
+              </Text>
+            </figure>
+          </Footer>
+        </Wrapper>
+      </Layout>
+    </Theme>
   );
 }
 
