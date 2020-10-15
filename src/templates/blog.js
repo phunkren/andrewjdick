@@ -10,7 +10,6 @@ import { linkStyles, highlightStyles } from '../components/Link';
 import { SIZES } from '../components/Text';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
-import { Theme } from '../components/Theme';
 import { convertPxToRem } from '../utils/unitConversion';
 import { Footer } from '../components/Footer';
 
@@ -182,9 +181,7 @@ function BlogTemplate({ data, location }) {
         article
       />
 
-      <Theme theme="dark">
-        <Header />
-      </Theme>
+      <Header />
 
       <ArticleHero>
         <Img

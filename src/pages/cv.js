@@ -20,7 +20,6 @@ import { SEO } from '../components/SEO';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { Hero } from '../components/Hero';
 import { Header } from '../components/Header';
-import { Theme } from '../components/Theme';
 import { convertPxToRem } from '../utils/unitConversion';
 import { Icon } from '../components/icons/Icon';
 import { Footer } from '../components/Footer';
@@ -282,9 +281,7 @@ export default function CV({ data, location: { pathname } }) {
         title="CV"
         description="An overview of my experience and technical expertise"
       />
-      <Theme theme="dark">
-        <Header />
-      </Theme>
+      <Header />
       <Wrap>
         <Hero />
         <Main>

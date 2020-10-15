@@ -10,7 +10,6 @@ export const linkStyles = css`
   color: inherit;
   text-decoration: none;
   transition: color 0.2s ease-out;
-  font-weight: 500;
 
   &:disabled {
     opacity: ${ALPHAS.disabled};
@@ -94,8 +93,7 @@ export const Link = styled(props => (
 ))(
   ({ theme }) => css`
     ${linkStyles};
-    color: ${theme.foreground};
-    text-shadow: 1px 1px 1px ${theme.background};
+    color: ${theme.linkColor};
   `,
 );
 

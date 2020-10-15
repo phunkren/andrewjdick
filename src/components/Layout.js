@@ -1,15 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css, createGlobalStyle } from 'styled-components';
 import { Theme } from './Theme';
-import { GlobalStyles } from '../styles/global';
 
-export const Layout = styled(({ children, className }) => {
+const Styles = createGlobalStyle(
+  ({ theme }) => css`
+    body {
+      background-color: ${theme.background};
+      color: ${theme.foreground};
+    }
+  `,
+);
+
+export const Layout = styled(({ children, ...props }) => {
   return (
-    <Theme>
-      <>
-        <GlobalStyles />
-        {children}
-      </>
+    <Theme {...props}>
+      <Styles />
+      {children}
     </Theme>
   );
 })``;

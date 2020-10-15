@@ -10,7 +10,6 @@ import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { Hero } from '../components/Hero';
 import { Header } from '../components/Header';
-import { Theme } from '../components/Theme';
 import { convertPxToRem } from '../utils/unitConversion';
 import { Footer } from '../components/Footer';
 
@@ -162,9 +161,7 @@ export default function Blog({ data, location: { pathname } }) {
         title="Blog"
         description="Personal contributions to modern frontend web development"
       />
-      <Theme theme="dark">
-        <Header />
-      </Theme>
+      <Header />
       <Wrapper>
         <Hero />
         <Main>

@@ -6,7 +6,6 @@ import { Layout } from '../components/Layout';
 import { Text } from '../components/Text';
 import { Hero } from '../components/Hero';
 import { Header } from '../components/Header';
-import { Theme } from '../components/Theme';
 import { TickIcon } from '../components/icons';
 import { Link } from '../components/Link';
 import { Footer } from '../components/Footer';
@@ -162,9 +161,7 @@ export default function Contact({ location }) {
   return (
     <Layout>
       <SEO path="/contact" title="Contact" description="Get in touch with me" />
-      <Theme theme="dark">
-        <Header />
-      </Theme>
+      <Header />
       <Wrapper>
         <Hero />
         <Main>
