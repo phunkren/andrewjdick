@@ -9,7 +9,7 @@ const config = {
     author: {
       name: 'Andrew James',
       email: 'contact@ajames.dev',
-      location: 'London, UK',
+      location: 'Edinburgh, UK',
     },
   },
   plugins: [
