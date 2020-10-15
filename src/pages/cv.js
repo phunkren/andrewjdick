@@ -478,19 +478,24 @@ export default function CV({ data, location: { pathname } }) {
                           <Dates size="xs">{dates}</Dates>
                         </ExperienceInfo>
                         <Description>
-                          <Text as="p">{blurb}</Text>
-                          <Text as="h4" size="m">
-                            Notable work
-                          </Text>
-                          <ul>
-                            {portfolio.map(({ name, href }) => (
-                              <li key={name}>
-                                <ExternalLink href={href} highlight>
-                                  <Text size="pb">{name}</Text>
-                                </ExternalLink>
-                              </li>
-                            ))}
-                          </ul>
+                          {blurb ? <Text as="p">{blurb}</Text> : null}
+
+                          {portfolio ? (
+                            <>
+                              <Text as="h4" size="m">
+                                Notable work
+                              </Text>
+                              <ul>
+                                {portfolio.map(({ name, href }) => (
+                                  <li key={name}>
+                                    <ExternalLink href={href} highlight>
+                                      <Text size="pb">{name}</Text>
+                                    </ExternalLink>
+                                  </li>
+                                ))}
+                              </ul>
+                            </>
+                          ) : null}
                         </Description>
                       </Block>
                     ),
