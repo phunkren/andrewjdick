@@ -6,6 +6,7 @@ export const Hero = styled.div`
   background-color: var(--color-gray-600);
   background-image: url(${lightbulbs});
   background-position: center center;
+  border-bottom: 2px solid var(--color-orange-400);
   position: absolute;
   top: 0;
   right: 0;
