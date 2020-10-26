@@ -1,8 +1,7 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect, useContext, createContext } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { CustomCheckboxContainer, CustomCheckboxInput } from '@reach/checkbox';
 import '@reach/checkbox/styles.css';
-import { useTheme } from '../utils/useTheme';
 import { DEFAULT_THEME, THEMES } from '../styles/themes';
 import { LightIcon } from './icons/LightIcon';
 
@@ -17,18 +16,26 @@ const Container = styled(CustomCheckboxContainer)`
 `;
 
 export const Theme = props => {
-  const { retrieve } = useTheme();
+  const _window = typeof window !== 'undefined' && window;
+
+  const validate = t => Object.keys(THEMES).includes(t);
+  const update = t => validate(t) && setTheme(t);
+  const retrieve = () => _window?.localStorage?.getItem('theme');
+  const persist = () => theme && _window?.localStorage?.setItem('theme', theme);
+
   const [theme, setTheme] = useState(retrieve() || DEFAULT_THEME);
 
+  useEffect(persist, [theme]);
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, update }}>
       <ThemeProvider theme={THEMES[theme]} {...props} />
     </ThemeContext.Provider>
   );
 };
 
 export const ThemeToggle = props => {
-  const { theme, update } = useTheme();
+  const { theme, update } = useContext(ThemeContext) || {};
   const checked = theme === 'light';
 
   function handleChange(e) {
