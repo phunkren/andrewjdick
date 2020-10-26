@@ -34,7 +34,7 @@ const Inner = styled.div(({ theme, variant }) => [
     padding: 0 var(--spacing-medium);
     max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
     height: 60px;
-    color: ${theme?.copyColor};
+    color: ${theme.copyColor};
 
     ${MEDIA.tablet`
     padding: 0 var(--spacing-huge);

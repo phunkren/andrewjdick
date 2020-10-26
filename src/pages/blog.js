@@ -33,7 +33,7 @@ const Wrapper = styled.div(
   ({ theme }) => css`
     position: relative;
     width: 100%;
-    background-color: ${theme?.wrapperOverlay};
+    background-color: ${theme.wrapperOverlay};
   `,
 );
 
@@ -60,8 +60,8 @@ const Preview = styled.article(
     padding: var(--spacing-huge) var(--spacing-medium);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
     border-radius: 4px;
-    background-color: ${theme?.background};
-    color: ${theme?.cardColor};
+    background-color: ${theme.background};
+    color: ${theme.cardColor};
     position: relative;
 
     &::after {
@@ -73,7 +73,7 @@ const Preview = styled.article(
       bottom: 0;
       left: 0;
       z-index: 0;
-      background: ${theme?.cardOverlay};
+      background: ${theme.cardOverlay};
     }
 
     & > * {
@@ -89,20 +89,20 @@ const Preview = styled.article(
 const Title = styled(Text)(
   ({ theme }) => css`
     width: 90%;
-    color: ${theme?.cardHeaderColor};
+    color: ${theme.cardHeaderColor};
   `,
 );
 
 const Info = styled(Text)(
   ({ theme }) => css`
-    color: ${theme?.auxiliaryColor};
+    color: ${theme.auxiliaryColor};
   `,
 );
 
 const StyledLink = styled(Link)(
   ({ theme }) => css`
     display: inline-block;
-    color: ${theme?.cardLinkColor};
+    color: ${theme.cardLinkColor};
     margin-left: auto;
   `,
 );

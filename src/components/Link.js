@@ -30,7 +30,7 @@ export const linkStyles = css`
 
 export const highlightStyles = css`
   position: relative;
-  color: ${({ theme }) => theme?.linkColor};
+  color: ${({ theme }) => theme.linkColor};
   white-space: nowrap;
   z-index: 1;
 
@@ -42,7 +42,7 @@ export const highlightStyles = css`
     left: 2px;
     width: 100%;
     height: 33%;
-    background: ${({ theme }) => theme?.highlightColor};
+    background: ${({ theme }) => theme.highlightColor};
     transition: 100ms ease-out;
     will-change: transform;
     z-index: -1;

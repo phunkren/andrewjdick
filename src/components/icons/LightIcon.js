@@ -56,25 +56,5 @@ export const LightIcon = ({ on, ...props }) => (
             c0,58.3,72.8,118.2,79.9,162.3h47.8h47.8c7.1-44,79.9-103.9,79.9-162.3C265.3,70.9,208.2,13.7,137.7,13.7z"
       />
     </g>
-    <g id="highlight">
-      <path
-        fill="#FFDB55"
-        stroke="#FFFFFF"
-        strokeWidth="21.0124"
-        strokeLinecap="round"
-        strokeMiterlimit="10"
-        d="M207.1,89.5
-          c-12.3-16.1-28.4-29.1-46.9-37.8"
-      />
-      <path
-        fill="#FFDB55"
-        stroke="#FFFFFF"
-        strokeWidth="21.0124"
-        strokeLinecap="round"
-        strokeMiterlimit="10"
-        d="M225,121.4
-          c-0.8-2.2-1.8-4.4-2.7-6.5"
-      />
-    </g>
   </Icon>
 );

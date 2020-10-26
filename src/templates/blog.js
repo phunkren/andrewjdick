@@ -21,7 +21,7 @@ const Wrapper = styled.div(
     padding: var(--spacing-huge) var(--spacing-medium) var(--spacing-massive);
     margin: 300px auto 0;
     width: 100%;
-    background: ${theme?.wrapperOverlay};
+    background: ${theme.wrapperOverlay};
 
     ${MEDIA.desktop`
     margin-top: 400px;
@@ -75,7 +75,7 @@ const Title = styled(Text)`
 
 const Info = styled(Text)(
   ({ theme }) => css`
-    color: ${theme?.auxiliaryColor};
+    color: ${theme.auxiliaryColor};
   `,
 );
 
@@ -130,7 +130,7 @@ const Section = styled.section(
       ${SIZES['xs']};
       margin-top: var(--spacing-small);
       text-align: center;
-      color: ${theme?.auxiliaryColor};
+      color: ${theme.auxiliaryColor};
     }
 
     img {
@@ -159,7 +159,7 @@ const Section = styled.section(
     p > code[class*='language-'] {
       ${SIZES['ps']};
       font-weight: 500;
-      color: ${theme?.blogSyntaxColor};
+      color: ${theme.blogSyntaxColor};
       background-color: transparent;
       padding: 0;
     }

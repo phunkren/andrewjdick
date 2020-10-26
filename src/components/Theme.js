@@ -23,7 +23,9 @@ export const Theme = props => {
   const retrieve = () => _window?.localStorage?.getItem('theme');
   const persist = () => theme && _window?.localStorage?.setItem('theme', theme);
 
-  const [theme, setTheme] = useState(retrieve() || DEFAULT_THEME);
+  const localTheme = retrieve();
+  const initialTheme = validate(localTheme) ? localTheme : DEFAULT_THEME;
+  const [theme, setTheme] = useState(initialTheme);
 
   useEffect(persist, [theme]);
 
@@ -37,7 +39,6 @@ export const Theme = props => {
 export const ThemeToggle = props => {
   const { theme, update } = useContext(ThemeContext) || {};
   const checked = theme === 'light';
-  console.log({ theme, checked });
 
   function handleChange(e) {
     update(e.target.checked ? 'light' : 'dark');
