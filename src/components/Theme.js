@@ -20,8 +20,6 @@ export const Theme = props => {
   const { retrieve } = useTheme();
   const [theme, setTheme] = useState(retrieve() || DEFAULT_THEME);
 
-  console.log({ theme });
-
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <ThemeProvider theme={THEMES[theme]} {...props} />
@@ -32,10 +30,8 @@ export const Theme = props => {
 export const ThemeToggle = props => {
   const { theme, update } = useTheme();
   const checked = theme === 'light';
-  console.log('toggled theme', theme);
 
   function handleChange(e) {
-    console.log('toggle', theme);
     update(e.target.checked ? 'light' : 'dark');
   }
 
