@@ -29,11 +29,11 @@ export const Theme = props => {
 
   useEffect(persist, [theme]);
 
-  return (
+  return validate(theme) ? (
     <ThemeContext.Provider value={{ theme, update }}>
       <ThemeProvider theme={THEMES[theme]} {...props} />
     </ThemeContext.Provider>
-  );
+  ) : null;
 };
 
 export const ThemeToggle = props => {
