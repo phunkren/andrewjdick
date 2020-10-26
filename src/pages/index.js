@@ -21,13 +21,6 @@ const infiniteScroll = keyframes`
   }
 `;
 
-/* HACK: For Div100vh to work, we need to remove the min-height from modern-css-reset */
-const GlobalStylesOverride = createGlobalStyle`
- body {
-   min-height: 0;
- }
-`;
-
 const Wrapper = styled(Div100vh)`
   flex: 1;
   display: flex;
@@ -92,9 +85,8 @@ export default function Home({ data }) {
   const currentEmployer = experience[0];
 
   return (
-    <Layout>
+    <>
       <SEO />
-      <GlobalStylesOverride />
       <Wrapper>
         <Header />
 
@@ -139,7 +131,7 @@ export default function Home({ data }) {
           </figure>
         </Footer>
       </Wrapper>
-    </Layout>
+    </>
   );
 }
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { position } from 'polished';
 import { Link as RouterLink } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { MEDIA } from '../styles/media';
@@ -16,7 +15,7 @@ export const linkStyles = css`
   }
 
   &:hover {
-    color: var(--color-blue-400);
+    color: var(--color-blue-600);
   }
 
   &:active {
@@ -31,42 +30,39 @@ export const linkStyles = css`
 
 export const highlightStyles = css`
   position: relative;
-  color: inherit;
+  color: ${({ theme }) => theme.linkColor};
   white-space: nowrap;
   z-index: 1;
 
   &::before {
     content: '';
-    ${position('absolute', '0', '-2px', '0', '4px')};
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 85%,
-      var(--color-orange-400) 15%
-    );
-    z-index: 0;
+    display: block;
+    position: absolute;
+    bottom: 4px;
+    left: 2px;
+    width: 100%;
+    height: 33%;
+    background: ${({ theme }) => theme.highlightColor};
+    transition: 100ms ease-out;
+    will-change: transform;
+    z-index: -1;
+    opacity: 0.25;
   }
 
   &:hover {
-    color: var(--color-blue-600);
-
     &::before {
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0) 95%,
-        var(--color-orange-400) 5%
-      );
+      transform: scaleY(0.2);
+      transition: 100ms ease-out 50ms;
+      bottom: -2px;
+      left: 0;
+      opacity: 1;
     }
   }
 
   &:active {
-    color: var(--color-orange-400);
-
     &::before {
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0) 95%,
-        var(--color-blue-400) 5%
-      );
+      transition: 100ms ease-in;
+      background: var(--color-blue-200);
     }
   }
 
@@ -77,7 +73,7 @@ export const highlightStyles = css`
   `}
 `;
 
-const isPartiallyActive = ({ isCurrent, isPartiallyCurrent }) =>
+const isPartiallyActive = ({ isPartiallyCurrent }) =>
   isPartiallyCurrent
     ? {
         style: {
@@ -92,7 +88,6 @@ export const Link = styled(props => (
 ))(
   ({ theme }) => css`
     ${linkStyles};
-    color: ${theme.linkColor};
   `,
 );
 

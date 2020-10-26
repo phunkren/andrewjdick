@@ -20,6 +20,8 @@ export const Theme = props => {
   const { retrieve } = useTheme();
   const [theme, setTheme] = useState(retrieve() || DEFAULT_THEME);
 
+  console.log({ theme });
+
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <ThemeProvider theme={THEMES[theme]} {...props} />
@@ -30,19 +32,26 @@ export const Theme = props => {
 export const ThemeToggle = props => {
   const { theme, update } = useTheme();
   const checked = theme === 'light';
+  console.log('toggled theme', theme);
 
   function handleChange(e) {
+    console.log('toggle', theme);
     update(e.target.checked ? 'light' : 'dark');
   }
 
   return (
-    <Container checked={checked} onChange={handleChange}>
+    <Container checked={checked} onChange={handleChange} {...props}>
       <LightIcon on={!checked} />
-      <CustomCheckboxInput
-        checked={checked}
-        onChange={handleChange}
-        {...props}
-      />
+      <label htmlFor="toggle">
+        <span aria-label="Theme toggle" />
+
+        <CustomCheckboxInput
+          id="toggle"
+          checked={checked}
+          onChange={handleChange}
+          {...props}
+        />
+      </label>
     </Container>
   );
 };

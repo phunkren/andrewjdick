@@ -1,15 +1,16 @@
 import React from 'react';
-import { DialogOverlay } from '@reach/dialog';
+import { DialogOverlay, DialogContent } from '@reach/dialog';
 import Div100vh from 'react-div-100vh';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import '@reach/dialog/styles.css';
 import { Social } from './Social';
 import { Navigation } from './Navigation';
 import { IconButton } from './Button';
 import { CrossIcon } from './icons/CrossIcon';
-import { Theme } from './Theme';
+import { Theme, ThemeToggle } from './Theme';
 
-const Content = styled(Div100vh)`
+const Content = styled(DialogContent)(
+  ({ theme }) => css`
     display: flex;
     flex-flow: column;
     justify-content: space-between;
@@ -17,9 +18,28 @@ const Content = styled(Div100vh)`
     width: 75vw;
     margin-left: auto;
     padding: 100px var(--spacing-massive) var(--spacing-huge);
-    background-color: var(--color-white);
-  }
-`;
+    background-color: ${theme.background};
+    border-left: 1px solid ${theme.highlightColor};
+    color: ${theme.copyColor};
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      border-radius: 4px;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 0;
+      background: ${theme.wrapperOverlay};
+    }
+
+    & > * {
+      z-index: 1;
+    }
+  `,
+);
 
 const Overlay = styled(DialogOverlay)`
   &[data-reach-dialog-overlay] {
@@ -35,14 +55,29 @@ const CloseButton = styled(IconButton)`
   z-index: 100;
 `;
 
-export const Drawer = ({ isOpen, onDismiss, props }) => {
+const StyledThemeToggle = styled(ThemeToggle)`
+  &[data-reach-custom-checkbox-container] {
+    position: absolute;
+    top: 28px;
+    left: 36px;
+    z-index: 100;
+  }
+`;
+
+export const Drawer = ({
+  'aria-label': ariaLabel,
+  isOpen,
+  onDismiss,
+  props,
+}) => {
   return (
     <Theme>
-      <Overlay isOpen={isOpen} onDismiss={onDismiss} {...props}>
-        <Content>
-          <CloseButton aria-label="Navigation menu" onClick={onDismiss}>
+      <Overlay isOpen={isOpen}>
+        <Content as={Div100vh} aria-label={ariaLabel} {...props}>
+          <CloseButton aria-label="Close navigation menu" onClick={onDismiss}>
             <CrossIcon width="1.5rem" height="1.5rem" />
           </CloseButton>
+          <StyledThemeToggle />
           <Navigation column />
           <Social css="justify-content: space-around;" />
         </Content>

@@ -1,9 +1,8 @@
 import React from 'react';
 import { isMobile, isIE } from 'react-device-detect';
 import { graphql } from 'gatsby';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
-import { Layout } from '../components/Layout';
 import cv from '../assets/documents/Andrew James CV.pdf';
 import { formatId } from '../utils/formatId';
 import {
@@ -23,6 +22,7 @@ import { Header } from '../components/Header';
 import { convertPxToRem } from '../utils/unitConversion';
 import { Icon } from '../components/icons/Icon';
 import { Footer } from '../components/Footer';
+import { Theme } from '../components/Theme';
 
 const List = styled.ul`
   margin-bottom: var(--spacing-huge);
@@ -34,27 +34,19 @@ const ListItem = styled.li`
   ${Text} {
     margin-left: var(--spacing-medium);
   }
-
-  ${Icon} {
-    opacity: 0.75;
-  }
 `;
 
 const StyledExternalLink = styled(ExternalLink)`
   display: inline-flex;
   align-items: center;
-  color: inherit;
 `;
 
-const Wrap = styled.div`
-  width: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--color-white) 0%,
-    var(--color-gray-200) 50%,
-    var(--color-white) 100%
-  );
-`;
+const Wrap = styled.div(
+  ({ theme }) => css`
+    width: 100%;
+    background-color: ${theme.wrapperOverlay};
+  `,
+);
 
 const Main = styled.main`
   position: relative;
@@ -63,23 +55,55 @@ const Main = styled.main`
   margin-bottom: 0;
   margin-left: auto;
   max-width: ${convertPxToRem(BREAKPOINTS.desktopWide)};
-`;
 
-const Container = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-white);
-
-  ${MEDIA.desktopWide`
-    margin-bottom: var(--spacing-massive);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
+  ${MEDIA.tablet`
+    padding-right: var(--spacing-huge);
+    padding-left:  var(--spacing-huge);
   `}
 
   ${MEDIA.print`
-    margin: 0;
+    margin-top: 0;
   `}
 `;
+
+const Container = styled.div(
+  ({ theme }) => css`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: ${theme.background};
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 0;
+      background: ${theme.cardOverlay};
+    }
+
+    & > * {
+      z-index: 1;
+    }
+
+    ${MEDIA.tablet`
+      border-radius: 4px;
+      margin-bottom: var(--spacing-massive);
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
+
+      &::after {
+        border-radius: 4px;
+      }
+    `}
+
+    ${MEDIA.print`
+      margin-bottom: 0;
+    `}
+  `,
+);
 
 const Heading = styled.div`
   display: flex;
@@ -96,69 +120,79 @@ const Heading = styled.div`
   `};
 `;
 
-const HeaderIcons = styled.div`
-  display: flex;
-  align-items: center;
-
-  & > ${DownloadLink} {
-    display: inline-flex;
+const HeaderIcons = styled.div(
+  ({ theme }) => css`
+    display: flex;
     align-items: center;
-    justify-content: center;
-    min-width: 44px;
-    min-height: 44px;
-  }
 
-  & > * + * {
-    margin-left: var(--spacing-medium);
-  }
+    & > ${DownloadLink} {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      min-height: 44px;
+    }
 
-  ${MEDIA.print`
-    display: none;
-  `};
-`;
+    & > * + * {
+      margin-left: var(--spacing-medium);
+    }
 
-const Wrapper = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column-reverse;
-  padding: var(--spacing-huge) var(--spacing-medium);
-  border-top: 5px solid var(--color-black);
+    ${MEDIA.print`
+      display: none;
+    `};
+  `,
+);
 
-  ${MEDIA.tablet`
-    display: inline-flex;
-    flex-direction: row;
-    padding: var(--spacing-huge);
-  `};
+const Wrapper = styled.div(
+  ({ theme }) => css`
+    flex: 1;
+    display: flex;
+    flex-direction: column-reverse;
+    padding: var(--spacing-huge) var(--spacing-medium);
+    border-top: 5px solid;
+    border-color: ${theme.cvBorderColor};
 
-  ${MEDIA.desktop`
-    border-bottom: 5px solid var(--color-black);
-  `}
+    ${MEDIA.tablet`
+      border-bottom: 5px solid ${theme.cvBorderColor};
+      padding: var(--spacing-huge);
+    `}
 
-  ${MEDIA.print`
-    display: inline-flex;
-    flex-direction: row;
-    padding: var(--spacing-huge);
-  `};
-`;
+    ${MEDIA.desktop`
+      display: inline-flex;
+      flex-direction: row;
+    `};
 
-const Sidebar = styled.div`
-  ${MEDIA.tablet`
-    flex: 0 1 33%;
-    border-right: 2px solid var(--color-black);
-    padding: 0 var(--spacing-huge) 0 0;
-  `};
+    ${MEDIA.print`
+      display: inline-flex;
+      flex-direction: row;
+      padding: var(--spacing-huge);
+      border-color: var(--color-black);
+    `};
+  `,
+);
 
-  ${MEDIA.print`
-    flex: 0 1 33%;
-    border-right: 2px solid var(--color-black);
-    padding: 0 var(--spacing-huge) 0 0;
-  `};
-`;
+const Sidebar = styled.div(
+  ({ theme }) => css`
+    ${MEDIA.desktop`
+      flex: 0 1 33%;
+      border-right: 2px solid 
+      border-color: ${theme.cvBorderColor};
+      padding: 0 var(--spacing-huge) 0 0;
+    `};
+
+    ${MEDIA.print`
+      flex: 0 1 33%;
+      border-right: 2px solid 
+      border-color: var(--color-black);
+      padding: 0 var(--spacing-huge) 0 0;
+    `};
+  `,
+);
 
 const Experience = styled.div`
   padding: 0;
 
-  ${MEDIA.tablet`
+  ${MEDIA.desktop`
     flex: 1;
     padding-left: var(--spacing-huge);
   `};
@@ -170,13 +204,34 @@ const Experience = styled.div`
 `;
 
 const Block = styled.section`
-  margin-bottom: var(--spacing-massive);
+  margin-bottom: var(--spacing-huge);
+
+  ${MEDIA.desktop`
+    margin-bottom: var(--spacing-massive);
+  `};
 `;
 
-const BlockHeader = styled(props => <Text as="h2" size="l" {...props} />)`
-  margin-bottom: var(--spacing-large);
-  border-bottom: 1px solid var(--color-gray-400);
-`;
+const BlockHeader = styled(props => <Text as="h2" size="l" {...props} />)(
+  ({ theme }) => css`
+    margin-bottom: var(--spacing-large);
+    border-bottom: 1px solid ${theme.borderColor};
+    color: ${theme.headerColor};
+
+    ${MEDIA.print`
+      color: var(--color-black);
+    `}
+  `,
+);
+
+const BlockSubheader = styled(Text)(
+  ({ theme }) => css`
+    color: ${theme.cvSubheaderColor};
+
+    ${MEDIA.print`
+      color: var(--color-black);
+    `}
+  `,
+);
 
 const Description = styled.div`
   ${Text} {
@@ -191,43 +246,44 @@ const Description = styled.div`
   }
 `;
 
-const Tag = styled(props => <Text size="xs" {...props} />)`
-  padding: var(--spacing-small);
-  border-radius: 4px;
-  text-align: center;
-  border: 1px solid;
-  border-color: rgba(0, 0, 0, 0.25);
-`;
+const Tag = styled(props => <Text size="xs" {...props} />)(
+  ({ theme }) => css`
+    padding: var(--spacing-small);
+    border-radius: 4px;
+    text-align: center;
+    border: 1px solid;
+    border-color: ${theme.borderColor};
+    color: ${theme.copyColor};
+
+    ${MEDIA.print`
+      color: var(--color-black);
+      border-color: var(--color-gray-400);
+    `}
+  `,
+);
 
 const TagContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  display: grid;
+  grid-column-gap: var(--spacing-small);
+  grid-row-gap: var(--spacing-small);
 
-  ${Tag} {
-    flex: 1 0 100%;
-    margin-bottom: var(--spacing-small);
-  }
-
-  ${MEDIA.desktop`
-    flex-direction: row;
-    justify-content: space-between;
-      
-    ${Tag} {
-      flex: 0 1 calc(50% - var(--spacing-small));
-    }
+  ${MEDIA.tablet`
+    grid-template-columns: repeat(2, 1fr);
   `}
 `;
 
-const Dates = styled(Text)`
-  display: block;
+const Dates = styled(Text)(
+  ({ theme }) => css`
+    display: block;
+    color: ${theme.auxiliaryColor};
 
-  ${MEDIA.tablet`
-    display: inline-block;
-    position: relative;
-    margin-left: var(--spacing-huge);
-  `};
-`;
+    ${MEDIA.tablet`
+      display: inline-block;
+      position: relative;
+      margin-left: var(--spacing-huge);
+    `};
+  `,
+);
 
 const ExperienceInfo = styled.div`
   display: flex;
@@ -244,8 +300,35 @@ const ExperienceInfo = styled.div`
     justify-content: space-between;
     margin-top: 0;
   `};
+
+  ${MEDIA.print`
+    flex-flow: row;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: 0;
+  `}
 `;
 
+const AuthorInfo = styled(Text)(
+  ({ theme }) => css`
+    color: ${theme.auxiliaryColor};
+  `,
+);
+
+const Title = styled(Text)`
+  color: var(--color-white);
+  margin-bottom: var(--spacing-large);
+  text-align: center;
+
+  ${MEDIA.tablet`
+    opacity: 0;
+    pointer-events: none;
+  `}
+
+  ${MEDIA.print`
+    display: none;
+  `}
+`;
 export default function CV({ data, location: { pathname } }) {
   const { education } = data.educationJson;
   const { experience } = data.experienceJson;
@@ -275,49 +358,56 @@ export default function CV({ data, location: { pathname } }) {
   }
 
   return (
-    <Layout>
+    <>
       <SEO
         path={pathname}
         title="CV"
         description="An overview of my experience and technical expertise"
       />
-      <Header />
+      <Header variant="dark" />
+
       <Wrap>
         <Hero />
         <Main>
-          <Text
-            as="h1"
-            size="4xl"
-            id="cv"
-            css="color: white; margin-bottom: var(--spacing-large); text-align: center;"
-          >
+          <Title as="h1" size="4xl" id="cv">
             CV
-          </Text>
-          <Container as="main">
+          </Title>
+          <Container>
             <Heading>
               <div>
-                <Text as="h1" size="4xl">
+                <Text
+                  as="h1"
+                  size="4xl"
+                  css={`
+                    color: ${({ theme }) => theme.headerColor};
+
+                    ${MEDIA.print`
+                      color: var(--color-black);
+                    `}
+                  `}
+                >
                   {author.name}
                 </Text>
-                <Text size="m">
+                <AuthorInfo size="m">
                   {currentPosition} / {author.location}
-                </Text>
+                </AuthorInfo>
               </div>
 
               <HeaderIcons aria-label="Export CV">
-                {!isMobile && (
-                  <IconButton aria-label="Print" onClick={handleCvPrint}>
-                    <PrintIcon width="2.5rem" height="2.5rem" />
-                  </IconButton>
-                )}
-                {!isIE && (
-                  <DownloadLink
-                    aria-label="Download"
-                    href={cv}
-                    onClick={handleCvDownload}
-                  >
-                    <DownloadIcon width="2.5rem" height="2.5rem" />
-                  </DownloadLink>
+                {!isMobile && !isIE && (
+                  <>
+                    <IconButton aria-label="Print" onClick={handleCvPrint}>
+                      <PrintIcon width="2rem" height="2rem" />
+                    </IconButton>
+
+                    <DownloadLink
+                      aria-label="Download"
+                      href={cv}
+                      onClick={handleCvDownload}
+                    >
+                      <DownloadIcon width="2rem" height="2rem" />
+                    </DownloadLink>
+                  </>
                 )}
               </HeaderIcons>
             </Heading>
@@ -374,24 +464,44 @@ export default function CV({ data, location: { pathname } }) {
                 <Block aria-labelledby="cv-education">
                   <BlockHeader id="cv-education">Education</BlockHeader>
                   {education.map(
-                    ({ qualification, course, institute, dates }) => (
+                    ({ qualification, course, institute, dates }, index) => (
                       <Block
                         key={institute}
-                        css="display: flex; flex-flow: column; margin-bottom: var(--spacing-large);"
+                        css={`
+                          display: flex;
+                          flex-flow: column;
+                          margin-bottom: var(--spacing-large);
+                          margin-top: ${index === 1 &&
+                            `calc(var(--spacing-large) * -1)`};
+
+                          ${MEDIA.print`
+                            margin-top: ${index === 1 &&
+                              `var(--spacing-large)`};
+                          `}
+                        `}
                         aria-labelledby={`cv-education edu-${formatId(
-                          qualification,
+                          institute,
                         )}`}
                       >
-                        <Text
-                          as="h3"
-                          size="m"
-                          id={`edu-${formatId(qualification)}`}
-                        >
-                          {qualification}
-                        </Text>
+                        {qualification && (
+                          <BlockSubheader
+                            as="h3"
+                            size="m"
+                            id={`edu-${formatId(qualification)}`}
+                          >
+                            {qualification}
+                          </BlockSubheader>
+                        )}
                         <Text size="ps">{course}</Text>
                         <Text size="ps">{institute}</Text>
-                        <Text size="xs">{dates}</Text>
+                        <Text
+                          css={`
+                            color: ${({ theme }) => theme.auxiliaryColor};
+                          `}
+                          size="xs"
+                        >
+                          {dates}
+                        </Text>
                       </Block>
                     ),
                   )}
@@ -406,7 +516,12 @@ export default function CV({ data, location: { pathname } }) {
                   </TagContainer>
                 </Block>
 
-                <Block aria-labelledby="cv-interests">
+                <Block
+                  aria-labelledby="cv-interests"
+                  css={`
+                    ${MEDIA.print`padding-top: var(--spacing-huge);`}
+                  `}
+                >
                   <BlockHeader id="cv-interests">Interests</BlockHeader>
                   <TagContainer>
                     {interests.map((interest, index) => (
@@ -456,14 +571,19 @@ export default function CV({ data, location: { pathname } }) {
                     ({ position, company, url, dates, blurb, portfolio }) => (
                       <Block
                         key={company}
+                        aria-label={`exp-${formatId(company)}`}
                         aria-labelledby={`cv-experience exp-${formatId(
                           company,
                         )}`}
                         css="margin-bottom: var(--spacing-massive);"
                       >
-                        <Text as="h3" size="xl" id={`exp-${formatId(company)}`}>
+                        <BlockSubheader
+                          as="h3"
+                          size="xl"
+                          id={`exp-${formatId(company)}`}
+                        >
                           {position}
-                        </Text>
+                        </BlockSubheader>
                         <ExperienceInfo>
                           <ExternalLink
                             href={url}
@@ -485,7 +605,7 @@ export default function CV({ data, location: { pathname } }) {
                               <ul>
                                 {portfolio.map(({ name, href }) => (
                                   <li key={name}>
-                                    <ExternalLink href={href} highlight>
+                                    <ExternalLink href={href}>
                                       <Text size="pb">{name}</Text>
                                     </ExternalLink>
                                   </li>
@@ -504,7 +624,7 @@ export default function CV({ data, location: { pathname } }) {
         </Main>
       </Wrap>
       <Footer />
-    </Layout>
+    </>
   );
 }
 

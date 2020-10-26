@@ -1,10 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
 import { formatId } from '../utils/formatId';
 import { SEO } from '../components/SEO';
-import { Layout } from '../components/Layout';
 import { Text } from '../components/Text';
 import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
@@ -31,15 +29,13 @@ const Main = styled.main`
   `}
 `;
 
-const Wrapper = styled.div`
-  width: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--color-white) 0%,
-    var(--color-gray-200) 50%,
-    var(--color-white) 100%
-  );
-`;
+const Wrapper = styled.div(
+  ({ theme }) => css`
+    position: relative;
+    width: 100%;
+    background-color: ${theme.wrapperOverlay};
+  `,
+);
 
 const ListItem = styled.li``;
 
@@ -57,90 +53,90 @@ const List = styled.ul`
   `}
 `;
 
-const Preview = styled.article`
-  display: flex;
-  flex-flow: column;
-  padding: var(--spacing-huge) var(--spacing-medium);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
-  border-radius: 4px;
-  background-color: var(--color-white);
+const Preview = styled.article(
+  ({ theme }) => css`
+    display: flex;
+    flex-flow: column;
+    padding: var(--spacing-huge) var(--spacing-medium);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+    border-radius: 4px;
+    background-color: ${theme.background};
+    color: ${theme.cardColor};
+    position: relative;
 
-  ${MEDIA.tablet`
-    flex-flow: row;
-    padding: var(--spacing-huge);
-  `}
-`;
-
-const PreviewImage = styled.div`
-  flex: 1;
-  margin-top: calc(var(--spacing-huge) * -1);
-  margin-right: 0;
-  margin-left: calc(var(--spacing-medium) * -1);
-  width: calc(100% + var(--spacing-huge));
-
-  & > div:first-child {
-    height: 150px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 4px;
-  }
-
-  ${MEDIA.tablet`
-    flex: 0 1 150px;
-    margin-top: 0;
-    margin-right: var(--spacing-huge);
-    margin-left: 0;
-    width: 100%;
-
-    & > div:first-child {
-      border-bottom-right-radius: 4px;
-      border-bottom-left-radius: 4px;
+    &::after {
+      content: '';
+      position: absolute;
+      border-radius: 4px;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 0;
+      background: ${theme.cardOverlay};
     }
-  `}
-`;
 
-const PreviewContent = styled.div`
-  flex: 1;
+    & > * {
+      z-index: 1;
+    }
+
+    ${MEDIA.tablet`
+      padding: var(--spacing-huge);
+    `}
+  `,
+);
+
+const Title = styled(Text)(
+  ({ theme }) => css`
+    width: 90%;
+    color: ${theme.cardHeaderColor};
+  `,
+);
+
+const Info = styled(Text)(
+  ({ theme }) => css`
+    color: ${theme.auxiliaryColor};
+  `,
+);
+
+const StyledLink = styled(Link)(
+  ({ theme }) => css`
+    display: inline-block;
+    color: ${theme.cardLinkColor};
+    margin-left: auto;
+  `,
+);
+
+const StyledTitle = styled(Text)`
+  color: white;
+  margin-bottom: var(--spacing-large);
 
   ${MEDIA.tablet`
-    margin-top: 0;
+    opacity: 0;
+    pointer-events: none;
   `}
 `;
 
 const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
   <Preview aria-labelledby={`blog post-${formatId(frontmatter.title)}`}>
-    <PreviewImage aria-hidden="true">
-      <Img role="img" alt="" fluid={frontmatter.image.childImageSharp.fluid} />
-    </PreviewImage>
+    <Title as="h2" size="xl" id={`post-${formatId(frontmatter.title)}`}>
+      {frontmatter.title}
+    </Title>
 
-    <PreviewContent>
-      <div css="margin-bottom: var(--spacing-medium);">
-        <Text as="h2" size="xl" id={`post-${formatId(frontmatter.title)}`}>
-          {frontmatter.title}
-        </Text>
+    <Info size="xs">
+      {frontmatter.date} | {fields.readingTime.text}
+    </Info>
 
-        <Text size="xs" css="color: var(--color-gray-600);">
-          {frontmatter.date} | {fields.readingTime.text}
-        </Text>
-      </div>
+    <Text as="p" aria-label="Excerpt">
+      {excerpt}
+    </Text>
 
-      <Text
-        as="p"
-        aria-label="Excerpt"
-        css="padding-bottom: var(--spacing-medium);"
-      >
-        {excerpt}
-      </Text>
-
-      <Link
-        to={`/blog${fields.slug}`}
-        aria-label="Click to read the article in full"
-        css="display: inline-block; color: var(--color-blue-600);"
-      >
-        Read more →
-      </Link>
-    </PreviewContent>
+    <StyledLink
+      to={`/blog${fields.slug}`}
+      aria-label="Click to read the article in full"
+    >
+      Read more →
+    </StyledLink>
   </Preview>
 );
 
@@ -155,29 +151,24 @@ export default function Blog({ data, location: { pathname } }) {
     ));
 
   return (
-    <Layout>
+    <>
       <SEO
         path={pathname}
         title="Blog"
         description="Personal contributions to modern frontend web development"
       />
-      <Header />
+      <Header variant="dark" />
       <Wrapper>
         <Hero />
         <Main>
-          <Text
-            as="h1"
-            size="4xl"
-            id="blog"
-            css="color: white; margin-bottom: var(--spacing-large);"
-          >
+          <StyledTitle as="h1" size="4xl" id="blog">
             Blog
-          </Text>
+          </StyledTitle>
           <List>{posts}</List>
         </Main>
         <Footer />
       </Wrapper>
-    </Layout>
+    </>
   );
 }
 
@@ -191,13 +182,6 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
-            image {
-              childImageSharp {
-                fluid(maxWidth: 768) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
           }
           fields {
             slug
