@@ -37,6 +37,7 @@ export const Theme = props => {
 export const ThemeToggle = props => {
   const { theme, update } = useContext(ThemeContext) || {};
   const checked = theme === 'light';
+  console.log({ theme, checked });
 
   function handleChange(e) {
     update(e.target.checked ? 'light' : 'dark');
@@ -44,7 +45,7 @@ export const ThemeToggle = props => {
 
   return (
     <Container checked={checked} onChange={handleChange} {...props}>
-      <LightIcon on={!checked} />
+      <LightIcon on={checked === false} />
       <label htmlFor="toggle">
         <span aria-label="Theme toggle" />
 
