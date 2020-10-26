@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { ALPHAS } from '../styles/alphas';
 
 const buttonStyles = css`
   display: inline-flex;
@@ -17,7 +16,7 @@ const buttonStyles = css`
   -moz-appearance: none;
 
   &:disabled {
-    opacity: ${ALPHAS.disabled};
+    opacity: 0.4;
     pointer-events: none;
   }
 `;

@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 import { position } from 'polished';
 import { Link as RouterLink } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import { ALPHAS } from '../styles/alphas';
 import { MEDIA } from '../styles/media';
 
 export const linkStyles = css`
@@ -12,7 +11,7 @@ export const linkStyles = css`
   transition: color 0.2s ease-out;
 
   &:disabled {
-    opacity: ${ALPHAS.disabled};
+    opacity: 0.4;
     pointer-events: none;
   }
 
