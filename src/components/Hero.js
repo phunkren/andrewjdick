@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import lightbulbs from '../assets/images/lightbulbs.png';
 
-export const Hero = styled.div`
+export const Hero = styled.aside`
   height: 200px;
   background-color: var(--color-gray-600);
   background-image: url(${lightbulbs});
