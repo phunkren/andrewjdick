@@ -257,7 +257,7 @@ function BlogTemplate({ data, location }) {
         article
       />
 
-      <Header />
+      <Header variant="dark" />
 
       <ArticleHero>
         <Img
