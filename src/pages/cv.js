@@ -44,7 +44,7 @@ const StyledExternalLink = styled(ExternalLink)`
 const Wrap = styled.div(
   ({ theme }) => css`
     width: 100%;
-    background-color: ${theme.wrapperOverlay};
+    background-color: ${theme?.wrapperOverlay};
   `,
 );
 
@@ -72,7 +72,7 @@ const Container = styled.div(
     display: flex;
     flex-direction: column;
     position: relative;
-    background-color: ${theme.background};
+    background-color: ${theme?.background};
 
     &::after {
       content: '';
@@ -82,7 +82,7 @@ const Container = styled.div(
       bottom: 0;
       left: 0;
       z-index: 0;
-      background: ${theme.cardOverlay};
+      background: ${theme?.cardOverlay};
     }
 
     & > * {
@@ -150,10 +150,10 @@ const Wrapper = styled.div(
     flex-direction: column-reverse;
     padding: var(--spacing-huge) var(--spacing-medium);
     border-top: 5px solid;
-    border-color: ${theme.cvBorderColor};
+    border-color: ${theme?.cvBorderColor};
 
     ${MEDIA.tablet`
-      border-bottom: 5px solid ${theme.cvBorderColor};
+      border-bottom: 5px solid ${theme?.cvBorderColor};
       padding: var(--spacing-huge);
     `}
 
@@ -176,7 +176,7 @@ const Sidebar = styled.div(
     ${MEDIA.desktop`
       flex: 0 1 33%;
       border-right: 2px solid 
-      border-color: ${theme.cvBorderColor};
+      border-color: ${theme?.cvBorderColor};
       padding: 0 var(--spacing-huge) 0 0;
     `};
 
@@ -214,8 +214,8 @@ const Block = styled.section`
 const BlockHeader = styled(props => <Text as="h2" size="l" {...props} />)(
   ({ theme }) => css`
     margin-bottom: var(--spacing-large);
-    border-bottom: 1px solid ${theme.borderColor};
-    color: ${theme.headerColor};
+    border-bottom: 1px solid ${theme?.borderColor};
+    color: ${theme?.headerColor};
 
     ${MEDIA.print`
       color: var(--color-black);
@@ -225,7 +225,7 @@ const BlockHeader = styled(props => <Text as="h2" size="l" {...props} />)(
 
 const BlockSubheader = styled(Text)(
   ({ theme }) => css`
-    color: ${theme.cvSubheaderColor};
+    color: ${theme?.cvSubheaderColor};
 
     ${MEDIA.print`
       color: var(--color-black);
@@ -252,8 +252,8 @@ const Tag = styled(props => <Text size="xs" {...props} />)(
     border-radius: 4px;
     text-align: center;
     border: 1px solid;
-    border-color: ${theme.borderColor};
-    color: ${theme.copyColor};
+    border-color: ${theme?.borderColor};
+    color: ${theme?.copyColor};
 
     ${MEDIA.print`
       color: var(--color-black);
@@ -275,7 +275,7 @@ const TagContainer = styled.div`
 const Dates = styled(Text)(
   ({ theme }) => css`
     display: block;
-    color: ${theme.auxiliaryColor};
+    color: ${theme?.auxiliaryColor};
 
     ${MEDIA.tablet`
       display: inline-block;
@@ -311,7 +311,7 @@ const ExperienceInfo = styled.div`
 
 const AuthorInfo = styled(Text)(
   ({ theme }) => css`
-    color: ${theme.auxiliaryColor};
+    color: ${theme?.auxiliaryColor};
   `,
 );
 
@@ -379,7 +379,7 @@ export default function CV({ data, location: { pathname } }) {
                   as="h1"
                   size="4xl"
                   css={`
-                    color: ${({ theme }) => theme.headerColor};
+                    color: ${({ theme }) => theme?.headerColor};
 
                     ${MEDIA.print`
                       color: var(--color-black);
@@ -496,7 +496,7 @@ export default function CV({ data, location: { pathname } }) {
                         <Text size="ps">{institute}</Text>
                         <Text
                           css={`
-                            color: ${({ theme }) => theme.auxiliaryColor};
+                            color: ${({ theme }) => theme?.auxiliaryColor};
                           `}
                           size="xs"
                         >

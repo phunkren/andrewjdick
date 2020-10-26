@@ -18,9 +18,9 @@ const Content = styled(DialogContent)(
     width: 75vw;
     margin-left: auto;
     padding: 100px var(--spacing-massive) var(--spacing-huge);
-    background-color: ${theme.background};
-    border-left: 1px solid ${theme.highlightColor};
-    color: ${theme.copyColor};
+    background-color: ${theme?.background};
+    border-left: 1px solid ${theme?.highlightColor};
+    color: ${theme?.copyColor};
     position: relative;
 
     &::after {
@@ -32,7 +32,7 @@ const Content = styled(DialogContent)(
       bottom: 0;
       left: 0;
       z-index: 0;
-      background: ${theme.wrapperOverlay};
+      background: ${theme?.wrapperOverlay};
     }
 
     & > * {

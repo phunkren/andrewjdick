@@ -40,7 +40,7 @@ const Wrapper = styled.div(
     flex-flow: column;
     width: 100%;
     min-height: 100vh;
-    background-color: ${theme.wrapperOverlay};
+    background-color: ${theme?.wrapperOverlay};
   `,
 );
 
@@ -95,7 +95,7 @@ const Form = styled.form(
     position: relative;
     width: 100%;
     padding: var(--spacing-massive) var(--spacing-medium);
-    background-color: ${theme.background};
+    background-color: ${theme?.background};
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
     border-top: 2px solid var(--color-orange-400);
@@ -108,7 +108,7 @@ const Form = styled.form(
       bottom: 0;
       left: 0;
       z-index: 0;
-      background: ${theme.cardOverlay};
+      background: ${theme?.cardOverlay};
       border-bottom-right-radius: 4px;
       border-bottom-left-radius: 4px;
     }
@@ -137,7 +137,7 @@ const Form = styled.form(
 const StyledLink = styled(Link)(
   ({ theme }) => css`
     display: block;
-    color: ${theme.linkColor};
+    color: ${theme?.linkColor};
 
     ${MEDIA.tablet`
     display: inline-block;
