@@ -3,7 +3,7 @@ import { Icon } from './Icon';
 
 export const LightIcon = ({ on, ...props }) => (
   <Icon aria-labelledby="icon-home" viewBox="0 0 275.3 413.3" {...props}>
-    <title id="icon-home">Bulb</title>
+    <title id="icon-bulb">Bulb</title>
     <g id="bulb--off">
       <path
         fill="#E2ECF1"
