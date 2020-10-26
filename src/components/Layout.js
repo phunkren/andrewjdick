@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css, createGlobalStyle } from 'styled-components';
+import { Theme } from '../components/Theme';
 import { MEDIA } from '../styles/media';
 
 const Styles = createGlobalStyle(
@@ -57,9 +58,9 @@ const Styles = createGlobalStyle(
 
 export const Layout = styled(({ children }) => {
   return (
-    <>
+    <Theme>
       <Styles />
       {children}
-    </>
+    </Theme>
   );
 })``;
