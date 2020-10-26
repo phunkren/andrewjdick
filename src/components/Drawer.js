@@ -7,7 +7,7 @@ import { Social } from './Social';
 import { Navigation } from './Navigation';
 import { IconButton } from './Button';
 import { CrossIcon } from './icons/CrossIcon';
-import { Theme, ThemeToggle } from './Theme';
+import { ThemeToggle } from './Theme';
 
 const Content = styled(DialogContent)(
   ({ theme }) => css`
@@ -71,17 +71,15 @@ export const Drawer = ({
   props,
 }) => {
   return (
-    <Theme>
-      <Overlay isOpen={isOpen}>
-        <Content as={Div100vh} aria-label={ariaLabel} {...props}>
-          <CloseButton aria-label="Close navigation menu" onClick={onDismiss}>
-            <CrossIcon width="1.5rem" height="1.5rem" />
-          </CloseButton>
-          <StyledThemeToggle />
-          <Navigation column />
-          <Social css="justify-content: space-around;" />
-        </Content>
-      </Overlay>
-    </Theme>
+    <Overlay isOpen={isOpen}>
+      <Content as={Div100vh} aria-label={ariaLabel} {...props}>
+        <CloseButton aria-label="Close navigation menu" onClick={onDismiss}>
+          <CrossIcon width="1.5rem" height="1.5rem" />
+        </CloseButton>
+        <StyledThemeToggle />
+        <Navigation column />
+        <Social css="justify-content: space-around;" />
+      </Content>
+    </Overlay>
   );
 };
