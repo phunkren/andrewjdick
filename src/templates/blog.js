@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import { mix } from 'polished';
 import { Layout } from '../components/Layout';
 import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
@@ -21,7 +22,6 @@ const Wrapper = styled.div(
     padding: var(--spacing-huge) var(--spacing-medium) var(--spacing-massive);
     margin: 300px auto 0;
     width: 100%;
-    background: ${theme.overlay10};
 
     ${MEDIA.desktop`
     margin-top: 400px;
@@ -105,6 +105,8 @@ const Section = styled.section(
 
     ul {
       list-style-type: disc;
+      margin: 0 var(--spacing-large);
+      padding: 0;
 
       ${MEDIA.tablet`
         margin: 0 var(--spacing-huge);
@@ -116,6 +118,10 @@ const Section = styled.section(
       border-radius: 0;
       margin-left: calc(var(--spacing-medium) * -1);
       width: 100vw;
+
+      pre {
+        background: ${mix(0.925, 'rgb(0,0,0)', 'rgb(255,255,255)')};
+      }
 
       pre code {
         padding: var(--spacing-medium);
@@ -169,8 +175,9 @@ const Section = styled.section(
 
     p > code[class*='language-'] {
       ${SIZES['ps']};
+      font-size: inherit;
       font-weight: 500;
-      color: ${theme.blogSyntaxColor};
+      color: ${theme.auxiliaryColor};
       background-color: transparent;
       padding: 0;
     }
@@ -178,23 +185,7 @@ const Section = styled.section(
     pre > code[class*='language-'] {
       ${SIZES['ps']};
       margin-left: calc(var(--spacing-medium) * -1);
-      position: relative;
       width: 100%;
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 0;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      & > * {
-        z-index: 1;
-      }
 
       .comment {
         ${SIZES['xs']}
@@ -270,11 +261,12 @@ function BlogTemplate({ data }) {
 
       <Header variant="dark" />
 
-      <ArticleHero>
+      <ArticleHero variant="blog">
         <Img
           role="img"
           alt={frontmatter.imageAlt}
           fluid={frontmatter.image.childImageSharp.fluid}
+          style={{ position: 'static !important;' }}
         />
       </ArticleHero>
 

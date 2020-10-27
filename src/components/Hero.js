@@ -52,10 +52,10 @@ const Image = styled.div`
   `}
 `;
 
-export const Hero = ({ children, ...props }) => {
+export const Hero = ({ children, variant, ...props }) => {
   return (
     <Container {...props}>
-      <Image />
+      {variant !== 'blog' ? <Image /> : null}
       {children}
     </Container>
   );
