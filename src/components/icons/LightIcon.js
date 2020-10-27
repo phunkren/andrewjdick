@@ -11,7 +11,7 @@ export const LightIcon = ({ on, ...props }) => (
             c7.1-44,79.9-103.9,79.9-162.3C265.3,70.9,208.2,13.7,137.7,13.7z"
       />
     </g>
-    {on && (
+    {on ? (
       <g id="bulb--on">
         <path
           fill="#FFDB55"
@@ -19,7 +19,7 @@ export const LightIcon = ({ on, ...props }) => (
           c7.1-44,79.9-103.9,79.9-162.3C265.3,70.9,208.2,13.7,137.7,13.7z"
         />
       </g>
-    )}
+    ) : null}
     <g id="outline">
       <path
         fill="#F1F2F2"
