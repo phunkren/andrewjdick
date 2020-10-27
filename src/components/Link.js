@@ -41,19 +41,19 @@ export const highlightStyles = css`
     bottom: 4px;
     left: 2px;
     width: 100%;
-    height: 33%;
+    height: 50%;
     background: ${({ theme }) => theme.highlightColor};
     transition: 100ms ease-out;
     will-change: transform;
     z-index: -1;
-    opacity: 0.25;
+    opacity: 0;
   }
 
   &:hover {
     &::before {
       transform: scaleY(0.2);
       transition: 100ms ease-out 50ms;
-      bottom: -2px;
+      bottom: -6px;
       left: 0;
       opacity: 1;
     }
