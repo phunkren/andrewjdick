@@ -17,17 +17,30 @@ const Container = styled(CustomCheckboxContainer)`
 
 export const Theme = props => {
   const _window = typeof window !== 'undefined' && window;
-
-  const validate = t => Object.keys(THEMES).includes(t);
-  const update = t => validate(t) && setTheme(t);
-  const retrieve = () => _window?.localStorage?.getItem('theme');
-  const persist = () => theme && _window?.localStorage?.setItem('theme', theme);
-
   const localTheme = retrieve();
-  const initialTheme = validate(localTheme) ? localTheme : DEFAULT_THEME;
-  const [theme, setTheme] = useState(initialTheme);
+  const [theme, setTheme] = useState(localTheme);
 
-  useEffect(persist, [theme]);
+  useEffect(theme ? persist : init, [theme]);
+
+  function validate(t) {
+    return Object.keys(THEMES).includes(t);
+  }
+
+  function update(t) {
+    validate(t) && setTheme(t);
+  }
+
+  function retrieve() {
+    return _window?.localStorage?.getItem('theme');
+  }
+
+  function persist() {
+    _window.localStorage.setItem('theme', theme);
+  }
+
+  function init() {
+    setTheme(validate(localTheme) ? localTheme : DEFAULT_THEME);
+  }
 
   return validate(theme) ? (
     <ThemeContext.Provider value={{ theme, update }}>
@@ -46,9 +59,8 @@ export const ThemeToggle = props => {
 
   return (
     <Container checked={checked} onChange={handleChange} {...props}>
-      <LightIcon on={checked === false} />
       <label htmlFor="toggle">
-        <span aria-label="Theme toggle" />
+        <LightIcon on={!checked} aria-label="Theme toggle" />
 
         <CustomCheckboxInput
           id="toggle"
