@@ -7,14 +7,6 @@ import { LightIcon } from './icons/LightIcon';
 
 export const ThemeContext = createContext(null);
 
-const Container = styled(CustomCheckboxContainer)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-`;
-
 export const Theme = props => {
   const _window = typeof window !== 'undefined' && window;
   const localTheme = retrieve();
@@ -58,8 +50,16 @@ export const ThemeToggle = props => {
   }
 
   return (
-    <Container checked={checked} onChange={handleChange} {...props}>
-      <label htmlFor="toggle">
+    <CustomCheckboxContainer
+      checked={checked}
+      onChange={handleChange}
+      css="width: 48px; height: 48px; margin: 0;"
+      {...props}
+    >
+      <label
+        htmlFor="toggle"
+        css={`display: flex; align-items: center; justify-content: center; width: 100%; height 100%;`}
+      >
         <LightIcon on={!checked} aria-label="Theme toggle" />
 
         <CustomCheckboxInput
@@ -69,6 +69,6 @@ export const ThemeToggle = props => {
           {...props}
         />
       </label>
-    </Container>
+    </CustomCheckboxContainer>
   );
 };
