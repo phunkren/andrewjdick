@@ -16,6 +16,12 @@ export const SIZES = {
     line-height: 1.667;
     letter-spacing: 2px;
     text-transform: uppercase;
+
+    ${MEDIA.print`
+      font-size: 10px;
+      font-size: ${convertPxToRem(10)};
+      line-height: normal;
+    `};
   `,
   'ps': css`
     font-size: 16px;
@@ -28,10 +34,6 @@ export const SIZES = {
     line-height: 1.7;
   `,
   'm': css`
-    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-display: swap;
-    font-weight: 300;
     font-size: 18px;
     font-size: ${convertPxToRem(18)};
     line-height: 1.444;
@@ -43,10 +45,6 @@ export const SIZES = {
     `}
   `,
   'l': css`
-    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-display: swap;
-    font-weight: 300;
     font-size: 20px;
     font-size: ${convertPxToRem(20)};
     line-height: 1.4;
@@ -56,18 +54,8 @@ export const SIZES = {
       font-size: ${convertPxToRem(22)};
       line-height: 1.364;
     `};
-
-    ${MEDIA.desktopWide`
-      font-size: 24px;
-      font-size: ${convertPxToRem(24)};
-      line-height: 1.334;
-    `};
   `,
   'xl': css`
-    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-display: swap;
-    font-weight: 300;
     font-size: 24px;
     font-size: ${convertPxToRem(24)};
     line-height: 1.334;
@@ -77,18 +65,8 @@ export const SIZES = {
       font-size: ${convertPxToRem(28)};
       line-height: 1.286;
     `};
-
-    ${MEDIA.desktopWide`
-      font-size: 32px;
-      font-size: ${convertPxToRem(32)};
-      line-height: 1.25;
-    `};
   `,
   'xxl': css`
-    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-display: swap;
-    font-weight: 300;
     font-size: 28px;
     font-size: ${convertPxToRem(28)};
     line-height: 1.214;
@@ -98,18 +76,8 @@ export const SIZES = {
       font-size: ${convertPxToRem(34)};
       line-height: 1.235;
     `};
-
-    ${MEDIA.desktopWide`
-      font-size: 40px;
-      font-size: ${convertPxToRem(40)};
-      line-height: 1.2;
-    `};
   `,
   'xxxl': css`
-    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-display: swap;
-    font-weight: 300;
     font-size: 32px;
     font-size: ${convertPxToRem(32)};
     line-height: 1.25;
@@ -119,18 +87,8 @@ export const SIZES = {
       font-size: ${convertPxToRem(40)};
       line-height: 1.2;
     `};
-
-    ${MEDIA.desktopWide`
-      font-size: 48px;
-      font-size: ${convertPxToRem(48)};
-      line-height: 1.167;
-    `};
   `,
   '4xl': css`
-    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-display: swap;
-    font-weight: 300;
     font-size: 38px;
     font-size: ${convertPxToRem(38)};
     line-height: 1.211;
@@ -140,18 +98,8 @@ export const SIZES = {
       font-size: ${convertPxToRem(44)};
       line-height: 1.182;
     `};
-
-    ${MEDIA.desktopWide`
-      font-size: 56px;
-      font-size: ${convertPxToRem(56)};
-      line-height: 1.423;
-    `};
   `,
   '5xl': css`
-    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-display: swap;
-    font-weight: 300;
     font-size: 40px;
     font-size: ${convertPxToRem(40)};
     line-height: 1.2;
@@ -161,12 +109,6 @@ export const SIZES = {
       font-size: ${convertPxToRem(48)};
       line-height: 1.167;
     `};
-
-    ${MEDIA.desktopWide`
-      font-size: 64px;
-      font-size: ${convertPxToRem(64)};
-      line-height: 1.125;
-    `}
   `,
 };
 

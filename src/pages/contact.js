@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { navigate } from 'gatsby-link';
 import { SEO } from '../components/SEO';
-import { Layout } from '../components/Layout';
 import { Text } from '../components/Text';
 import { Hero } from '../components/Hero';
 import { Header } from '../components/Header';
-import { Theme } from '../components/Theme';
 import { TickIcon } from '../components/icons';
 import { Link } from '../components/Link';
 import { Footer } from '../components/Footer';
@@ -21,8 +19,8 @@ const Main = styled.main`
   align-items: center;
   position: relative;
   margin-top: 76px;
+  margin-bottom: 0;
   margin-right: auto;
-  margin-bottom: var(--spacing-massive);
   margin-left: auto;
   padding: 0;
   width: 100%;
@@ -30,62 +28,48 @@ const Main = styled.main`
 
   ${MEDIA.tablet`
     padding: 0 var(--spacing-huge);
+    margin-bottom: var(--spacing-massive);
   `}
 `;
 
-const Wrapper = styled.div`
-  flex: 1;
-  display: flex;
-  flex-flow: column;
-  width: 100%;
+const Wrapper = styled.div(
+  ({ theme }) => css`
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    min-height: 100vh;
+  `,
+);
 
-  ${MEDIA.tablet`
-    background: linear-gradient(
-      90deg,
-      var(--color-white) 0%,
-      var(--color-gray-200) 50%,
-      var(--color-white) 100%
-    );
-  `}
-`;
+const Input = styled.input(
+  ({ theme }) => css`
+    width: 100%;
+  `,
+);
 
-const Input = styled.input`
-  width: 100%;
-  border-top-color: transparent;
-  border-right-color: transparent;
-  border-bottom-color: var(--color-gray-400);
-  border-left-color: transparent;
-  border-style: solid;
-  border-width: 1px;
-  padding: 0;
-
-  ::-webkit-input-placeholder,
-  ::placeholder {
-    color: rgba(0, 0, 0, 0.33);
-  }
-`;
-
-const Label = styled.label``;
-
-const TextArea = styled.textarea`
-  display: block;
-  min-width: 100%;
-  max-width: 100%;
-  border: 1px solid var(--color-gray-400);
-  border-radius: 4px;
-`;
+const TextArea = styled.textarea(
+  ({ theme }) => css`
+    display: block;
+    min-width: 100%;
+    max-width: 100%;
+    /* border: 1px solid var(--color-blue-600); */
+    border-radius: 4px;
+  `,
+);
 
 const Button = styled.button`
   padding: var(--spacing-small) var(--spacing-large);
-  background-color: var(--color-blue-600);
-  color: var(--color-white);
+  background-color: #2b6cb0;
+  color: rgba(255, 255, 255, 0.9);
   border: 0;
   min-width: 150px;
   border-radius: 4px;
   transition: background-color 0.2s ease-out;
+  cursor: pointer;
 
   &:hover {
-    background-color: var(--color-blue-400);
+    background-color: var(--color-blue-600);
   }
 
   &:active {
@@ -98,30 +82,53 @@ const Button = styled.button`
   `}
 `;
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: var(--spacing-massive) var(--spacing-medium);
-  background-color: var(--color-white);
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
+const Form = styled.form(
+  ({ theme }) => css`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: var(--spacing-massive) var(--spacing-medium);
+    background-color: ${theme.overlay10};
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top: 2px solid var(--color-orange-400);
 
-  ${MEDIA.tablet`
-    border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
-    margin-bottom: var(--spacing-massive);
-    padding: var(--spacing-massive);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
-  `}
-`;
+    ${MEDIA.tablet`
+      flex: 0 1 auto;
+      border-top: none;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+      margin-bottom: var(--spacing-massive);
+      padding: var(--spacing-massive);
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
 
-const StyledLink = styled(Link)`
-  display: block;
-  color: var(--color-blue-600);
+      &::after {
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+      }
+    `}
+  `,
+);
 
-  ${MEDIA.tablet`
+const StyledLink = styled(Link)(
+  ({ theme }) => css`
+    display: block;
+    color: ${theme.linkColor};
+
+    ${MEDIA.tablet`
     display: inline-block;
+  `}
+  `,
+);
+
+const Title = styled(Text)`
+  color: white;
+  margin-bottom: var(--spacing-large);
+
+  ${MEDIA.tablet`
+    opacity: 0;
+    pointer-events: none;
   `}
 `;
 
@@ -139,6 +146,8 @@ export default function Contact({ location }) {
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
+
+    console.log('huh');
 
     fetch('/', {
       method: 'POST',
@@ -160,22 +169,15 @@ export default function Contact({ location }) {
   }
 
   return (
-    <Layout>
+    <>
       <SEO path="/contact" title="Contact" description="Get in touch with me" />
-      <Theme theme="dark">
-        <Header />
-      </Theme>
+      <Header variant="dark" />
       <Wrapper>
         <Hero />
         <Main>
-          <Text
-            as="h1"
-            size="4xl"
-            id="contact"
-            css="color: white; margin-bottom: var(--spacing-large);"
-          >
+          <Title as="h1" size="4xl" id="contact">
             Contact
-          </Text>
+          </Title>
           <Form
             name="contact"
             method="POST"
@@ -211,17 +213,25 @@ export default function Contact({ location }) {
               </>
             ) : (
               <>
-                <Label hidden>
+                <label htmlFor="form-name" hidden>
                   <Text>Netlify requires this:</Text>
-                  <Input name="form-name" value="contact" readOnly />
-                </Label>
+                  <Input
+                    id="form-name"
+                    name="form-name"
+                    value="contact"
+                    readOnly
+                  />
+                </label>
 
-                <Label hidden>
+                <label htmlFor="bot-field" hidden>
                   <Text>Don’t fill this out:</Text>
-                  <Input name="bot-field" />
-                </Label>
+                  <Input id="bot-field" name="bot-field" />
+                </label>
 
-                <Label css="margin-bottom: var(--spacing-huge);">
+                <label
+                  htmlFor="email"
+                  css="margin-bottom: var(--spacing-huge);"
+                >
                   <Text
                     size="xs"
                     css="display: block; margin-bottom: var(--spacing-tiny);"
@@ -229,15 +239,19 @@ export default function Contact({ location }) {
                     From
                   </Text>
                   <Input
-                    required
+                    id="email"
                     type="email"
                     name="contact-email"
                     placeholder="your@email.com"
                     onChange={handleChange}
+                    required
                   />
-                </Label>
+                </label>
 
-                <Label css="margin-bottom: var(--spacing-huge);">
+                <label
+                  htmlFor="subject"
+                  css="margin-bottom: var(--spacing-huge);"
+                >
                   <Text
                     size="xs"
                     css="display: block; margin-bottom: var(--spacing-tiny);"
@@ -245,14 +259,18 @@ export default function Contact({ location }) {
                     Subject
                   </Text>
                   <Input
-                    required
+                    id="subject"
                     name="contact-subject"
                     placeholder="Let's get in touch"
                     onChange={handleChange}
+                    required
                   />
-                </Label>
+                </label>
 
-                <Label css="margin-bottom: var(--spacing-massive);">
+                <label
+                  htmlFor="message"
+                  css="margin-bottom: var(--spacing-massive);"
+                >
                   <Text
                     size="xs"
                     css="display: block; margin-bottom: var(--spacing-medium);"
@@ -260,13 +278,14 @@ export default function Contact({ location }) {
                     Message
                   </Text>
                   <TextArea
-                    required
+                    id="message"
                     name="contact-message"
                     rows="6"
                     minlength="20"
                     onChange={handleChange}
+                    required
                   />
-                </Label>
+                </label>
 
                 <Button type="submit">Send</Button>
               </>
@@ -275,6 +294,6 @@ export default function Contact({ location }) {
         </Main>
         <Footer />
       </Wrapper>
-    </Layout>
+    </>
   );
 }

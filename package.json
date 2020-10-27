@@ -40,7 +40,6 @@
     "gatsby-transformer-sharp": "^2.3.12",
     "husky": "^4.2.1",
     "lint-staged": "^10.0.2",
-    "modern-css-reset": "^1.0.4",
     "netlify-shortener": "^1.0.4",
     "polished": "^3.4.2",
     "prettier": "^1.19.1",
@@ -54,11 +53,14 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "react-spring": "^8.0.13",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "styled-reset": "^4.2.3"
   },
   "scripts": {
     "start": "gatsby develop",
     "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "shorten": "netlify-shortener",

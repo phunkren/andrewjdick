@@ -22,8 +22,12 @@ const List = styled.ul(({ column }) => [
     css`
     flex-flow: column;
 
+    ${ListItem} > ${Link} {
+      display: block;
+      padding: var(--spacing-large) 0;
+    }
+
     ${ListItem} + ${ListItem} {
-      margin-top: var(--spacing-massive);
       margin-left: 0;
     }
   `,

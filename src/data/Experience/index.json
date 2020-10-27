@@ -4,14 +4,14 @@
       "position": "Frontend engineer",
       "company": "Rockstar Games",
       "url": "https://www.rockstarnorth.com/",
-      "dates": "November 2020 - Present",
+      "dates": "Nov 20 - Present",
       "blurb": "As a frontend engineer I collaborate with other Rockstar technology teams across their worldwide studios to develop front-end features and applications for Rockstar's online services."
     },
     {
       "position": "Senior engineer",
       "company": "BCG Digital Ventures",
       "url": "https://www.bcgdv.com/",
-      "dates": "April 2019 - October 2020",
+      "dates": "Apr 19 - Oct 20",
       "blurb": "As a senior engineer I collaborate with design, UX, growth, and product cohorts to engineer a robust and well documented product that can be successfully taken to market by a startup business. It is also my responsibility to support lead and mentor associate engineers wherever possible.",
       "portfolio": [
         { "name": "Beema", "href": "https://my.beema.ae" },
@@ -29,7 +29,7 @@
       "position": "Frontend engineer",
       "company": "Fathom London",
       "url": "https://fath.om",
-      "dates": "June 2017 - March 2019",
+      "dates": "Jun 17 - Mar 19",
       "blurb": "Working at Fathom allowed me to work alongside a number of highly-skilled professionals on a range of challenging fintech projects. The majority of my time was spent working with React, with additional exposure to React Native, GatsbyJS and Angular 2.",
       "portfolio": [
         {
@@ -51,7 +51,7 @@
       "company": "Cohaesus",
       "url": "https://cohaesus.co.uk/",
       "blurb": "Cohaesus is a commerical advertising agency where I learned the fundamentals of frontend web development. During my time with them I worked both in-house and off-site at some of London's top advertising agencies, on both green field and legacy codebases.",
-      "dates": "Feb 2015 - June 2017",
+      "dates": "Feb 15 - Jun 17",
       "portfolio": [
         {
           "name": "WWF",
@@ -71,7 +71,7 @@
       "position": "QA tester",
       "company": "Rockstar North",
       "url": "https://www.rockstarnorth.com",
-      "dates": "May 2014 – Feb 2015",
+      "dates": "May 14 – Feb 15",
       "blurb": "Credited as a QA Tester on Grand Theft Auto V, I was responsible for finding, reproducing, and accurately reporting issues in detailed bug reports. It also involved providing clear and concise critical analysis and feedback of reported issues and executing functionality, regression, and user acceptance testing across various platforms.",
       "portfolio": [
         {

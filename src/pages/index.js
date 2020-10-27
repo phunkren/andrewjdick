@@ -1,10 +1,9 @@
 import React from 'react';
-import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { graphql } from 'gatsby';
 import { position } from 'polished';
 import Div100vh from 'react-div-100vh';
 import lightbulbs from '../assets/images/lightbulbs.png';
-import { Layout } from '../components/Layout';
 import { Social } from '../components/Social';
 import { ExternalLink } from '../components/Link';
 import { Header } from '../components/Header';
@@ -19,13 +18,6 @@ const infiniteScroll = keyframes`
   to {
     transform: translate3d(0, -300vh, 0);
   }
-`;
-
-/* HACK: For Div100vh to work, we need to remove the min-height from modern-css-reset */
-const GlobalStyles = createGlobalStyle`
- body {
-   min-height: 0;
- }
 `;
 
 const Wrapper = styled(Div100vh)`
@@ -92,9 +84,8 @@ export default function Home({ data }) {
   const currentEmployer = experience[0];
 
   return (
-    <Layout>
+    <>
       <SEO />
-      <GlobalStyles />
       <Wrapper>
         <Header />
 
@@ -130,8 +121,8 @@ export default function Home({ data }) {
               background courtesy of{' '}
               <ExternalLink
                 href="https://absurd.design/"
-                highlight
                 tabIndex="-1"
+                highlight
               >
                 absurd.design
               </ExternalLink>
@@ -139,7 +130,7 @@ export default function Home({ data }) {
           </figure>
         </Footer>
       </Wrapper>
-    </Layout>
+    </>
   );
 }
 
