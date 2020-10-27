@@ -29,13 +29,11 @@ const Main = styled.main`
   `}
 `;
 
-const Wrapper = styled.div(
-  ({ theme }) => css`
-    position: relative;
-    width: 100%;
-    background-color: ${theme.wrapperOverlay};
-  `,
-);
+const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+  background-color: ${({ theme }) => theme.wrapperOverlay};
+`;
 
 const ListItem = styled.li``;
 

@@ -101,6 +101,15 @@ const Section = styled.section(
       `};
     }
 
+    ul {
+      list-style-type: disc;
+
+      ${MEDIA.tablet`
+        margin: 0 var(--spacing-huge);
+        padding: 0 var(--spacing-huge);
+      `};
+    }
+
     div.gatsby-highlight {
       border-radius: 0;
       margin-left: calc(var(--spacing-medium) * -1);

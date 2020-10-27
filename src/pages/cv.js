@@ -240,7 +240,9 @@ const Description = styled.div`
   }
 
   ul {
+    list-style-type: disc;
     padding-left: var(--spacing-large);
+    margin-left: var(--spacing-large);
     margin-top: var(--spacing-small);
     margin-bottom: 0;
   }
