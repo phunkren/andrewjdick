@@ -78,30 +78,7 @@ const MobileNavigationButton = styled(IconButton)(
   `,
 );
 
-const LogoLink = styled(Link)(({ theme }) => [
-  css`
-    border: 2px solid;
-    border-color: var(--color-black);
-    background-color: var(--color-black);
-    border-radius: 50%;
-    overflow: hidden;
-
-    ${isIOS &&
-      css`
-        -webkit-mask-image: -webkit-radial-gradient(white, black);
-      `}
-
-    &:hover {
-      border-color: var(--color-blue-400);
-      background-color: var(--color-blue-400);
-    }
-
-    &:active {
-      border-color: var(--color-blue-400);
-      background-color: var(--color-orange-400);
-    }
-  `,
-]);
+const LogoLink = styled(Link)(({ theme }) => [css``]);
 
 export const Header = ({ variant }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -115,7 +92,29 @@ export const Header = ({ variant }) => {
       <Outer>
         <Inner variant={variant}>
           <LogoLink to="/" aria-label="Return to homepage">
-            <Logo />
+            <Logo
+              css={`
+                border: 2px solid;
+                border-color: transparent;
+                border-radius: 50%;
+                overflow: hidden;
+                transition: border 0.2s ease-out;
+
+                ${isIOS &&
+                  css`
+                    mask-image: -webkit-radial-gradient(white, black);
+                    -webkit-mask-image: -webkit-radial-gradient(white, black);
+                  `}
+
+                &:hover {
+                  border-color: var(--color-blue-400);
+                }
+
+                &:active {
+                  border-color: var(--color-orange-400);
+                }
+              `}
+            />
           </LogoLink>
 
           <DesktopNavigation />

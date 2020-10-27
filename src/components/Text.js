@@ -16,6 +16,12 @@ export const SIZES = {
     line-height: 1.667;
     letter-spacing: 2px;
     text-transform: uppercase;
+
+    ${MEDIA.print`
+      font-size: 10px;
+      font-size: ${convertPxToRem(10)};
+      line-height: normal;
+    `};
   `,
   'ps': css`
     font-size: 16px;

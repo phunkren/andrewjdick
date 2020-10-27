@@ -14,7 +14,7 @@ const Image = styled(Img)`
   `}
 `;
 
-export const Logo = () => {
+export const Logo = props => {
   const data = useStaticQuery(graphql`
     query {
       fileName: file(relativePath: { eq: "images/avatar.jpg" }) {
@@ -27,5 +27,11 @@ export const Logo = () => {
     }
   `);
 
-  return <Image fluid={data.fileName.childImageSharp.fluid} alt="Site logo" />;
+  return (
+    <Image
+      fluid={data.fileName.childImageSharp.fluid}
+      alt="Site logo"
+      {...props}
+    />
+  );
 };

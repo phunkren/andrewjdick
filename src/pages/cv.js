@@ -85,6 +85,7 @@ const Container = styled.div(
 
     ${MEDIA.print`
       margin-bottom: 0;
+      border-top: none;
     `}
   `,
 );
@@ -155,6 +156,7 @@ const Wrapper = styled.div(
       display: inline-flex;
       flex-direction: row;
       padding: var(--spacing-huge);
+      border-top: 5px solid;
       border-color: var(--color-black);
     `};
   `,
@@ -198,6 +200,10 @@ const Block = styled.section`
   ${MEDIA.desktop`
     margin-bottom: var(--spacing-massive);
   `};
+
+  ${MEDIA.print`
+    margin-bottom: var(--spacing-giant);
+  `};
 `;
 
 const BlockHeader = styled(props => <Text as="h2" size="l" {...props} />)(
@@ -207,6 +213,7 @@ const BlockHeader = styled(props => <Text as="h2" size="l" {...props} />)(
     color: ${theme.headerColor};
 
     ${MEDIA.print`
+      border-color: var(--color-black);
       color: var(--color-black);
     `}
   `,
@@ -232,10 +239,15 @@ const Description = styled.div`
   ul {
     list-style-type: disc;
     padding-left: var(--spacing-large);
-    margin-left: var(--spacing-large);
     margin-top: var(--spacing-small);
     margin-bottom: 0;
   }
+
+  ${MEDIA.print`
+    ${Text} {
+      margin-top: var(--spacing-small);
+    }
+  `}
 `;
 
 const Tag = styled(props => <Text size="xs" {...props} />)(
@@ -484,7 +496,9 @@ export default function CV({ data, location: { pathname } }) {
                             {qualification}
                           </BlockSubheader>
                         )}
-                        <Text size="ps">{course}</Text>
+                        <Text size="ps" css="font-weight: 600;">
+                          {course}
+                        </Text>
                         <Text size="ps">{institute}</Text>
                         <Text
                           css={`
@@ -560,14 +574,16 @@ export default function CV({ data, location: { pathname } }) {
                 <Block>
                   <BlockHeader id="cv-experience">Experience</BlockHeader>
                   {experience.map(
-                    ({ position, company, url, dates, blurb, portfolio }) => (
+                    (
+                      { position, company, url, dates, blurb, portfolio },
+                      index,
+                    ) => (
                       <Block
                         key={company}
                         aria-label={`exp-${formatId(company)}`}
                         aria-labelledby={`cv-experience exp-${formatId(
                           company,
                         )}`}
-                        css="margin-bottom: var(--spacing-massive);"
                       >
                         <BlockSubheader
                           as="h3"
@@ -598,7 +614,7 @@ export default function CV({ data, location: { pathname } }) {
                                 {portfolio.map(({ name, href }) => (
                                   <li key={name}>
                                     <ExternalLink href={href}>
-                                      <Text size="pb">{name}</Text>
+                                      <Text size="ps">{name}</Text>
                                     </ExternalLink>
                                   </li>
                                 ))}
@@ -615,7 +631,13 @@ export default function CV({ data, location: { pathname } }) {
           </Container>
         </Main>
       </Wrap>
-      <Footer />
+      <Footer
+        css={`
+          ${MEDIA.print`
+            display:none;
+          `}
+        `}
+      />
     </>
   );
 }

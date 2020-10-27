@@ -7,9 +7,7 @@ import { ExternalLink } from './Link';
 import { Text } from './Text';
 import { Icon, EmailIcon } from './icons';
 
-const Outer = styled.footer`
-  /* background-color: var(--color-black); */
-`;
+const Outer = styled.footer``;
 
 const Inner = styled.div(
   ({ theme }) => css`
@@ -54,9 +52,9 @@ const ContactLink = styled(ExternalLink)`
   `};
 `;
 
-export const Footer = () => {
+export const Footer = props => {
   return (
-    <Outer>
+    <Outer {...props}>
       <Inner>
         <ContactLink href="mailto:contact@ajames.dev">
           <Text size="xs">contact@ajames.dev</Text>
