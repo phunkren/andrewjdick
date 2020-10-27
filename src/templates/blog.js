@@ -21,7 +21,7 @@ const Wrapper = styled.div(
     padding: var(--spacing-huge) var(--spacing-medium) var(--spacing-massive);
     margin: 300px auto 0;
     width: 100%;
-    background: ${theme.wrapperOverlay};
+    background: ${theme.overlay10};
 
     ${MEDIA.desktop`
     margin-top: 400px;
@@ -75,6 +75,8 @@ const Title = styled(Text)`
 
 const Info = styled(Text)(
   ({ theme }) => css`
+    display: block;
+    margin-bottom: var(--spacing-huge);
     color: ${theme.auxiliaryColor};
   `,
 );
@@ -176,7 +178,23 @@ const Section = styled.section(
     pre > code[class*='language-'] {
       ${SIZES['ps']};
       margin-left: calc(var(--spacing-medium) * -1);
-      white-space: pre-wrap;
+      position: relative;
+      width: 100%;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      & > * {
+        z-index: 1;
+      }
 
       .comment {
         ${SIZES['xs']}
@@ -223,22 +241,6 @@ const Section = styled.section(
       margin: 0;
       padding: var(--spacing-medium);
       background: var(--color-black);
-      position: relative;
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 0;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      & > * {
-        z-index: 1;
-      }
 
       ${MEDIA.tablet`
         padding: var(--spacing-huge);
@@ -251,7 +253,7 @@ const Section = styled.section(
   `,
 );
 
-function BlogTemplate({ data, location }) {
+function BlogTemplate({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, fields, html } = markdownRemark;
 

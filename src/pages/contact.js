@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { navigate } from 'gatsby-link';
 import { SEO } from '../components/SEO';
-import { Layout } from '../components/Layout';
 import { Text } from '../components/Text';
 import { Hero } from '../components/Hero';
 import { Header } from '../components/Header';
@@ -40,7 +39,6 @@ const Wrapper = styled.div(
     flex-flow: column;
     width: 100%;
     min-height: 100vh;
-    background-color: ${theme.wrapperOverlay};
   `,
 );
 
@@ -49,9 +47,6 @@ const Input = styled.input(
     width: 100%;
   `,
 );
-
-// TODO: Delete this and fix eslint errors
-const Label = styled.label``;
 
 const TextArea = styled.textarea(
   ({ theme }) => css`
@@ -66,7 +61,7 @@ const TextArea = styled.textarea(
 const Button = styled.button`
   padding: var(--spacing-small) var(--spacing-large);
   background-color: #2b6cb0;
-  color: var(--color-white);
+  color: rgba(255, 255, 255, 0.9);
   border: 0;
   min-width: 150px;
   border-radius: 4px;
@@ -92,30 +87,12 @@ const Form = styled.form(
     flex: 1;
     display: flex;
     flex-direction: column;
-    position: relative;
     width: 100%;
     padding: var(--spacing-massive) var(--spacing-medium);
-    background-color: ${theme.background};
+    background-color: ${theme.overlay10};
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
     border-top: 2px solid var(--color-orange-400);
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 0;
-      background: ${theme.cardOverlay};
-      border-bottom-right-radius: 4px;
-      border-bottom-left-radius: 4px;
-    }
-
-    & > * {
-      z-index: 1;
-    }
 
     ${MEDIA.tablet`
       flex: 0 1 auto;
@@ -236,17 +213,25 @@ export default function Contact({ location }) {
               </>
             ) : (
               <>
-                <Label hidden>
+                <label htmlFor="form-name" hidden>
                   <Text>Netlify requires this:</Text>
-                  <Input name="form-name" value="contact" readOnly />
-                </Label>
+                  <Input
+                    id="form-name"
+                    name="form-name"
+                    value="contact"
+                    readOnly
+                  />
+                </label>
 
-                <Label hidden>
+                <label htmlFor="bot-field" hidden>
                   <Text>Don’t fill this out:</Text>
-                  <Input name="bot-field" />
-                </Label>
+                  <Input id="bot-field" name="bot-field" />
+                </label>
 
-                <Label css="margin-bottom: var(--spacing-huge);">
+                <label
+                  htmlFor="email"
+                  css="margin-bottom: var(--spacing-huge);"
+                >
                   <Text
                     size="xs"
                     css="display: block; margin-bottom: var(--spacing-tiny);"
@@ -254,15 +239,19 @@ export default function Contact({ location }) {
                     From
                   </Text>
                   <Input
-                    required
+                    id="email"
                     type="email"
                     name="contact-email"
                     placeholder="your@email.com"
                     onChange={handleChange}
+                    required
                   />
-                </Label>
+                </label>
 
-                <Label css="margin-bottom: var(--spacing-huge);">
+                <label
+                  htmlFor="subject"
+                  css="margin-bottom: var(--spacing-huge);"
+                >
                   <Text
                     size="xs"
                     css="display: block; margin-bottom: var(--spacing-tiny);"
@@ -270,14 +259,18 @@ export default function Contact({ location }) {
                     Subject
                   </Text>
                   <Input
-                    required
+                    id="subject"
                     name="contact-subject"
                     placeholder="Let's get in touch"
                     onChange={handleChange}
+                    required
                   />
-                </Label>
+                </label>
 
-                <Label css="margin-bottom: var(--spacing-massive);">
+                <label
+                  htmlFor="message"
+                  css="margin-bottom: var(--spacing-massive);"
+                >
                   <Text
                     size="xs"
                     css="display: block; margin-bottom: var(--spacing-medium);"
@@ -285,13 +278,14 @@ export default function Contact({ location }) {
                     Message
                   </Text>
                   <TextArea
-                    required
+                    id="message"
                     name="contact-message"
                     rows="6"
                     minlength="20"
                     onChange={handleChange}
+                    required
                   />
-                </Label>
+                </label>
 
                 <Button type="submit">Send</Button>
               </>

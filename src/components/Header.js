@@ -43,6 +43,10 @@ const Inner = styled.div(({ theme, variant }) => [
   variant === 'dark' &&
     css`
       color: var(--color-white);
+
+      ${Link} {
+        text-shadow: 1px 1px var(--color-black);
+      }
     `,
 ]);
 

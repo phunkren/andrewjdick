@@ -32,7 +32,7 @@ const Content = styled(DialogContent)(
       bottom: 0;
       left: 0;
       z-index: 0;
-      background: ${theme.wrapperOverlay};
+      background: ${theme.overlay10};
     }
 
     & > * {

@@ -62,7 +62,7 @@ export const highlightStyles = css`
   &:active {
     &::before {
       transition: 100ms ease-in;
-      background: var(--color-blue-200);
+      background: var(--color-orange-400);
     }
   }
 
@@ -83,13 +83,9 @@ const isPartiallyActive = ({ isPartiallyCurrent }) =>
       }
     : {};
 
-export const Link = styled(props => (
+export const Link = styled(({ highlight, ...props }) => (
   <RouterLink getProps={isPartiallyActive} {...props} />
-))(
-  ({ theme }) => css`
-    ${linkStyles};
-  `,
-);
+))(({ highlight }) => [linkStyles, highlight && highlightStyles]);
 
 export const DownloadLink = styled(({ children, ...props }) => (
   <a download {...props}>

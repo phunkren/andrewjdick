@@ -1,10 +1,9 @@
 import React from 'react';
-import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { graphql } from 'gatsby';
 import { position } from 'polished';
 import Div100vh from 'react-div-100vh';
 import lightbulbs from '../assets/images/lightbulbs.png';
-import { Layout } from '../components/Layout';
 import { Social } from '../components/Social';
 import { ExternalLink } from '../components/Link';
 import { Header } from '../components/Header';
@@ -122,8 +121,8 @@ export default function Home({ data }) {
               background courtesy of{' '}
               <ExternalLink
                 href="https://absurd.design/"
-                highlight
                 tabIndex="-1"
+                highlight
               >
                 absurd.design
               </ExternalLink>

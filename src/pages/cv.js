@@ -20,9 +20,7 @@ import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { Hero } from '../components/Hero';
 import { Header } from '../components/Header';
 import { convertPxToRem } from '../utils/unitConversion';
-import { Icon } from '../components/icons/Icon';
 import { Footer } from '../components/Footer';
-import { Theme } from '../components/Theme';
 
 const List = styled.ul`
   margin-bottom: var(--spacing-huge);
@@ -44,7 +42,6 @@ const StyledExternalLink = styled(ExternalLink)`
 const Wrap = styled.div(
   ({ theme }) => css`
     width: 100%;
-    background-color: ${theme.wrapperOverlay};
   `,
 );
 
@@ -72,24 +69,11 @@ const Container = styled.div(
     display: flex;
     flex-direction: column;
     position: relative;
-    background-color: ${theme.background};
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 0;
-      background: ${theme.cardOverlay};
-    }
-
-    & > * {
-      z-index: 1;
-    }
+    background-color: ${theme.overlay10};
+    border-top: 1px solid ${theme.cvBorderColor};
 
     ${MEDIA.tablet`
+      border-top: none;
       border-radius: 4px;
       margin-bottom: var(--spacing-massive);
       box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
@@ -125,6 +109,11 @@ const HeaderIcons = styled.div(
     display: flex;
     align-items: center;
 
+    & > *:active {
+      transform: scale(0.9);
+      transition: transform 0.2s;
+    }
+
     & > ${DownloadLink} {
       display: inline-flex;
       align-items: center;
@@ -148,12 +137,12 @@ const Wrapper = styled.div(
     flex: 1;
     display: flex;
     flex-direction: column-reverse;
-    padding: var(--spacing-huge) var(--spacing-medium);
-    border-top: 5px solid;
-    border-color: ${theme.cvBorderColor};
+    padding: 0 var(--spacing-medium);
 
     ${MEDIA.tablet`
-      border-bottom: 5px solid ${theme.cvBorderColor};
+      border-top: 5px solid;
+      border-bottom: 5px solid;
+      border-color: ${theme.borderColor};
       padding: var(--spacing-huge);
     `}
 
@@ -176,7 +165,7 @@ const Sidebar = styled.div(
     ${MEDIA.desktop`
       flex: 0 1 33%;
       border-right: 2px solid 
-      border-color: ${theme.cvBorderColor};
+      border-color: ${theme.borderColor};
       padding: 0 var(--spacing-huge) 0 0;
     `};
 
@@ -214,7 +203,7 @@ const Block = styled.section`
 const BlockHeader = styled(props => <Text as="h2" size="l" {...props} />)(
   ({ theme }) => css`
     margin-bottom: var(--spacing-large);
-    border-bottom: 1px solid ${theme.borderColor};
+    border-bottom: 1px solid ${theme.cvBorderColor};
     color: ${theme.headerColor};
 
     ${MEDIA.print`
@@ -226,6 +215,7 @@ const BlockHeader = styled(props => <Text as="h2" size="l" {...props} />)(
 const BlockSubheader = styled(Text)(
   ({ theme }) => css`
     color: ${theme.cvSubheaderColor};
+    margin-bottom: var(--spacing-tiny);
 
     ${MEDIA.print`
       color: var(--color-black);
@@ -278,11 +268,12 @@ const Dates = styled(Text)(
   ({ theme }) => css`
     display: block;
     color: ${theme.auxiliaryColor};
+    margin-top: var(--spacing-small);
 
     ${MEDIA.tablet`
       display: inline-block;
       position: relative;
-      margin-left: var(--spacing-huge);
+      margin-top: 0;
     `};
   `,
 );
@@ -292,22 +283,16 @@ const ExperienceInfo = styled.div`
   flex-flow: column;
   align-items: flex-start;
 
-  > * {
-    margin-top: var(--spacing-tiny);
-  }
-
   ${MEDIA.tablet`
     flex-flow: row;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
-    margin-top: 0;
   `};
 
   ${MEDIA.print`
     flex-flow: row;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
-    margin-top: 0;
   `}
 `;
 
@@ -331,6 +316,22 @@ const Title = styled(Text)`
     display: none;
   `}
 `;
+
+const EducationBlock = styled(Block)(({ variant }) => [
+  css`
+    display: flex;
+    flex-flow: column;
+  `,
+  variant === 'slim' &&
+    css`
+      margin-bottom: var(--spacing-medium);
+
+      ${MEDIA.desktop`
+        margin-bottom: var(--spacing-large);
+      `};
+    `,
+]);
+
 export default function CV({ data, location: { pathname } }) {
   const { education } = data.educationJson;
   const { experience } = data.experienceJson;
@@ -381,7 +382,7 @@ export default function CV({ data, location: { pathname } }) {
                   as="h1"
                   size="4xl"
                   css={`
-                    color: ${({ theme }) => theme.headerColor};
+                    color: ${({ theme }) => theme.copyColor};
 
                     ${MEDIA.print`
                       color: var(--color-black);
@@ -467,23 +468,12 @@ export default function CV({ data, location: { pathname } }) {
                   <BlockHeader id="cv-education">Education</BlockHeader>
                   {education.map(
                     ({ qualification, course, institute, dates }, index) => (
-                      <Block
+                      <EducationBlock
                         key={institute}
-                        css={`
-                          display: flex;
-                          flex-flow: column;
-                          margin-bottom: var(--spacing-large);
-                          margin-top: ${index === 1 &&
-                            `calc(var(--spacing-large) * -1)`};
-
-                          ${MEDIA.print`
-                            margin-top: ${index === 1 &&
-                              `var(--spacing-large)`};
-                          `}
-                        `}
                         aria-labelledby={`cv-education edu-${formatId(
                           institute,
                         )}`}
+                        variant={index === 0 && 'slim'}
                       >
                         {qualification && (
                           <BlockSubheader
@@ -504,7 +494,7 @@ export default function CV({ data, location: { pathname } }) {
                         >
                           {dates}
                         </Text>
-                      </Block>
+                      </EducationBlock>
                     ),
                   )}
                 </Block>

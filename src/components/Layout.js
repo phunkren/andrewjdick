@@ -1,4 +1,5 @@
 import React from 'react';
+import { linearGradient } from 'polished';
 import styled, { css, createGlobalStyle } from 'styled-components';
 import { reset } from 'styled-reset';
 import { MEDIA } from '../styles/media';
@@ -11,6 +12,11 @@ const Styles = createGlobalStyle(
 
     body {
       background-color: ${theme.background};
+      background-image: ${linearGradient({
+        colorStops: [`${theme.overlay5} 0%`, `${theme.background} 95%`],
+        toDirection: 'to bottom',
+        fallback: `${theme.background}`,
+      })};
       color: ${theme.copyColor};
     }
 
@@ -32,24 +38,17 @@ const Styles = createGlobalStyle(
     }
 
     input {
-      border-bottom-color: ${theme.borderColor};
+      border-bottom-color: ${theme.inputBorderColor};
 
       &::placeholder,
       &::-webkit-input-placeholder {
         color: ${theme.auxiliaryColor};
-        transition: color 0.2s ease-out;
-      }
-
-      &:hover {
-        &::placeholder,
-        &::-webkit-input-placeholder {
-          color: ${theme.inputPlaceholderHover};
-        }
+        opacity: 0.5;
       }
     }
 
     textarea {
-      border-color: ${theme.borderColor};
+      border-color: ${theme.inputBorderColor};
     }
 
     ${MEDIA.print`

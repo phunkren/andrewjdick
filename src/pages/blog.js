@@ -10,6 +10,7 @@ import { Hero } from '../components/Hero';
 import { Header } from '../components/Header';
 import { convertPxToRem } from '../utils/unitConversion';
 import { Footer } from '../components/Footer';
+import { ArrowRightIcon } from '../components/icons/ArrowRIght';
 
 const Main = styled.main`
   flex: 1;
@@ -32,7 +33,6 @@ const Main = styled.main`
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  background-color: ${({ theme }) => theme.wrapperOverlay};
 `;
 
 const ListItem = styled.li``;
@@ -58,25 +58,8 @@ const Preview = styled.article(
     padding: var(--spacing-huge) var(--spacing-medium);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
     border-radius: 4px;
-    background-color: ${theme.background};
+    background-color: ${theme.overlay10};
     color: ${theme.cardColor};
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      border-radius: 4px;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 0;
-      background: ${theme.cardOverlay};
-    }
-
-    & > * {
-      z-index: 1;
-    }
 
     ${MEDIA.tablet`
       padding: var(--spacing-huge);
@@ -88,20 +71,23 @@ const Title = styled(Text)(
   ({ theme }) => css`
     width: 90%;
     color: ${theme.cardHeaderColor};
+    margin-bottom: var(--spacing-small);
   `,
 );
 
 const Info = styled(Text)(
   ({ theme }) => css`
     color: ${theme.auxiliaryColor};
+    margin-bottom: var(--spacing-large);
   `,
 );
 
 const StyledLink = styled(Link)(
   ({ theme }) => css`
-    display: inline-block;
-    color: ${theme.cardLinkColor};
-    margin-left: auto;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    color: ${theme.linkColor};
   `,
 );
 
@@ -125,7 +111,11 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
       {frontmatter.date} | {fields.readingTime.text}
     </Info>
 
-    <Text as="p" aria-label="Excerpt">
+    <Text
+      as="p"
+      aria-label="Excerpt"
+      css="padding-bottom: var(--spacing-huge);"
+    >
       {excerpt}
     </Text>
 
@@ -133,7 +123,12 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
       to={`/blog${fields.slug}`}
       aria-label="Click to read the article in full"
     >
-      Read more →
+      Read more{' '}
+      <ArrowRightIcon
+        height="1em"
+        width="1em"
+        css="margin-left: var(--spacing-tiny); position: relative; top: 2px;"
+      />
     </StyledLink>
   </Preview>
 );
