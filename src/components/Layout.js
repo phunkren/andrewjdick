@@ -1,9 +1,14 @@
 import React from 'react';
 import styled, { css, createGlobalStyle } from 'styled-components';
+import { reset } from 'styled-reset';
 import { MEDIA } from '../styles/media';
+import 'prismjs/themes/prism-tomorrow.css';
+import '../styles/global.css';
 
 const Styles = createGlobalStyle(
   ({ theme }) => css`
+    ${reset};
+
     body {
       background-color: ${theme.background};
       color: ${theme.copyColor};
