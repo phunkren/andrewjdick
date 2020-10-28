@@ -6,6 +6,8 @@ import { reset } from 'styled-reset';
 import { MEDIA } from '../styles/media';
 import 'prismjs/themes/prism-tomorrow.css';
 import { Header } from './Header';
+import { Footer } from './Footer';
+import { fadeInAnimation } from '../styles/animation';
 
 const Styles = createGlobalStyle(
   ({ theme }) => css`
@@ -96,13 +98,14 @@ const Styles = createGlobalStyle(
 
     html {
       display: flex;
+      height: 100%;
     }
 
     body {
       font: 20px var(--font-copy);
       font: 1.15rem var(--font-copy);
       line-height: 1.5;
-      background-color: ${theme.background};
+      background-attachment: fixed;
       background-image: ${linearGradient({
         colorStops: [`${theme.overlay5} 0%`, `${theme.background} 95%`],
         toDirection: 'to bottom',
@@ -223,7 +226,18 @@ const Styles = createGlobalStyle(
   `,
 );
 
+const Div = styled.div`
+  display: flex;
+  flex-flow: column;
+  min-height: 100%;
+  ${fadeInAnimation};
+  animation-delay: 0.5s;
+`;
+
 export const Layout = styled(({ location, children, data }) => {
+  const isHomepage = location?.pathname === '/';
+  const isBlogPost = Boolean(location?.pathname.split('/blog/')[1]);
+
   const customHero = {
     image: data?.markdownRemark?.frontmatter?.image,
     alt: data?.markdownRemark?.frontmatter?.imageAlt,
@@ -233,11 +247,19 @@ export const Layout = styled(({ location, children, data }) => {
     <>
       <Styles />
 
-      <Hero pathname={location?.pathname} customHero={customHero} />
+      <Hero
+        customHero={customHero}
+        isHomepage={isHomepage}
+        isBlogPost={isBlogPost}
+      />
 
-      <Header />
+      <Div>
+        <Header />
 
-      {children}
+        {children}
+
+        <Footer isHomepage={isHomepage} />
+      </Div>
     </>
   );
 })``;

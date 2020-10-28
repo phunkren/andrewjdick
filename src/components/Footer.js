@@ -1,33 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Social } from './Social';
+import { fadeInAnimation } from '../styles/animation';
 import { BREAKPOINTS, MEDIA } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
 import { ExternalLink } from './Link';
 import { Text } from './Text';
 import { Icon, EmailIcon } from './icons';
-
-const Outer = styled.footer``;
-
-const Inner = styled.div(
-  ({ theme }) => css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 auto;
-    padding: var(--spacing-small) var(--spacing-medium);
-    max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
-    color: inherit;
-
-    ${MEDIA.tablet`
-    padding: var(--spacing-small) var(--spacing-huge);
-
-    & > ${ExternalLink} {
-      display: block;
-    }
-  `};
-  `,
-);
 
 const ContactLink = styled(ExternalLink)`
   display: flex;
@@ -52,15 +31,60 @@ const ContactLink = styled(ExternalLink)`
   `};
 `;
 
-export const Footer = props => {
+const Inner = styled.div(({ isHomepage }) => [
+  css`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: var(--spacing-small) var(--spacing-medium);
+    max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
+    color: inherit;
+
+    ${MEDIA.tablet`
+      padding: var(--spacing-small) var(--spacing-huge);
+
+      & > ${ExternalLink} {
+        display: block;
+      }
+    `};
+  `,
+  isHomepage &&
+    css`
+      justify-content: center;
+      padding: var(--spacing-medium) var(--spacing-medium);
+      ${fadeInAnimation};
+      animation-delay: 0.5s;
+
+      ${ContactLink} {
+        display: none;
+      }
+
+      ${MEDIA.tablet`
+        padding: var(--spacing-huge);
+      `}
+    `,
+]);
+
+const Outer = styled.footer`
+  margin-top: auto;
+  z-index: 5;
+
+  ${MEDIA.print`
+    display: none;
+  `};
+`;
+
+export const Footer = ({ isHomepage, ...props }) => {
   return (
     <Outer {...props}>
-      <Inner>
+      <Inner isHomepage={isHomepage}>
         <ContactLink href="mailto:contact@ajames.dev">
           <Text size="xs">contact@ajames.dev</Text>
           <EmailIcon width="1.5rem" height="1.5rem" />
         </ContactLink>
-        <Social size="1.5rem" />
+
+        <Social size={isHomepage ? '2rem' : '1.5rem'} />
       </Inner>
     </Outer>
   );

@@ -10,6 +10,7 @@ import { convertPxToRem } from '../utils/unitConversion';
 import { isIOS } from 'react-device-detect';
 import { Drawer } from './Drawer';
 import { ThemeToggle } from './Theme';
+import { fadeInAnimation } from '../styles/animation';
 
 const Outer = styled.header(() => [
   css`
@@ -20,7 +21,7 @@ const Outer = styled.header(() => [
     z-index: 5;
 
     ${MEDIA.print`
-      display: none;
+    display: none;
     `};
   `,
 ]);
@@ -37,8 +38,8 @@ const Inner = styled.div(({ theme, variant }) => [
     color: ${theme.copyColor};
 
     ${MEDIA.tablet`
-    padding: 0 var(--spacing-huge);
-  `};
+      padding: 0 var(--spacing-huge);
+    `};
   `,
   variant === 'dark' &&
     css`

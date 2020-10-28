@@ -7,9 +7,8 @@ import { Text } from '../components/Text';
 import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
-import { Footer } from '../components/Footer';
 import { ArrowRightIcon } from '../components/icons/ArrowRIght';
-import { fadeInAnimation, scrollUpAnimation } from '../styles/animation';
+import { fadeInAnimation, fadeThroughAnimation } from '../styles/animation';
 
 const Main = styled.main`
   flex: 1;
@@ -32,7 +31,7 @@ const Main = styled.main`
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  ${scrollUpAnimation};
+  ${fadeThroughAnimation};
 `;
 
 const ListItem = styled.li``;
@@ -161,7 +160,6 @@ export default function Blog({ data, location: { pathname } }) {
           </StyledTitle>
           <List>{posts}</List>
         </Main>
-        <Footer />
       </Wrapper>
     </>
   );

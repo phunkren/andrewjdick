@@ -1,12 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
-import { position } from 'polished';
 import Div100vh from 'react-div-100vh';
-import lightbulbs from '../assets/images/lightbulbs.png';
-import { Social } from '../components/Social';
 import { ExternalLink } from '../components/Link';
-import { Header } from '../components/Header';
 import { Text } from '../components/Text';
 import { SEO } from '../components/SEO';
 import { MEDIA } from '../styles/media';
@@ -28,6 +24,7 @@ const Main = styled.main`
   flex: 1;
   text-align: center;
   ${fadeInAnimation};
+  animation-delay: 0.5s;
 `;
 
 const Section = styled.section`
@@ -43,19 +40,6 @@ const Section = styled.section`
     transform: translate(-50%, -50%);
     paddding: 0 var(--spacing-large);
   `}
-`;
-
-const Footer = styled.footer`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 var(--spacing-medium) var(--spacing-medium);
-  ${fadeInAnimation};
-
-  ${MEDIA.tablet`
-    padding: 0 var(--spacing-huge) var(--spacing-huge);
-  `};
 `;
 
 export default function Home({ data }) {
@@ -89,10 +73,6 @@ export default function Home({ data }) {
             </Text>
           </Section>
         </Main>
-
-        <Footer>
-          <Social aria-label="Social" />
-        </Footer>
       </Wrapper>
     </>
   );

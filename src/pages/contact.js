@@ -9,7 +9,7 @@ import { Footer } from '../components/Footer';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
 import { encode } from '../utils/encode';
-import { fadeInAnimation, scrollLeftAnimation } from '../styles/animation';
+import { fadeInAnimation, fadeThroughAnimation } from '../styles/animation';
 
 const Main = styled.main`
   flex: 1;
@@ -28,7 +28,7 @@ const Main = styled.main`
   ${MEDIA.tablet`
   padding: 0 var(--spacing-huge);
   margin-bottom: var(--spacing-massive);
-  ${scrollLeftAnimation};
+  ${fadeThroughAnimation};
   `}
 `;
 
@@ -37,7 +37,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: column;
   width: 100%;
-  min-height: 100vh;
 `;
 
 const Input = styled.input(
@@ -291,7 +290,6 @@ export default function Contact({ location }) {
             )}
           </Form>
         </Main>
-        <Footer />
       </Wrapper>
     </>
   );

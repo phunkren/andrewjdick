@@ -9,30 +9,12 @@ const fadeIn = keyframes`
   }
 `;
 
-const scrollUp = keyframes`
+const fadeOut = keyframes`
   from {
-    transform: translateY(100vh);
+    opacity:1;
   }
   to {
-    transform: translateY(0);
-  }
-`;
-
-const scrollLeft = keyframes`
-  from {
-    transform: translateX(100vw);
-  }
-  to {
-    transform: translateX(0);
-  }
-`;
-
-const scrollRight = keyframes`
-  from {
-    transform: translateX(-100vw);
-  }
-  to {
-    transform: translateX(0);
+    opacity:0;
   }
 `;
 
@@ -45,26 +27,44 @@ const infiniteScroll = keyframes`
   }
 `;
 
+const fadeThrough = keyframes`
+  from {
+    transform: scale(0.92);
+  }
+  to {
+    transform: scale(1);
+  }
+`;
+
+const containerTransform = keyframes`
+  from {
+    transform: scale(0.92);
+  }
+  to {
+    transform: scale(1);
+  }
+`;
+
 export const fadeInAnimation = css`
   opacity: 0;
-  animation: ${fadeIn} 0.2s ease-out 0.4s forwards;
+  animation: ${fadeIn} 0.21s ease-out 0.09s forwards;
+`;
+
+export const fadeOutAnimation = css`
+  opacity: 1;
+  animation: ${fadeOut} 0.09s ease-out forwards;
 `;
 
 export const infiniteScrollAnimation = css`
-  animation: ${infiniteScroll} 30s linear infinite;
+  animation: ${infiniteScroll} 45s linear infinite;
 `;
 
-export const scrollUpAnimation = css`
-  transform: translateY(100vh);
-  animation: ${scrollUp} 0.4s ease-out forwards;
+export const fadeThroughAnimation = css`
+  transform: scale(0.92);
+  animation: ${fadeThrough} 0.21s ease-out 0.09s forwards;
 `;
 
-export const scrollLeftAnimation = css`
-  transform: translateX(100vw);
-  animation: ${scrollLeft} 0.4s ease-out forwards;
-`;
-
-export const scrollRightAnimation = css`
-  transform: translateX(-100vw);
-  animation: ${scrollRight} 0.4s ease-out forwards;
+export const containerTransformAnimation = css`
+  transform: scale(0.92);
+  animation: ${containerTransform} 0.3s ease-out forwards;
 `;
