@@ -10,7 +10,6 @@ import { convertPxToRem } from '../utils/unitConversion';
 import { isIOS } from 'react-device-detect';
 import { Drawer } from './Drawer';
 import { ThemeToggle } from './Theme';
-import { fadeInAnimation } from '../styles/animation';
 
 const Outer = styled.header(() => [
   css`

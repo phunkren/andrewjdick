@@ -5,7 +5,6 @@ import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
 import { TickIcon } from '../components/icons';
 import { Link } from '../components/Link';
-import { Footer } from '../components/Footer';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
 import { encode } from '../utils/encode';
@@ -39,24 +38,20 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const Input = styled.input(
-  ({ theme }) => css`
-    width: 100%;
-  `,
-);
+const Input = styled.input`
+  width: 100%;
+`;
 
-const TextArea = styled.textarea(
-  ({ theme }) => css`
-    display: block;
-    min-width: 100%;
-    max-width: 100%;
-    border-radius: 4px;
-  `,
-);
+const TextArea = styled.textarea`
+  display: block;
+  min-width: 100%;
+  max-width: 100%;
+  border-radius: 4px;
+`;
 
 const Button = styled.button`
   padding: var(--spacing-small) var(--spacing-large);
-  background-color: #2b6cb0;
+  background-color: var(--color-blue-700);
   color: rgba(255, 255, 255, 0.9);
   border: 0;
   min-width: 150px;
@@ -73,8 +68,8 @@ const Button = styled.button`
   }
 
   ${MEDIA.tablet`
-  align-self: flex-start;
-  padding: var(--spacing-tiny) var(--spacing-large);
+    align-self: flex-start;
+    padding: var(--spacing-tiny) var(--spacing-large);
   `}
 `;
 

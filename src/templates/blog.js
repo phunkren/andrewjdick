@@ -8,23 +8,20 @@ import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { linkStyles, highlightStyles } from '../components/Link';
 import { SIZES } from '../components/Text';
 import { convertPxToRem } from '../utils/unitConversion';
-import { Footer } from '../components/Footer';
 
-const Wrapper = styled.div(
-  ({ theme }) => css`
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: var(--spacing-huge) var(--spacing-medium) var(--spacing-massive);
-    margin: 300px auto 0;
-    width: 100%;
+const Wrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-huge) var(--spacing-medium) var(--spacing-massive);
+  margin: 300px auto 0;
+  width: 100%;
 
-    ${MEDIA.desktop`
+  ${MEDIA.desktop`
     margin-top: 400px;
     padding: var(--spacing-huge) var(--spacing-huge) var(--spacing-massive);
   `};
-  `,
-);
+`;
 
 const Main = styled.main`
   flex: 1;
@@ -232,7 +229,7 @@ const Section = styled.section(
   `,
 );
 
-function BlogTemplate({ location, data }) {
+function BlogTemplate({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, fields, html } = markdownRemark;
 
@@ -262,8 +259,6 @@ function BlogTemplate({ location, data }) {
           </article>
         </Main>
       </Wrapper>
-
-      <Footer />
     </>
   );
 }

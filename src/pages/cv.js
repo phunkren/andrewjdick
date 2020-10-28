@@ -18,7 +18,6 @@ import { DownloadIcon, PrintIcon } from '../components/icons';
 import { SEO } from '../components/SEO';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
-import { Footer } from '../components/Footer';
 import { fadeInAnimation, fadeThroughAnimation } from '../styles/animation';
 
 const List = styled.ul`
@@ -112,33 +111,31 @@ const Heading = styled.div`
   `};
 `;
 
-const HeaderIcons = styled.div(
-  ({ theme }) => css`
-    display: flex;
+const HeaderIcons = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > *:active {
+    transform: scale(0.9);
+    transition: transform 0.2s;
+  }
+
+  & > ${DownloadLink} {
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
 
-    & > *:active {
-      transform: scale(0.9);
-      transition: transform 0.2s;
-    }
+  & > * + * {
+    margin-left: var(--spacing-medium);
+  }
 
-    & > ${DownloadLink} {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 44px;
-      min-height: 44px;
-    }
-
-    & > * + * {
-      margin-left: var(--spacing-medium);
-    }
-
-    ${MEDIA.print`
+  ${MEDIA.print`
       display: none;
     `};
-  `,
-);
+`;
 
 const Wrapper = styled.div(
   ({ theme }) => css`
