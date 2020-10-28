@@ -8,43 +8,33 @@ import { Navigation } from './Navigation';
 import { IconButton } from './Button';
 import { CrossIcon } from './icons/CrossIcon';
 import { ThemeToggle } from './Theme';
+import { fadeInAnimation } from '../styles/animation';
 
-const Content = styled(DialogContent)(
-  ({ theme }) => css`
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-    margin: 0;
-    width: 75vw;
-    margin-left: auto;
-    padding: 100px var(--spacing-massive) var(--spacing-huge);
-    background-color: ${theme.background};
-    border-left: 1px solid ${theme.highlightColor};
-    color: ${theme.copyColor};
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      border-radius: 4px;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 0;
-      background: ${theme.overlay10};
-    }
-
-    & > * {
-      z-index: 1;
+const Content = styled(DialogContent)(({ theme }) => [
+  css`
+    &[data-reach-dialog-content] {
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
+      margin: 0;
+      margin-left: auto;
+      padding: 100px var(--spacing-massive) var(--spacing-huge);
+      background-color: ${theme.overlay10};
+      border-left: 1px solid ${theme.highlightColor};
+      color: ${theme.copyColor};
+      position: relative;
+      width: 75vw;
+      height: 100vh;
     }
   `,
-);
+]);
 
 const Overlay = styled(DialogOverlay)`
   &[data-reach-dialog-overlay] {
+    width: 100vw;
     background-color: rgba(0, 0, 0, 0.75);
     z-index: 50;
+    ${fadeInAnimation};
   }
 `;
 
@@ -72,7 +62,7 @@ export const Drawer = ({
 }) => {
   return (
     <Overlay isOpen={isOpen}>
-      <Content as={Div100vh} aria-label={ariaLabel} {...props}>
+      <Content aria-label={ariaLabel} {...props}>
         <CloseButton aria-label="Close navigation menu" onClick={onDismiss}>
           <CrossIcon width="1.5rem" height="1.5rem" />
         </CloseButton>

@@ -36,15 +36,6 @@ const fadeThrough = keyframes`
   }
 `;
 
-const containerTransform = keyframes`
-  from {
-    transform: scale(0.92);
-  }
-  to {
-    transform: scale(1);
-  }
-`;
-
 export const fadeInAnimation = css`
   opacity: 0;
   animation: ${fadeIn} 0.21s ease-out 0.09s forwards;
@@ -62,9 +53,4 @@ export const infiniteScrollAnimation = css`
 export const fadeThroughAnimation = css`
   transform: scale(0.92);
   animation: ${fadeThrough} 0.21s ease-out 0.09s forwards;
-`;
-
-export const containerTransformAnimation = css`
-  transform: scale(0.92);
-  animation: ${containerTransform} 0.3s ease-out forwards;
 `;
