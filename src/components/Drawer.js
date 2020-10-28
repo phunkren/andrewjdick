@@ -61,13 +61,13 @@ export const Drawer = ({
   props,
 }) => {
   return (
-    <Overlay isOpen={isOpen}>
+    <Overlay isOpen={isOpen} onDismiss={onDismiss}>
       <Content aria-label={ariaLabel} {...props}>
         <CloseButton aria-label="Close navigation menu" onClick={onDismiss}>
           <CrossIcon width="1.5rem" height="1.5rem" />
         </CloseButton>
         <StyledThemeToggle />
-        <Navigation column />
+        <Navigation column onLinkClick={onDismiss} />
         <Social css="justify-content: space-around;" />
       </Content>
     </Overlay>

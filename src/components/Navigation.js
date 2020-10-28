@@ -33,18 +33,26 @@ const List = styled.ul(({ column }) => [
   `,
 ]);
 
-export const Navigation = styled(({ column = false, ...props }) => (
-  <nav aria-label="Main" {...props}>
-    <List column={column}>
-      <ListItem>
-        <Link to="/blog">Blog</Link>
-      </ListItem>
-      <ListItem>
-        <Link to="/cv">CV</Link>
-      </ListItem>
-      <ListItem>
-        <Link to="/contact">Contact</Link>
-      </ListItem>
-    </List>
-  </nav>
-))``;
+export const Navigation = styled(
+  ({ column = false, onLinkClick, ...props }) => (
+    <nav aria-label="Main" {...props}>
+      <List column={column}>
+        <ListItem>
+          <Link to="/blog" onClick={onLinkClick}>
+            Blog
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link to="/cv" onClick={onLinkClick}>
+            CV
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link to="/contact" onClick={onLinkClick}>
+            Contact
+          </Link>
+        </ListItem>
+      </List>
+    </nav>
+  ),
+)``;

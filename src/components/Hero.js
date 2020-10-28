@@ -11,19 +11,12 @@ import Img from 'gatsby-image';
 
 const Lightbulbs = styled.div`
   background-image: url(${lightbulbs});
+  ${infiniteScrollAnimation};
+  background-repeat: repeat-y;
   background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 200px;
+  height: 400vh;
   width: 100vw;
   z-index: -1;
-
-  ${MEDIA.tablet`
-    ${infiniteScrollAnimation};
-    background-repeat: repeat-y;
-    background-size: auto;
-    height: 400vh;
-  `}
 `;
 
 const BlogHero = styled(Img)`
