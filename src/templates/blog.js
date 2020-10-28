@@ -1,16 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
 import { mix } from 'polished';
-import { Layout } from '../components/Layout';
 import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { linkStyles, highlightStyles } from '../components/Link';
 import { SIZES } from '../components/Text';
-import { Header } from '../components/Header';
-import { Hero } from '../components/Hero';
 import { convertPxToRem } from '../utils/unitConversion';
 import { Footer } from '../components/Footer';
 
@@ -44,14 +40,6 @@ const Main = styled.main`
 
   ${MEDIA.tablet`
     max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
-  `}
-`;
-
-const ArticleHero = styled(Hero)`
-  height: 300px;
-
-  ${MEDIA.desktop`
-    height: 400px;
   `}
 `;
 
@@ -244,12 +232,12 @@ const Section = styled.section(
   `,
 );
 
-function BlogTemplate({ data }) {
+function BlogTemplate({ location, data }) {
   const { markdownRemark } = data;
   const { frontmatter, fields, html } = markdownRemark;
 
   return (
-    <Layout>
+    <>
       <SEO
         path={fields.slug}
         title={frontmatter.title}
@@ -258,17 +246,6 @@ function BlogTemplate({ data }) {
         published={frontmatter.date}
         article
       />
-
-      <Header variant="dark" />
-
-      <ArticleHero variant="blog">
-        <Img
-          role="img"
-          alt={frontmatter.imageAlt}
-          fluid={frontmatter.image.childImageSharp.fluid}
-          style={{ position: 'static !important;' }}
-        />
-      </ArticleHero>
 
       <Wrapper>
         <Main>
@@ -287,7 +264,7 @@ function BlogTemplate({ data }) {
       </Wrapper>
 
       <Footer />
-    </Layout>
+    </>
   );
 }
 

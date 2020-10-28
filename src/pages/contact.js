@@ -3,14 +3,13 @@ import styled, { css } from 'styled-components';
 import { navigate } from 'gatsby-link';
 import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
-import { Hero } from '../components/Hero';
-import { Header } from '../components/Header';
 import { TickIcon } from '../components/icons';
 import { Link } from '../components/Link';
 import { Footer } from '../components/Footer';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
 import { encode } from '../utils/encode';
+import { fadeInAnimation, scrollLeftAnimation } from '../styles/animation';
 
 const Main = styled.main`
   flex: 1;
@@ -27,20 +26,19 @@ const Main = styled.main`
   max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
 
   ${MEDIA.tablet`
-    padding: 0 var(--spacing-huge);
-    margin-bottom: var(--spacing-massive);
+  padding: 0 var(--spacing-huge);
+  margin-bottom: var(--spacing-massive);
+  ${scrollLeftAnimation};
   `}
 `;
 
-const Wrapper = styled.div(
-  ({ theme }) => css`
-    flex: 1;
-    display: flex;
-    flex-flow: column;
-    width: 100%;
-    min-height: 100vh;
-  `,
-);
+const Wrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  min-height: 100vh;
+`;
 
 const Input = styled.input(
   ({ theme }) => css`
@@ -53,7 +51,6 @@ const TextArea = styled.textarea(
     display: block;
     min-width: 100%;
     max-width: 100%;
-    /* border: 1px solid var(--color-blue-600); */
     border-radius: 4px;
   `,
 );
@@ -77,8 +74,8 @@ const Button = styled.button`
   }
 
   ${MEDIA.tablet`
-    align-self: flex-start;
-    padding: var(--spacing-tiny) var(--spacing-large);
+  align-self: flex-start;
+  padding: var(--spacing-tiny) var(--spacing-large);
   `}
 `;
 
@@ -94,19 +91,23 @@ const Form = styled.form(
     border-bottom-left-radius: 4px;
     border-top: 2px solid var(--color-orange-400);
 
+    & > * {
+      ${fadeInAnimation};
+    }
+
     ${MEDIA.tablet`
-      flex: 0 1 auto;
-      border-top: none;
+    flex: 0 1 auto;
+    border-top: none;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    margin-bottom: var(--spacing-massive);
+    padding: var(--spacing-massive);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
+    
+    &::after {
       border-top-right-radius: 4px;
       border-top-left-radius: 4px;
-      margin-bottom: var(--spacing-massive);
-      padding: var(--spacing-massive);
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
-
-      &::after {
-        border-top-right-radius: 4px;
-        border-top-left-radius: 4px;
-      }
+    }
     `}
   `,
 );
@@ -171,9 +172,7 @@ export default function Contact({ location }) {
   return (
     <>
       <SEO path="/contact" title="Contact" description="Get in touch with me" />
-      <Header variant="dark" />
       <Wrapper>
-        <Hero />
         <Main>
           <Title as="h1" size="4xl" id="contact">
             Contact

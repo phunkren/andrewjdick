@@ -1,9 +1,11 @@
 import React from 'react';
 import { linearGradient } from 'polished';
 import styled, { css, createGlobalStyle } from 'styled-components';
+import { Hero } from './Hero';
 import { reset } from 'styled-reset';
 import { MEDIA } from '../styles/media';
 import 'prismjs/themes/prism-tomorrow.css';
+import { Header } from './Header';
 
 const Styles = createGlobalStyle(
   ({ theme }) => css`
@@ -107,6 +109,9 @@ const Styles = createGlobalStyle(
         fallback: `${theme.background}`,
       })};
       color: ${theme.copyColor};
+      max-width: 100%;
+      width: 100%;
+      overflow-x: hidden;
 
       & * {
         font-size: inherit;
@@ -218,10 +223,20 @@ const Styles = createGlobalStyle(
   `,
 );
 
-export const Layout = styled(({ children }) => {
+export const Layout = styled(({ location, children, data }) => {
+  const customHero = {
+    image: data?.markdownRemark?.frontmatter?.image,
+    alt: data?.markdownRemark?.frontmatter?.imageAlt,
+  };
+
   return (
     <>
       <Styles />
+
+      <Hero pathname={location?.pathname} customHero={customHero} />
+
+      <Header />
+
       {children}
     </>
   );

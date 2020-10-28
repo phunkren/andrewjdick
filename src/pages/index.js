@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { position } from 'polished';
 import Div100vh from 'react-div-100vh';
@@ -10,15 +10,7 @@ import { Header } from '../components/Header';
 import { Text } from '../components/Text';
 import { SEO } from '../components/SEO';
 import { MEDIA } from '../styles/media';
-
-const infiniteScroll = keyframes`
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(0, -300vh, 0);
-  }
-`;
+import { fadeInAnimation } from '../styles/animation';
 
 const Wrapper = styled(Div100vh)`
   flex: 1;
@@ -35,6 +27,7 @@ const Wrapper = styled(Div100vh)`
 const Main = styled.main`
   flex: 1;
   text-align: center;
+  ${fadeInAnimation};
 `;
 
 const Section = styled.section`
@@ -58,24 +51,11 @@ const Footer = styled.footer`
   justify-content: center;
   align-items: center;
   padding: 0 var(--spacing-medium) var(--spacing-medium);
+  ${fadeInAnimation};
 
   ${MEDIA.tablet`
     padding: 0 var(--spacing-huge) var(--spacing-huge);
   `};
-`;
-
-const Image = styled.div`
-  ${position('absolute', '100%', 0, null, 0)};
-  background-image: url(${lightbulbs});
-  background-repeat: repeat-y;
-  background-position: center;
-  background-size: cover;
-  height: 200vh;
-  margin-bottom: 100vh;
-  opacity: 0.025;
-  pointer-events: none;
-  animation: ${infiniteScroll} 30s linear infinite;
-  z-index: -1;
 `;
 
 export default function Home({ data }) {
@@ -87,8 +67,6 @@ export default function Home({ data }) {
     <>
       <SEO />
       <Wrapper>
-        <Header />
-
         <Main>
           <Section aria-label="Profile">
             <Text as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
@@ -114,20 +92,6 @@ export default function Home({ data }) {
 
         <Footer>
           <Social aria-label="Social" />
-
-          <figure aria-hidden="true">
-            <Image />
-            <Text as="figcaption" size="ps">
-              background courtesy of{' '}
-              <ExternalLink
-                href="https://absurd.design/"
-                tabIndex="-1"
-                highlight
-              >
-                absurd.design
-              </ExternalLink>
-            </Text>
-          </figure>
         </Footer>
       </Wrapper>
     </>

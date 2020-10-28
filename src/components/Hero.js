@@ -1,38 +1,53 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { MEDIA } from '../styles/media';
+import { infiniteScrollAnimation } from '../styles/animation';
 import lightbulbs from '../assets/images/lightbulbs.png';
+import Img from 'gatsby-image';
 
-const infiniteScroll = keyframes`
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(0, calc(-100vh - 250px), 0);
-  }
-`;
-
-const Container = styled.aside`
-  height: 200px;
-  background-color: var(--color-gray-600);
-  border-bottom: 2px solid var(--color-orange-400);
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
-  overflow: hidden;
-
-  &::after {
-    content: '';
+const Container = styled.aside(({ pathname, isBlogPost }) => [
+  css`
+    background-color: var(--color-gray-600);
+    border-bottom: 2px solid var(--color-orange-400);
     position: absolute;
     top: 0;
     right: 0;
-    bottom: 0;
     left: 0;
-    background-color: var(--color-black);
-    opacity: 0.9;
-  }
+    bottom: 0;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    transition: transform 0.4s ease-out;
+    will-change: transform;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: var(--color-black);
+      opacity: 0.9;
+    }
+  `,
+  pathname !== '/' &&
+    css`
+      transform: translateY(calc(-100vh + 200px));
+    `,
+  isBlogPost &&
+    css`
+      background-image: none;
+      transform: translateY(calc(-100vh + 300px));
+
+      ${MEDIA.desktop`
+        transform: translateY(calc(-100vh + 400px));
+      `}
+    `,
+]);
+
+const StyledImg = styled(Img)`
+  top: calc(100vh - 400px);
+  height: 400px;
 `;
 
 const Image = styled.div`
@@ -45,18 +60,27 @@ const Image = styled.div`
   z-index: -1;
 
   ${MEDIA.tablet`
-    animation: ${infiniteScroll} 60s linear infinite;
+    ${infiniteScrollAnimation};
     background-repeat: repeat-y;
     background-size: auto;
-    height: 200vh;
+    height: 400vh;
   `}
 `;
 
-export const Hero = ({ children, variant, ...props }) => {
+export const Hero = ({ children, pathname, customHero, ...props }) => {
+  const isBlog = pathname?.includes('/blog/');
+  const isBlogPost = isBlog && Boolean(pathname.split('/blog/')[1]);
+
   return (
-    <Container {...props}>
-      {variant !== 'blog' ? <Image /> : null}
-      {children}
+    <Container pathname={pathname} isBlogPost={isBlogPost} {...props}>
+      {isBlogPost ? (
+        <StyledImg
+          fluid={customHero.image.childImageSharp.fluid}
+          alt={customHero.alt}
+        />
+      ) : (
+        <Image />
+      )}
     </Container>
   );
 };

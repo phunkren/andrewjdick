@@ -17,10 +17,9 @@ import { Text } from '../components/Text';
 import { DownloadIcon, PrintIcon } from '../components/icons';
 import { SEO } from '../components/SEO';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { Hero } from '../components/Hero';
-import { Header } from '../components/Header';
 import { convertPxToRem } from '../utils/unitConversion';
 import { Footer } from '../components/Footer';
+import { fadeInAnimation, scrollRightAnimation } from '../styles/animation';
 
 const List = styled.ul`
   margin-bottom: var(--spacing-huge);
@@ -42,6 +41,10 @@ const StyledExternalLink = styled(ExternalLink)`
 const Wrap = styled.div(
   ({ theme }) => css`
     width: 100%;
+
+    ${MEDIA.tablet`
+      ${scrollRightAnimation};
+    `}
   `,
 );
 
@@ -71,6 +74,10 @@ const Container = styled.div(
     position: relative;
     background-color: ${theme.overlay10};
     border-top: 1px solid ${theme.cvBorderColor};
+
+    & > * {
+      ${fadeInAnimation};
+    }
 
     ${MEDIA.tablet`
       border-top: none;
@@ -379,10 +386,8 @@ export default function CV({ data, location: { pathname } }) {
         title="CV"
         description="An overview of my experience and technical expertise"
       />
-      <Header variant="dark" />
 
       <Wrap>
-        <Hero />
         <Main>
           <Title as="h1" size="4xl" id="cv">
             CV

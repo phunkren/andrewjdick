@@ -6,11 +6,10 @@ import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
 import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { Hero } from '../components/Hero';
-import { Header } from '../components/Header';
 import { convertPxToRem } from '../utils/unitConversion';
 import { Footer } from '../components/Footer';
 import { ArrowRightIcon } from '../components/icons/ArrowRIght';
+import { fadeInAnimation, scrollUpAnimation } from '../styles/animation';
 
 const Main = styled.main`
   flex: 1;
@@ -33,6 +32,7 @@ const Main = styled.main`
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
+  ${scrollUpAnimation};
 `;
 
 const ListItem = styled.li``;
@@ -60,6 +60,10 @@ const Preview = styled.article(
     border-radius: 4px;
     background-color: ${theme.overlay10};
     color: ${theme.cardColor};
+
+    & > * {
+      ${fadeInAnimation};
+    }
 
     ${MEDIA.tablet`
       padding: var(--spacing-huge);
@@ -150,9 +154,7 @@ export default function Blog({ data, location: { pathname } }) {
         title="Blog"
         description="Personal contributions to modern frontend web development"
       />
-      <Header variant="dark" />
       <Wrapper>
-        <Hero />
         <Main>
           <StyledTitle as="h1" size="4xl" id="blog">
             Blog
