@@ -12,7 +12,7 @@ import Img from 'gatsby-image';
 const Lightbulbs = styled.div`
   background-image: url(${lightbulbs});
   ${infiniteScrollAnimation};
-  background-repeat: repeat-y;
+  background-repeat: repeat;
   background-position: center;
   height: 400vh;
   width: 100vw;

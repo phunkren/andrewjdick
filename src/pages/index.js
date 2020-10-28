@@ -7,6 +7,7 @@ import { Text } from '../components/Text';
 import { SEO } from '../components/SEO';
 import { MEDIA } from '../styles/media';
 import { fadeInAnimation } from '../styles/animation';
+import { convertPxToRem } from '../utils/unitConversion';
 
 const Wrapper = styled(Div100vh)`
   flex: 1;
@@ -42,6 +43,11 @@ const Section = styled.section`
   `}
 `;
 
+const Title = styled(Text)`
+  color: var(--color-orange-400);
+  text-shadow: 1px 1px var(--color-charcoal);
+`;
+
 export default function Home({ data }) {
   const { experience } = data.experienceJson;
   const { author } = data.site.siteMetadata;
@@ -53,10 +59,10 @@ export default function Home({ data }) {
       <Wrapper>
         <Main>
           <Section aria-label="Profile">
-            <Text as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
+            <Title as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
               {author.name}
-            </Text>
-            <Text aria-label={`Position: ${currentEmployer.position}`}>
+            </Title>
+            <Text size="m" aria-label={`Position: ${currentEmployer.position}`}>
               {currentEmployer.position}
             </Text>
             <Text size="m"> @ </Text>
@@ -65,7 +71,7 @@ export default function Home({ data }) {
               href={currentEmployer.url}
               highlight
             >
-              <Text>{currentEmployer.company}</Text>
+              <Text size="m">{currentEmployer.company}</Text>
             </ExternalLink>
             <br />
             <Text aria-label={`Location: ${author.location}`}>
