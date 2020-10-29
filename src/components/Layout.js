@@ -7,7 +7,6 @@ import { MEDIA } from '../styles/media';
 import 'prismjs/themes/prism-tomorrow.css';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { fadeInAnimation } from '../styles/animation';
 
 const Styles = createGlobalStyle(
   ({ theme }) => css`
@@ -230,8 +229,6 @@ const Div = styled.div`
   display: flex;
   flex-flow: column;
   min-height: 100%;
-  ${fadeInAnimation};
-  animation-delay: 0.5s;
 `;
 
 export const Layout = styled(({ location, children, data }) => {

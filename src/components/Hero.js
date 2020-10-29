@@ -1,11 +1,8 @@
 import React from 'react';
+import { animated } from 'react-spring/renderprops';
 import styled, { css } from 'styled-components';
 import { MEDIA } from '../styles/media';
-import {
-  fadeOutAnimation,
-  fadeThroughAnimation,
-  infiniteScrollAnimation,
-} from '../styles/animation';
+import { fadeOutAnimation, infiniteScrollAnimation } from '../styles/animation';
 import lightbulbs from '../assets/images/lightbulbs.png';
 import Img from 'gatsby-image';
 
@@ -23,10 +20,9 @@ const BlogHero = styled(Img)`
   top: calc(100vh - 400px);
   height: 400px;
   z-index: 1;
-  ${fadeThroughAnimation};
 `;
 
-const Container = styled.aside(({ isHomepage, isBlogPost }) => [
+const Container = styled(animated.aside)(({ isHomepage, isBlogPost }) => [
   css`
     background-color: var(--color-gray-600);
     border-bottom: 2px solid var(--color-orange-400);

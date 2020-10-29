@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { animated } from 'react-spring/renderprops';
 import styled, { css } from 'styled-components';
 import { navigate } from 'gatsby-link';
 import { SEO } from '../components/SEO';
@@ -8,7 +9,7 @@ import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
 import { encode } from '../utils/encode';
-import { fadeInAnimation, fadeThroughAnimation } from '../styles/animation';
+import { FadeIn, FadeThrough } from '../components/Transition';
 
 const Main = styled.main`
   flex: 1;
@@ -25,9 +26,8 @@ const Main = styled.main`
   max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
 
   ${MEDIA.tablet`
-  padding: 0 var(--spacing-huge);
-  margin-bottom: var(--spacing-massive);
-  ${fadeThroughAnimation};
+    padding: 0 var(--spacing-huge);
+    margin-bottom: var(--spacing-massive);
   `}
 `;
 
@@ -73,7 +73,7 @@ const Button = styled.button`
   `}
 `;
 
-const Form = styled.form(
+const Form = styled(animated.form)(
   ({ theme }) => css`
     flex: 1;
     display: flex;
@@ -85,23 +85,19 @@ const Form = styled.form(
     border-bottom-left-radius: 4px;
     border-top: 2px solid var(--color-orange-400);
 
-    & > * {
-      ${fadeInAnimation};
-    }
-
     ${MEDIA.tablet`
-    flex: 0 1 auto;
-    border-top: none;
-    border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
-    margin-bottom: var(--spacing-massive);
-    padding: var(--spacing-massive);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
-    
-    &::after {
+      flex: 0 1 auto;
+      border-top: none;
       border-top-right-radius: 4px;
       border-top-left-radius: 4px;
-    }
+      margin-bottom: var(--spacing-massive);
+      padding: var(--spacing-massive);
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
+      
+      &::after {
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+      }
     `}
   `,
 );
@@ -171,119 +167,138 @@ export default function Contact({ location }) {
           <Title as="h1" size="4xl" id="contact">
             Contact
           </Title>
-          <Form
-            name="contact"
-            method="POST"
-            action="/contact"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
-            onSubmit={handleSubmit}
-          >
-            {success ? (
-              <>
-                <TickIcon
-                  width="3rem"
-                  height="3rem"
-                  css="color: var(--color-green-400); margin-bottom: var(--spacing-huge);"
-                />
-                <Text
-                  size="xxxl"
-                  as="h2"
-                  css="margin-bottom: var(--spacing-huge);"
-                >
-                  Thanks!
-                </Text>
-                <Text as="p" css="margin-bottom: var(--spacing-medium);">
-                  Your message has been successfully submitted. I&apos;ll be in
-                  touch shortly.
-                </Text>
-                <Text as="p" css="margin-bottom: var(--spacing-medium);">
-                  Forget to ask something?{' '}
-                  <StyledLink to="/contact" getProps={() => {}}>
-                    Submit another message
-                  </StyledLink>
-                </Text>
-              </>
-            ) : (
-              <>
-                <label htmlFor="form-name" hidden>
-                  <Text>Netlify requires this:</Text>
-                  <Input
-                    id="form-name"
-                    name="form-name"
-                    value="contact"
-                    readOnly
-                  />
-                </label>
+          <FadeThrough>
+            {styles => (
+              <Form
+                name="contact"
+                method="POST"
+                action="/contact"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                onSubmit={handleSubmit}
+                style={styles}
+              >
+                {success ? (
+                  <FadeIn>
+                    {styles => (
+                      <animated.div style={styles}>
+                        <TickIcon
+                          width="3rem"
+                          height="3rem"
+                          css="color: var(--color-green-400); margin-bottom: var(--spacing-huge);"
+                        />
+                        <Text
+                          size="xxxl"
+                          as="h2"
+                          css="margin-bottom: var(--spacing-huge);"
+                        >
+                          Thanks!
+                        </Text>
+                        <Text
+                          as="p"
+                          css="margin-bottom: var(--spacing-medium);"
+                        >
+                          Your message has been successfully submitted.
+                          I&apos;ll be in touch shortly.
+                        </Text>
+                        <Text
+                          as="p"
+                          css="margin-bottom: var(--spacing-medium);"
+                        >
+                          Forget to ask something?{' '}
+                          <StyledLink to="/contact" getProps={() => {}}>
+                            Submit another message
+                          </StyledLink>
+                        </Text>
+                      </animated.div>
+                    )}
+                  </FadeIn>
+                ) : (
+                  <FadeIn>
+                    {styles => (
+                      <animated.div style={styles}>
+                        <label htmlFor="form-name" hidden>
+                          <Text>Netlify requires this:</Text>
+                          <Input
+                            id="form-name"
+                            name="form-name"
+                            value="contact"
+                            readOnly
+                          />
+                        </label>
 
-                <label htmlFor="bot-field" hidden>
-                  <Text>Don’t fill this out:</Text>
-                  <Input id="bot-field" name="bot-field" />
-                </label>
+                        <label htmlFor="bot-field" hidden>
+                          <Text>Don’t fill this out:</Text>
+                          <Input id="bot-field" name="bot-field" />
+                        </label>
 
-                <label
-                  htmlFor="email"
-                  css="margin-bottom: var(--spacing-huge);"
-                >
-                  <Text
-                    size="xs"
-                    css="display: block; margin-bottom: var(--spacing-tiny);"
-                  >
-                    From
-                  </Text>
-                  <Input
-                    id="email"
-                    type="email"
-                    name="contact-email"
-                    placeholder="your@email.com"
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
+                        <label
+                          htmlFor="email"
+                          css="display: block; margin-bottom: var(--spacing-huge);"
+                        >
+                          <Text
+                            size="xs"
+                            css="display: block; margin-bottom: var(--spacing-tiny);"
+                          >
+                            From
+                          </Text>
+                          <Input
+                            id="email"
+                            type="email"
+                            name="contact-email"
+                            placeholder="your@email.com"
+                            onChange={handleChange}
+                            required
+                          />
+                        </label>
 
-                <label
-                  htmlFor="subject"
-                  css="margin-bottom: var(--spacing-huge);"
-                >
-                  <Text
-                    size="xs"
-                    css="display: block; margin-bottom: var(--spacing-tiny);"
-                  >
-                    Subject
-                  </Text>
-                  <Input
-                    id="subject"
-                    name="contact-subject"
-                    placeholder="Let's get in touch"
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
+                        <label
+                          htmlFor="subject"
+                          css="display: block; margin-bottom: var(--spacing-huge);"
+                        >
+                          <Text
+                            size="xs"
+                            css="display: block; margin-bottom: var(--spacing-tiny);"
+                          >
+                            Subject
+                          </Text>
+                          <Input
+                            id="subject"
+                            name="contact-subject"
+                            placeholder="Let's get in touch"
+                            onChange={handleChange}
+                            required
+                          />
+                        </label>
 
-                <label
-                  htmlFor="message"
-                  css="margin-bottom: var(--spacing-massive);"
-                >
-                  <Text
-                    size="xs"
-                    css="display: block; margin-bottom: var(--spacing-medium);"
-                  >
-                    Message
-                  </Text>
-                  <TextArea
-                    id="message"
-                    name="contact-message"
-                    rows="6"
-                    minlength="20"
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
+                        <label
+                          htmlFor="message"
+                          css="display: block; margin-bottom: var(--spacing-massive);"
+                        >
+                          <Text
+                            size="xs"
+                            css="display: block; margin-bottom: var(--spacing-medium);"
+                          >
+                            Message
+                          </Text>
+                          <TextArea
+                            id="message"
+                            name="contact-message"
+                            rows="6"
+                            minlength="20"
+                            onChange={handleChange}
+                            required
+                          />
+                        </label>
 
-                <Button type="submit">Send</Button>
-              </>
+                        <Button type="submit">Send</Button>
+                      </animated.div>
+                    )}
+                  </FadeIn>
+                )}
+              </Form>
             )}
-          </Form>
+          </FadeThrough>
         </Main>
       </Wrapper>
     </>

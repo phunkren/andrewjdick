@@ -34,7 +34,7 @@ const Overlay = styled(DialogOverlay)`
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.75);
     z-index: 50;
-    ${fadeInAnimation};
+    /* ${fadeInAnimation}; */
   }
 `;
 
