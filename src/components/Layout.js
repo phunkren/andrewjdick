@@ -97,7 +97,7 @@ const Styles = createGlobalStyle(
 
     html {
       display: flex;
-      height: 100%;
+      min-height: 100%;
     }
 
     &::-webkit-scrollbar {
