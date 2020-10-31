@@ -100,6 +100,10 @@ const Styles = createGlobalStyle(
       height: 100%;
     }
 
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
     body {
       font: 20px var(--font-copy);
       font: 1.15rem var(--font-copy);

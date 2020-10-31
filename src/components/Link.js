@@ -86,8 +86,8 @@ const isPartiallyActive = ({ isPartiallyCurrent }) =>
 export const Link = styled(({ navigate, ...props }) => {
   return (
     <TransitionLink
-      entry={{ length: 0.21 }}
-      exit={{ length: 0.09 }}
+      entry={{ length: 0.4 }}
+      exit={{ length: 0.2 }}
       getProps={isPartiallyActive}
       {...props}
     />

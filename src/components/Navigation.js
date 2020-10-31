@@ -8,7 +8,7 @@ const ListItem = styled.li`
   ${SIZES['l']};
 `;
 
-const List = styled.ul(({ column }) => [
+const List = styled.ul(({ theme, column }) => [
   css`
   display: flex;
   flex-flow: row;
@@ -35,7 +35,7 @@ const List = styled.ul(({ column }) => [
 
 export const Navigation = styled(
   ({ column = false, onLinkClick, ...props }) => (
-    <nav aria-label="Main" {...props}>
+    <nav aria-label="Main" css="color: var(--color-white);" {...props}>
       <List column={column}>
         <ListItem>
           <Link to="/blog" onClick={onLinkClick}>

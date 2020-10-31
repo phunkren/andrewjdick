@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { CustomCheckboxContainer, CustomCheckboxInput } from '@reach/checkbox';
 import '@reach/checkbox/styles.css';
 import { DEFAULT_THEME, THEMES } from '../styles/themes';
@@ -34,6 +34,8 @@ export const Theme = props => {
     setTheme(validate(localTheme) ? localTheme : DEFAULT_THEME);
   }
 
+  console.log('render', { theme });
+
   return validate(theme) ? (
     <ThemeContext.Provider value={{ theme, update }}>
       <ThemeProvider theme={THEMES[theme]} {...props} />
@@ -53,7 +55,7 @@ export const ThemeToggle = props => {
     <CustomCheckboxContainer
       checked={checked}
       onChange={handleChange}
-      css="width: 48px; height: 48px; margin: 0;"
+      css="width: 44px; height: 44px; margin: 0;"
       {...props}
     >
       <label

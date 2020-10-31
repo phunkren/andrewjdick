@@ -124,6 +124,7 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
           <StyledLink
             to={`/blog${fields.slug}`}
             aria-label="Click to read the article in full"
+            css="font-weight: 600;"
           >
             Read more{' '}
             <ArrowRightIcon

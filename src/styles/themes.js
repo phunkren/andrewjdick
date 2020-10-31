@@ -5,6 +5,8 @@ const LIGHT_THEME = {
   headerColor: 'var(--color-charcoal)',
   copyColor: 'var(--color-black)',
   linkColor: 'var(--color-blue-700)',
+  heroColor: 'var(--color-white)',
+  navLinkColor: 'var(--color-charcoal)',
   highlightColor: 'var(--color-blue-600)',
   auxiliaryColor: 'var(--color-gray-700)',
   borderColor: 'var(--color-charcoal)',
@@ -23,9 +25,8 @@ const LIGHT_THEME = {
   cvInterfaceColor: 'var(--color-charcoal)',
   cvBorderColor: 'var(--color-charcoal)',
   blogSyntaxColor: 'var(--color-gray-600)',
-  navLinkHover: 'var(--color-orange-500)',
-  overlay5: `${mix(0.9, 'rgb(255,255,255)', 'rgb(0, 0, 0)')}`,
-  overlay10: `${mix(0.95, 'rgb(255,255,255)', 'rgb(0,0,0)')}`,
+  overlay5: `${mix(0.95, '#edf2f7', '#000000')}`,
+  overlay10: 'var(--color-white)',
 };
 
 const DARK_THEME = {
@@ -33,6 +34,8 @@ const DARK_THEME = {
   headerColor: 'var(--color-gray-200)',
   copyColor: 'var(--color-white)',
   linkColor: 'var(--color-blue-400)',
+  heroColor: 'var(--color-black)',
+  navLinkColor: 'var(--color-orange-400)',
   highlightColor: 'var(--color-orange-400)',
   auxiliaryColor: 'var(--color-gray-400)',
   borderColor: 'var(--color-charcoal)',
@@ -51,7 +54,6 @@ const DARK_THEME = {
   cvInterfaceColor: 'var(--color-gray-600)',
   cvBorderColor: 'var(--color-orange-400)',
   blogSyntaxColor: 'var(--color-orange-400)',
-  navLinkHover: 'var(--color-blue-500)',
   overlay5: `${mix(0.95, 'rgb(0,0,0)', 'rgb(255, 255, 255)')}`,
   overlay10: `${mix(0.925, 'rgb(0,0,0)', 'rgb(255,255,255)')}`,
 };

@@ -34,6 +34,7 @@ const Section = styled(animated.section)`
   right: 0;
   transform: translateY(-50%);
   padding: 0 var(--spacing-medium);
+  color: var(--color-white);
 
   ${MEDIA.tablet`
     left: 50%;
@@ -44,7 +45,7 @@ const Section = styled(animated.section)`
 
 const Title = styled(Text)`
   color: var(--color-orange-400);
-  text-shadow: 1px 1px var(--color-charcoal);
+  text-shadow: 2px 2px var(--color-charcoal);
 `;
 
 export default function Home({ data }) {

@@ -164,9 +164,15 @@ export default function Contact({ location }) {
       <SEO path="/contact" title="Contact" description="Get in touch with me" />
       <Wrapper>
         <Main>
-          <Title as="h1" size="4xl" id="contact">
-            Contact
-          </Title>
+          <FadeIn>
+            {styles => (
+              <animated.div style={styles}>
+                <Title as="h1" size="4xl" id="contact">
+                  Contact
+                </Title>
+              </animated.div>
+            )}
+          </FadeIn>
           <FadeThrough>
             {styles => (
               <Form

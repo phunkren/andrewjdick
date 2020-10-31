@@ -51,6 +51,8 @@ const Main = styled.main`
   margin-right: auto;
   margin-bottom: 0;
   margin-left: auto;
+  padding-right: var(--spacing-medium);
+  padding-left: var(--spacing-medium);
   max-width: ${convertPxToRem(BREAKPOINTS.desktopWide)};
 
   ${MEDIA.tablet`
@@ -70,17 +72,12 @@ const Container = styled(animated.div)(
     flex-direction: column;
     position: relative;
     background-color: ${theme.overlay10};
-    border-top: 1px solid ${theme.cvBorderColor};
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+    margin-bottom: var(--spacing-large);
 
     ${MEDIA.tablet`
-      border-top: none;
-      border-radius: 4px;
       margin-bottom: var(--spacing-massive);
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
-
-      &::after {
-        border-radius: 4px;
-      }
     `}
 
     ${MEDIA.print`

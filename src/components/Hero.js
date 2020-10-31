@@ -22,10 +22,10 @@ const BlogHero = styled(Img)`
   z-index: 1;
 `;
 
-const Container = styled(animated.aside)(({ isHomepage, isBlogPost }) => [
+const Container = styled(animated.aside)(({ $blog, $home, theme }) => [
   css`
-    background-color: var(--color-gray-600);
-    border-bottom: 2px solid var(--color-orange-400);
+    background-color: var(--color-gray-400);
+    border-bottom: 2px solid var(--color-orange-600);
     position: absolute;
     top: 0;
     right: 0;
@@ -44,16 +44,16 @@ const Container = styled(animated.aside)(({ isHomepage, isBlogPost }) => [
       bottom: 0;
       left: 0;
       background-color: var(--color-black);
-      opacity: 0.9;
+      opacity: 0.95;
       z-index: 2;
     }
   `,
-  !isHomepage &&
+  !$home &&
     css`
       transform: translateY(calc(-100vh + 200px));
       transition: transform 0.3s ease-out;
     `,
-  isBlogPost &&
+  $blog &&
     css`
       transform: translateY(calc(-100vh + 300px));
 
@@ -68,7 +68,7 @@ const Container = styled(animated.aside)(({ isHomepage, isBlogPost }) => [
 ]);
 
 export const Hero = ({ customHero, isBlogPost, isHomepage, ...props }) => (
-  <Container isBlogPost={isBlogPost} isHomepage={isHomepage} {...props}>
+  <Container $blog={isBlogPost} $home={isHomepage} {...props}>
     {isBlogPost ? (
       <BlogHero
         fluid={customHero.image.childImageSharp.fluid}

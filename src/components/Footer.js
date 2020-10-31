@@ -53,7 +53,7 @@ const Inner = styled.div(({ isHomepage }) => [
     css`
       justify-content: center;
       padding: var(--spacing-medium) var(--spacing-medium);
-      /* ${fadeInAnimation}; */
+      color: var(--color-white);
       animation-delay: 0.5s;
 
       ${ContactLink} {
@@ -79,7 +79,7 @@ export const Footer = ({ isHomepage, ...props }) => {
   return (
     <Outer {...props}>
       <Inner isHomepage={isHomepage}>
-        <ContactLink href="mailto:contact@ajames.dev">
+        <ContactLink href="mailto:contact@ajames.dev" css="font-weight: 600;">
           <Text size="xs">contact@ajames.dev</Text>
           <EmailIcon width="1.5rem" height="1.5rem" />
         </ContactLink>
