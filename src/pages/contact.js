@@ -152,6 +152,12 @@ export default function Contact({ location }) {
       .catch(error => alert(error));
   }
 
+  if (location?.search?.includes('success') && !success) {
+    navigate('/contact', {
+      replace: true,
+    });
+  }
+
   return (
     <>
       <SEO

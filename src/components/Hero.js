@@ -52,10 +52,12 @@ const Container = styled(animated.aside)(({ $blog, $home, theme }) => [
   !$home &&
     css`
       transform: translateY(calc(-100% + 12.5rem));
+      transition: transform 0.5s ease-out;
     `,
   $blog &&
     css`
       transform: translateY(calc(-100% + 25rem));
+      transition: transform 0.5s ease-out;
 
       ${Lightbulbs} {
         opacity: 0;

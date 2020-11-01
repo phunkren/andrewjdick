@@ -53,7 +53,7 @@ const Inner = styled.div(({ isHomepage }) => [
     css`
       justify-content: center;
       padding: var(--spacing-medium) var(--spacing-medium);
-      color: var(--color-white);
+      color: var(--color-gray-200);
       ${fadeInAnimation};
       animation-delay: 0.5s;
 

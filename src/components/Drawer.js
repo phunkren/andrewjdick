@@ -75,7 +75,7 @@ const DrawerSpring = Keyframes.Spring({
 const StyledNavigation = styled(Navigation)(
   ({ theme }) => css`
     color: ${theme.copyColor};
-    margin-top: var(--spacing-large);
+    margin-top: var(--spacing-huge);
     padding-left: var(--spacing-medium);
   `,
 );
