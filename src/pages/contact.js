@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { animated } from 'react-spring/renderprops';
 import styled, { css } from 'styled-components';
-import { navigate } from 'gatsby';
+import { navigate } from '@reach/router';
 import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
 import { TickIcon } from '../components/icons';
@@ -120,6 +120,8 @@ export default function Contact({ location }) {
   const [state, setState] = useState({});
   const { success } = location.state || {};
 
+  console.log({ state: location.state });
+
   function handleChange(event) {
     setState({
       ...state,
@@ -152,7 +154,11 @@ export default function Contact({ location }) {
 
   return (
     <>
-      <SEO path="/contact" title="Contact" description="Get in touch with me" />
+      <SEO
+        path="?success=true"
+        title="Contact"
+        description="Get in touch with me"
+      />
       <Wrapper>
         <Main>
           <FadeIn>
@@ -169,7 +175,7 @@ export default function Contact({ location }) {
               <Form
                 name="contact"
                 method="POST"
-                action="/contact"
+                action="/contact?success=true"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
@@ -179,34 +185,31 @@ export default function Contact({ location }) {
                   <FadeIn>
                     {styles => (
                       <animated.div style={styles}>
-                        <TickIcon
-                          width="3rem"
-                          height="3rem"
-                          css="color: var(--color-green-400); margin-bottom: var(--spacing-huge);"
-                        />
-                        <Text
-                          size="xxxl"
-                          as="h2"
-                          css="margin-bottom: var(--spacing-huge);"
-                        >
-                          Thanks!
+                        <div css="display: flex; align-items: center; margin-bottom: var(--spacing-huge);">
+                          <TickIcon
+                            width="3rem"
+                            height="3rem"
+                            css="color: var(--color-green-400); margin-right: var(--spacing-medium);"
+                          />
+                          <Text size="xxxl" as="h2">
+                            Thanks!
+                          </Text>
+                        </div>
+                        <Text as="p" css="margin-bottom: var(--spacing-huge);">
+                          Your message was submitted successfully. I&apos;ll be
+                          in touch.
                         </Text>
-                        <Text
-                          as="p"
-                          css="margin-bottom: var(--spacing-medium);"
-                        >
-                          Your message has been successfully submitted.
-                          I&apos;ll be in touch shortly.
+                        <Text as="p" css="margin-bottom: var(--spacing-small);">
+                          Forget to ask something?
                         </Text>
-                        <Text
-                          as="p"
-                          css="margin-bottom: var(--spacing-medium);"
+                        <StyledLink
+                          to="/contact"
+                          state={{ success: false }}
+                          replace
+                          getProps={() => {}}
                         >
-                          Forget to ask something?{' '}
-                          <StyledLink to="/contact" getProps={() => {}}>
-                            Submit another message
-                          </StyledLink>
-                        </Text>
+                          Submit another message
+                        </StyledLink>
                       </animated.div>
                     )}
                   </FadeIn>

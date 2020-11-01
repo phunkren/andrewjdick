@@ -60,7 +60,12 @@ export const ThemeToggle = props => {
         htmlFor="toggle"
         css={`display: flex; align-items: center; justify-content: center; width: 100%; height 100%;`}
       >
-        <LightIcon on={!checked} aria-label="Theme toggle" />
+        <LightIcon
+          on={!checked}
+          aria-label="Theme toggle"
+          width="2rem"
+          height="2rem"
+        />
 
         <CustomCheckboxInput
           id="toggle"

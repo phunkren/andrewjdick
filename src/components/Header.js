@@ -122,7 +122,7 @@ export const Header = ({ variant }) => {
             aria-label="Navigation menu"
             onClick={toggleMobileNavigation}
           >
-            <HamburgerIcon width="1.5rem" height="1.5rem" />
+            <HamburgerIcon />
           </MobileNavigationButton>
         </Inner>
       </Outer>

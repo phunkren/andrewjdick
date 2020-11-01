@@ -82,10 +82,10 @@ export const Footer = ({ isHomepage, ...props }) => {
       <Inner isHomepage={isHomepage}>
         <ContactLink href="mailto:contact@ajames.dev" css="font-weight: 600;">
           <Text size="xs">contact@ajames.dev</Text>
-          <EmailIcon width="1.5rem" height="1.5rem" />
+          <EmailIcon />
         </ContactLink>
 
-        <Social size={isHomepage ? '2rem' : '1.5rem'} />
+        <Social size={isHomepage ? '2rem' : '1.75rem'} />
       </Inner>
     </Outer>
   );

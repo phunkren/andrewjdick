@@ -10,7 +10,6 @@ import { CrossIcon } from './icons/CrossIcon';
 import { ThemeToggle } from './Theme';
 import { fadeInAnimation } from '../styles/animation';
 import Div100vh from 'react-div-100vh';
-import { linearGradient } from 'polished';
 
 const StyledDialogContent = styled(DialogContent)(({ theme }) => [
   css`
@@ -54,7 +53,7 @@ const Content = styled(animated.div)(({ theme }) => [
     flex-flow: column;
     margin: 0;
     margin-right: auto;
-    padding: var(--spacing-medium) var(--spacing-medium) var(--spacing-huge);
+    padding: var(--spacing-medium) var(--spacing-medium) var(--spacing-large);
     background-color: ${theme.overlay10};
     border-right: 1px solid var(--color-gray400);
     color: ${theme.copyColor};
@@ -117,7 +116,7 @@ export const Drawer = ({ state, onDismiss, ...props }) => {
                     aria-label="Close navigation menu"
                     onClick={onDismiss}
                   >
-                    <CrossIcon width="1.5rem" height="1.5rem" />
+                    <CrossIcon />
                   </CloseButton>
 
                   <ThemeToggle />

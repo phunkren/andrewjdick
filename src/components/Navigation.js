@@ -2,10 +2,15 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { SIZES } from './Text';
 import { Link } from './Link';
+import { MEDIA } from '../styles/media';
 
 const ListItem = styled.li`
   display: inline;
-  ${SIZES['l']};
+  ${SIZES['xl']};
+
+  ${MEDIA.tablet`
+    ${SIZES['l']};
+  `}
 `;
 
 const List = styled.ul(({ theme, column }) => [
