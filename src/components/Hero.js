@@ -17,9 +17,14 @@ const Lightbulbs = styled.div`
 `;
 
 const BlogHero = styled(Img)`
-  top: calc(100vh - 400px);
-  height: 400px;
+  top: calc(100% - 18.75rem);
+  height: 18.75rem;
   z-index: 1;
+
+  ${MEDIA.desktop`
+    top: calc(100% - 25rem);
+    height: 25rem;
+  `}
 `;
 
 const Container = styled(animated.aside)(({ $blog, $home, theme }) => [
