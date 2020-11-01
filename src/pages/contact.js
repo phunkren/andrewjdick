@@ -127,8 +127,6 @@ export default function Contact({ location }) {
     });
   }
 
-  console.log({ success });
-
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -144,7 +142,6 @@ export default function Contact({ location }) {
       }),
     })
       .then(() => {
-        console.log('we here', form.getAttribute('action'));
         navigate(form.getAttribute('action'), {
           state: { success: true },
           replace: true,

@@ -34,8 +34,6 @@ export const Theme = props => {
     setTheme(validate(localTheme) ? localTheme : DEFAULT_THEME);
   }
 
-  console.log('render', { theme });
-
   return validate(theme) ? (
     <ThemeContext.Provider value={{ theme, update }}>
       <ThemeProvider theme={THEMES[theme]} {...props} />
