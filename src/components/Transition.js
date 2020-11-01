@@ -44,7 +44,7 @@ export const FadeIn = ({ children }) => {
             enter={{ opacity: 1 }}
             leave={{ opacity: 0 }}
             config={[
-              { duration: 310, delay: 250, easing: t => d3.easeSinOut(t) },
+              { duration: 210, delay: 200, easing: t => d3.easeSinOut(t) },
             ]}
           >
             {mount => mount && (props => children(props))}

@@ -25,15 +25,16 @@ const BlogHero = styled(Img)`
 const Container = styled(animated.aside)(({ $blog, $home, theme }) => [
   css`
     background-color: var(--color-gray-400);
-    border-bottom: 2px solid var(--color-orange-600);
+    border-bottom: 2px solid;
+    border-bottom-color: var(--color-charcoal);
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
-    bottom: 0;
+    bottom: -2px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
     overflow: hidden;
-    transition: transform 0.55s ease-out;
+    transition: transform 0.5s ease-out, border-color 0.5s linear;
     will-change: transform;
 
     &::after {
@@ -51,7 +52,7 @@ const Container = styled(animated.aside)(({ $blog, $home, theme }) => [
   !$home &&
     css`
       transform: translateY(calc(-100% + 12.5rem));
-      transition: transform 0.3s ease-out;
+      border-bottom-color: var(--color-orange-600);
     `,
   $blog &&
     css`

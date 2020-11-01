@@ -9,6 +9,7 @@ import { IconButton } from './Button';
 import { CrossIcon } from './icons/CrossIcon';
 import { ThemeToggle } from './Theme';
 import { fadeInAnimation } from '../styles/animation';
+import Div100vh from 'react-div-100vh';
 
 const StyledDialogContent = styled(DialogContent)(({ theme }) => [
   css`
@@ -92,34 +93,36 @@ export const Drawer = ({ state, onDismiss, ...props }) => {
       <StyledDialogContent aria-label="Mobile navigation menu" {...props}>
         <DrawerSpring native state={state}>
           {({ x }) => (
-            <Content
-              style={{
-                transform: x.interpolate(x => `translate3d(${x}vw,0,0)`),
-              }}
-            >
-              <div
-                css={`
-                  height: 60px;
-                  display: flex;
-                  flex-direction: row-reverse;
-                  justify-content: space-between;
-                  align-items: center;
-                `}
+            <Div100vh>
+              <Content
+                style={{
+                  transform: x.interpolate(x => `translate3d(${x}vw,0,0)`),
+                }}
               >
-                <CloseButton
-                  aria-label="Close navigation menu"
-                  onClick={onDismiss}
+                <div
+                  css={`
+                    height: 60px;
+                    display: flex;
+                    flex-direction: row-reverse;
+                    justify-content: space-between;
+                    align-items: center;
+                  `}
                 >
-                  <CrossIcon width="1.5rem" height="1.5rem" />
-                </CloseButton>
+                  <CloseButton
+                    aria-label="Close navigation menu"
+                    onClick={onDismiss}
+                  >
+                    <CrossIcon width="1.5rem" height="1.5rem" />
+                  </CloseButton>
 
-                <ThemeToggle />
-              </div>
+                  <ThemeToggle />
+                </div>
 
-              <StyledNavigation column onLinkClick={onDismiss} />
+                <StyledNavigation column onLinkClick={onDismiss} />
 
-              <Social css="justify-content: space-around; margin-top: auto;" />
-            </Content>
+                <Social css="justify-content: space-around; margin-top: auto;" />
+              </Content>
+            </Div100vh>
           )}
         </DrawerSpring>
       </StyledDialogContent>
