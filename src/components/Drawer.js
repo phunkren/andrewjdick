@@ -10,6 +10,7 @@ import { CrossIcon } from './icons/CrossIcon';
 import { ThemeToggle } from './Theme';
 import { fadeInAnimation } from '../styles/animation';
 import Div100vh from 'react-div-100vh';
+import { linearGradient } from 'polished';
 
 const StyledDialogContent = styled(DialogContent)(({ theme }) => [
   css`
@@ -32,7 +33,7 @@ const StyledDialogOverlay = styled(DialogOverlay)(({ state }) => [
   css`
     &[data-reach-dialog-overlay] {
       width: 100vw;
-      background-color: rgba(0, 0, 0, 0.95);
+      background-color: rgba(0, 0, 0, 0.8);
       transition: background-color 0.5s ease-out;
       z-index: 50;
       ${fadeInAnimation};
@@ -55,7 +56,7 @@ const Content = styled(animated.div)(({ theme }) => [
     margin-right: auto;
     padding: var(--spacing-medium) var(--spacing-medium) var(--spacing-huge);
     background-color: ${theme.overlay10};
-    border-right: 1px solid ${theme.highlightColor};
+    border-right: 1px solid var(--color-gray400);
     color: ${theme.copyColor};
     position: relative;
     width: 75vw;
