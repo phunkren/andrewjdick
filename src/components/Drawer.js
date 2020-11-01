@@ -18,6 +18,7 @@ const StyledDialogContent = styled(DialogContent)(({ theme }) => [
       background-color: transparent;
       width: 75vw;
       height: 100vh;
+      height: -webkit-fill-available;
     }
   `,
 ]);
