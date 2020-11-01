@@ -8,6 +8,8 @@ import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { linkStyles, highlightStyles } from '../components/Link';
 import { SIZES } from '../components/Text';
 import { convertPxToRem } from '../utils/unitConversion';
+import { FadeIn } from '../components/Transition';
+import { animated } from 'react-spring/renderprops';
 
 const Wrapper = styled.div`
   flex: 1;
@@ -245,9 +247,15 @@ function BlogTemplate({ data }) {
       <Wrapper>
         <Main>
           <article>
-            <Title as="h1" size="xxxl">
-              {frontmatter.title}
-            </Title>
+            <FadeIn>
+              {styles => (
+                <animated.div style={styles}>
+                  <Title as="h1" size="xxxl">
+                    {frontmatter.title}
+                  </Title>
+                </animated.div>
+              )}
+            </FadeIn>
 
             <Info size="xs">
               {frontmatter.date} | {fields.readingTime.text}

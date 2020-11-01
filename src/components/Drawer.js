@@ -91,7 +91,7 @@ export const Drawer = ({ state, onDismiss, ...props }) => {
     <StyledDialogOverlay state={state} isOpen={isOpen} onDismiss={onDismiss}>
       <StyledDialogContent aria-label="Mobile navigation menu" {...props}>
         <DrawerSpring native state={state}>
-          {({ x, bg }) => (
+          {({ x }) => (
             <Content
               style={{
                 transform: x.interpolate(x => `translate3d(${x}vw,0,0)`),

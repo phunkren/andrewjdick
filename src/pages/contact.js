@@ -131,8 +131,6 @@ export default function Contact({ location }) {
     event.preventDefault();
     const form = event.target;
 
-    console.log('huh');
-
     fetch('/', {
       method: 'POST',
       headers: {

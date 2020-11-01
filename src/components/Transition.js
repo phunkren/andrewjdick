@@ -40,10 +40,12 @@ export const FadeIn = ({ children }) => {
           <Transition
             native
             items={mount}
-            from={{ opacity: 0.25 }}
+            from={{ opacity: 0 }}
             enter={{ opacity: 1 }}
             leave={{ opacity: 0 }}
-            config={[{ duration: 310, easing: t => d3.easeSinOut(t) }]}
+            config={[
+              { duration: 310, delay: 250, easing: t => d3.easeSinOut(t) },
+            ]}
           >
             {mount => mount && (props => children(props))}
           </Transition>

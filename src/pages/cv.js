@@ -377,9 +377,15 @@ export default function CV({ data, location: { pathname } }) {
 
       <Wrap>
         <Main>
-          <Title as="h1" size="4xl" id="cv">
-            CV
-          </Title>
+          <FadeIn>
+            {styles => (
+              <animated.div style={styles}>
+                <Title as="h1" size="4xl" id="cv">
+                  CV
+                </Title>
+              </animated.div>
+            )}
+          </FadeIn>
           <FadeThrough>
             {styles => (
               <Container style={styles}>

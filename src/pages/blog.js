@@ -159,9 +159,15 @@ export default function Blog({ data, location: { pathname } }) {
       />
       <Wrapper>
         <Main>
-          <StyledTitle as="h1" size="4xl" id="blog">
-            Blog
-          </StyledTitle>
+          <FadeIn>
+            {styles => (
+              <animated.div style={styles}>
+                <StyledTitle as="h1" size="4xl" id="blog">
+                  Blog
+                </StyledTitle>
+              </animated.div>
+            )}
+          </FadeIn>
           <FadeThrough>
             {styles => <List style={styles}>{posts}</List>}
           </FadeThrough>
