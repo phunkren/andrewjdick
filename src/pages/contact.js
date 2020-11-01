@@ -17,17 +17,19 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin-top: 76px;
-  margin-bottom: 0;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 0;
-  width: 100%;
   max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
+  width: 100%;
+  margin-top: 76px;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  padding: 0 var(--spacing-medium);
 
   ${MEDIA.tablet`
-    padding: 0 var(--spacing-huge);
+    margin-right: auto;
     margin-bottom: var(--spacing-massive);
+    margin-left: auto;
+    padding: 0 var(--spacing-huge);
   `}
 `;
 
@@ -81,23 +83,14 @@ const Form = styled(animated.form)(
     width: 100%;
     padding: var(--spacing-massive) var(--spacing-medium);
     background-color: ${theme.overlay10};
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-    border-top: 2px solid var(--color-orange-400);
+    border-radius: 4px;
+    margin-bottom: var(--spacing-large);
 
     ${MEDIA.tablet`
       flex: 0 1 auto;
-      border-top: none;
-      border-top-right-radius: 4px;
-      border-top-left-radius: 4px;
       margin-bottom: var(--spacing-massive);
       padding: var(--spacing-massive);
       box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
-      
-      &::after {
-        border-top-right-radius: 4px;
-        border-top-left-radius: 4px;
-      }
     `}
   `,
 );
