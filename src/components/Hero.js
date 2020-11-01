@@ -50,19 +50,19 @@ const Container = styled(animated.aside)(({ $blog, $home, theme }) => [
   `,
   !$home &&
     css`
-      transform: translateY(calc(-100vh + 12.5rem));
+      transform: translateY(calc(-100% + 12.5rem));
       transition: transform 0.3s ease-out;
     `,
   $blog &&
     css`
-      transform: translateY(calc(-100vh + 18.75rem));
+      transform: translateY(calc(-100% + 18.75rem));
 
       ${Lightbulbs} {
         ${fadeOutAnimation};
       }
 
       ${MEDIA.desktop`
-        transform: translateY(calc(-100vh + 25rem));
+        transform: translateY(calc(-100% + 25rem));
       `}
     `,
 ]);

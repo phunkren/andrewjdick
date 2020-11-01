@@ -24,7 +24,6 @@ const Wrapper = styled(Div100vh)`
 const Main = styled.main`
   flex: 1;
   text-align: center;
-  animation-delay: 0.5s;
 `;
 
 const Section = styled(animated.section)`

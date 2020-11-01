@@ -97,9 +97,10 @@ const Styles = createGlobalStyle(
 
     html {
       display: flex;
-      min-height: 100%;
+      height: -webkit-fill-available;
     }
 
+    /* TODO: Add scrollbar without affecting page width */
     &::-webkit-scrollbar {
       display: none;
     }
@@ -117,6 +118,8 @@ const Styles = createGlobalStyle(
       color: ${theme.copyColor};
       max-width: 100%;
       width: 100%;
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
       overflow-x: hidden;
 
       & * {
