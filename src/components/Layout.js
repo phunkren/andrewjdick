@@ -211,7 +211,7 @@ const Styles = createGlobalStyle(
     textarea:-webkit-autofill,
     textarea:-webkit-autofill:hover,
     textarea:-webkit-autofill:focus {
-      transition: background-color 5000s ease-in-out 0s;
+      transition: background-color 50000s ease-in-out 0s;
       box-shadow: 0 0 0px 1000px transparent inset;
       -webkit-box-shadow: 0 0 0px 1000px transparent inset;
     }

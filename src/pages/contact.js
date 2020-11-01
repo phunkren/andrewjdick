@@ -120,8 +120,6 @@ export default function Contact({ location }) {
   const [state, setState] = useState({});
   const { success } = location.state || {};
 
-  console.log({ state: location.state });
-
   function handleChange(event) {
     setState({
       ...state,
