@@ -76,8 +76,9 @@ const Title = styled(Text)(
 
 const Info = styled(Text)(
   ({ theme }) => css`
+    display: block;
     color: ${theme.auxiliaryColor};
-    margin-bottom: var(--spacing-large);
+    margin-bottom: var(--spacing-medium);
   `,
 );
 

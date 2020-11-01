@@ -14,11 +14,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: var(--spacing-huge) var(--spacing-medium) var(--spacing-massive);
-  margin: 300px auto 0;
+  margin: 400px auto 0;
   width: 100%;
 
   ${MEDIA.desktop`
-    margin-top: 400px;
     padding: var(--spacing-huge) var(--spacing-huge) var(--spacing-massive);
   `};
 `;
@@ -42,7 +41,7 @@ const Main = styled.main`
 
 const Title = styled(Text)`
   position: absolute;
-  top: 175px;
+  top: 200px;
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
@@ -52,7 +51,6 @@ const Title = styled(Text)`
   padding: 0 var(--spacing-large);
 
   ${MEDIA.desktop`
-    top: 200px;
     max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
     padding: 0 var(--spacing-huge);
   `}

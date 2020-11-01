@@ -1,8 +1,7 @@
 import React from 'react';
 import { animated } from 'react-spring/renderprops';
 import styled, { css } from 'styled-components';
-import { MEDIA } from '../styles/media';
-import { fadeOutAnimation, infiniteScrollAnimation } from '../styles/animation';
+import { fadeInAnimation, infiniteScrollAnimation } from '../styles/animation';
 import lightbulbs from '../assets/images/lightbulbs.png';
 import Img from 'gatsby-image';
 
@@ -17,14 +16,10 @@ const Lightbulbs = styled.div`
 `;
 
 const BlogHero = styled(Img)`
-  top: calc(100% - 18.75rem);
-  height: 18.75rem;
+  top: calc(100% - 25rem);
+  height: 25rem;
   z-index: 1;
-
-  ${MEDIA.desktop`
-    top: calc(100% - 25rem);
-    height: 25rem;
-  `}
+  ${fadeInAnimation};
 `;
 
 const Container = styled(animated.aside)(({ $blog, $home, theme }) => [
@@ -60,15 +55,11 @@ const Container = styled(animated.aside)(({ $blog, $home, theme }) => [
     `,
   $blog &&
     css`
-      transform: translateY(calc(-100% + 18.75rem));
+      transform: translateY(calc(-100% + 25rem));
 
       ${Lightbulbs} {
-        ${fadeOutAnimation};
+        opacity: 0;
       }
-
-      ${MEDIA.desktop`
-        transform: translateY(calc(-100% + 25rem));
-      `}
     `,
 ]);
 
