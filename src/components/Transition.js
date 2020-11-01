@@ -52,25 +52,3 @@ export const FadeIn = ({ children }) => {
     </TransitionState>
   );
 };
-
-export const Reveal = ({ children }) => {
-  return (
-    <TransitionState>
-      {({ transitionStatus }) => {
-        const mount = ['entered', 'entering'].includes(transitionStatus);
-
-        return (
-          <Transition
-            native
-            items={mount}
-            from={{ position: 'absolute', overflow: 'hidden', height: 0 }}
-            enter={[{ height: 'auto' }]}
-            delay={150}
-          >
-            {mount => mount && (props => children(props))}
-          </Transition>
-        );
-      }}
-    </TransitionState>
-  );
-};

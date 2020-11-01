@@ -1,5 +1,4 @@
 import React from 'react';
-import { animated } from 'react-spring/renderprops';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import Div100vh from 'react-div-100vh';
@@ -7,7 +6,7 @@ import { ExternalLink } from '../components/Link';
 import { Text } from '../components/Text';
 import { SEO } from '../components/SEO';
 import { MEDIA } from '../styles/media';
-import { Reveal } from '../components/Transition';
+import { fadeInAnimation } from '../styles/animation';
 
 const Wrapper = styled(Div100vh)`
   flex: 1;
@@ -26,7 +25,7 @@ const Main = styled.main`
   text-align: center;
 `;
 
-const Section = styled(animated.section)`
+const Section = styled.section`
   position: absolute;
   top: 50%;
   left: 0;
@@ -34,6 +33,8 @@ const Section = styled(animated.section)`
   transform: translateY(-50%);
   padding: 0 var(--spacing-medium);
   color: var(--color-white);
+  ${fadeInAnimation};
+  animation-delay: 0.5s;
 
   ${MEDIA.tablet`
     left: 50%;
@@ -57,33 +58,26 @@ export default function Home({ data }) {
       <SEO />
       <Wrapper>
         <Main>
-          <Reveal>
-            {styles => (
-              <Section aria-label="Profile" style={styles}>
-                <Title as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
-                  {author.name}
-                </Title>
-                <Text
-                  size="m"
-                  aria-label={`Position: ${currentEmployer.position}`}
-                >
-                  {currentEmployer.position}
-                </Text>
-                <Text size="m"> @ </Text>
-                <ExternalLink
-                  aria-label={`Employer: ${currentEmployer.company}`}
-                  href={currentEmployer.url}
-                  highlight
-                >
-                  <Text size="m">{currentEmployer.company}</Text>
-                </ExternalLink>
-                <br />
-                <Text aria-label={`Location: ${author.location}`}>
-                  {author.location}
-                </Text>
-              </Section>
-            )}
-          </Reveal>
+          <Section aria-label="Profile">
+            <Title as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
+              {author.name}
+            </Title>
+            <Text size="m" aria-label={`Position: ${currentEmployer.position}`}>
+              {currentEmployer.position}
+            </Text>
+            <Text size="m"> @ </Text>
+            <ExternalLink
+              aria-label={`Employer: ${currentEmployer.company}`}
+              href={currentEmployer.url}
+              highlight
+            >
+              <Text size="m">{currentEmployer.company}</Text>
+            </ExternalLink>
+            <br />
+            <Text aria-label={`Location: ${author.location}`}>
+              {author.location}
+            </Text>
+          </Section>
         </Main>
       </Wrapper>
     </>

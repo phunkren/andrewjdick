@@ -54,6 +54,7 @@ const Inner = styled.div(({ isHomepage }) => [
       justify-content: center;
       padding: var(--spacing-medium) var(--spacing-medium);
       color: var(--color-white);
+      ${fadeInAnimation};
       animation-delay: 0.5s;
 
       ${ContactLink} {
