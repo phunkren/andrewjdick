@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { animated } from 'react-spring/renderprops';
 import styled, { css } from 'styled-components';
-import { navigate } from 'gatsby-link';
+import { navigate } from 'gatsby';
 import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
 import { TickIcon } from '../components/icons';
@@ -127,6 +127,8 @@ export default function Contact({ location }) {
     });
   }
 
+  console.log({ success });
+
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -141,12 +143,13 @@ export default function Contact({ location }) {
         ...state,
       }),
     })
-      .then(() =>
+      .then(() => {
+        console.log('we here', form.getAttribute('action'));
         navigate(form.getAttribute('action'), {
           state: { success: true },
           replace: true,
-        }),
-      )
+        });
+      })
       .catch(error => alert(error));
   }
 

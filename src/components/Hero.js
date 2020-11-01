@@ -26,7 +26,7 @@ const Container = styled(animated.aside)(({ $blog, $home, theme }) => [
   css`
     background-color: var(--color-gray-400);
     border-bottom: 2px solid;
-    border-bottom-color: var(--color-charcoal);
+    border-bottom-color: var(--color-orange-600);
     position: absolute;
     top: 0;
     right: 0;
@@ -34,7 +34,7 @@ const Container = styled(animated.aside)(({ $blog, $home, theme }) => [
     bottom: -2px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
     overflow: hidden;
-    transition: transform 0.5s ease-out, border-color 0.5s linear;
+    transition: transform 0.5s ease-out;
     will-change: transform;
 
     &::after {
@@ -52,7 +52,6 @@ const Container = styled(animated.aside)(({ $blog, $home, theme }) => [
   !$home &&
     css`
       transform: translateY(calc(-100% + 12.5rem));
-      border-bottom-color: var(--color-orange-600);
     `,
   $blog &&
     css`

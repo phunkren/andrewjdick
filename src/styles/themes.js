@@ -36,7 +36,7 @@ const DARK_THEME = {
   linkColor: 'var(--color-blue-400)',
   heroColor: 'var(--color-black)',
   navLinkColor: 'var(--color-orange-400)',
-  highlightColor: 'var(--color-orange-400)',
+  highlightColor: 'var(--color-orange-600)',
   auxiliaryColor: 'var(--color-gray-400)',
   borderColor: 'var(--color-charcoal)',
   cardColor: 'var(--color-gray-200)',

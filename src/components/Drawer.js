@@ -20,6 +20,10 @@ const StyledDialogContent = styled(DialogContent)(({ theme }) => [
       width: 75vw;
       height: 100vh;
       height: -webkit-fill-available;
+
+      &:focus {
+        outline: none;
+      }
     }
   `,
 ]);
@@ -55,7 +59,7 @@ const Content = styled(animated.div)(({ theme }) => [
     color: ${theme.copyColor};
     position: relative;
     width: 75vw;
-    height: 100vh;
+    height: 100%;
   `,
 ]);
 
