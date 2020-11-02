@@ -161,14 +161,14 @@ const Sidebar = styled.div(
   ({ theme }) => css`
     ${MEDIA.desktop`
       flex: 0 1 33%;
-      border-right: 2px solid 
+      border-right: 2px solid; 
       border-color: ${theme.borderColor};
       padding: 0 var(--spacing-huge) 0 0;
     `};
 
     ${MEDIA.print`
       flex: 0 1 33%;
-      border-right: 2px solid 
+      border-right: 2px solid;
       border-color: var(--color-black);
       padding: 0 var(--spacing-huge) 0 0;
     `};
@@ -251,7 +251,7 @@ const Tag = styled(props => <Text size="xs" {...props} />)(
     border-radius: 4px;
     text-align: center;
     border: 1px solid;
-    border-color: ${theme.borderColor};
+    border-color: ${theme.cvInterfaceColor};
     color: ${theme.copyColor};
 
     ${MEDIA.print`
@@ -328,13 +328,17 @@ const EducationBlock = styled(Block)(({ variant }) => [
   css`
     display: flex;
     flex-flow: column;
+
+    ${BlockSubheader} {
+      margin-bottom: var(--spacing-small);
+    }
   `,
   variant === 'slim' &&
     css`
       margin-bottom: var(--spacing-medium);
 
       ${MEDIA.desktop`
-        margin-bottom: var(--spacing-large);
+        margin-bottom: var(--spacing-medium);
       `};
     `,
 ]);
@@ -510,7 +514,7 @@ export default function CV({ data, location: { pathname } }) {
                                   {qualification && (
                                     <BlockSubheader
                                       as="h3"
-                                      size="m"
+                                      size="l"
                                       id={`edu-${formatId(qualification)}`}
                                     >
                                       {qualification}

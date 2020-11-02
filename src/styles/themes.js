@@ -2,7 +2,7 @@ import { mix } from 'polished';
 
 const LIGHT_THEME = {
   background: 'var(--color-white)',
-  headerColor: 'var(--color-charcoal)',
+  headerColor: 'var(--color-black)',
   copyColor: 'var(--color-black)',
   linkColor: 'var(--color-blue-700)',
   heroColor: 'var(--color-white)',
@@ -21,8 +21,8 @@ const LIGHT_THEME = {
   inputPlaceholderColor: 'rgba(0, 0, 0, 0.33)',
   inputAutofillColor: 'var(--color-blue-600)',
   cvHeaderColor: 'var(--color-black)',
-  cvSubheaderColor: 'var(--color-charcoal)',
-  cvInterfaceColor: 'var(--color-charcoal)',
+  cvSubheaderColor: 'var(--color-black)',
+  cvInterfaceColor: 'var(--color-gray-400)',
   cvBorderColor: 'var(--color-charcoal)',
   blogSyntaxColor: 'var(--color-gray-600)',
   overlay5: `${mix(0.95, '#edf2f7', '#000000')}`,
@@ -51,7 +51,7 @@ const DARK_THEME = {
   inputAutofillColor: 'var(--color-orange-400)',
   cvHeaderColor: 'var(--color-orange-400)',
   cvSubheaderColor: 'var(--color-orange-200)',
-  cvInterfaceColor: 'var(--color-gray-600)',
+  cvInterfaceColor: 'var(--color-charcoal)',
   cvBorderColor: 'var(--color-orange-400)',
   blogSyntaxColor: 'var(--color-orange-400)',
   overlay5: `${mix(0.95, 'rgb(0,0,0)', 'rgb(255, 255, 255)')}`,
