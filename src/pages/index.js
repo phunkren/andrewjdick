@@ -1,24 +1,12 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { graphql } from 'gatsby';
-import { position } from 'polished';
 import Div100vh from 'react-div-100vh';
-import lightbulbs from '../assets/images/lightbulbs.png';
-import { Social } from '../components/Social';
 import { ExternalLink } from '../components/Link';
-import { Header } from '../components/Header';
 import { Text } from '../components/Text';
 import { SEO } from '../components/SEO';
 import { MEDIA } from '../styles/media';
-
-const infiniteScroll = keyframes`
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(0, -300vh, 0);
-  }
-`;
+import { fadeInAnimation } from '../styles/animation';
 
 const Wrapper = styled(Div100vh)`
   flex: 1;
@@ -44,6 +32,9 @@ const Section = styled.section`
   right: 0;
   transform: translateY(-50%);
   padding: 0 var(--spacing-medium);
+  color: var(--color-white);
+  ${fadeInAnimation};
+  animation-delay: 0.85s;
 
   ${MEDIA.tablet`
     left: 50%;
@@ -52,30 +43,9 @@ const Section = styled.section`
   `}
 `;
 
-const Footer = styled.footer`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 var(--spacing-medium) var(--spacing-medium);
-
-  ${MEDIA.tablet`
-    padding: 0 var(--spacing-huge) var(--spacing-huge);
-  `};
-`;
-
-const Image = styled.div`
-  ${position('absolute', '100%', 0, null, 0)};
-  background-image: url(${lightbulbs});
-  background-repeat: repeat-y;
-  background-position: center;
-  background-size: cover;
-  height: 200vh;
-  margin-bottom: 100vh;
-  opacity: 0.025;
-  pointer-events: none;
-  animation: ${infiniteScroll} 30s linear infinite;
-  z-index: -1;
+const Title = styled(Text)`
+  color: var(--color-orange-400);
+  text-shadow: 2px 2px var(--color-charcoal);
 `;
 
 export default function Home({ data }) {
@@ -87,14 +57,12 @@ export default function Home({ data }) {
     <>
       <SEO />
       <Wrapper>
-        <Header />
-
         <Main>
           <Section aria-label="Profile">
-            <Text as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
+            <Title as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
               {author.name}
-            </Text>
-            <Text aria-label={`Position: ${currentEmployer.position}`}>
+            </Title>
+            <Text size="m" aria-label={`Position: ${currentEmployer.position}`}>
               {currentEmployer.position}
             </Text>
             <Text size="m"> @ </Text>
@@ -103,7 +71,7 @@ export default function Home({ data }) {
               href={currentEmployer.url}
               highlight
             >
-              <Text>{currentEmployer.company}</Text>
+              <Text size="m">{currentEmployer.company}</Text>
             </ExternalLink>
             <br />
             <Text aria-label={`Location: ${author.location}`}>
@@ -111,24 +79,6 @@ export default function Home({ data }) {
             </Text>
           </Section>
         </Main>
-
-        <Footer>
-          <Social aria-label="Social" />
-
-          <figure aria-hidden="true">
-            <Image />
-            <Text as="figcaption" size="ps">
-              background courtesy of{' '}
-              <ExternalLink
-                href="https://absurd.design/"
-                tabIndex="-1"
-                highlight
-              >
-                absurd.design
-              </ExternalLink>
-            </Text>
-          </figure>
-        </Footer>
       </Wrapper>
     </>
   );

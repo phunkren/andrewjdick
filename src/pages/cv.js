@@ -1,5 +1,6 @@
 import React from 'react';
 import { isMobile, isIE } from 'react-device-detect';
+import { animated } from 'react-spring/renderprops';
 import { graphql } from 'gatsby';
 import styled, { css } from 'styled-components';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
@@ -17,10 +18,8 @@ import { Text } from '../components/Text';
 import { DownloadIcon, PrintIcon } from '../components/icons';
 import { SEO } from '../components/SEO';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { Hero } from '../components/Hero';
-import { Header } from '../components/Header';
 import { convertPxToRem } from '../utils/unitConversion';
-import { Footer } from '../components/Footer';
+import { FadeThrough, FadeIn } from '../components/Animation';
 
 const List = styled.ul`
   margin-bottom: var(--spacing-huge);
@@ -42,6 +41,7 @@ const StyledExternalLink = styled(ExternalLink)`
 const Wrap = styled.div(
   ({ theme }) => css`
     width: 100%;
+    overflow: hidden;
   `,
 );
 
@@ -51,6 +51,8 @@ const Main = styled.main`
   margin-right: auto;
   margin-bottom: 0;
   margin-left: auto;
+  padding-right: var(--spacing-medium);
+  padding-left: var(--spacing-medium);
   max-width: ${convertPxToRem(BREAKPOINTS.desktopWide)};
 
   ${MEDIA.tablet`
@@ -63,24 +65,19 @@ const Main = styled.main`
   `}
 `;
 
-const Container = styled.div(
+const Container = styled(animated.div)(
   ({ theme }) => css`
     flex: 1;
     display: flex;
     flex-direction: column;
     position: relative;
     background-color: ${theme.overlay10};
-    border-top: 1px solid ${theme.cvBorderColor};
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+    margin-bottom: var(--spacing-large);
 
     ${MEDIA.tablet`
-      border-top: none;
-      border-radius: 4px;
       margin-bottom: var(--spacing-massive);
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
-
-      &::after {
-        border-radius: 4px;
-      }
     `}
 
     ${MEDIA.print`
@@ -105,33 +102,31 @@ const Heading = styled.div`
   `};
 `;
 
-const HeaderIcons = styled.div(
-  ({ theme }) => css`
-    display: flex;
+const HeaderIcons = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > *:active {
+    transform: scale(0.9);
+    transition: transform 0.2s;
+  }
+
+  & > ${DownloadLink} {
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
 
-    & > *:active {
-      transform: scale(0.9);
-      transition: transform 0.2s;
-    }
+  & > * + * {
+    margin-left: var(--spacing-medium);
+  }
 
-    & > ${DownloadLink} {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 44px;
-      min-height: 44px;
-    }
-
-    & > * + * {
-      margin-left: var(--spacing-medium);
-    }
-
-    ${MEDIA.print`
+  ${MEDIA.print`
       display: none;
     `};
-  `,
-);
+`;
 
 const Wrapper = styled.div(
   ({ theme }) => css`
@@ -166,14 +161,14 @@ const Sidebar = styled.div(
   ({ theme }) => css`
     ${MEDIA.desktop`
       flex: 0 1 33%;
-      border-right: 2px solid 
+      border-right: 2px solid; 
       border-color: ${theme.borderColor};
       padding: 0 var(--spacing-huge) 0 0;
     `};
 
     ${MEDIA.print`
       flex: 0 1 33%;
-      border-right: 2px solid 
+      border-right: 2px solid;
       border-color: var(--color-black);
       padding: 0 var(--spacing-huge) 0 0;
     `};
@@ -256,7 +251,7 @@ const Tag = styled(props => <Text size="xs" {...props} />)(
     border-radius: 4px;
     text-align: center;
     border: 1px solid;
-    border-color: ${theme.borderColor};
+    border-color: ${theme.cvInterfaceColor};
     color: ${theme.copyColor};
 
     ${MEDIA.print`
@@ -333,13 +328,17 @@ const EducationBlock = styled(Block)(({ variant }) => [
   css`
     display: flex;
     flex-flow: column;
+
+    ${BlockSubheader} {
+      margin-bottom: var(--spacing-small);
+    }
   `,
   variant === 'slim' &&
     css`
       margin-bottom: var(--spacing-medium);
 
       ${MEDIA.desktop`
-        margin-bottom: var(--spacing-large);
+        margin-bottom: var(--spacing-medium);
       `};
     `,
 ]);
@@ -379,265 +378,311 @@ export default function CV({ data, location: { pathname } }) {
         title="CV"
         description="An overview of my experience and technical expertise"
       />
-      <Header variant="dark" />
 
       <Wrap>
-        <Hero />
         <Main>
-          <Title as="h1" size="4xl" id="cv">
-            CV
-          </Title>
-          <Container>
-            <Heading>
-              <div>
-                <Text
-                  as="h1"
-                  size="4xl"
-                  css={`
-                    color: ${({ theme }) => theme.copyColor};
+          <FadeIn>
+            {styles => (
+              <animated.div style={styles}>
+                <Title as="h1" size="4xl" id="cv">
+                  CV
+                </Title>
+              </animated.div>
+            )}
+          </FadeIn>
+          <FadeThrough>
+            {styles => (
+              <Container style={styles}>
+                <FadeIn>
+                  {styles => (
+                    <animated.div style={styles}>
+                      <Heading>
+                        <div>
+                          <Text
+                            as="h1"
+                            size="4xl"
+                            css={`
+                              color: ${({ theme }) => theme.copyColor};
 
-                    ${MEDIA.print`
-                      color: var(--color-black);
-                    `}
-                  `}
-                >
-                  {author.name}
-                </Text>
-                <AuthorInfo size="m">
-                  {currentPosition} / {author.location}
-                </AuthorInfo>
-              </div>
-
-              <HeaderIcons aria-label="Export CV">
-                {!isMobile && !isIE && (
-                  <>
-                    <IconButton aria-label="Print" onClick={handleCvPrint}>
-                      <PrintIcon width="2rem" height="2rem" />
-                    </IconButton>
-
-                    <DownloadLink
-                      aria-label="Download"
-                      href={cv}
-                      onClick={handleCvDownload}
-                    >
-                      <DownloadIcon width="2rem" height="2rem" />
-                    </DownloadLink>
-                  </>
-                )}
-              </HeaderIcons>
-            </Heading>
-
-            <Wrapper>
-              <Sidebar>
-                <Block aria-labelledby="cv-contact">
-                  <BlockHeader id="cv-contact">Contact</BlockHeader>
-                  <nav aria-label="Contact">
-                    <List>
-                      <ListItem>
-                        <StyledExternalLink
-                          href={`mailto:${author.email}`}
-                          aria-label="Email me"
-                        >
-                          <EmailIcon width="1.5rem" height="1.5rem" />
-                          <Text size="s">{author.email}</Text>
-                        </StyledExternalLink>
-                      </ListItem>
-
-                      <ListItem>
-                        <StyledExternalLink
-                          href={siteUrl}
-                          aria-label="Return to homepage"
-                        >
-                          <HomeIcon width="1.5rem" height="1.5rem" />
-                          <Text size="s">{siteDisplayUrl}</Text>
-                        </StyledExternalLink>
-                      </ListItem>
-
-                      <ListItem>
-                        <StyledExternalLink
-                          href={social.github.url}
-                          aria-label={`${social.github.label} profile`}
-                        >
-                          <GitHubIcon width="1.5rem" height="1.5rem" />
-                          <Text size="s">{social.github.handle}</Text>
-                        </StyledExternalLink>
-                      </ListItem>
-
-                      <ListItem>
-                        <StyledExternalLink
-                          href={social.linkedIn.url}
-                          aria-label={`${social.linkedIn.label} profile`}
-                        >
-                          <LinkedInIcon width="1.5rem" height="1.5rem" />
-                          <Text size="s">{social.linkedIn.handle}</Text>
-                        </StyledExternalLink>
-                      </ListItem>
-                    </List>
-                  </nav>
-                </Block>
-
-                <Block aria-labelledby="cv-education">
-                  <BlockHeader id="cv-education">Education</BlockHeader>
-                  {education.map(
-                    ({ qualification, course, institute, dates }, index) => (
-                      <EducationBlock
-                        key={institute}
-                        aria-labelledby={`cv-education edu-${formatId(
-                          institute,
-                        )}`}
-                        variant={index === 0 && 'slim'}
-                      >
-                        {qualification && (
-                          <BlockSubheader
-                            as="h3"
-                            size="m"
-                            id={`edu-${formatId(qualification)}`}
+                              ${MEDIA.print`
+                                color: var(--color-black);
+                              `}
+                            `}
                           >
-                            {qualification}
-                          </BlockSubheader>
-                        )}
-                        <Text size="ps" css="font-weight: 600;">
-                          {course}
-                        </Text>
-                        <Text size="ps">{institute}</Text>
-                        <Text
-                          css={`
-                            color: ${({ theme }) => theme.auxiliaryColor};
-                          `}
-                          size="xs"
-                        >
-                          {dates}
-                        </Text>
-                      </EducationBlock>
-                    ),
-                  )}
-                </Block>
+                            {author.name}
+                          </Text>
+                          <AuthorInfo size="m">
+                            {currentPosition} / {author.location}
+                          </AuthorInfo>
+                        </div>
 
-                <Block aria-labelledby="cv-expertise">
-                  <BlockHeader id="cv-expertise">Expertise</BlockHeader>
-                  <TagContainer>
-                    {expertise.map((skill, index) => (
-                      <Tag key={`Skill-${index}`}>{skill}</Tag>
-                    ))}
-                  </TagContainer>
-                </Block>
-
-                <Block
-                  aria-labelledby="cv-interests"
-                  css={`
-                    ${MEDIA.print`padding-top: var(--spacing-huge);`}
-                  `}
-                >
-                  <BlockHeader id="cv-interests">Interests</BlockHeader>
-                  <TagContainer>
-                    {interests.map((interest, index) => (
-                      <Tag key={`Interest-${index}`}>{interest}</Tag>
-                    ))}
-                  </TagContainer>
-                </Block>
-
-                <Block aria-labelledby="cv-hobbies">
-                  <BlockHeader id="cv-hobbies">Hobbies</BlockHeader>
-                  <TagContainer>
-                    {hobbies.map((hobby, index) => (
-                      <Tag key={`Hobby-${index}`}>{hobby}</Tag>
-                    ))}
-                  </TagContainer>
-                </Block>
-
-                <Block aria-labelledby="cv-references">
-                  <BlockHeader id="cv-references">References</BlockHeader>
-                  <Text>Written references available on request.</Text>
-                </Block>
-              </Sidebar>
-
-              <Experience>
-                <Block aria-labelledby="cv-profile">
-                  <BlockHeader id="cv-profile">Profile</BlockHeader>
-                  <Text as="p">
-                    My passion for digital technology continually drives me to
-                    advance my skill set as a software engineer. With an
-                    analytical mindset and strong communication and frontend
-                    development skills, I thrive in environments where I can
-                    learn from others and inspire those around me.
-                  </Text>
-
-                  <Text as="p" css="margin-top: var(--spacing-medium);">
-                    Over the years I&#39;ve refined a set of technical
-                    principles to strive towards, namely: complexity should only
-                    be introduced when it’s unavoidable; code should be easy to
-                    reason with and delete; avoid abstracting too early, and the
-                    top priority is always the best possible user experience.
-                  </Text>
-                </Block>
-
-                <Block>
-                  <BlockHeader id="cv-experience">Experience</BlockHeader>
-                  {experience.map(
-                    (
-                      { position, company, url, dates, blurb, portfolio },
-                      index,
-                    ) => (
-                      <Block
-                        key={company}
-                        aria-label={`exp-${formatId(company)}`}
-                        aria-labelledby={`cv-experience exp-${formatId(
-                          company,
-                        )}`}
-                      >
-                        <BlockSubheader
-                          as="h3"
-                          size="xl"
-                          id={`exp-${formatId(company)}`}
-                        >
-                          {position}
-                        </BlockSubheader>
-                        <ExperienceInfo>
-                          <ExternalLink
-                            href={url}
-                            aria-label={`${company} website`}
-                            highlight
-                          >
-                            <Text>{company}</Text>
-                          </ExternalLink>{' '}
-                          <Dates size="xs">{dates}</Dates>
-                        </ExperienceInfo>
-                        <Description>
-                          {blurb ? <Text as="p">{blurb}</Text> : null}
-
-                          {portfolio ? (
+                        <HeaderIcons aria-label="Export CV">
+                          {!isMobile && !isIE && (
                             <>
-                              <Text as="h4" size="m">
-                                Notable work
-                              </Text>
-                              <ul>
-                                {portfolio.map(({ name, href }) => (
-                                  <li key={name}>
-                                    <ExternalLink href={href}>
-                                      <Text size="ps">{name}</Text>
-                                    </ExternalLink>
-                                  </li>
-                                ))}
-                              </ul>
+                              <IconButton
+                                aria-label="Print"
+                                onClick={handleCvPrint}
+                              >
+                                <PrintIcon width="2rem" height="2rem" />
+                              </IconButton>
+
+                              <DownloadLink
+                                aria-label="Download"
+                                href={cv}
+                                onClick={handleCvDownload}
+                              >
+                                <DownloadIcon width="2rem" height="2rem" />
+                              </DownloadLink>
                             </>
-                          ) : null}
-                        </Description>
-                      </Block>
-                    ),
+                          )}
+                        </HeaderIcons>
+                      </Heading>
+
+                      <Wrapper>
+                        <Sidebar>
+                          <Block aria-labelledby="cv-contact">
+                            <BlockHeader id="cv-contact">Contact</BlockHeader>
+                            <nav aria-label="Contact">
+                              <List>
+                                <ListItem>
+                                  <StyledExternalLink
+                                    href={`mailto:${author.email}`}
+                                    aria-label="Email me"
+                                  >
+                                    <EmailIcon width="1.5rem" height="1.5rem" />
+                                    <Text size="s">{author.email}</Text>
+                                  </StyledExternalLink>
+                                </ListItem>
+
+                                <ListItem>
+                                  <StyledExternalLink
+                                    href={siteUrl}
+                                    aria-label="Return to homepage"
+                                  >
+                                    <HomeIcon width="1.5rem" height="1.5rem" />
+                                    <Text size="s">{siteDisplayUrl}</Text>
+                                  </StyledExternalLink>
+                                </ListItem>
+
+                                <ListItem>
+                                  <StyledExternalLink
+                                    href={social.github.url}
+                                    aria-label={`${social.github.label} profile`}
+                                  >
+                                    <GitHubIcon
+                                      width="1.5rem"
+                                      height="1.5rem"
+                                    />
+                                    <Text size="s">{social.github.handle}</Text>
+                                  </StyledExternalLink>
+                                </ListItem>
+
+                                <ListItem>
+                                  <StyledExternalLink
+                                    href={social.linkedIn.url}
+                                    aria-label={`${social.linkedIn.label} profile`}
+                                  >
+                                    <LinkedInIcon
+                                      width="1.5rem"
+                                      height="1.5rem"
+                                    />
+                                    <Text size="s">
+                                      {social.linkedIn.handle}
+                                    </Text>
+                                  </StyledExternalLink>
+                                </ListItem>
+                              </List>
+                            </nav>
+                          </Block>
+
+                          <Block aria-labelledby="cv-education">
+                            <BlockHeader id="cv-education">
+                              Education
+                            </BlockHeader>
+                            {education.map(
+                              (
+                                { qualification, course, institute, dates },
+                                index,
+                              ) => (
+                                <EducationBlock
+                                  key={institute}
+                                  aria-labelledby={`cv-education edu-${formatId(
+                                    institute,
+                                  )}`}
+                                  variant={index === 0 && 'slim'}
+                                >
+                                  {qualification && (
+                                    <BlockSubheader
+                                      as="h3"
+                                      size="l"
+                                      id={`edu-${formatId(qualification)}`}
+                                    >
+                                      {qualification}
+                                    </BlockSubheader>
+                                  )}
+                                  <Text size="ps" css="font-weight: 600;">
+                                    {course}
+                                  </Text>
+                                  <Text size="ps">{institute}</Text>
+                                  <Text
+                                    css={`
+                                      color: ${({ theme }) =>
+                                        theme.auxiliaryColor};
+                                    `}
+                                    size="xs"
+                                  >
+                                    {dates}
+                                  </Text>
+                                </EducationBlock>
+                              ),
+                            )}
+                          </Block>
+
+                          <Block aria-labelledby="cv-expertise">
+                            <BlockHeader id="cv-expertise">
+                              Expertise
+                            </BlockHeader>
+                            <TagContainer>
+                              {expertise.map((skill, index) => (
+                                <Tag key={`Skill-${index}`}>{skill}</Tag>
+                              ))}
+                            </TagContainer>
+                          </Block>
+
+                          <Block
+                            aria-labelledby="cv-interests"
+                            css={`
+                              ${MEDIA.print`padding-top: var(--spacing-huge);`}
+                            `}
+                          >
+                            <BlockHeader id="cv-interests">
+                              Interests
+                            </BlockHeader>
+                            <TagContainer>
+                              {interests.map((interest, index) => (
+                                <Tag key={`Interest-${index}`}>{interest}</Tag>
+                              ))}
+                            </TagContainer>
+                          </Block>
+
+                          <Block aria-labelledby="cv-hobbies">
+                            <BlockHeader id="cv-hobbies">Hobbies</BlockHeader>
+                            <TagContainer>
+                              {hobbies.map((hobby, index) => (
+                                <Tag key={`Hobby-${index}`}>{hobby}</Tag>
+                              ))}
+                            </TagContainer>
+                          </Block>
+
+                          <Block aria-labelledby="cv-references">
+                            <BlockHeader id="cv-references">
+                              References
+                            </BlockHeader>
+                            <Text>
+                              Written references available on request.
+                            </Text>
+                          </Block>
+                        </Sidebar>
+
+                        <Experience>
+                          <Block aria-labelledby="cv-profile">
+                            <BlockHeader id="cv-profile">Profile</BlockHeader>
+                            <Text as="p">
+                              My passion for digital technology continually
+                              drives me to advance my skill set as a software
+                              engineer. With an analytical mindset and strong
+                              communication and frontend development skills, I
+                              thrive in environments where I can learn from
+                              others and inspire those around me.
+                            </Text>
+
+                            <Text
+                              as="p"
+                              css="margin-top: var(--spacing-medium);"
+                            >
+                              Over the years I&#39;ve refined a set of technical
+                              principles to strive towards, namely: complexity
+                              should only be introduced when it’s unavoidable;
+                              code should be easy to reason with and delete;
+                              avoid abstracting too early, and the top priority
+                              is always the best possible user experience.
+                            </Text>
+                          </Block>
+
+                          <Block>
+                            <BlockHeader id="cv-experience">
+                              Experience
+                            </BlockHeader>
+                            {experience.map(
+                              (
+                                {
+                                  position,
+                                  company,
+                                  url,
+                                  dates,
+                                  blurb,
+                                  portfolio,
+                                },
+                                index,
+                              ) => (
+                                <Block
+                                  key={company}
+                                  aria-label={`exp-${formatId(company)}`}
+                                  aria-labelledby={`cv-experience exp-${formatId(
+                                    company,
+                                  )}`}
+                                >
+                                  <BlockSubheader
+                                    as="h3"
+                                    size="xl"
+                                    id={`exp-${formatId(company)}`}
+                                  >
+                                    {position}
+                                  </BlockSubheader>
+                                  <ExperienceInfo>
+                                    <ExternalLink
+                                      href={url}
+                                      aria-label={`${company} website`}
+                                      highlight
+                                    >
+                                      <Text>{company}</Text>
+                                    </ExternalLink>{' '}
+                                    <Dates size="xs">{dates}</Dates>
+                                  </ExperienceInfo>
+                                  <Description>
+                                    {blurb ? <Text as="p">{blurb}</Text> : null}
+
+                                    {portfolio ? (
+                                      <>
+                                        <Text as="h4" size="m">
+                                          Notable work
+                                        </Text>
+                                        <ul>
+                                          {portfolio.map(({ name, href }) => (
+                                            <li key={name}>
+                                              <ExternalLink href={href}>
+                                                <Text size="ps">{name}</Text>
+                                              </ExternalLink>
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </>
+                                    ) : null}
+                                  </Description>
+                                </Block>
+                              ),
+                            )}
+                          </Block>
+                        </Experience>
+                      </Wrapper>
+                    </animated.div>
                   )}
-                </Block>
-              </Experience>
-            </Wrapper>
-          </Container>
+                </FadeIn>
+              </Container>
+            )}
+          </FadeThrough>
         </Main>
       </Wrap>
-      <Footer
-        css={`
-          ${MEDIA.print`
-            display:none;
-          `}
-        `}
-      />
     </>
   );
 }

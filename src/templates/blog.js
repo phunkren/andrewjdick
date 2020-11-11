@@ -1,34 +1,28 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
 import { mix } from 'polished';
-import { Layout } from '../components/Layout';
 import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { linkStyles, highlightStyles } from '../components/Link';
 import { SIZES } from '../components/Text';
-import { Header } from '../components/Header';
-import { Hero } from '../components/Hero';
 import { convertPxToRem } from '../utils/unitConversion';
-import { Footer } from '../components/Footer';
+import { FadeIn } from '../components/Animation';
+import { animated } from 'react-spring/renderprops';
 
-const Wrapper = styled.div(
-  ({ theme }) => css`
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: var(--spacing-huge) var(--spacing-medium) var(--spacing-massive);
-    margin: 300px auto 0;
-    width: 100%;
+const Wrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-huge) var(--spacing-medium) var(--spacing-massive);
+  margin: 400px auto 0;
+  width: 100%;
 
-    ${MEDIA.desktop`
-    margin-top: 400px;
+  ${MEDIA.desktop`
     padding: var(--spacing-huge) var(--spacing-huge) var(--spacing-massive);
   `};
-  `,
-);
+`;
 
 const Main = styled.main`
   flex: 1;
@@ -47,17 +41,9 @@ const Main = styled.main`
   `}
 `;
 
-const ArticleHero = styled(Hero)`
-  height: 300px;
-
-  ${MEDIA.desktop`
-    height: 400px;
-  `}
-`;
-
 const Title = styled(Text)`
   position: absolute;
-  top: 175px;
+  top: 200px;
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
@@ -67,7 +53,6 @@ const Title = styled(Text)`
   padding: 0 var(--spacing-large);
 
   ${MEDIA.desktop`
-    top: 200px;
     max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
     padding: 0 var(--spacing-huge);
   `}
@@ -249,7 +234,7 @@ function BlogTemplate({ data }) {
   const { frontmatter, fields, html } = markdownRemark;
 
   return (
-    <Layout>
+    <>
       <SEO
         path={fields.slug}
         title={frontmatter.title}
@@ -259,23 +244,18 @@ function BlogTemplate({ data }) {
         article
       />
 
-      <Header variant="dark" />
-
-      <ArticleHero variant="blog">
-        <Img
-          role="img"
-          alt={frontmatter.imageAlt}
-          fluid={frontmatter.image.childImageSharp.fluid}
-          style={{ position: 'static !important;' }}
-        />
-      </ArticleHero>
-
       <Wrapper>
         <Main>
           <article>
-            <Title as="h1" size="xxxl">
-              {frontmatter.title}
-            </Title>
+            <FadeIn>
+              {styles => (
+                <animated.div style={styles}>
+                  <Title as="h1" size="xxxl">
+                    {frontmatter.title}
+                  </Title>
+                </animated.div>
+              )}
+            </FadeIn>
 
             <Info size="xs">
               {frontmatter.date} | {fields.readingTime.text}
@@ -285,9 +265,7 @@ function BlogTemplate({ data }) {
           </article>
         </Main>
       </Wrapper>
-
-      <Footer />
-    </Layout>
+    </>
   );
 }
 

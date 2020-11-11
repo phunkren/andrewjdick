@@ -16,8 +16,9 @@ const config = {
     'gatsby-plugin-styled-components',
     'gatsby-plugin-sharp',
     'gatsby-plugin-netlify',
-    'gatsby-plugin-react-axe',
+    // 'gatsby-plugin-react-axe',
     'gatsby-plugin-react-helmet',
+    `gatsby-plugin-transition-link`,
     'gatsby-transformer-sharp',
     'gatsby-transformer-json',
     {

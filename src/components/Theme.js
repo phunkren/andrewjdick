@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { CustomCheckboxContainer, CustomCheckboxInput } from '@reach/checkbox';
 import '@reach/checkbox/styles.css';
 import { DEFAULT_THEME, THEMES } from '../styles/themes';
@@ -53,14 +53,19 @@ export const ThemeToggle = props => {
     <CustomCheckboxContainer
       checked={checked}
       onChange={handleChange}
-      css="width: 48px; height: 48px; margin: 0;"
+      css="width: 44px; height: 44px; margin: 0;"
       {...props}
     >
       <label
         htmlFor="toggle"
         css={`display: flex; align-items: center; justify-content: center; width: 100%; height 100%;`}
       >
-        <LightIcon on={!checked} aria-label="Theme toggle" />
+        <LightIcon
+          on={!checked}
+          aria-label="Theme toggle"
+          width="2rem"
+          height="2rem"
+        />
 
         <CustomCheckboxInput
           id="toggle"

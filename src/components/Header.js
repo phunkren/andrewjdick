@@ -20,12 +20,12 @@ const Outer = styled.header(() => [
     z-index: 5;
 
     ${MEDIA.print`
-      display: none;
+    display: none;
     `};
   `,
 ]);
 
-const Inner = styled.div(({ theme, variant }) => [
+const Inner = styled.div(({ theme }) => [
   css`
     display: flex;
     justify-content: space-between;
@@ -34,20 +34,12 @@ const Inner = styled.div(({ theme, variant }) => [
     padding: 0 var(--spacing-medium);
     max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
     height: 60px;
-    color: ${theme.copyColor};
+    color: var(--color-white);
 
     ${MEDIA.tablet`
-    padding: 0 var(--spacing-huge);
-  `};
+      padding: 0 var(--spacing-huge);
+    `};
   `,
-  variant === 'dark' &&
-    css`
-      color: var(--color-white);
-
-      ${Link} {
-        text-shadow: 1px 1px var(--color-black);
-      }
-    `,
 ]);
 
 const DesktopNavigation = styled(Navigation)`
@@ -81,10 +73,15 @@ const MobileNavigationButton = styled(IconButton)(
 const LogoLink = styled(Link)(({ theme }) => [css``]);
 
 export const Header = ({ variant }) => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [navStatus, setNavStatus] = useState('close');
 
   function toggleMobileNavigation() {
-    setIsNavOpen(!isNavOpen);
+    setNavStatus(navStatus !== 'open' ? 'open' : 'close');
+  }
+
+  function handleDismiss() {
+    toggleMobileNavigation();
+    setNavStatus('close');
   }
 
   return (
@@ -125,15 +122,15 @@ export const Header = ({ variant }) => {
             aria-label="Navigation menu"
             onClick={toggleMobileNavigation}
           >
-            <HamburgerIcon width="1.5rem" height="1.5rem" />
+            <HamburgerIcon />
           </MobileNavigationButton>
         </Inner>
       </Outer>
 
       <Drawer
         aria-label="Mobile navigation menu"
-        isOpen={isNavOpen}
-        onDismiss={toggleMobileNavigation}
+        state={navStatus}
+        onDismiss={handleDismiss}
       />
     </>
   );

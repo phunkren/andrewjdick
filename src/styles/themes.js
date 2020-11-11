@@ -2,9 +2,11 @@ import { mix } from 'polished';
 
 const LIGHT_THEME = {
   background: 'var(--color-white)',
-  headerColor: 'var(--color-charcoal)',
+  headerColor: 'var(--color-black)',
   copyColor: 'var(--color-black)',
   linkColor: 'var(--color-blue-700)',
+  heroColor: 'var(--color-white)',
+  navLinkColor: 'var(--color-charcoal)',
   highlightColor: 'var(--color-blue-600)',
   auxiliaryColor: 'var(--color-gray-700)',
   borderColor: 'var(--color-charcoal)',
@@ -19,13 +21,12 @@ const LIGHT_THEME = {
   inputPlaceholderColor: 'rgba(0, 0, 0, 0.33)',
   inputAutofillColor: 'var(--color-blue-600)',
   cvHeaderColor: 'var(--color-black)',
-  cvSubheaderColor: 'var(--color-charcoal)',
-  cvInterfaceColor: 'var(--color-charcoal)',
+  cvSubheaderColor: 'var(--color-black)',
+  cvInterfaceColor: 'var(--color-gray-400)',
   cvBorderColor: 'var(--color-charcoal)',
   blogSyntaxColor: 'var(--color-gray-600)',
-  navLinkHover: 'var(--color-orange-500)',
-  overlay5: `${mix(0.9, 'rgb(255,255,255)', 'rgb(0, 0, 0)')}`,
-  overlay10: `${mix(0.95, 'rgb(255,255,255)', 'rgb(0,0,0)')}`,
+  overlay5: `${mix(0.95, '#edf2f7', '#000000')}`,
+  overlay10: 'var(--color-white)',
 };
 
 const DARK_THEME = {
@@ -33,7 +34,9 @@ const DARK_THEME = {
   headerColor: 'var(--color-gray-200)',
   copyColor: 'var(--color-white)',
   linkColor: 'var(--color-blue-400)',
-  highlightColor: 'var(--color-orange-400)',
+  heroColor: 'var(--color-black)',
+  navLinkColor: 'var(--color-orange-400)',
+  highlightColor: 'var(--color-gray400)',
   auxiliaryColor: 'var(--color-gray-400)',
   borderColor: 'var(--color-charcoal)',
   cardColor: 'var(--color-gray-200)',
@@ -48,10 +51,9 @@ const DARK_THEME = {
   inputAutofillColor: 'var(--color-orange-400)',
   cvHeaderColor: 'var(--color-orange-400)',
   cvSubheaderColor: 'var(--color-orange-200)',
-  cvInterfaceColor: 'var(--color-gray-600)',
+  cvInterfaceColor: 'var(--color-charcoal)',
   cvBorderColor: 'var(--color-orange-400)',
   blogSyntaxColor: 'var(--color-orange-400)',
-  navLinkHover: 'var(--color-blue-500)',
   overlay5: `${mix(0.95, 'rgb(0,0,0)', 'rgb(255, 255, 255)')}`,
   overlay10: `${mix(0.925, 'rgb(0,0,0)', 'rgb(255,255,255)')}`,
 };

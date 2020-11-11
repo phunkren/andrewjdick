@@ -32,8 +32,8 @@ export const RawIcon = ({
 );
 
 RawIcon.defaultProps = {
-  height: '2rem',
-  width: '2rem',
+  height: '1.75rem',
+  width: '1.75rem',
   viewBox: '0 0 24 24',
   fill: 'none',
   stroke: 'currentColor',

@@ -1,9 +1,13 @@
 import React from 'react';
 import { linearGradient } from 'polished';
 import styled, { css, createGlobalStyle } from 'styled-components';
+import { Hero } from './Hero';
 import { reset } from 'styled-reset';
 import { MEDIA } from '../styles/media';
 import 'prismjs/themes/prism-tomorrow.css';
+import { Header } from './Header';
+import { Footer } from './Footer';
+import { fadeInAnimation } from '../styles/animation';
 
 const Styles = createGlobalStyle(
   ({ theme }) => css`
@@ -94,19 +98,27 @@ const Styles = createGlobalStyle(
 
     html {
       display: flex;
+      min-height: 100%;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
     }
 
     body {
       font: 20px var(--font-copy);
       font: 1.15rem var(--font-copy);
       line-height: 1.5;
-      background-color: ${theme.background};
+      background-attachment: fixed;
       background-image: ${linearGradient({
         colorStops: [`${theme.overlay5} 0%`, `${theme.background} 95%`],
         toDirection: 'to bottom',
         fallback: `${theme.background}`,
       })};
       color: ${theme.copyColor};
+      max-width: 100%;
+      width: 100%;
+      overflow-x: hidden;
 
       & * {
         font-size: inherit;
@@ -199,7 +211,7 @@ const Styles = createGlobalStyle(
     textarea:-webkit-autofill,
     textarea:-webkit-autofill:hover,
     textarea:-webkit-autofill:focus {
-      transition: background-color 5000s ease-in-out 0s;
+      transition: background-color 50000s ease-in-out 0s;
       box-shadow: 0 0 0px 1000px transparent inset;
       -webkit-box-shadow: 0 0 0px 1000px transparent inset;
     }
@@ -218,11 +230,36 @@ const Styles = createGlobalStyle(
   `,
 );
 
-export const Layout = styled(({ children }) => {
+const Div = styled.div`
+  display: flex;
+  flex-flow: column;
+  min-height: 100%;
+  ${fadeInAnimation};
+  animation-delay: 1s;
+`;
+
+export const Layout = styled(({ location, children, data }) => {
+  const isHomepage = location?.pathname === '/';
+  const isBlogPost = Boolean(location?.pathname.split('/blog/')[1]);
+  const customHero = {
+    image: data?.markdownRemark?.frontmatter?.image,
+    alt: data?.markdownRemark?.frontmatter?.imageAlt,
+  };
+  const variant = isHomepage ? 'home' : isBlogPost ? 'blog' : 'page';
+
   return (
     <>
       <Styles />
-      {children}
+
+      <Hero customHero={customHero} variant={variant} />
+
+      <Div>
+        <Header />
+
+        {children}
+
+        <Footer isHomepage={isHomepage} />
+      </Div>
     </>
   );
 })``;

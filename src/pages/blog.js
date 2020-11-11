@@ -1,4 +1,5 @@
 import React from 'react';
+import { animated } from 'react-spring/renderprops';
 import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
 import { formatId } from '../utils/formatId';
@@ -6,11 +7,9 @@ import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
 import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { Hero } from '../components/Hero';
-import { Header } from '../components/Header';
 import { convertPxToRem } from '../utils/unitConversion';
-import { Footer } from '../components/Footer';
 import { ArrowRightIcon } from '../components/icons/ArrowRIght';
+import { FadeIn, FadeThrough } from '../components/Animation';
 
 const Main = styled.main`
   flex: 1;
@@ -37,7 +36,7 @@ const Wrapper = styled.div`
 
 const ListItem = styled.li``;
 
-const List = styled.ul`
+const List = styled(animated.ul)`
   max-width: 100%;
   
   ${ListItem} + ${ListItem} {
@@ -77,8 +76,9 @@ const Title = styled(Text)(
 
 const Info = styled(Text)(
   ({ theme }) => css`
+    display: block;
     color: ${theme.auxiliaryColor};
-    margin-bottom: var(--spacing-large);
+    margin-bottom: var(--spacing-medium);
   `,
 );
 
@@ -103,33 +103,40 @@ const StyledTitle = styled(Text)`
 
 const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
   <Preview aria-labelledby={`blog post-${formatId(frontmatter.title)}`}>
-    <Title as="h2" size="xl" id={`post-${formatId(frontmatter.title)}`}>
-      {frontmatter.title}
-    </Title>
+    <FadeIn>
+      {styles => (
+        <animated.div style={styles}>
+          <Title as="h2" size="xl" id={`post-${formatId(frontmatter.title)}`}>
+            {frontmatter.title}
+          </Title>
 
-    <Info size="xs">
-      {frontmatter.date} | {fields.readingTime.text}
-    </Info>
+          <Info size="xs">
+            {frontmatter.date} | {fields.readingTime.text}
+          </Info>
 
-    <Text
-      as="p"
-      aria-label="Excerpt"
-      css="padding-bottom: var(--spacing-huge);"
-    >
-      {excerpt}
-    </Text>
+          <Text
+            as="p"
+            aria-label="Excerpt"
+            css="padding-bottom: var(--spacing-huge);"
+          >
+            {excerpt}
+          </Text>
 
-    <StyledLink
-      to={`/blog${fields.slug}`}
-      aria-label="Click to read the article in full"
-    >
-      Read more{' '}
-      <ArrowRightIcon
-        height="1em"
-        width="1em"
-        css="margin-left: var(--spacing-tiny); position: relative; top: 2px;"
-      />
-    </StyledLink>
+          <StyledLink
+            to={`/blog${fields.slug}`}
+            aria-label="Click to read the article in full"
+            css="font-weight: 600;"
+          >
+            Read more{' '}
+            <ArrowRightIcon
+              height="1em"
+              width="1em"
+              css="margin-left: var(--spacing-tiny); position: relative; top: 2px;"
+            />
+          </StyledLink>
+        </animated.div>
+      )}
+    </FadeIn>
   </Preview>
 );
 
@@ -150,16 +157,21 @@ export default function Blog({ data, location: { pathname } }) {
         title="Blog"
         description="Personal contributions to modern frontend web development"
       />
-      <Header variant="dark" />
       <Wrapper>
-        <Hero />
         <Main>
-          <StyledTitle as="h1" size="4xl" id="blog">
-            Blog
-          </StyledTitle>
-          <List>{posts}</List>
+          <FadeIn>
+            {styles => (
+              <animated.div style={styles}>
+                <StyledTitle as="h1" size="4xl" id="blog">
+                  Blog
+                </StyledTitle>
+              </animated.div>
+            )}
+          </FadeIn>
+          <FadeThrough>
+            {styles => <List style={styles}>{posts}</List>}
+          </FadeThrough>
         </Main>
-        <Footer />
       </Wrapper>
     </>
   );

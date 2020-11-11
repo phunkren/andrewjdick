@@ -105,8 +105,8 @@ export const SIZES = {
     line-height: 1.2;
 
     ${MEDIA.desktop`
-      font-size: 48px;
-      font-size: ${convertPxToRem(48)};
+      font-size: 72px;
+      font-size: ${convertPxToRem(72)};
       line-height: 1.167;
     `};
   `,
