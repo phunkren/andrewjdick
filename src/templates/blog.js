@@ -8,7 +8,7 @@ import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { linkStyles, highlightStyles } from '../components/Link';
 import { SIZES } from '../components/Text';
 import { convertPxToRem } from '../utils/unitConversion';
-import { FadeIn } from '../components/Transition';
+import { FadeIn } from '../components/Animation';
 import { animated } from 'react-spring/renderprops';
 
 const Wrapper = styled.div`

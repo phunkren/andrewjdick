@@ -55,7 +55,7 @@ const Inner = styled.div(({ isHomepage }) => [
       padding: var(--spacing-medium) var(--spacing-medium);
       color: var(--color-gray-200);
       ${fadeInAnimation};
-      animation-delay: 0.5s;
+      animation-delay: 0.9s;
 
       ${ContactLink} {
         display: none;

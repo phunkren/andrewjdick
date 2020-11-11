@@ -9,7 +9,7 @@ import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
 import { ArrowRightIcon } from '../components/icons/ArrowRIght';
-import { FadeIn, FadeThrough } from '../components/Transition';
+import { FadeIn, FadeThrough } from '../components/Animation';
 
 const Main = styled.main`
   flex: 1;

@@ -19,7 +19,7 @@ import { DownloadIcon, PrintIcon } from '../components/icons';
 import { SEO } from '../components/SEO';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
-import { FadeThrough, FadeIn } from '../components/Transition';
+import { FadeThrough, FadeIn } from '../components/Animation';
 
 const List = styled.ul`
   margin-bottom: var(--spacing-huge);

@@ -34,7 +34,7 @@ const Section = styled.section`
   padding: 0 var(--spacing-medium);
   color: var(--color-white);
   ${fadeInAnimation};
-  animation-delay: 0.5s;
+  animation-delay: 0.85s;
 
   ${MEDIA.tablet`
     left: 50%;

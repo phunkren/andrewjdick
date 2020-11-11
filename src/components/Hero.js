@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import { fadeInAnimation, infiniteScrollAnimation } from '../styles/animation';
 import lightbulbs from '../assets/images/lightbulbs.png';
 import Img from 'gatsby-image';
+import { HeroSpring } from './Animation';
 
 const Lightbulbs = styled.div`
   background-image: url(${lightbulbs});
@@ -22,59 +23,47 @@ const BlogHero = styled(Img)`
   ${fadeInAnimation};
 `;
 
-const Container = styled(animated.aside)(({ $blog, $home, theme }) => [
-  css`
-    background-color: var(--color-gray-400);
-    border-bottom: 2px solid;
-    border-bottom-color: var(--color-black);
+const Container = styled(animated.aside)`
+  background-color: var(--color-gray-400);
+  border-bottom: 2px solid;
+  border-bottom-color: var(--color-orange-600);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  will-change: transform;
+
+  &::after {
+    content: '';
     position: absolute;
     top: 0;
     right: 0;
-    left: 0;
     bottom: 0;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
-    overflow: hidden;
-    transition: transform 0.5s ease-out;
-    will-change: transform;
+    left: 0;
+    background-color: var(--color-black);
+    opacity: 0.95;
+    z-index: 2;
+  }
+`;
 
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: var(--color-black);
-      opacity: 0.95;
-      z-index: 2;
-    }
-  `,
-  !$home &&
-    css`
-      transform: translateY(calc(-100% + 12.5rem));
-      transition: transform 0.5s ease-out;
-      border-bottom-color: var(--color-orange-600);
-    `,
-  $blog &&
-    css`
-      transform: translateY(calc(-100% + 25rem));
-      transition: transform 0.5s ease-out;
+export const Hero = ({ customHero, variant, ...props }) => {
+  return (
+    <HeroSpring variant={variant}>
+      {styles => (
+        <Container style={styles} {...props}>
+          {variant === 'blog' ? (
+            <BlogHero
+              fluid={customHero.image.childImageSharp.fluid}
+              alt={customHero.alt}
+            />
+          ) : null}
 
-      ${Lightbulbs} {
-        opacity: 0;
-      }
-    `,
-]);
-
-export const Hero = ({ customHero, isBlogPost, isHomepage, ...props }) => (
-  <Container $blog={isBlogPost} $home={isHomepage} {...props}>
-    {isBlogPost ? (
-      <BlogHero
-        fluid={customHero.image.childImageSharp.fluid}
-        alt={customHero.alt}
-      />
-    ) : null}
-
-    <Lightbulbs />
-  </Container>
-);
+          <Lightbulbs />
+        </Container>
+      )}
+    </HeroSpring>
+  );
+};

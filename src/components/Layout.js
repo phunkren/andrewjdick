@@ -235,27 +235,23 @@ const Div = styled.div`
   flex-flow: column;
   min-height: 100%;
   ${fadeInAnimation};
-  animation-delay: 0.5s;
+  animation-delay: 1s;
 `;
 
 export const Layout = styled(({ location, children, data }) => {
   const isHomepage = location?.pathname === '/';
   const isBlogPost = Boolean(location?.pathname.split('/blog/')[1]);
-
   const customHero = {
     image: data?.markdownRemark?.frontmatter?.image,
     alt: data?.markdownRemark?.frontmatter?.imageAlt,
   };
+  const variant = isHomepage ? 'home' : isBlogPost ? 'blog' : 'page';
 
   return (
     <>
       <Styles />
 
-      <Hero
-        customHero={customHero}
-        isHomepage={isHomepage}
-        isBlogPost={isBlogPost}
-      />
+      <Hero customHero={customHero} variant={variant} />
 
       <Div>
         <Header />
