@@ -87,6 +87,7 @@ const StyledLink = styled(Link)(
     align-self: flex-start;
     display: flex;
     align-items: center;
+    width: fit-content;
     color: ${theme.linkColor};
   `,
 );

@@ -7,6 +7,7 @@ import { Text } from '../components/Text';
 import { SEO } from '../components/SEO';
 import { MEDIA } from '../styles/media';
 import { fadeInAnimation } from '../styles/animation';
+import { convertPxToRem } from '../utils/unitConversion';
 
 const Wrapper = styled(Div100vh)`
   flex: 1;
@@ -31,15 +32,16 @@ const Section = styled.section`
   left: 0;
   right: 0;
   transform: translateY(-50%);
+  width: 100%;
   padding: 0 var(--spacing-medium);
   color: var(--color-white);
   ${fadeInAnimation};
-  animation-delay: 0.85s;
+  animation-delay: 0.75s;
 
   ${MEDIA.tablet`
     left: 50%;
     transform: translate(-50%, -50%);
-    paddding: 0 var(--spacing-large);
+    padding: 0 var(--spacing-large);
   `}
 `;
 
@@ -62,19 +64,19 @@ export default function Home({ data }) {
             <Title as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
               {author.name}
             </Title>
-            <Text size="m" aria-label={`Position: ${currentEmployer.position}`}>
+            <Text size="l" aria-label={`Position: ${currentEmployer.position}`}>
               {currentEmployer.position}
             </Text>
-            <Text size="m"> @ </Text>
+            <Text size="l"> @ </Text>
             <ExternalLink
               aria-label={`Employer: ${currentEmployer.company}`}
               href={currentEmployer.url}
               highlight
             >
-              <Text size="m">{currentEmployer.company}</Text>
+              <Text size="l">{currentEmployer.company}</Text>
             </ExternalLink>
             <br />
-            <Text aria-label={`Location: ${author.location}`}>
+            <Text size="m" aria-label={`Location: ${author.location}`}>
               {author.location}
             </Text>
           </Section>
