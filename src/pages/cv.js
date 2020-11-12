@@ -38,12 +38,10 @@ const StyledExternalLink = styled(ExternalLink)`
   align-items: center;
 `;
 
-const Wrap = styled.div(
-  ({ theme }) => css`
-    width: 100%;
-    overflow: hidden;
-  `,
-);
+const Wrap = styled.div`
+  width: 100%;
+  overflow: hidden;
+`;
 
 const Main = styled.main`
   position: relative;
@@ -62,6 +60,9 @@ const Main = styled.main`
 
   ${MEDIA.print`
     margin-top: 0;
+    padding-right: 0;
+    padding-left: 0;
+    max-width: none;
   `}
 `;
 
@@ -124,8 +125,8 @@ const HeaderIcons = styled.div`
   }
 
   ${MEDIA.print`
-      display: none;
-    `};
+    display: none;
+  `};
 `;
 
 const Wrapper = styled.div(
