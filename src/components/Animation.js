@@ -43,9 +43,7 @@ export const FadeIn = ({ children }) => {
             from={{ opacity: 0 }}
             enter={{ opacity: 1 }}
             leave={{ opacity: 0 }}
-            config={[
-              { duration: 210, delay: 200, easing: t => d3.easeSinOut(t) },
-            ]}
+            config={[{ duration: 210, easing: t => d3.easeSinOut(t) }]}
           >
             {mount => mount && (props => children(props))}
           </Transition>
@@ -63,7 +61,7 @@ export const HeroSpring = ({ variant, children }) => {
   };
 
   const configs = {
-    home: { duration: 800, delay: 200, easing: t => d3.easeSinInOut(t) },
+    home: { duration: 800, delay: 0, easing: t => d3.easeSinOut(t) },
     page: { duration: 400, delay: 0, easing: t => d3.easeSinOut(t) },
     blog: { duration: 300, delay: 0, easing: t => d3.easeSinOut(t) },
   };
