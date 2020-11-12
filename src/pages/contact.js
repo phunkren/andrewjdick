@@ -42,6 +42,10 @@ const Wrapper = styled.div`
 
 const Input = styled.input`
   width: 100%;
+
+  /* remove rounded corners on Safari */
+  border-radius: 0;
+  -webkit-appearance: none;
 `;
 
 const TextArea = styled.textarea`
@@ -57,6 +61,7 @@ const Button = styled.button`
   color: rgba(255, 255, 255, 0.9);
   border: 0;
   min-width: 150px;
+  width: 100%;
   border-radius: 4px;
   transition: background-color 0.2s ease-out;
   cursor: pointer;
@@ -72,6 +77,7 @@ const Button = styled.button`
   ${MEDIA.tablet`
     align-self: flex-start;
     padding: var(--spacing-tiny) var(--spacing-large);
+    width: fit-content;
   `}
 `;
 
@@ -85,12 +91,12 @@ const Form = styled(animated.form)(
     background-color: ${theme.overlay10};
     border-radius: 4px;
     margin-bottom: var(--spacing-large);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
 
     ${MEDIA.tablet`
       flex: 0 1 auto;
       margin-bottom: var(--spacing-massive);
       padding: var(--spacing-massive);
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, .18);
     `}
   `,
 );

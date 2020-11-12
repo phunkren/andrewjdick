@@ -41,7 +41,11 @@ export const SIZES = {
     ${MEDIA.desktop`
       font-size: 20px;
       font-size: ${convertPxToRem(20)};
-      line-height: 1.4;
+    `}
+
+    ${MEDIA.print`
+      font-size: 16px;
+      font-size: ${convertPxToRem(16)};
     `}
   `,
   'l': css`
@@ -52,8 +56,12 @@ export const SIZES = {
     ${MEDIA.desktop`
       font-size: 22px;
       font-size: ${convertPxToRem(22)};
-      line-height: 1.364;
     `};
+
+    ${MEDIA.print`
+      font-size: 18px;
+      font-size: ${convertPxToRem(18)};
+    `}
   `,
   'xl': css`
     font-size: 24px;
@@ -63,8 +71,12 @@ export const SIZES = {
     ${MEDIA.desktop`
       font-size: 28px;
       font-size: ${convertPxToRem(28)};
-      line-height: 1.286;
     `};
+
+    ${MEDIA.print`
+      font-size: 20px;
+      font-size: ${convertPxToRem(20)};
+    `}
   `,
   'xxl': css`
     font-size: 28px;
@@ -74,8 +86,12 @@ export const SIZES = {
     ${MEDIA.desktop`
       font-size: 34px;
       font-size: ${convertPxToRem(34)};
-      line-height: 1.235;
     `};
+
+    ${MEDIA.print`
+      font-size: 24px;
+      font-size: ${convertPxToRem(24)};
+    `}
   `,
   'xxxl': css`
     font-size: 32px;
@@ -85,8 +101,12 @@ export const SIZES = {
     ${MEDIA.desktop`
       font-size: 40px;
       font-size: ${convertPxToRem(40)};
-      line-height: 1.2;
     `};
+
+    ${MEDIA.print`
+      font-size: 28px;
+      font-size: ${convertPxToRem(28)};
+    `}
   `,
   '4xl': css`
     font-size: 38px;
@@ -96,19 +116,32 @@ export const SIZES = {
     ${MEDIA.desktop`
       font-size: 44px;
       font-size: ${convertPxToRem(44)};
-      line-height: 1.182;
     `};
+
+    ${MEDIA.print`
+      font-size: 32px;
+      font-size: ${convertPxToRem(32)};
+    `}
   `,
   '5xl': css`
     font-size: 40px;
     font-size: ${convertPxToRem(40)};
     line-height: 1.2;
 
-    ${MEDIA.desktop`
+    ${MEDIA.tablet`
       font-size: 72px;
       font-size: ${convertPxToRem(72)};
-      line-height: 1.167;
     `};
+
+    ${MEDIA.desktop`
+      font-size: 88px;
+      font-size: ${convertPxToRem(88)};
+    `};
+
+    ${MEDIA.print`
+      font-size: 38px;
+      font-size: ${convertPxToRem(38)};
+    `}
   `,
 };
 

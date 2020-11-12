@@ -15,7 +15,7 @@ const Styles = createGlobalStyle(
 
     :root {
       /* https://tailwindcss.com/docs/customizing-colors */
-      --color-black: #000000;
+      --color-black: #121212;
       --color-charcoal: #303030;
       --color-white: #ffffff;
       --color-gray-200: #edf2f7;
@@ -28,21 +28,11 @@ const Styles = createGlobalStyle(
       --color-orange-400: #f6ad55;
       --color-orange-500: #ed8936;
       --color-orange-600: #dd6b20;
-      --color-orange-700: #c05621;
-      --color-orange-800: #9c4221;
-      --color-orange-900: #7b341e;
-      --color-blue-100: #ebf8ff;
       --color-blue-200: #bee3f8;
-      --color-blue-300: #90cdf4;
       --color-blue-400: #63b3ed;
-      --color-blue-500: #4299e1;
       --color-blue-600: #3182ce;
       --color-blue-700: #2b6cb0;
-      --color-blue-800: #2c5282;
-      --color-blue-900: #2a4365;
-      --color-green-200: #c6f6d5;
       --color-green-400: #68d391;
-      --color-green-600: #38a169;
 
       --spacing-tiny: 0.25rem;
       --spacing-small: 0.5rem;
@@ -99,6 +89,11 @@ const Styles = createGlobalStyle(
     html {
       display: flex;
       min-height: 100%;
+      background-image: ${linearGradient({
+        colorStops: [`${theme.overlay5} 0%`, `${theme.background} 95%`],
+        toDirection: 'to bottom',
+        fallback: `${theme.background}`,
+      })};
     }
 
     &::-webkit-scrollbar {
@@ -106,7 +101,7 @@ const Styles = createGlobalStyle(
     }
 
     body {
-      font: 20px var(--font-copy);
+      font: 18px var(--font-copy);
       font: 1.15rem var(--font-copy);
       line-height: 1.5;
       background-attachment: fixed;
@@ -235,7 +230,7 @@ const Div = styled.div`
   flex-flow: column;
   min-height: 100%;
   ${fadeInAnimation};
-  animation-delay: 1s;
+  animation-delay: 0.75s;
 `;
 
 export const Layout = styled(({ location, children, data }) => {

@@ -24,7 +24,7 @@ export const linkStyles = css`
 
   ${MEDIA.print`
     text-decoration: underline;
-    text-decoration-color: var(--color-orange-400);
+    text-decoration-color: var(--color-orange-400); 
   `}
 `;
 
@@ -87,7 +87,7 @@ export const Link = styled(({ navigate, ...props }) => {
   return (
     <TransitionLink
       entry={{ length: 0.4 }}
-      exit={{ length: 0.2 }}
+      exit={{ length: 0.05 }}
       getProps={isPartiallyActive}
       {...props}
     />

@@ -35,6 +35,8 @@ const Container = styled(animated.aside)`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
   overflow: hidden;
   will-change: transform;
+  ${fadeInAnimation};
+  animation-duration: 0.4s;
 
   &::after {
     content: '';
