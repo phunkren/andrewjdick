@@ -68,6 +68,12 @@ const Info = styled(Text)(
 
 const Section = styled.section(
   ({ theme }) => css`
+    h2,
+    h3,
+    h4 {
+      color: ${theme.cardHeaderColor};
+    }
+
     h2 {
       ${SIZES['xl']};
     }
@@ -105,21 +111,25 @@ const Section = styled.section(
       width: 100vw;
 
       pre {
-        background: ${mix(0.925, 'rgb(0,0,0)', 'rgb(255,255,255)')};
+        background: ${mix(0.95, 'rgb(0,0,0)', 'rgb(255,255,255)')};
       }
 
       pre code {
         padding: var(--spacing-medium);
       }
 
-      ${MEDIA.desktop`
-        margin-left: calc(var(--spacing-huge) * -1);
-        max-width: calc(100% + var(--spacing-huge) + var(--spacing-huge));
+      ${MEDIA.tablet`
+        max-width: calc(100% + var(--spacing-medium) + var(--spacing-huge));
 
         pre {
           border-radius: 4px;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
         }
+      `}
+
+      ${MEDIA.desktop`
+        margin-left: calc(var(--spacing-huge) * -1);
+        max-width: calc(100% + var(--spacing-huge) + var(--spacing-huge));
       `}
     }
 
@@ -174,8 +184,10 @@ const Section = styled.section(
 
       .comment {
         ${SIZES['xs']}
-        color: var(--color-gray-600);
+        color: var(--color-gray-400);
         font-style: italic;
+        text-transform: lowercase;
+        opacity: 0.5;
       }
 
       .string,
