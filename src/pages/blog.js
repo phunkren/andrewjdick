@@ -8,7 +8,7 @@ import { Text } from '../components/Text';
 import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
-import { ArrowRightIcon } from '../components/icons/ArrowRIght';
+import { ArrowRightIcon } from '../components/icons/ArrowRight';
 import { FadeIn, FadeThrough } from '../components/Animation';
 
 const Main = styled.main`
