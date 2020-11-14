@@ -1,6 +1,6 @@
 import React from 'react';
 import { animated } from 'react-spring/renderprops';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { fadeInAnimation, infiniteScrollAnimation } from '../styles/animation';
 import lightbulbs from '../assets/images/lightbulbs.png';
 import Img from 'gatsby-image';
