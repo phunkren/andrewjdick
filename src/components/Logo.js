@@ -19,8 +19,8 @@ export const Logo = props => {
     query {
       fileName: file(relativePath: { eq: "images/avatar.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 440, maxHeight: 410) {
-            ...GatsbyImageSharpFluid
+          fixed(width: 60, height: 60, quality: 100) {
+            ...GatsbyImageSharpFixed
           }
         }
       }
@@ -29,7 +29,7 @@ export const Logo = props => {
 
   return (
     <Image
-      fluid={data.fileName.childImageSharp.fluid}
+      fixed={data.fileName.childImageSharp.fixed}
       alt="Site logo"
       {...props}
     />
