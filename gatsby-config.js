@@ -16,7 +16,7 @@ const config = {
     'gatsby-plugin-styled-components',
     'gatsby-plugin-sharp',
     'gatsby-plugin-netlify',
-    // 'gatsby-plugin-react-axe',
+    'gatsby-plugin-react-axe',
     'gatsby-plugin-react-helmet',
     `gatsby-plugin-transition-link`,
     'gatsby-transformer-sharp',
@@ -140,15 +140,6 @@ const config = {
             title: 'Blog: RSS | Andrew James',
           },
         ],
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-web-font-loader',
-      options: {
-        google: {
-          families: ['Roboto:400', 'Rubik:300'],
-          text: `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@£#$%^&*()-_=+{[]};:'"|,<.>/?~`,
-        },
       },
     },
   ],
