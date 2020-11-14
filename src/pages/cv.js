@@ -507,6 +507,8 @@ export default function CV({ data, location: { pathname } }) {
                               ) => (
                                 <EducationBlock
                                   key={institute}
+                                  id={`edu-${formatId(institute)}`}
+                                  aria-label={institute}
                                   aria-labelledby={`cv-education edu-${formatId(
                                     institute,
                                   )}`}
@@ -615,29 +617,22 @@ export default function CV({ data, location: { pathname } }) {
                               Experience
                             </BlockHeader>
                             {experience.map(
-                              (
-                                {
-                                  position,
-                                  company,
-                                  url,
-                                  dates,
-                                  blurb,
-                                  portfolio,
-                                },
-                                index,
-                              ) => (
+                              ({
+                                position,
+                                company,
+                                url,
+                                dates,
+                                blurb,
+                                portfolio,
+                              }) => (
                                 <Block
-                                  key={company}
-                                  aria-label={`exp-${formatId(company)}`}
-                                  aria-labelledby={`cv-experience exp-${formatId(
-                                    company,
+                                  key={`${company}-${position}`}
+                                  id={`exp-${formatId(
+                                    `${company}-${position}`,
                                   )}`}
+                                  aria-label={`${company}: ${position}`}
                                 >
-                                  <BlockSubheader
-                                    as="h3"
-                                    size="xl"
-                                    id={`exp-${formatId(company)}`}
-                                  >
+                                  <BlockSubheader as="h3" size="xl">
                                     {position}
                                   </BlockSubheader>
                                   <ExperienceInfo>
