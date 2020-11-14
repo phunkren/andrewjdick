@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
 import { mix } from 'polished';
@@ -112,6 +112,7 @@ const Section = styled.section(
 
       pre {
         background: ${mix(0.95, 'rgb(0,0,0)', 'rgb(255,255,255)')};
+        overflow-y: auto;
       }
 
       pre code {
@@ -184,10 +185,9 @@ const Section = styled.section(
 
       .comment {
         ${SIZES['xs']}
-        color: var(--color-gray-400);
+        color: rgba(255,255,255,0.33);
         font-style: italic;
         text-transform: lowercase;
-        opacity: 0.5;
       }
 
       .string,
@@ -244,6 +244,14 @@ const Section = styled.section(
 function BlogTemplate({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, fields, html } = markdownRemark;
+
+  useEffect(() => {
+    const codeBlocks = document.getElementsByTagName('pre');
+
+    for (let codeBlock of codeBlocks) {
+      codeBlock.setAttribute('tabindex', '0');
+    }
+  }, []);
 
   return (
     <>

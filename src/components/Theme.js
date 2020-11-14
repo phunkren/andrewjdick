@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { CustomCheckboxContainer, CustomCheckboxInput } from '@reach/checkbox';
 import '@reach/checkbox/styles.css';
 import { DEFAULT_THEME, THEMES } from '../styles/themes';
@@ -41,6 +41,21 @@ export const Theme = props => {
   ) : null;
 };
 
+const Container = styled(CustomCheckboxContainer)`
+  margin: 0;
+  width: 44px;
+  height: 44px;
+
+  &[data-reach-custom-checkbox-container]:focus-within,
+  &[data-reach-custom-checkbox-container][data-focus] {
+    outline: 2px solid;
+    outline-offset: 4px;
+    outline-color: var(--color-blue-700);
+    box-shadow: none;
+    border: none;
+  }
+`;
+
 export const ThemeToggle = props => {
   const { theme, update } = useContext(ThemeContext) || {};
   const checked = theme === 'light';
@@ -50,12 +65,7 @@ export const ThemeToggle = props => {
   }
 
   return (
-    <CustomCheckboxContainer
-      checked={checked}
-      onChange={handleChange}
-      css="width: 44px; height: 44px; margin: 0;"
-      {...props}
-    >
+    <Container checked={checked} onChange={handleChange} {...props}>
       <label
         htmlFor="toggle"
         css={`display: flex; align-items: center; justify-content: center; width: 100%; height 100%;`}
@@ -74,6 +84,6 @@ export const ThemeToggle = props => {
           {...props}
         />
       </label>
-    </CustomCheckboxContainer>
+    </Container>
   );
 };

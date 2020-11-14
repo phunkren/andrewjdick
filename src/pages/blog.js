@@ -8,7 +8,7 @@ import { Text } from '../components/Text';
 import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
-import { ArrowRightIcon } from '../components/icons/ArrowRIght';
+import { ArrowRightIcon } from '../components/icons/ArrowRight';
 import { FadeIn, FadeThrough } from '../components/Animation';
 
 const Main = styled.main`
@@ -102,44 +102,49 @@ const StyledTitle = styled(Text)`
   `}
 `;
 
-const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
-  <Preview aria-labelledby={`blog post-${formatId(frontmatter.title)}`}>
-    <FadeIn>
-      {styles => (
-        <animated.div style={styles}>
-          <Title as="h2" size="xl" id={`post-${formatId(frontmatter.title)}`}>
-            {frontmatter.title}
-          </Title>
+const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => {
+  const formattedTitle = formatId(frontmatter.title);
 
-          <Info size="xs">
-            {frontmatter.date} | {fields.readingTime.text}
-          </Info>
+  return (
+    <Preview aria-labelledby={`blog post-${formattedTitle}`}>
+      <FadeIn>
+        {styles => (
+          <animated.div style={styles}>
+            <Title as="h2" size="xl" id={`post-${formattedTitle}`}>
+              {frontmatter.title}
+            </Title>
 
-          <Text
-            as="p"
-            aria-label="Excerpt"
-            css="padding-bottom: var(--spacing-huge);"
-          >
-            {excerpt}
-          </Text>
+            <Info size="xs">
+              {frontmatter.date} | {fields.readingTime.text}
+            </Info>
 
-          <StyledLink
-            to={`/blog${fields.slug}`}
-            aria-label="Click to read the article in full"
-            css="font-weight: 600;"
-          >
-            Read more{' '}
-            <ArrowRightIcon
-              height="1em"
-              width="1em"
-              css="margin-left: var(--spacing-tiny); position: relative; top: 2px;"
-            />
-          </StyledLink>
-        </animated.div>
-      )}
-    </FadeIn>
-  </Preview>
-);
+            <Text
+              as="p"
+              aria-label="Excerpt"
+              css="padding-bottom: var(--spacing-huge);"
+            >
+              {excerpt}
+            </Text>
+
+            <StyledLink
+              to={`/blog${fields.slug}`}
+              aria-label="Click to read the article in full"
+              css="font-weight: 600;"
+            >
+              Read more{' '}
+              <ArrowRightIcon
+                aria-hidden="true"
+                height="1em"
+                width="1em"
+                css="margin-left: var(--spacing-tiny); position: relative; top: 2px;"
+              />
+            </StyledLink>
+          </animated.div>
+        )}
+      </FadeIn>
+    </Preview>
+  );
+};
 
 export default function Blog({ data, location: { pathname } }) {
   const { edges } = data.allMarkdownRemark;

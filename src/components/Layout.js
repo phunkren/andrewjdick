@@ -52,8 +52,8 @@ const Styles = createGlobalStyle(
       font-style: normal;
       font-weight: 500;
       font-display: fallback;
-      src: url('../../static/assets/fonts/Rubik-Medium.woff2') format('woff2'),
-        url('../../static/assets/fonts/Rubik-Medium.woff') format('woff');
+      src: url('/assets/fonts/Rubik-Medium.woff2') format('woff2'),
+        url('/assets/fonts/Rubik-Medium.woff') format('woff');
     }
 
     @font-face {
@@ -61,9 +61,8 @@ const Styles = createGlobalStyle(
       font-style: normal;
       font-weight: 400;
       font-display: fallback;
-      src: url('../../static/assets/fonts/OpenSans-Regular.woff2')
-          format('woff2'),
-        url('../../static/assets/fonts/OpenSans-Regular.woff') format('woff');
+      src: url('/assets/fonts/OpenSans-Regular.woff2') format('woff2'),
+        url('/assets/fonts/OpenSans-Regular.woff') format('woff');
     }
 
     @font-face {
@@ -71,9 +70,8 @@ const Styles = createGlobalStyle(
       font-style: normal;
       font-weight: 600;
       font-display: fallback;
-      src: url('../../static/assets/fonts/OpenSans-SemiBold.woff2')
-          format('woff2'),
-        url('../../static/assets/fonts/OpenSans-SemiBold.woff') format('woff');
+      src: url('/assets/fonts/OpenSans-SemiBold.woff2') format('woff2'),
+        url('/assets/fonts/OpenSans-SemiBold.woff') format('woff');
     }
 
     @font-face {
@@ -81,9 +79,8 @@ const Styles = createGlobalStyle(
       font-style: normal;
       font-weight: 400;
       font-display: fallback;
-      src: url('../../static/assets/fonts/MonoLisa-Regular.woff2')
-          format('woff2'),
-        url('../../static/assets/fonts/MonoLisa-Regular.woff') format('woff');
+      src: url('/assets/fonts/MonoLisa-Regular.woff2') format('woff2'),
+        url('/assets/fonts/MonoLisa-Regular.woff') format('woff');
     }
 
     html {
@@ -161,7 +158,7 @@ const Styles = createGlobalStyle(
     a,
     button,
     label span {
-      font-weight: 500;
+      font-weight: 600;
     }
 
     input,
