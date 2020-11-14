@@ -1767,7 +1767,7 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
-"@reach/auto-id@0.11.2":
+"@reach/auto-id@0.11.2", "@reach/auto-id@^0.11.2":
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/@reach/auto-id/-/auto-id-0.11.2.tgz#c66a905c5401d1ac3da8d26165b8d27d6e778fa6"
   dependencies:
