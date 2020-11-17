@@ -172,8 +172,8 @@ export default function Contact({ location }) {
       <Wrapper>
         <Main>
           <FadeIn>
-            {styles => (
-              <animated.div style={styles}>
+            {({ o }) => (
+              <animated.div style={{ opacity: o.interpolate(o => o) }}>
                 <Title as="h1" size="4xl" id="contact">
                   Contact
                 </Title>
@@ -181,7 +181,7 @@ export default function Contact({ location }) {
             )}
           </FadeIn>
           <FadeThrough>
-            {styles => (
+            {({ s, o }) => (
               <Form
                 name="contact"
                 method="POST"
@@ -189,12 +189,15 @@ export default function Contact({ location }) {
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
-                style={styles}
+                style={{
+                  transform: s.interpolate(s => `scale(${s})`),
+                  opacity: o && o.interpolate(o => o),
+                }}
               >
                 {success ? (
                   <FadeIn>
-                    {styles => (
-                      <animated.div style={styles}>
+                    {({ o }) => (
+                      <animated.div style={{ opacity: o.interpolate(o => o) }}>
                         <div css="display: flex; align-items: center; margin-bottom: var(--spacing-huge);">
                           <TickIcon
                             width="3rem"
@@ -225,8 +228,8 @@ export default function Contact({ location }) {
                   </FadeIn>
                 ) : (
                   <FadeIn>
-                    {styles => (
-                      <animated.div style={styles}>
+                    {({ o }) => (
+                      <animated.div style={{ opacity: o.interpolate(o => o) }}>
                         <label htmlFor="form-name" hidden>
                           <Text>Netlify requires this:</Text>
                           <Input

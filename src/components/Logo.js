@@ -8,6 +8,7 @@ const Image = styled(Img)`
   width: 100%;
   min-width: 44px;
   border-radius: 50%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
 
   ${MEDIA.tablet`
     width: 60px;

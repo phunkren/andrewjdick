@@ -33,6 +33,15 @@ const Styles = createGlobalStyle(
       --color-blue-600: #3182ce;
       --color-blue-700: #2b6cb0;
       --color-green-400: #68d391;
+      --color-red-100: #fff5f5;
+      --color-red-200: #fed7d7;
+      --color-red-300: #feb2b2;
+      --color-red-400: #fc8181;
+      --color-red-500: #f56565;
+      --color-red-600: #e53e3e;
+      --color-red-700: #c53030;
+      --color-red-800: #9b2c2c;
+      --color-red-900: #742a2a;
 
       --spacing-tiny: 0.25rem;
       --spacing-small: 0.5rem;
@@ -103,7 +112,7 @@ const Styles = createGlobalStyle(
       line-height: 1.5;
       background-attachment: fixed;
       background-image: ${linearGradient({
-        colorStops: [`${theme.overlay5} 0%`, `${theme.background} 95%`],
+        colorStops: [`${theme.overlay5} 0%`, `${theme.background} 97.5%`],
         toDirection: 'to bottom',
         fallback: `${theme.background}`,
       })};
@@ -227,7 +236,7 @@ const Div = styled.div`
   flex-flow: column;
   min-height: 100%;
   ${fadeInAnimation};
-  animation-delay: 0.75s;
+  animation-delay: 0.5s;
 `;
 
 export const Layout = styled(({ location, children, data }) => {
@@ -246,7 +255,7 @@ export const Layout = styled(({ location, children, data }) => {
       <Hero customHero={customHero} variant={variant} />
 
       <Div>
-        <Header />
+        <Header variant={variant} />
 
         {children}
 

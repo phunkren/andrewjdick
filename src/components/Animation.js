@@ -1,5 +1,5 @@
 import React from 'react';
-import { Transition, Spring } from 'react-spring/renderprops';
+import { Transition, Spring, Trail } from 'react-spring/renderprops';
 import { TransitionState } from 'gatsby-plugin-transition-link';
 import * as d3 from 'd3-ease';
 
@@ -14,9 +14,9 @@ export const FadeThrough = ({ children }) => {
           <Transition
             native
             items={mount}
-            from={mount && { transform: 'scale(0.92)' }}
-            enter={mount && { transform: 'scale(1)' }}
-            leave={!mount && { opacity: '0' }}
+            from={mount && { s: 0.92 }}
+            enter={mount && { s: 1 }}
+            leave={!mount && { o: 0 }}
             config={{
               duration: duration ? duration * 1000 : 300,
               easing: t => d3.easeCubicOut(t),
@@ -40,9 +40,9 @@ export const FadeIn = ({ children }) => {
           <Transition
             native
             items={mount}
-            from={{ opacity: 0 }}
-            enter={{ opacity: 1 }}
-            leave={{ opacity: 0 }}
+            from={{ o: 0 }}
+            enter={{ o: 1 }}
+            leave={{ o: 0 }}
             config={[{ duration: 210, easing: t => d3.easeSinOut(t) }]}
           >
             {mount => mount && (props => children(props))}
@@ -55,15 +55,57 @@ export const FadeIn = ({ children }) => {
 
 export const HeroSpring = ({ variant, children }) => {
   const positions = {
-    home: { rem: 0, percentage: 100 },
-    page: { rem: 12.5, percentage: 0 },
-    blog: { rem: 25, percentage: 0 },
+    home: [{ rem: 0, percentage: 100 }, { border: -100 }],
+    page: [{ rem: 12.5, percentage: 0 }, { border: 0 }],
+    blog: [{ rem: 25, percentage: 0 }, { border: 0 }],
   };
 
   const configs = {
-    home: { duration: 800, delay: 0, easing: t => d3.easeSinOut(t) },
-    page: { duration: 400, delay: 0, easing: t => d3.easeSinOut(t) },
-    blog: { duration: 300, delay: 0, easing: t => d3.easeSinOut(t) },
+    home: key => {
+      if (key === 'border') {
+        return {
+          duration: 200,
+          delay: 0,
+          easing: t => d3.easeSinIn(t),
+        };
+      } else {
+        return {
+          duration: 400,
+          delay: 200,
+          easing: t => d3.easeSinIn(t),
+        };
+      }
+    },
+    page: key => {
+      if (key === 'border') {
+        return {
+          duration: 200,
+          delay: 600,
+          easing: t => d3.easeSinIn(t),
+        };
+      } else {
+        return {
+          duration: 400,
+          delay: 0,
+          easing: t => d3.easeSinIn(t),
+        };
+      }
+    },
+    blog: key => {
+      if (key === 'border') {
+        return {
+          duration: 200,
+          delay: 600,
+          easing: t => d3.easeSinIn(t),
+        };
+      } else {
+        return {
+          duration: 400,
+          delay: 0,
+          easing: t => d3.easeSinIn(t),
+        };
+      }
+    },
   };
 
   const currentPosition = positions[variant];
@@ -74,11 +116,28 @@ export const HeroSpring = ({ variant, children }) => {
       native
       items={currentPosition}
       to={{
-        transform: `translate3d(0, calc(-100% + ${currentPosition.rem}rem + ${currentPosition.percentage}%), 0)`,
+        rem: currentPosition[0].rem,
+        percentage: currentPosition[0].percentage,
+        border: currentPosition[1].border,
       }}
       config={currentConfig}
     >
       {props => children(props)}
     </Spring>
+  );
+};
+
+export const BlogTrail = ({ items, children }) => {
+  return (
+    <Trail
+      native
+      items={items}
+      keys={({ node }) => node.id}
+      from={{ s: 0.92 }}
+      to={{ s: 1 }}
+      config={{ duration: 400, easing: t => d3.easeSinOut(t) }}
+    >
+      {item => props => children(item, props)}
+    </Trail>
   );
 };

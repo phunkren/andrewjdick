@@ -43,7 +43,7 @@ const Main = styled.main`
 
 const Title = styled(Text)`
   position: absolute;
-  top: 200px;
+  top: 225px;
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
@@ -52,7 +52,12 @@ const Title = styled(Text)`
   width: 100%;
   padding: 0 var(--spacing-large);
 
+  ${MEDIA.tablet`
+    max-width: 80%;
+  `}
+
   ${MEDIA.desktop`
+    top: 200px;
     max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
     padding: 0 var(--spacing-huge);
   `}
@@ -268,8 +273,8 @@ function BlogTemplate({ data }) {
         <Main>
           <article>
             <FadeIn>
-              {styles => (
-                <animated.div style={styles}>
+              {({ o }) => (
+                <animated.div style={{ opacity: o.interpolate(o => o) }}>
                   <Title as="h1" size="xxxl">
                     {frontmatter.title}
                   </Title>

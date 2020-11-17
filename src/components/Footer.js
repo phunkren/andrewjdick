@@ -31,7 +31,7 @@ const ContactLink = styled(ExternalLink)`
   `};
 `;
 
-const Inner = styled.div(({ isHomepage }) => [
+const Inner = styled.div(({ theme, isHomepage }) => [
   css`
     display: flex;
     align-items: center;
@@ -53,9 +53,9 @@ const Inner = styled.div(({ isHomepage }) => [
     css`
       justify-content: center;
       padding: var(--spacing-medium) var(--spacing-medium);
-      color: var(--color-gray-200);
+      color: ${theme.copyColor};
       ${fadeInAnimation};
-      animation-delay: 0.8s;
+      animation-delay: 0.5s;
 
       ${ContactLink} {
         display: none;
@@ -85,7 +85,10 @@ export const Footer = ({ isHomepage, ...props }) => {
           <EmailIcon />
         </ContactLink>
 
-        <Social size={isHomepage ? '2rem' : '1.75rem'} />
+        <Social
+          isHomepage={isHomepage}
+          size={isHomepage ? '2rem' : '1.75rem'}
+        />
       </Inner>
     </Outer>
   );

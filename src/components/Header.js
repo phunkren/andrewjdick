@@ -20,26 +20,30 @@ const Outer = styled.header(() => [
     z-index: 5;
 
     ${MEDIA.print`
-    display: none;
+      display: none;
     `};
   `,
 ]);
 
-const Inner = styled.div(({ theme }) => [
+const Inner = styled.div(({ theme, variant }) => [
   css`
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: var(--spacing-medium) auto 0;
     padding: 0 var(--spacing-medium);
+    color: var(--color-white);
     max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
     height: 60px;
-    color: var(--color-white);
 
     ${MEDIA.tablet`
       padding: 0 var(--spacing-huge);
     `};
   `,
+  variant === 'home' &&
+    css`
+      color: ${theme.copyColor};
+    `,
 ]);
 
 const DesktopNavigation = styled(Navigation)`
@@ -60,17 +64,13 @@ const DesktopThemeToggle = styled(ThemeToggle)`
   `}
 `;
 
-const MobileNavigationButton = styled(IconButton)(
-  ({ theme }) => css`
-    color: inherit;
+const MobileNavigationButton = styled(IconButton)`
+  color: inherit;
 
-    ${MEDIA.tablet`
-      display: none;  
-    `}
-  `,
-);
-
-const LogoLink = styled(Link)(({ theme }) => [css``]);
+  ${MEDIA.tablet`
+    display: none;  
+  `}
+`;
 
 export const Header = ({ variant }) => {
   const [navStatus, setNavStatus] = useState('close');
@@ -88,7 +88,7 @@ export const Header = ({ variant }) => {
     <>
       <Outer>
         <Inner variant={variant}>
-          <LogoLink to="/" aria-label="Return to homepage">
+          <Link to="/" aria-label="Return to homepage" css="display: flex;">
             <Logo
               css={`
                 border: 2px solid;
@@ -112,7 +112,7 @@ export const Header = ({ variant }) => {
                 }
               `}
             />
-          </LogoLink>
+          </Link>
 
           <DesktopNavigation />
 
