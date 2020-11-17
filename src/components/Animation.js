@@ -96,7 +96,7 @@ export const HeroSpring = ({ variant, children }) => {
           }
         : {
             duration: 200,
-            delay: 200,
+            delay: 100,
             easing: t => d3.easeSinIn(t),
           },
   };
