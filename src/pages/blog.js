@@ -1,5 +1,5 @@
 import React from 'react';
-import { animated } from 'react-spring/renderprops';
+import { animated, interpolate } from 'react-spring/renderprops';
 import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
 import { formatId } from '../utils/formatId';
@@ -9,7 +9,8 @@ import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
 import { ArrowRightIcon } from '../components/icons/ArrowRight';
-import { FadeIn, FadeThrough } from '../components/Animation';
+import { FadeIn, BlogTrail } from '../components/Animation';
+import { Icon } from '../components/icons/Icon';
 
 const Main = styled.main`
   flex: 1;
@@ -34,7 +35,7 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const ListItem = styled.li``;
+const ListItem = styled(animated.li)``;
 
 const List = styled(animated.ul)`
   max-width: 100%;
@@ -89,6 +90,19 @@ const StyledLink = styled(Link)(
     align-items: center;
     width: fit-content;
     color: ${theme.linkColor};
+
+    ${Icon} {
+      will-change: transform;
+      transition: transform 0.2s ease-out;
+    }
+
+    &:hover {
+      padding-right: var(--spacing-small);
+
+      ${Icon} {
+        transform: translate3d(var(--spacing-small), 0, 0);
+      }
+    }
   `,
 );
 
@@ -108,8 +122,8 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => {
   return (
     <Preview aria-labelledby={`blog post-${formattedTitle}`}>
       <FadeIn>
-        {styles => (
-          <animated.div style={styles}>
+        {({ o }) => (
+          <animated.div style={{ opacity: o.interpolate(o => o) }}>
             <Title as="h2" size="xl" id={`post-${formattedTitle}`}>
               {frontmatter.title}
             </Title>
@@ -148,13 +162,7 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => {
 
 export default function Blog({ data, location: { pathname } }) {
   const { edges } = data.allMarkdownRemark;
-  const posts = edges
-    .filter(edge => !!edge.node.frontmatter.date)
-    .map(edge => (
-      <ListItem key={edge.node.id}>
-        <BlogPreview post={edge.node} />
-      </ListItem>
-    ));
+  const posts = edges.filter(edge => !!edge.node.frontmatter.date);
 
   return (
     <>
@@ -166,17 +174,25 @@ export default function Blog({ data, location: { pathname } }) {
       <Wrapper>
         <Main>
           <FadeIn>
-            {styles => (
-              <animated.div style={styles}>
+            {({ o }) => (
+              <animated.div style={{ opacity: o.interpolate(o => o) }}>
                 <StyledTitle as="h1" size="4xl" id="blog">
                   Blog
                 </StyledTitle>
               </animated.div>
             )}
           </FadeIn>
-          <FadeThrough>
-            {styles => <List style={styles}>{posts}</List>}
-          </FadeThrough>
+          <List>
+            <BlogTrail items={posts}>
+              {(item, { s }) => (
+                <ListItem
+                  style={{ transform: s.interpolate(s => `scale(${s})`) }}
+                >
+                  <BlogPreview post={item.node} />
+                </ListItem>
+              )}
+            </BlogTrail>
+          </List>
         </Main>
       </Wrapper>
     </>

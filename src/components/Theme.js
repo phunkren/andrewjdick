@@ -54,6 +54,16 @@ const Container = styled(CustomCheckboxContainer)`
     box-shadow: none;
     border: none;
   }
+
+  & input:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    opacity: 0.8;
+    transform: scale(0.9);
+    transition: transform 0.2s, opacity 0.2s;
+  }
 `;
 
 export const ThemeToggle = props => {

@@ -40,7 +40,7 @@ const List = styled.ul(({ theme, column }) => [
 
 export const Navigation = styled(
   ({ column = false, onLinkClick, ...props }) => (
-    <nav aria-label="Main" css="color: var(--color-white);" {...props}>
+    <nav aria-label="Main" {...props}>
       <List column={column}>
         <ListItem>
           <Link to="/blog" onClick={onLinkClick}>

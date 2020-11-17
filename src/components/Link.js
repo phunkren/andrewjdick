@@ -7,7 +7,7 @@ import { MEDIA } from '../styles/media';
 export const linkStyles = css`
   color: inherit;
   text-decoration: none;
-  transition: color 0.2s ease-out;
+  transition: color 0.1s ease-out;
 
   &:disabled {
     opacity: 0.4;
@@ -42,7 +42,7 @@ export const highlightStyles = css`
     left: 2px;
     width: 100%;
     height: 50%;
-    background: ${({ theme }) => theme.highlightColor};
+    background: ${({ theme }) => theme.hoverColor};
     transition: 100ms ease-out;
     will-change: transform;
     z-index: -1;
@@ -50,6 +50,8 @@ export const highlightStyles = css`
   }
 
   &:hover {
+    color: ${({ theme }) => theme.hoverColor};
+
     &::before {
       transform: scaleY(0.2);
       transition: 100ms ease-out 50ms;
@@ -60,9 +62,11 @@ export const highlightStyles = css`
   }
 
   &:active {
+    color: ${({ theme }) => theme.activeColor};
+
     &::before {
       transition: 100ms ease-in;
-      background: var(--color-orange-400);
+      background: ${({ theme }) => theme.activeColor};
     }
   }
 
