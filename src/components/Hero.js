@@ -46,7 +46,7 @@ const Container = styled(animated.aside)(({ theme, variant }) => [
       background-color: var(--color-black);
       opacity: 0.95;
       z-index: 2;
-      transition: background-color 0.4s ease-out;
+      transition: background-color 0.2s ease-out;
     }
   `,
   variant === 'home' &&
@@ -54,7 +54,6 @@ const Container = styled(animated.aside)(({ theme, variant }) => [
       &::after {
         background-color: ${theme.heroColor};
         opacity: 0.95;
-        transition: background-color 0.2s ease-out;
       }
     `,
 ]);

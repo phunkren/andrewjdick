@@ -7,7 +7,6 @@ import { Text } from '../components/Text';
 import { SEO } from '../components/SEO';
 import { MEDIA } from '../styles/media';
 import { fadeInAnimation } from '../styles/animation';
-import { convertPxToRem } from '../utils/unitConversion';
 
 const Wrapper = styled(Div100vh)`
   flex: 1;
@@ -37,7 +36,7 @@ const Section = styled.section(
     padding: 0 var(--spacing-medium);
     color: ${theme.copyColor};
     ${fadeInAnimation};
-    animation-delay: 0.4s;
+    animation-delay: 0.5s;
 
     ${MEDIA.tablet`
       left: 50%;
