@@ -10,6 +10,7 @@ import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
 import { ArrowRightIcon } from '../components/icons/ArrowRight';
 import { FadeIn, BlogTrail } from '../components/Animation';
+import { Icon } from '../components/icons/Icon';
 
 const Main = styled.main`
   flex: 1;
@@ -89,6 +90,19 @@ const StyledLink = styled(Link)(
     align-items: center;
     width: fit-content;
     color: ${theme.linkColor};
+
+    ${Icon} {
+      will-change: transform;
+      transition: transform 0.2s ease-out;
+    }
+
+    &:hover {
+      padding-right: var(--spacing-small);
+
+      ${Icon} {
+        transform: translate3d(var(--spacing-small), 0, 0);
+      }
+    }
   `,
 );
 

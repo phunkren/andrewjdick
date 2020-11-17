@@ -30,13 +30,14 @@ const Inner = styled.div(({ theme, variant }) => [
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: var(--spacing-medium) auto 0;
+    margin: var(--spacing-large) auto 0;
     padding: 0 var(--spacing-medium);
     color: var(--color-white);
     max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
     height: 60px;
 
     ${MEDIA.tablet`
+      margin: var(--spacing-huge) auto 0;
       padding: 0 var(--spacing-huge);
     `};
   `,
@@ -92,10 +93,11 @@ export const Header = ({ variant }) => {
             <Logo
               css={`
                 border: 2px solid;
-                border-color: transparent;
+                color: var(--color-charcoal);
                 border-radius: 50%;
                 overflow: hidden;
                 transition: border 0.2s ease-out;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
 
                 ${isIOS &&
                   css`

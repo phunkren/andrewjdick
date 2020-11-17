@@ -60,52 +60,45 @@ export const HeroSpring = ({ variant, children }) => {
     blog: [{ rem: 25, percentage: 0 }, { border: 0 }],
   };
 
+  const easing = t => d3.easeSinIn(t);
+
   const configs = {
-    home: key => {
-      if (key === 'border') {
-        return {
-          duration: 200,
-          delay: 0,
-          easing: t => d3.easeSinIn(t),
-        };
-      } else {
-        return {
-          duration: 400,
-          delay: 200,
-          easing: t => d3.easeSinIn(t),
-        };
-      }
-    },
-    page: key => {
-      if (key === 'border') {
-        return {
-          duration: 200,
-          delay: 600,
-          easing: t => d3.easeSinIn(t),
-        };
-      } else {
-        return {
-          duration: 400,
-          delay: 0,
-          easing: t => d3.easeSinIn(t),
-        };
-      }
-    },
-    blog: key => {
-      if (key === 'border') {
-        return {
-          duration: 200,
-          delay: 600,
-          easing: t => d3.easeSinIn(t),
-        };
-      } else {
-        return {
-          duration: 400,
-          delay: 0,
-          easing: t => d3.easeSinIn(t),
-        };
-      }
-    },
+    home: key =>
+      key === 'border'
+        ? {
+            duration: 200,
+            delay: 0,
+            easing,
+          }
+        : {
+            duration: 400,
+            delay: 400,
+            easing,
+          },
+    page: key =>
+      key === 'border'
+        ? {
+            duration: 200,
+            delay: 600,
+            easing,
+          }
+        : {
+            duration: 400,
+            delay: 0,
+            easing,
+          },
+    blog: key =>
+      key === 'border'
+        ? {
+            duration: 200,
+            delay: 600,
+            easing: t => d3.easeSinIn(t),
+          }
+        : {
+            duration: 200,
+            delay: 200,
+            easing: t => d3.easeSinIn(t),
+          },
   };
 
   const currentPosition = positions[variant];

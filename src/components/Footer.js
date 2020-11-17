@@ -37,12 +37,12 @@ const Inner = styled.div(({ theme, isHomepage }) => [
     align-items: center;
     justify-content: space-between;
     margin: 0 auto;
-    padding: var(--spacing-small) var(--spacing-medium);
+    padding: var(--spacing-huge) var(--spacing-medium);
     max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
     color: inherit;
 
     ${MEDIA.tablet`
-      padding: var(--spacing-small) var(--spacing-huge);
+      padding: var(--spacing-huge);
 
       & > ${ExternalLink} {
         display: block;

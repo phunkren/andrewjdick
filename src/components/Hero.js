@@ -31,7 +31,6 @@ const Container = styled(animated.aside)(({ theme, variant }) => [
     right: 0;
     left: 0;
     bottom: 0;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
     overflow: hidden;
     will-change: transform;
     ${fadeInAnimation};
@@ -68,6 +67,7 @@ const Border = styled(animated.div)`
   width: 100%;
   height: 2px;
   background-color: var(--color-orange-600);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
   z-index: 5;
 `;
 
