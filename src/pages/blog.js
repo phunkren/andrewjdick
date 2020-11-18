@@ -1,5 +1,5 @@
 import React from 'react';
-import { animated, interpolate } from 'react-spring/renderprops';
+import { animated } from 'react-spring/renderprops';
 import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
 import { formatId } from '../utils/formatId';
@@ -8,9 +8,9 @@ import { Text } from '../components/Text';
 import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
-import { ArrowRightIcon } from '../components/icons/ArrowRight';
-import { FadeIn, BlogTrail } from '../components/Animation';
 import { Icon } from '../components/icons/Icon';
+import { ArrowRightIcon } from '../components/icons/ArrowRightIcon';
+import { FadeIn, BlogTrail } from '../components/Animation';
 
 const Main = styled.main`
   flex: 1;

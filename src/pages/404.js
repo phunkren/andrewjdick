@@ -1,7 +1,6 @@
 import React from 'react';
 import Div100vh from 'react-div-100vh';
 import styled from 'styled-components';
-import { Link } from '../components/Link';
 import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
 import { fadeInAnimation } from '../styles/animation';

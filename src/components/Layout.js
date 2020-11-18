@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { reset } from 'styled-reset';
 import styled, { css, createGlobalStyle } from 'styled-components';
 import { linearGradient } from 'polished';
@@ -7,6 +7,7 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { MEDIA } from '../styles/media';
 import { fadeInAnimation } from '../styles/animation';
+import { ThemeContext } from './Theme';
 
 const Styles = createGlobalStyle(
   ({ theme }) => css`
@@ -52,9 +53,8 @@ const Styles = createGlobalStyle(
           outline-color: var(--color-blue-700);
         }
 
-        &::selection,
-        &::moz-selection {
-          background: var(--color-blue-200);
+        &::selection {
+          background: rgba(99, 179, 237, 0.66);
         }
       }
     }

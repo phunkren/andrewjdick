@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
-import { GitHubIcon, NotionIcon, TwitterIcon, RssIcon } from './icons';
+import { GitHubIcon } from './icons/GitHubIcon';
+import { NotionIcon } from './icons/NotionIcon';
+import { TwitterIcon } from './icons/TwitterIcon';
+import { RssIcon } from './icons/RssIcon';
 import { ExternalLink } from './Link';
 
 const SocialLinks = styled.nav`

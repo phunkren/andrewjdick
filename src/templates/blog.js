@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
 import { mix } from 'polished';
 import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { linkStyles, highlightStyles } from '../components/Link';
+import { linkStyles } from '../components/Link';
 import { SIZES } from '../components/Text';
 import { convertPxToRem } from '../utils/unitConversion';
 import { FadeIn } from '../components/Animation';
 import { animated } from 'react-spring/renderprops';
+import { ThemeContext } from '../components/Theme';
 
 const Wrapper = styled.div`
   flex: 1;
@@ -116,7 +117,7 @@ const Section = styled.section(
       width: 100vw;
 
       pre {
-        background: ${mix(0.95, 'rgb(0,0,0)', 'rgb(255,255,255)')};
+        /* background: ${mix(0.95, 'rgb(0,0,0)', 'rgb(255,255,255)')}; */
         overflow-y: auto;
       }
 
@@ -141,7 +142,7 @@ const Section = styled.section(
 
     a:not(.gatsby-resp-image-link) {
       ${linkStyles};
-      ${highlightStyles};
+      color: ${theme.linkColor};
     }
 
     figcaption {
@@ -175,10 +176,9 @@ const Section = styled.section(
     }
 
     p > code[class*='language-'] {
-      ${SIZES['ps']};
-      font-size: inherit;
-      font-weight: 500;
-      color: ${theme.auxiliaryColor};
+      ${SIZES['pb']};
+      font-weight: 600;
+      color: inherit;
       background-color: transparent;
       padding: 0;
     }
@@ -187,53 +187,12 @@ const Section = styled.section(
       ${SIZES['ps']};
       margin-left: calc(var(--spacing-medium) * -1);
       width: 100%;
-
-      .comment {
-        ${SIZES['xs']}
-        color: rgba(255,255,255,0.33);
-        font-style: italic;
-        text-transform: lowercase;
-      }
-
-      .string,
-      .attr-value,
-      .parameter,
-      .attr-value > :not(.attr-equals) {
-        color: var(--color-blue-200);
-      }
-
-      .interpolation {
-        color: var(--color-orange-100);
-      }
-
-      .punctuation {
-        color: var(--color-charcoal);
-      }
-
-      .constant {
-        color: var(--color-orange-500);
-      }
-
-      .class-name,
-      .tag {
-        color: var(--color-orange-400);
-      }
-
-      .function {
-        color: var(--color-blue-400);
-      }
-
-      .keyword,
-      .attr-name,
-      .operator {
-        color: var(--color-orange-300);
-      }
     }
 
     pre[class*='language-'] {
       margin: 0;
       padding: var(--spacing-medium);
-      background: var(--color-black);
+      /* background: var(--color-black); */
 
       ${MEDIA.tablet`
         padding: var(--spacing-huge);

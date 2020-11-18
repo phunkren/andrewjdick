@@ -6,20 +6,19 @@ import styled, { css } from 'styled-components';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import cv from '../assets/documents/Andrew James CV.pdf';
 import { formatId } from '../utils/formatId';
-import {
-  EmailIcon,
-  GitHubIcon,
-  LinkedInIcon,
-  HomeIcon,
-} from '../components/icons';
+import { convertPxToRem } from '../utils/unitConversion';
+import { FadeThrough, FadeIn } from '../components/Animation';
+import { GitHubIcon } from '../components/icons/GitHubIcon';
+import { EmailIcon } from '../components/icons/EmailIcon';
+import { LinkedInIcon } from '../components/icons/LinkedInIcon';
+import { HomeIcon } from '../components/icons/HomeIcon';
+import { DownloadIcon } from '../components/icons/DownloadIcon';
+import { PrintIcon } from '../components/icons/PrintIcon';
 import { ExternalLink, DownloadLink } from '../components/Link';
 import { IconButton } from '../components/Button';
 import { Text } from '../components/Text';
-import { DownloadIcon, PrintIcon } from '../components/icons';
 import { SEO } from '../components/SEO';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { convertPxToRem } from '../utils/unitConversion';
-import { FadeThrough, FadeIn } from '../components/Animation';
 
 const List = styled.ul`
   margin-bottom: var(--spacing-huge);
@@ -352,7 +351,7 @@ export default function CV({ data, location: { pathname } }) {
   const currentPosition = experience[0].position;
   const siteDisplayUrl = siteUrl.split('https://')[1];
   const expertise = ['html', 'css/scss', 'javascript', 'react'];
-  const interests = ['design systems', 'a11y', 'graphQL', 'react native'];
+  const interests = ['design systems', 'a11y', 'graphQL', 'JAMstack'];
   const hobbies = ['cycling', 'guitar', 'gaming', 'writing'];
 
   function handleCvPrint() {
