@@ -1,87 +1,16 @@
 import React from 'react';
-import { linearGradient } from 'polished';
-import styled, { css, createGlobalStyle } from 'styled-components';
-import { Hero } from './Hero';
 import { reset } from 'styled-reset';
-import { MEDIA } from '../styles/media';
-import 'prismjs/themes/prism-tomorrow.css';
+import styled, { css, createGlobalStyle } from 'styled-components';
+import { linearGradient } from 'polished';
+import { Hero } from './Hero';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { MEDIA } from '../styles/media';
 import { fadeInAnimation } from '../styles/animation';
 
 const Styles = createGlobalStyle(
   ({ theme }) => css`
     ${reset};
-
-    :root {
-      /* https://tailwindcss.com/docs/customizing-colors */
-      --color-black: #121212;
-      --color-charcoal: #303030;
-      --color-white: #ffffff;
-      --color-gray-200: #edf2f7;
-      --color-gray-400: #cbd5e0;
-      --color-gray-600: #718096;
-      --color-gray-700: #4a5568;
-      --color-orange-100: #fffaf0;
-      --color-orange-200: #feebc8;
-      --color-orange-300: #fbd38d;
-      --color-orange-400: #f6ad55;
-      --color-orange-500: #ed8936;
-      --color-orange-600: #dd6b20;
-      --color-blue-200: #bee3f8;
-      --color-blue-400: #63b3ed;
-      --color-blue-600: #3182ce;
-      --color-blue-700: #2b6cb0;
-      --color-green-400: #68d391;
-
-      --spacing-tiny: 0.25rem;
-      --spacing-small: 0.5rem;
-      --spacing-medium: 1rem;
-      --spacing-large: 1.5rem;
-      --spacing-huge: 2rem;
-      --spacing-giant: 2.5rem;
-      --spacing-massive: 3rem;
-
-      --font-header: 'Rubik', sans-serif;
-      --font-copy: 'OpenSans', sans-serif;
-      --font-code: 'MonoLisa', monospace;
-    }
-
-    @font-face {
-      font-family: 'Rubik';
-      font-style: normal;
-      font-weight: 500;
-      font-display: fallback;
-      src: url('/assets/fonts/Rubik-Medium.woff2') format('woff2'),
-        url('/assets/fonts/Rubik-Medium.woff') format('woff');
-    }
-
-    @font-face {
-      font-family: 'OpenSans';
-      font-style: normal;
-      font-weight: 400;
-      font-display: fallback;
-      src: url('/assets/fonts/OpenSans-Regular.woff2') format('woff2'),
-        url('/assets/fonts/OpenSans-Regular.woff') format('woff');
-    }
-
-    @font-face {
-      font-family: 'OpenSans';
-      font-style: normal;
-      font-weight: 600;
-      font-display: fallback;
-      src: url('/assets/fonts/OpenSans-SemiBold.woff2') format('woff2'),
-        url('/assets/fonts/OpenSans-SemiBold.woff') format('woff');
-    }
-
-    @font-face {
-      font-family: 'MonoLisa';
-      font-style: normal;
-      font-weight: 400;
-      font-display: fallback;
-      src: url('/assets/fonts/MonoLisa-Regular.woff2') format('woff2'),
-        url('/assets/fonts/MonoLisa-Regular.woff') format('woff');
-    }
 
     html {
       display: flex;
