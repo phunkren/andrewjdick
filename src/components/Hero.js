@@ -54,7 +54,7 @@ const Container = styled(animated.aside)(({ theme, variant }) => [
       &::after {
         transition: background-color 0.2s ease-out;
         background-color: ${theme.heroColor};
-        opacity: ${theme.heroOpacity};
+        opacity: 0.95;
       }
     `,
 ]);
