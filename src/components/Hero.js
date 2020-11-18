@@ -1,21 +1,20 @@
 import React from 'react';
 import { animated, interpolate } from 'react-spring/renderprops';
 import styled, { css } from 'styled-components';
+import lightBulb from '../assets/images/lightBulb.png';
 import { fadeInAnimation, infiniteScrollAnimation } from '../styles/animation';
 import Img from 'gatsby-image';
 import { HeroSpring } from './Animation';
 
-const Lightbulbs = styled.div(
-  ({ theme }) => css`
-    background-image: url(${theme.hero});
-    ${infiniteScrollAnimation};
-    background-repeat: repeat;
-    background-position: center;
-    height: 400vh;
-    width: 100vw;
-    z-index: -1;
-  `,
-);
+const Lightbulbs = styled.div`
+  background-image: url(${lightBulb});
+  ${infiniteScrollAnimation};
+  background-repeat: repeat;
+  background-position: center;
+  height: 400vh;
+  width: 100vw;
+  z-index: -1;
+`;
 
 const BlogHero = styled(Img)`
   top: calc(100% - 25rem);

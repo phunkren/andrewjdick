@@ -1,6 +1,4 @@
 import { mix } from 'polished';
-import lightBulb from '../assets/images/lightBulb.png';
-import darkBulb from '../assets/images/darkBulb.png';
 
 const LIGHT_THEME = {
   background: 'var(--color-white)',
@@ -31,7 +29,6 @@ const LIGHT_THEME = {
   blogSyntaxColor: 'var(--color-gray-600)',
   overlay5: `${mix(0.95, '#edf2f7', 'rgb(18,18,18)')}`,
   overlay10: 'var(--color-white)',
-  hero: lightBulb,
   heroOpacity: 0.9,
 };
 
@@ -64,7 +61,6 @@ const DARK_THEME = {
   blogSyntaxColor: 'var(--color-orange-400)',
   overlay5: `${mix(0.95, 'rgb(18,18,18)', 'rgb(255, 255, 255)')}`,
   overlay10: `${mix(0.925, 'rgb(18,18,18)', 'rgb(255,255,255)')}`,
-  hero: darkBulb,
   heroOpacity: 0.95,
 };
 
