@@ -55,7 +55,7 @@ const Container = styled(animated.aside)(({ theme, variant }) => [
       &::after {
         transition: background-color 0.2s ease-out;
         background-color: ${theme.heroColor};
-        opacity: 0.95;
+        opacity: ${theme.heroOpacity};
       }
     `,
 ]);
@@ -77,6 +77,7 @@ export const Hero = ({ customHero, variant, ...props }) => {
     <HeroSpring variant={variant}>
       {({ rem, percentage, border }) => (
         <Container
+          aria-hidden="true"
           variant={variant}
           style={{
             transform: interpolate(
@@ -96,7 +97,7 @@ export const Hero = ({ customHero, variant, ...props }) => {
 
           <figure>
             <Lightbulbs />
-            <figcaption>Lightbulbs</figcaption>
+            <figcaption>Illustrations courtesy of absurd.design</figcaption>
           </figure>
 
           <Border

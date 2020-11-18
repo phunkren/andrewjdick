@@ -32,6 +32,7 @@ const LIGHT_THEME = {
   overlay5: `${mix(0.95, '#edf2f7', 'rgb(18,18,18)')}`,
   overlay10: 'var(--color-white)',
   hero: lightBulb,
+  heroOpacity: 0.9,
 };
 
 const DARK_THEME = {
@@ -64,6 +65,7 @@ const DARK_THEME = {
   overlay5: `${mix(0.95, 'rgb(18,18,18)', 'rgb(255, 255, 255)')}`,
   overlay10: `${mix(0.925, 'rgb(18,18,18)', 'rgb(255,255,255)')}`,
   hero: darkBulb,
+  heroOpacity: 0.95,
 };
 
 export const THEMES = {
