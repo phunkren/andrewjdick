@@ -46,6 +46,7 @@ const StyledDialogOverlay = styled(DialogOverlay)(({ state }) => [
       }
     `,
 ]);
+
 const CloseButton = styled(IconButton)``;
 
 const Content = styled(animated.div)(({ theme }) => [
@@ -114,6 +115,7 @@ export const Drawer = ({ state, onDismiss, ...props }) => {
                     flex-direction: row-reverse;
                     justify-content: space-between;
                     align-items: center;
+                    padding: 0 var(--spacing-small);
                   `}
                 >
                   <CloseButton
