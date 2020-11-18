@@ -383,8 +383,8 @@ export default function CV({ data, location: { pathname } }) {
       <Wrap>
         <Main>
           <FadeIn>
-            {styles => (
-              <animated.div style={styles}>
+            {({ o }) => (
+              <animated.div style={{ opacity: o.interpolate(o => o) }}>
                 <Title as="h1" size="4xl" id="cv">
                   CV
                 </Title>
@@ -392,11 +392,16 @@ export default function CV({ data, location: { pathname } }) {
             )}
           </FadeIn>
           <FadeThrough>
-            {styles => (
-              <Container style={styles}>
+            {({ s, o }) => (
+              <Container
+                style={{
+                  transform: s.interpolate(s => `scale(${s})`),
+                  opacity: o && o.interpolate(o => o),
+                }}
+              >
                 <FadeIn>
-                  {styles => (
-                    <animated.div style={styles}>
+                  {({ o }) => (
+                    <animated.div style={{ opacity: o.interpolate(o => o) }}>
                       <Heading>
                         <div>
                           <Text

@@ -32,7 +32,7 @@ const Styles = createGlobalStyle(
       line-height: 1.5;
       background-attachment: fixed;
       background-image: ${linearGradient({
-        colorStops: [`${theme.overlay5} 0%`, `${theme.background} 95%`],
+        colorStops: [`${theme.overlay5} 0%`, `${theme.background} 97.5%`],
         toDirection: 'to bottom',
         fallback: `${theme.background}`,
       })};
@@ -156,7 +156,7 @@ const Div = styled.div`
   flex-flow: column;
   min-height: 100%;
   ${fadeInAnimation};
-  animation-delay: 0.75s;
+  animation-delay: 0.5s;
 `;
 
 export const Layout = styled(({ location, children, data }) => {
@@ -175,7 +175,7 @@ export const Layout = styled(({ location, children, data }) => {
       <Hero customHero={customHero} variant={variant} />
 
       <Div>
-        <Header />
+        <Header variant={variant} />
 
         {children}
 
