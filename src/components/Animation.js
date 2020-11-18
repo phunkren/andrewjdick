@@ -1,5 +1,5 @@
 import React from 'react';
-import { Transition, Spring, Trail } from 'react-spring/renderprops';
+import { Transition, Spring, Trail, Keyframes } from 'react-spring/renderprops';
 import { TransitionState } from 'gatsby-plugin-transition-link';
 import * as d3 from 'd3-ease';
 
@@ -79,7 +79,7 @@ export const HeroSpring = ({ variant, children }) => {
       key === 'border'
         ? {
             duration: 200,
-            delay: 600,
+            delay: 300,
             easing,
           }
         : {
@@ -91,13 +91,13 @@ export const HeroSpring = ({ variant, children }) => {
       key === 'border'
         ? {
             duration: 200,
-            delay: 600,
-            easing: t => d3.easeSinIn(t),
+            delay: 300,
+            easing,
           }
         : {
-            duration: 200,
-            delay: 100,
-            easing: t => d3.easeSinIn(t),
+            duration: 300,
+            delay: 0,
+            easing,
           },
   };
 
@@ -134,3 +134,24 @@ export const BlogTrail = ({ items, children }) => {
     </Trail>
   );
 };
+
+export const DrawerSpring = Keyframes.Spring({
+  open: {
+    config: key =>
+      key === 'y'
+        ? {
+            duration: 200,
+            delay: 300,
+            easing: t => d3.easeSinIn(t),
+          }
+        : {
+            duration: 300,
+            delay: 0,
+            easing: t => d3.easeSinIn(t),
+          },
+    from: { x: -100, y: -100 },
+    x: 0,
+    y: 0,
+  },
+  close: { config: { duration: 250 }, x: -100, y: 100 },
+});

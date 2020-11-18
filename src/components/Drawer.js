@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { DialogOverlay, DialogContent } from '@reach/dialog';
-import { Keyframes, animated } from 'react-spring/renderprops';
 import styled, { css } from 'styled-components';
+import { animated } from 'react-spring/renderprops';
+import Div100vh from 'react-div-100vh';
+import { DialogOverlay, DialogContent } from '@reach/dialog';
 import '@reach/dialog/styles.css';
 import { Social } from './Social';
 import { Navigation } from './Navigation';
 import { IconButton } from './Button';
 import { CrossIcon } from './icons/CrossIcon';
 import { ThemeToggle } from './Theme';
+import { DrawerSpring } from './Animation';
 import { fadeInAnimation } from '../styles/animation';
-import Div100vh from 'react-div-100vh';
 
 const StyledDialogContent = styled(DialogContent)(({ theme }) => [
   css`
@@ -63,15 +64,6 @@ const Content = styled(animated.div)(({ theme }) => [
   `,
 ]);
 
-const DrawerSpring = Keyframes.Spring({
-  open: {
-    config: { duration: 300 },
-    from: { x: -100 },
-    x: 0,
-  },
-  close: { config: { duration: 250 }, x: -100 },
-});
-
 const StyledNavigation = styled(Navigation)(
   ({ theme }) => css`
     color: ${theme.copyColor};
@@ -79,6 +71,18 @@ const StyledNavigation = styled(Navigation)(
     padding-left: var(--spacing-medium);
   `,
 );
+
+const Border = styled(animated.div)`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: var(--color-orange-600);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+  z-index: 5;
+`;
 
 export const Drawer = ({ state, onDismiss, ...props }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -96,7 +100,7 @@ export const Drawer = ({ state, onDismiss, ...props }) => {
     <StyledDialogOverlay state={state} isOpen={isOpen} onDismiss={onDismiss}>
       <StyledDialogContent aria-label="Mobile navigation menu" {...props}>
         <DrawerSpring native state={state}>
-          {({ x }) => (
+          {({ x, y }) => (
             <Div100vh>
               <Content
                 style={{
@@ -125,6 +129,12 @@ export const Drawer = ({ state, onDismiss, ...props }) => {
                 <StyledNavigation column onLinkClick={onDismiss} />
 
                 <Social css="justify-content: space-around; margin-top: auto;" />
+
+                <Border
+                  style={{
+                    transform: y.interpolate(y => `translate3d(0, ${y}%, 0)`),
+                  }}
+                />
               </Content>
             </Div100vh>
           )}
