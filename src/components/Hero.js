@@ -95,7 +95,11 @@ export const Hero = ({ customHero, variant, ...props }) => {
             />
           ) : null}
 
-          <figure>
+          <figure
+            css={`
+              ${fadeInAnimation};
+            `}
+          >
             <Lightbulbs />
             <figcaption>Illustrations courtesy of absurd.design</figcaption>
           </figure>
