@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
-import { mix } from 'polished';
 import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
@@ -10,7 +9,6 @@ import { SIZES } from '../components/Text';
 import { convertPxToRem } from '../utils/unitConversion';
 import { FadeIn } from '../components/Animation';
 import { animated } from 'react-spring/renderprops';
-import { ThemeContext } from '../components/Theme';
 
 const Wrapper = styled.div`
   flex: 1;
@@ -117,7 +115,6 @@ const Section = styled.section(
       width: 100vw;
 
       pre {
-        /* background: ${mix(0.95, 'rgb(0,0,0)', 'rgb(255,255,255)')}; */
         overflow-y: auto;
       }
 
@@ -192,7 +189,6 @@ const Section = styled.section(
     pre[class*='language-'] {
       margin: 0;
       padding: var(--spacing-medium);
-      /* background: var(--color-black); */
 
       ${MEDIA.tablet`
         padding: var(--spacing-huge);

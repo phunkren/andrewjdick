@@ -83,6 +83,7 @@ const Border = styled(animated.div)`
   background-color: var(--color-orange-600);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
   z-index: 5;
+  opacity: 0.75;
 `;
 
 export const Drawer = ({ state, onDismiss, ...props }) => {
@@ -115,7 +116,7 @@ export const Drawer = ({ state, onDismiss, ...props }) => {
                     flex-direction: row-reverse;
                     justify-content: space-between;
                     align-items: center;
-                    padding: 0 var(--spacing-small);
+                    padding-right: var(--spacing-small);
                   `}
                 >
                   <CloseButton

@@ -73,14 +73,14 @@ export const HeroSpring = ({ variant, children }) => {
           }
         : {
             duration: 400,
-            delay: 200,
+            delay: 250,
             easing: easeIn,
           },
     page: key =>
       key === 'border'
         ? {
             duration: 200,
-            delay: 400,
+            delay: 450,
             easing: easeOut,
           }
         : {
@@ -92,7 +92,7 @@ export const HeroSpring = ({ variant, children }) => {
       key === 'border'
         ? {
             duration: 200,
-            delay: 300,
+            delay: 350,
             easing: easeOut,
           }
         : {
@@ -142,7 +142,7 @@ export const DrawerSpring = Keyframes.Spring({
       key === 'y'
         ? {
             duration: 200,
-            delay: 300,
+            delay: 350,
             easing: easeOut,
           }
         : {
@@ -164,10 +164,10 @@ export const DrawerSpring = Keyframes.Spring({
           }
         : {
             duration: 300,
-            delay: 200,
+            delay: 250,
             easing: easeOut,
           },
     x: -100,
-    y: 100,
+    y: -100,
   },
 });
