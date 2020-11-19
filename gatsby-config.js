@@ -70,14 +70,20 @@ const config = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Andrew James',
+        name: 'ajames.dev',
         short_name: 'ajames.dev',
         start_url: '/',
-        background_color: '#000',
-        theme_color: '#fff',
+        background_color: '#121212',
+        theme_color: '#fefefe',
         display: 'standalone',
-        icon: 'src/assets/images/logo.png',
+        icon: '/assets/images/logo.png',
         crossOrigin: 'use-credentials',
+      },
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/`, `/cv`],
       },
     },
     {
