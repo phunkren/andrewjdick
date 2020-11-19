@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { reset } from 'styled-reset';
 import styled, { css, createGlobalStyle } from 'styled-components';
 import { linearGradient } from 'polished';
@@ -7,7 +7,6 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { MEDIA } from '../styles/media';
 import { fadeInAnimation } from '../styles/animation';
-import { ThemeContext } from './Theme';
 
 const Styles = createGlobalStyle(
   ({ theme }) => css`
@@ -16,11 +15,7 @@ const Styles = createGlobalStyle(
     html {
       display: flex;
       min-height: 100%;
-      background-image: ${linearGradient({
-        colorStops: [`${theme.overlay5} 0%`, `${theme.background} 95%`],
-        toDirection: 'to bottom',
-        fallback: `${theme.background}`,
-      })};
+      background-color: ${theme.background};
     }
 
     &::-webkit-scrollbar {
