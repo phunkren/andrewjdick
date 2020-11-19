@@ -88,12 +88,7 @@ const config = {
         crossOrigin: 'use-credentials',
       },
     },
-    {
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        precachePages: [`/`, `/cv`],
-      },
-    },
+    'gatsby-plugin-offline',
     {
       resolve: `gatsby-plugin-feed`,
       options: {
