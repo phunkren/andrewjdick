@@ -5,8 +5,6 @@ export const RawIcon = ({
   height,
   width,
   viewBox,
-  fill,
-  stroke,
   strokeWidth,
   strokeLinecap,
   strokeLinejoin,
@@ -19,8 +17,6 @@ export const RawIcon = ({
     height={height}
     width={width}
     viewBox={viewBox}
-    fill={fill}
-    stroke={stroke}
     strokeWidth={strokeWidth}
     strokeLinecap={strokeLinecap}
     strokeLinejoin={strokeLinejoin}
@@ -35,8 +31,6 @@ RawIcon.defaultProps = {
   height: '1.75rem',
   width: '1.75rem',
   viewBox: '0 0 24 24',
-  fill: 'none',
-  stroke: 'currentColor',
   strokeWidth: '2',
   strokeLinecap: 'round',
   strokeLinejoin: 'round',
