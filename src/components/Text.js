@@ -27,11 +27,21 @@ export const SIZES = {
     font-size: 16px;
     font-size: ${convertPxToRem(16)};
     line-height: 1.5;
+
+    ${MEDIA.print`
+      font-size: 14px;
+      font-size: ${convertPxToRem(14)};
+    `}
   `,
   'pb': css`
     font-size: 18px;
     font-size: ${convertPxToRem(18)};
     line-height: 1.7;
+
+    ${MEDIA.print`
+      font-size: 16px;
+      font-size: ${convertPxToRem(16)};
+    `}
   `,
   'm': css`
     font-size: 18px;

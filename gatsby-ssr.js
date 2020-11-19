@@ -15,3 +15,11 @@ export const wrapPageElement = ({ element }) => {
     </Layout>
   );
 };
+
+export const onRenderBody = ({ setPreBodyComponents }) => {
+  setPreBodyComponents([
+    <noscript key="noscript">
+      Your browser does not support JavaScript!
+    </noscript>,
+  ]);
+};

@@ -81,6 +81,8 @@ export const highlightStyles = css`
   }
 
   ${MEDIA.print`
+    color: inherit;
+    
     &::before {
       display: none;
     }
