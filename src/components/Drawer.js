@@ -79,7 +79,7 @@ export const Drawer = ({ state, onDismiss, ...props }) => {
     if (state === 'open') {
       setIsOpen(true);
     } else {
-      setTimeout(() => setIsOpen(false), 550);
+      setTimeout(() => setIsOpen(false), 450);
     }
   }, [state]);
 
