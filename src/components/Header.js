@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { Link } from 'gatsby';
+import { HamburgerMenuIcon } from '@modulz/radix-icons';
 import { Logo } from '../components/Logo';
 import { Navigation } from '../components/Navigation';
 import { IconButton } from '../components/Button';
+import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { HamburgerIcon } from './icons/HamburgerIcon';
 import { convertPxToRem } from '../utils/unitConversion';
 import { isIOS } from 'react-device-detect';
 import { Drawer } from './Drawer';
+import { ThemeToggle } from './Theme';
 
 const Outer = styled.header(() => [
   css`
@@ -24,88 +25,120 @@ const Outer = styled.header(() => [
   `,
 ]);
 
-const Inner = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: var(--spacing-medium) auto 0;
-  padding: 0 var(--spacing-medium);
-  max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
-  height: 60px;
+const Inner = styled.div(({ theme, variant }) => [
+  css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--spacing-large) auto 0;
+    padding: 0 var(--spacing-medium);
+    color: var(--color-white);
+    max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
+    height: 60px;
 
-  ${MEDIA.tablet`
+    ${MEDIA.tablet`
+      margin: var(--spacing-huge) auto 0;
       padding: 0 var(--spacing-huge);
     `};
-`;
+  `,
+  variant === 'home' &&
+    css`
+      color: ${theme.copyColor};
+    `,
+]);
 
 const DesktopNavigation = styled(Navigation)`
   display: none;
 
   ${MEDIA.tablet`
     display: block;  
+    margin-right: auto;
+    margin-left: var(--spacing-massive);
   `}
 `;
 
-const MobileNavigationButton = styled(IconButton)(
-  ({ theme }) => css`
-    color: ${theme.primary};
+const DesktopThemeToggle = styled(ThemeToggle)`
+  display: none;
 
-    ${MEDIA.tablet`
+  ${MEDIA.tablet`
+    display: flex;
+  `}
+`;
+
+const MobileNavigationButton = styled(IconButton)`
+  color: inherit;
+
+  ${MEDIA.tablet`
     display: none;  
   `}
-  `,
-);
+`;
 
-const LogoLink = styled(Link)(({ theme }) => [
-  css`
-    border: 2px solid;
-    border-color: var(--color-black);
-    background-color: var(--color-white);
-    border-radius: 50%;
-    overflow: hidden;
-
-    ${isIOS &&
-      css`
-        -webkit-mask-image: -webkit-radial-gradient(white, black);
-      `}
-
-    &:hover {
-      border-color: var(--color-blue-400);
-    }
-
-    &:active {
-      border-color: var(--color-orange-400);
-    }
-  `,
-]);
-
-export const Header = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
+export const Header = ({ variant }) => {
+  const [navStatus, setNavStatus] = useState('close');
 
   function toggleMobileNavigation() {
-    setIsNavOpen(!isNavOpen);
+    setNavStatus(navStatus !== 'open' ? 'open' : 'close');
+  }
+
+  function handleDismiss() {
+    toggleMobileNavigation();
+    setNavStatus('close');
   }
 
   return (
     <>
       <Outer>
-        <Inner>
-          <LogoLink to="/" aria-label="Return to homepage">
-            <Logo />
-          </LogoLink>
+        <Inner variant={variant}>
+          <Link to="/" aria-label="Return to homepage" css="display: flex;">
+            <Logo
+              css={`
+                border: 2px solid;
+                color: var(--color-charcoal);
+                border-radius: 50%;
+                overflow: hidden;
+                transition: border 0.2s ease-out;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+
+                ${isIOS &&
+                  css`
+                    mask-image: -webkit-radial-gradient(white, black);
+                    -webkit-mask-image: -webkit-radial-gradient(white, black);
+                  `}
+
+                &:hover {
+                  border-color: var(--color-blue-400);
+                }
+
+                &:active {
+                  border-color: var(--color-orange-400);
+                }
+              `}
+            />
+          </Link>
 
           <DesktopNavigation />
+
+          <DesktopThemeToggle />
 
           <MobileNavigationButton
             aria-label="Navigation menu"
             onClick={toggleMobileNavigation}
           >
-            <HamburgerIcon width="1.5rem" height="1.5rem" />
+            <HamburgerMenuIcon
+              role="img"
+              title="Navigation menu"
+              width="1.75rem"
+              height="1.75rem"
+            />
           </MobileNavigationButton>
         </Inner>
       </Outer>
 
-      <Drawer isOpen={isNavOpen} onDismiss={toggleMobileNavigation} />
+      <Drawer
+        aria-label="Mobile navigation menu"
+        state={navStatus}
+        onDismiss={handleDismiss}
+      />
     </>
   );
 };

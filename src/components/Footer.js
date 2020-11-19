@@ -1,33 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { EnvelopeOpenIcon } from '@modulz/radix-icons';
 import { Social } from './Social';
+import { fadeInAnimation } from '../styles/animation';
 import { BREAKPOINTS, MEDIA } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
 import { ExternalLink } from './Link';
 import { Text } from './Text';
-import { Icon, EmailIcon } from './icons';
-
-const Outer = styled.footer`
-  background-color: var(--color-black);
-`;
-
-const Inner = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 auto;
-  padding: var(--spacing-small) var(--spacing-medium);
-  max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
-  color: rgba(255, 255, 255, 0.75);
-
-  ${MEDIA.tablet`
-    padding: var(--spacing-small) var(--spacing-huge);
-
-     & > ${ExternalLink} {
-      display: block;
-    }
-  `};
-`;
 
 const ContactLink = styled(ExternalLink)`
   display: flex;
@@ -37,7 +16,7 @@ const ContactLink = styled(ExternalLink)`
     display: none;
   }
 
-  & > ${Icon} {
+  & > svg {
     display: block;
   }
 
@@ -46,21 +25,78 @@ const ContactLink = styled(ExternalLink)`
       display: block;
     }
 
-    & > ${Icon} {
+    & > svg {
       display: none;
     }
   `};
 `;
 
-export const Footer = () => {
+const Inner = styled.div(({ theme, isHomepage }) => [
+  css`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: var(--spacing-huge) var(--spacing-medium);
+    max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
+    color: inherit;
+
+    ${MEDIA.tablet`
+      padding: var(--spacing-huge);
+
+      & > ${ExternalLink} {
+        display: block;
+      }
+    `};
+  `,
+  isHomepage &&
+    css`
+      justify-content: center;
+      padding: var(--spacing-medium) var(--spacing-medium);
+      color: ${theme.copyColor};
+      ${fadeInAnimation};
+
+      ${ContactLink} {
+        display: none;
+      }
+
+      ${MEDIA.tablet`
+        padding: var(--spacing-huge);
+      `}
+    `,
+]);
+
+const Outer = styled.footer`
+  margin-top: auto;
+  z-index: 5;
+
+  ${MEDIA.print`
+    display: none;
+  `};
+`;
+
+export const Footer = ({ isHomepage, ...props }) => {
   return (
-    <Outer>
-      <Inner>
-        <ContactLink href="mailto:contact@ajames.dev">
+    <Outer {...props}>
+      <Inner isHomepage={isHomepage}>
+        <ContactLink
+          href="mailto:contact@ajames.dev"
+          title="Email me"
+          css="font-weight: 600;"
+        >
           <Text size="xs">contact@ajames.dev</Text>
-          <EmailIcon width="1.5rem" height="1.5rem" />
+          <EnvelopeOpenIcon
+            role="img"
+            aria-label="Email me"
+            width="1.75rem"
+            height="1.75rem"
+          />
         </ContactLink>
-        <Social size="1.5rem" />
+
+        <Social
+          isHomepage={isHomepage}
+          size={isHomepage ? '2rem' : '1.75rem'}
+        />
       </Inner>
     </Outer>
   );

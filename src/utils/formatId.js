@@ -1,5 +1,6 @@
-import { stripWhitespace } from './stripWhitespace';
-
 export function formatId(id) {
-  return stripWhitespace(id).toLowerCase();
+  return id
+    .replace(/\s+/g, '-')
+    .replace(/[^a-zA-Z-]+/g, '')
+    .toLowerCase();
 }

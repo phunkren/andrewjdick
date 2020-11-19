@@ -1,18 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
+import { animated } from 'react-spring/renderprops';
+import { ArrowRightIcon } from '@modulz/radix-icons';
+import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
 import { formatId } from '../utils/formatId';
 import { SEO } from '../components/SEO';
-import { Layout } from '../components/Layout';
 import { Text } from '../components/Text';
 import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { Hero } from '../components/Hero';
-import { Header } from '../components/Header';
-import { Theme } from '../components/Theme';
 import { convertPxToRem } from '../utils/unitConversion';
-import { Footer } from '../components/Footer';
+import { FadeIn, BlogTrail } from '../components/Animation';
 
 const Main = styled.main`
   flex: 1;
@@ -33,18 +30,13 @@ const Main = styled.main`
 `;
 
 const Wrapper = styled.div`
+  position: relative;
   width: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--color-white) 0%,
-    var(--color-gray-200) 50%,
-    var(--color-white) 100%
-  );
 `;
 
-const ListItem = styled.li``;
+const ListItem = styled(animated.li)``;
 
-const List = styled.ul`
+const List = styled(animated.ul)`
   max-width: 100%;
   
   ${ListItem} + ${ListItem} {
@@ -58,129 +50,146 @@ const List = styled.ul`
   `}
 `;
 
-const Preview = styled.article`
-  display: flex;
-  flex-flow: column;
-  padding: var(--spacing-huge) var(--spacing-medium);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
-  border-radius: 4px;
-  background-color: var(--color-white);
+const Preview = styled.article(
+  ({ theme }) => css`
+    display: flex;
+    flex-flow: column;
+    padding: var(--spacing-huge) var(--spacing-medium);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+    border-radius: 4px;
+    background-color: ${theme.overlay10};
+    color: ${theme.cardColor};
 
-  ${MEDIA.tablet`
-    flex-flow: row;
-    padding: var(--spacing-huge);
-  `}
-`;
+    ${MEDIA.tablet`
+      padding: var(--spacing-huge);
+    `}
+  `,
+);
 
-const PreviewImage = styled.div`
-  flex: 1;
-  margin-top: calc(var(--spacing-huge) * -1);
-  margin-right: 0;
-  margin-left: calc(var(--spacing-medium) * -1);
-  width: calc(100% + var(--spacing-huge));
+const Title = styled(Text)(
+  ({ theme }) => css`
+    width: 90%;
+    color: ${theme.cardHeaderColor};
+    margin-bottom: var(--spacing-small);
+  `,
+);
 
-  & > div:first-child {
-    height: 150px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 4px;
-  }
+const Info = styled(Text)(
+  ({ theme }) => css`
+    display: block;
+    color: ${theme.auxiliaryColor};
+    margin-bottom: var(--spacing-medium);
+  `,
+);
 
-  ${MEDIA.tablet`
-    flex: 0 1 150px;
-    margin-top: 0;
-    margin-right: var(--spacing-huge);
-    margin-left: 0;
-    width: 100%;
+const StyledLink = styled(Link)(
+  ({ theme }) => css`
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    color: ${theme.linkColor};
 
-    & > div:first-child {
-      border-bottom-right-radius: 4px;
-      border-bottom-left-radius: 4px;
+    svg {
+      will-change: transform;
+      transition: transform 0.2s ease-out;
     }
-  `}
-`;
 
-const PreviewContent = styled.div`
-  flex: 1;
+    &:hover {
+      padding-right: var(--spacing-small);
+
+      svg {
+        transform: translate3d(var(--spacing-small), 0, 0);
+      }
+    }
+  `,
+);
+
+const StyledTitle = styled(Text)`
+  color: white;
+  margin-bottom: var(--spacing-large);
 
   ${MEDIA.tablet`
-    margin-top: 0;
+    opacity: 0;
+    pointer-events: none;
   `}
 `;
 
-const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => (
-  <Preview aria-labelledby={`blog post-${formatId(frontmatter.title)}`}>
-    <PreviewImage aria-hidden="true">
-      <Img role="img" alt="" fluid={frontmatter.image.childImageSharp.fluid} />
-    </PreviewImage>
+const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => {
+  const formattedTitle = formatId(frontmatter.title);
 
-    <PreviewContent>
-      <div css="margin-bottom: var(--spacing-medium);">
-        <Text as="h2" size="xl" id={`post-${formatId(frontmatter.title)}`}>
-          {frontmatter.title}
-        </Text>
+  return (
+    <Preview aria-labelledby={`blog post-${formattedTitle}`}>
+      <Title as="h2" size="xl" id={`post-${formattedTitle}`}>
+        {frontmatter.title}
+      </Title>
 
-        <Text size="xs" css="color: var(--color-gray-600);">
-          {frontmatter.date} | {fields.readingTime.text}
-        </Text>
-      </div>
+      <Info size="xs">
+        {frontmatter.date} | {fields.readingTime.text}
+      </Info>
 
       <Text
         as="p"
         aria-label="Excerpt"
-        css="padding-bottom: var(--spacing-medium);"
+        css="padding-bottom: var(--spacing-huge);"
       >
         {excerpt}
       </Text>
 
-      <Link
+      <StyledLink
         to={`/blog${fields.slug}`}
         aria-label="Click to read the article in full"
-        css="display: inline-block; color: var(--color-blue-600);"
+        css="font-weight: 600;"
       >
-        Read more →
-      </Link>
-    </PreviewContent>
-  </Preview>
-);
+        Read more{' '}
+        <ArrowRightIcon
+          role="img"
+          aria-hidden="true"
+          height="1em"
+          width="1em"
+          css="margin-left: var(--spacing-tiny); position: relative; top: 2px;"
+        />
+      </StyledLink>
+    </Preview>
+  );
+};
 
 export default function Blog({ data, location: { pathname } }) {
   const { edges } = data.allMarkdownRemark;
-  const posts = edges
-    .filter(edge => !!edge.node.frontmatter.date)
-    .map(edge => (
-      <ListItem key={edge.node.id}>
-        <BlogPreview post={edge.node} />
-      </ListItem>
-    ));
+  const posts = edges.filter(edge => !!edge.node.frontmatter.date);
 
   return (
-    <Layout>
+    <>
       <SEO
         path={pathname}
         title="Blog"
         description="Personal contributions to modern frontend web development"
       />
-      <Theme theme="dark">
-        <Header />
-      </Theme>
       <Wrapper>
-        <Hero />
         <Main>
-          <Text
-            as="h1"
-            size="4xl"
-            id="blog"
-            css="color: white; margin-bottom: var(--spacing-large);"
-          >
-            Blog
-          </Text>
-          <List>{posts}</List>
+          <FadeIn>
+            {({ o }) => (
+              <animated.div style={{ opacity: o.interpolate(o => o) }}>
+                <StyledTitle as="h1" size="4xl" id="blog">
+                  Blog
+                </StyledTitle>
+              </animated.div>
+            )}
+          </FadeIn>
+          <List>
+            <BlogTrail items={posts}>
+              {(item, { s }) => (
+                <ListItem
+                  style={{ transform: s.interpolate(s => `scale(${s})`) }}
+                >
+                  <BlogPreview post={item.node} />
+                </ListItem>
+              )}
+            </BlogTrail>
+          </List>
         </Main>
-        <Footer />
       </Wrapper>
-    </Layout>
+    </>
   );
 }
 
@@ -194,13 +203,6 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
-            image {
-              childImageSharp {
-                fluid(maxWidth: 768) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
           }
           fields {
             slug

@@ -1,85 +1,95 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { position } from 'polished';
-import { Link as RouterLink } from 'gatsby';
+import TransitionLink from 'gatsby-plugin-transition-link';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import { ALPHAS } from '../styles/alphas';
 import { MEDIA } from '../styles/media';
 
 export const linkStyles = css`
   color: inherit;
   text-decoration: none;
-  transition: color 0.2s ease-out;
-  font-weight: 500;
+  transition: color 0.1s ease-out;
+
+  & > svg {
+    will-change: transform;
+    transition: transform 0.2s ease-in;
+  }
 
   &:disabled {
-    opacity: ${ALPHAS.disabled};
+    opacity: 0.4;
     pointer-events: none;
   }
 
   &:hover {
-    color: var(--color-blue-400);
+    color: var(--color-blue-600);
   }
 
   &:active {
     color: var(--color-orange-400);
+
+    & > svg {
+      transform: scale(0.9);
+      transition: transform 0.2s ease-out;
+    }
   }
 
   ${MEDIA.print`
     text-decoration: underline;
-    text-decoration-color: var(--color-orange-400);
+    text-decoration-color: var(--color-orange-400); 
   `}
 `;
 
 export const highlightStyles = css`
   position: relative;
-  color: inherit;
+  color: ${({ theme }) => theme.linkColor};
   white-space: nowrap;
   z-index: 1;
 
   &::before {
     content: '';
-    ${position('absolute', '0', '-2px', '0', '4px')};
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 85%,
-      var(--color-orange-400) 15%
-    );
-    z-index: 0;
+    display: block;
+    position: absolute;
+    bottom: 4px;
+    left: 2px;
+    width: 100%;
+    height: 50%;
+    background: ${({ theme }) => theme.hoverColor};
+    transition: 100ms ease-out;
+    will-change: transform;
+    z-index: -1;
+    opacity: 0;
   }
 
   &:hover {
-    color: var(--color-blue-600);
+    color: ${({ theme }) => theme.hoverColor};
 
     &::before {
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0) 95%,
-        var(--color-orange-400) 5%
-      );
+      transform: scaleY(0.2);
+      transition: 100ms ease-out 50ms;
+      bottom: -6px;
+      left: 0;
+      opacity: 1;
     }
   }
 
   &:active {
-    color: var(--color-orange-400);
+    color: ${({ theme }) => theme.activeColor};
 
     &::before {
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0) 95%,
-        var(--color-blue-400) 5%
-      );
+      transition: background 100ms ease-in;
+      background: ${({ theme }) => theme.activeColor};
     }
   }
 
   ${MEDIA.print`
+    color: inherit;
+    
     &::before {
       display: none;
     }
   `}
 `;
 
-const isPartiallyActive = ({ isCurrent, isPartiallyCurrent }) =>
+const isPartiallyActive = ({ isPartiallyCurrent }) =>
   isPartiallyCurrent
     ? {
         style: {
@@ -89,15 +99,16 @@ const isPartiallyActive = ({ isCurrent, isPartiallyCurrent }) =>
       }
     : {};
 
-export const Link = styled(props => (
-  <RouterLink getProps={isPartiallyActive} {...props} />
-))(
-  ({ theme }) => css`
-    ${linkStyles};
-    color: ${theme.primary};
-    text-shadow: 1px 1px 1px ${theme.secondary};
-  `,
-);
+export const Link = styled(({ navigate, ...props }) => {
+  return (
+    <TransitionLink
+      entry={{ length: 0.4 }}
+      exit={{ length: 0.05 }}
+      getProps={isPartiallyActive}
+      {...props}
+    />
+  );
+})(({ highlight }) => [linkStyles, highlight && highlightStyles]);
 
 export const DownloadLink = styled(({ children, ...props }) => (
   <a download {...props}>

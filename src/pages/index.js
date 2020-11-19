@@ -1,32 +1,12 @@
 import React from 'react';
-import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
-import { position } from 'polished';
 import Div100vh from 'react-div-100vh';
-import lightbulbs from '../assets/images/lightbulbs.png';
-import { Layout } from '../components/Layout';
-import { Social } from '../components/Social';
 import { ExternalLink } from '../components/Link';
-import { Header } from '../components/Header';
 import { Text } from '../components/Text';
 import { SEO } from '../components/SEO';
 import { MEDIA } from '../styles/media';
-
-const infiniteScroll = keyframes`
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(0, -300vh, 0);
-  }
-`;
-
-/* HACK: For Div100vh to work, we need to remove the min-height from modern-css-reset */
-const GlobalStyles = createGlobalStyle`
- body {
-   min-height: 0;
- }
-`;
+import { fadeInAnimation } from '../styles/animation';
 
 const Wrapper = styled(Div100vh)`
   flex: 1;
@@ -45,45 +25,47 @@ const Main = styled.main`
   text-align: center;
 `;
 
-const Section = styled.section`
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
-  padding: 0 var(--spacing-medium);
+const Section = styled.section(
+  ({ theme }) => css`
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    padding: 0 var(--spacing-medium);
+    color: ${theme.copyColor};
+    ${fadeInAnimation};
+
+    ${MEDIA.tablet`
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 0 var(--spacing-large);
+    `}
+  `,
+);
+
+const Title = styled(Text)(
+  ({ theme }) => css`
+    color: ${theme.titleColor};
+    text-shadow: ${theme.titleShadow};
+  `,
+);
+
+const Position = styled(Text)`
+  display: block;
 
   ${MEDIA.tablet`
-    left: 50%;
-    transform: translate(-50%, -50%);
-    paddding: 0 var(--spacing-large);
+    display: inline-flex;
   `}
 `;
 
-const Footer = styled.footer`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 var(--spacing-medium) var(--spacing-medium);
+const At = styled(Text)`
+  display: none;
 
   ${MEDIA.tablet`
-    padding: 0 var(--spacing-huge) var(--spacing-huge);
-  `};
-`;
-
-const Image = styled.div`
-  ${position('absolute', '100%', 0, null, 0)};
-  background-image: url(${lightbulbs});
-  background-repeat: repeat-y;
-  background-position: center;
-  background-size: cover;
-  height: 200vh;
-  margin-bottom: 100vh;
-  opacity: 0.025;
-  pointer-events: none;
-  animation: ${infiniteScroll} 30s linear infinite;
-  z-index: -1;
+    display: inline-flex;
+  `}
 `;
 
 export default function Home({ data }) {
@@ -92,54 +74,36 @@ export default function Home({ data }) {
   const currentEmployer = experience[0];
 
   return (
-    <Layout>
+    <>
       <SEO />
-      <GlobalStyles />
       <Wrapper>
-        <Header />
-
         <Main>
           <Section aria-label="Profile">
-            <Text as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
+            <Title as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
               {author.name}
-            </Text>
-            <Text aria-label={`Position: ${currentEmployer.position}`}>
+            </Title>
+            <Position
+              size="l"
+              aria-label={`Position: ${currentEmployer.position}`}
+            >
               {currentEmployer.position}
-            </Text>
-            <Text size="m"> @ </Text>
+            </Position>
+            <At size="l">&nbsp;@&nbsp;</At>
             <ExternalLink
               aria-label={`Employer: ${currentEmployer.company}`}
               href={currentEmployer.url}
               highlight
             >
-              <Text>{currentEmployer.company}</Text>
+              <Text size="l">{currentEmployer.company}</Text>
             </ExternalLink>
             <br />
-            <Text aria-label={`Location: ${author.location}`}>
+            <Text size="m" aria-label={`Location: ${author.location}`}>
               {author.location}
             </Text>
           </Section>
         </Main>
-
-        <Footer>
-          <Social aria-label="Social" />
-
-          <figure aria-hidden="true">
-            <Image />
-            <Text as="figcaption" size="ps">
-              background courtesy of{' '}
-              <ExternalLink
-                href="https://absurd.design/"
-                highlight
-                tabIndex="-1"
-              >
-                absurd.design
-              </ExternalLink>
-            </Text>
-          </figure>
-        </Footer>
       </Wrapper>
-    </Layout>
+    </>
   );
 }
 

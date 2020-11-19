@@ -2,9 +2,14 @@
   "education": [
     {
       "qualification": "BSc (Hons) 2.1",
-      "course": "Audio Technology & Multimedia",
+      "course": "Audio Technology",
       "institute": "Glasgow Caledonian University",
       "dates": "2010 - 2014"
+    },
+    {
+      "course": "Exchange & Study Abroad",
+      "institute": "University of Massachusetts Boston",
+      "dates": "2011 - 2012"
     },
     {
       "qualification": "Graduate",

@@ -6,7 +6,7 @@ import { MEDIA } from '../styles/media';
 
 const Image = styled(Img)`
   width: 100%;
-  min-width: 44px;
+  min-width: 50px;
   border-radius: 50%;
 
   ${MEDIA.tablet`
@@ -14,12 +14,12 @@ const Image = styled(Img)`
   `}
 `;
 
-export const Logo = () => {
+export const Logo = props => {
   const data = useStaticQuery(graphql`
     query {
       fileName: file(relativePath: { eq: "images/avatar.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 440, maxHeight: 410) {
+          fluid(maxWidth: 60, maxHeight: 60, quality: 100) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -27,5 +27,11 @@ export const Logo = () => {
     }
   `);
 
-  return <Image fluid={data.fileName.childImageSharp.fluid} alt="Site logo" />;
+  return (
+    <Image
+      fluid={data.fileName.childImageSharp.fluid}
+      alt="Site logo"
+      {...props}
+    />
+  );
 };

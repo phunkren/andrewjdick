@@ -9,7 +9,7 @@ const config = {
     author: {
       name: 'Andrew James',
       email: 'contact@ajames.dev',
-      location: 'London, UK',
+      location: 'Edinburgh, UK',
     },
   },
   plugins: [
@@ -18,6 +18,7 @@ const config = {
     'gatsby-plugin-netlify',
     'gatsby-plugin-react-axe',
     'gatsby-plugin-react-helmet',
+    `gatsby-plugin-transition-link`,
     'gatsby-transformer-sharp',
     'gatsby-transformer-json',
     {
@@ -69,16 +70,25 @@ const config = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Andrew James',
+        name: 'ajames.dev',
         short_name: 'ajames.dev',
         start_url: '/',
-        background_color: '#000',
-        theme_color: '#fff',
+        background_color: '#121212',
+        theme_color: '#fefefe',
         display: 'standalone',
-        icon: 'src/assets/images/logo.png',
+        icon: `src/assets/images/maskable_icon.png`,
+        icons: [
+          {
+            src: 'src/assets/images/maskable_icon.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable',
+          },
+        ],
         crossOrigin: 'use-credentials',
       },
     },
+    'gatsby-plugin-offline',
     {
       resolve: `gatsby-plugin-feed`,
       options: {
@@ -139,15 +149,6 @@ const config = {
             title: 'Blog: RSS | Andrew James',
           },
         ],
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-web-font-loader',
-      options: {
-        google: {
-          families: ['Roboto:400', 'Rubik:300'],
-          text: `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@£#$%^&*()-_=+{[]};:'"|,<.>/?~`,
-        },
       },
     },
   ],

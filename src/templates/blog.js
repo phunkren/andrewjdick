@@ -1,29 +1,24 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect } from 'react';
+import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
-import { Layout } from '../components/Layout';
 import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { linkStyles, highlightStyles } from '../components/Link';
+import { linkStyles } from '../components/Link';
 import { SIZES } from '../components/Text';
-import { Header } from '../components/Header';
-import { Hero } from '../components/Hero';
-import { Theme } from '../components/Theme';
 import { convertPxToRem } from '../utils/unitConversion';
-import { Footer } from '../components/Footer';
+import { FadeIn } from '../components/Animation';
+import { animated } from 'react-spring/renderprops';
 
 const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
   padding: var(--spacing-huge) var(--spacing-medium) var(--spacing-massive);
-  margin: 300px auto 0;
+  margin: 400px auto 0;
   width: 100%;
 
-  ${MEDIA.tablet`
-    margin-top: 400px;
+  ${MEDIA.desktop`
     padding: var(--spacing-huge) var(--spacing-huge) var(--spacing-massive);
   `};
 `;
@@ -45,17 +40,9 @@ const Main = styled.main`
   `}
 `;
 
-const ArticleHero = styled(Hero)`
-  height: 300px;
-
-  ${MEDIA.tablet`
-    height: 400px;
-  `}
-`;
-
 const Title = styled(Text)`
   position: absolute;
-  top: 175px;
+  top: 225px;
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
@@ -65,114 +52,169 @@ const Title = styled(Text)`
   padding: 0 var(--spacing-large);
 
   ${MEDIA.tablet`
+    max-width: 80%;
+  `}
+
+  ${MEDIA.desktop`
     top: 200px;
     max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
     padding: 0 var(--spacing-huge);
   `}
 `;
 
-const Section = styled.section`
-  h2 {
-    ${SIZES['xl']};
-  }
+const Info = styled(Text)(
+  ({ theme }) => css`
+    display: block;
+    margin-bottom: var(--spacing-huge);
+    color: ${theme.auxiliaryColor};
+  `,
+);
 
-  h3 {
-    ${SIZES['l']};
-  }
+const Section = styled.section(
+  ({ theme }) => css`
+    h2,
+    h3,
+    h4 {
+      color: ${theme.cardHeaderColor};
+    }
 
-  h4 {
-    ${SIZES['m']};
-  }
+    h2 {
+      ${SIZES['xl']};
+    }
 
-  p {
-    ${MEDIA.tablet`
-      padding: 0 var(--spacing-huge);
-    `};
-  }
+    h3 {
+      ${SIZES['l']};
+    }
 
-  div.gatsby-highlight {
-    border-radius: 0;
-    margin-left: calc(var(--spacing-medium) * -1);
-    width: 100vw;
+    h4 {
+      ${SIZES['m']};
+    }
 
-    pre {
+    p {
+      font-size: 1.25rem;
+
+      ${MEDIA.tablet`
+        padding: 0 var(--spacing-huge);
+      `};
+    }
+
+    ul {
+      list-style-type: disc;
+      margin: 0 var(--spacing-large);
+      padding: 0;
+
+      ${MEDIA.tablet`
+        margin: 0 var(--spacing-huge);
+        padding: 0 var(--spacing-huge);
+      `};
+    }
+
+    div.gatsby-highlight {
       border-radius: 0;
+      margin-left: calc(var(--spacing-medium) * -1);
+      width: 100vw;
 
-      code {
+      pre {
+        overflow-y: auto;
+      }
+
+      pre code {
         padding: var(--spacing-medium);
+      }
+
+      ${MEDIA.tablet`
+        max-width: calc(100% + var(--spacing-medium) + var(--spacing-huge));
+
+        pre {
+          border-radius: 4px;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+        }
+      `}
+
+      ${MEDIA.desktop`
+        margin-left: calc(var(--spacing-huge) * -1);
+        max-width: calc(100% + var(--spacing-huge) + var(--spacing-huge));
+      `}
+    }
+
+    a:not(.gatsby-resp-image-link) {
+      ${linkStyles};
+      color: ${theme.linkColor};
+    }
+
+    figcaption {
+      ${SIZES['xs']};
+      margin-top: var(--spacing-small);
+      text-align: center;
+      color: ${theme.auxiliaryColor};
+    }
+
+    img {
+      display: block;
+      margin: var(--spacing-huge) auto 0;
+      width: 100%;
+      height: auto;
+    }
+
+    div.iframeWrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      width: 100%;
+      max-width: 100%;
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
       }
     }
 
-    ${MEDIA.tablet`
-      margin-left: calc(var(--spacing-huge) * -1);
-      max-width: calc(100% + var(--spacing-huge) + var(--spacing-huge));
-    `}
-  }
-
-  a:not(.gatsby-resp-image-link) {
-    ${linkStyles};
-    ${highlightStyles};
-  }
-
-  figcaption {
-    margin-top: var(--spacing-small);
-    ${SIZES['xs']};
-    text-align: center;
-    color: var(--color-black);
-  }
-
-  img {
-    display: block;
-    margin: var(--spacing-huge) auto 0;
-    width: 100%;
-    height: auto;
-  }
-
-  div.iframeWrapper {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    height: 0;
-    width: 100%;
-    max-width: 100%;
-
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+    p > code[class*='language-'] {
+      ${SIZES['pb']};
+      font-weight: 600;
+      color: inherit;
+      background-color: transparent;
+      padding: 0;
     }
-  }
 
-  p > code[class*='language-'] {
-    ${SIZES['pb']};
-    border-radius: 4px;
-    color: var(--color-black);
-    padding: 0 var(--spacing-tiny);
-    background-color: var(--color-gray-200);
-  }
+    pre > code[class*='language-'] {
+      ${SIZES['ps']};
+      margin-left: calc(var(--spacing-medium) * -1);
+      width: 100%;
+    }
 
-  pre > code[class*='language-'] {
-    ${SIZES['ps']};
-    margin-left: calc(var(--spacing-medium) * -1);
-  }
+    pre[class*='language-'] {
+      margin: 0;
+      padding: var(--spacing-medium);
 
-  pre[class*='language-'] {
-    padding: var(--spacing-huge);
-    margin: 0;
-  }
+      ${MEDIA.tablet`
+        padding: var(--spacing-huge);
+      `}
+    }
 
-  & > * + * {
-    margin-top: var(--spacing-huge);
-  }
-`;
+    & > * + * {
+      margin-top: var(--spacing-huge);
+    }
+  `,
+);
 
-function BlogTemplate({ data, location }) {
+function BlogTemplate({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, fields, html } = markdownRemark;
 
+  useEffect(() => {
+    const codeBlocks = document.getElementsByTagName('pre');
+
+    for (let codeBlock of codeBlocks) {
+      codeBlock.setAttribute('tabindex', '0');
+    }
+  }, []);
+
   return (
-    <Layout>
+    <>
       <SEO
         path={fields.slug}
         title={frontmatter.title}
@@ -182,36 +224,28 @@ function BlogTemplate({ data, location }) {
         article
       />
 
-      <Theme theme="dark">
-        <Header />
-      </Theme>
-
-      <ArticleHero>
-        <Img
-          role="img"
-          alt={frontmatter.imageAlt}
-          fluid={frontmatter.image.childImageSharp.fluid}
-        />
-      </ArticleHero>
-
       <Wrapper>
         <Main>
           <article>
-            <Title as="h1" size="xxxl">
-              {frontmatter.title}
-            </Title>
+            <FadeIn>
+              {({ o }) => (
+                <animated.div style={{ opacity: o.interpolate(o => o) }}>
+                  <Title as="h1" size="xxxl">
+                    {frontmatter.title}
+                  </Title>
+                </animated.div>
+              )}
+            </FadeIn>
 
-            <Text size="xs" css="color: var(--color-gray-600);">
+            <Info size="xs">
               {frontmatter.date} | {fields.readingTime.text}
-            </Text>
+            </Info>
 
             <Section dangerouslySetInnerHTML={{ __html: html }} />
           </article>
         </Main>
       </Wrapper>
-
-      <Footer />
-    </Layout>
+    </>
   );
 }
 
