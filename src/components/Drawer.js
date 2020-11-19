@@ -73,19 +73,6 @@ const StyledNavigation = styled(Navigation)(
   `,
 );
 
-const Border = styled(animated.div)`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background-color: var(--color-orange-600);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
-  z-index: 5;
-  opacity: 0.75;
-`;
-
 export const Drawer = ({ state, onDismiss, ...props }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -102,7 +89,7 @@ export const Drawer = ({ state, onDismiss, ...props }) => {
     <StyledDialogOverlay state={state} isOpen={isOpen} onDismiss={onDismiss}>
       <StyledDialogContent aria-label="Mobile navigation menu" {...props}>
         <DrawerSpring native state={state}>
-          {({ x, y }) => (
+          {({ x }) => (
             <Div100vh>
               <Content
                 style={{
@@ -132,12 +119,6 @@ export const Drawer = ({ state, onDismiss, ...props }) => {
                 <StyledNavigation column onLinkClick={onDismiss} />
 
                 <Social css="justify-content: space-around; margin-top: auto;" />
-
-                <Border
-                  style={{
-                    transform: y.interpolate(y => `translate3d(0, ${y}%, 0)`),
-                  }}
-                />
               </Content>
             </Div100vh>
           )}

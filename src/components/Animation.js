@@ -138,36 +138,20 @@ export const BlogTrail = ({ items, children }) => {
 
 export const DrawerSpring = Keyframes.Spring({
   open: {
-    config: key =>
-      key === 'y'
-        ? {
-            duration: 200,
-            delay: 350,
-            easing: easeOut,
-          }
-        : {
-            duration: 300,
-            delay: 0,
-            easing: easeOut,
-          },
-    from: { x: -100, y: -100 },
+    config: {
+      duration: 300,
+      delay: 0,
+      easing: easeOut,
+    },
+    from: { x: -100 },
     x: 0,
-    y: 0,
   },
   close: {
-    config: key =>
-      key === 'y'
-        ? {
-            duration: 200,
-            delay: 0,
-            easing: easeOut,
-          }
-        : {
-            duration: 300,
-            delay: 250,
-            easing: easeOut,
-          },
+    config: {
+      duration: 300,
+      delay: 250,
+      easing: easeIn,
+    },
     x: -100,
-    y: -100,
   },
 });
