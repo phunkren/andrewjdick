@@ -9,6 +9,11 @@ export const linkStyles = css`
   text-decoration: none;
   transition: color 0.1s ease-out;
 
+  & > svg {
+    will-change: transform;
+    transition: transform 0.2s ease-in;
+  }
+
   &:disabled {
     opacity: 0.4;
     pointer-events: none;
@@ -20,6 +25,11 @@ export const linkStyles = css`
 
   &:active {
     color: var(--color-orange-400);
+
+    & > svg {
+      transform: scale(0.9);
+      transition: transform 0.2s ease-out;
+    }
   }
 
   ${MEDIA.print`
@@ -65,7 +75,7 @@ export const highlightStyles = css`
     color: ${({ theme }) => theme.activeColor};
 
     &::before {
-      transition: 100ms ease-in;
+      transition: background 100ms ease-in;
       background: ${({ theme }) => theme.activeColor};
     }
   }
