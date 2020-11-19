@@ -8,9 +8,8 @@ import { Text } from '../components/Text';
 import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
-import { Icon } from '../components/icons/Icon';
-import { ArrowRightIcon } from '../components/icons/ArrowRightIcon';
 import { FadeIn, BlogTrail } from '../components/Animation';
+import { ThickArrowRightIcon } from '@modulz/radix-icons';
 
 const Main = styled.main`
   flex: 1;
@@ -91,7 +90,7 @@ const StyledLink = styled(Link)(
     width: fit-content;
     color: ${theme.linkColor};
 
-    ${Icon} {
+    svg {
       will-change: transform;
       transition: transform 0.2s ease-out;
     }
@@ -99,7 +98,7 @@ const StyledLink = styled(Link)(
     &:hover {
       padding-right: var(--spacing-small);
 
-      ${Icon} {
+      svg {
         transform: translate3d(var(--spacing-small), 0, 0);
       }
     }
@@ -146,7 +145,8 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => {
               css="font-weight: 600;"
             >
               Read more{' '}
-              <ArrowRightIcon
+              <ThickArrowRightIcon
+                role="img"
                 aria-hidden="true"
                 height="1em"
                 width="1em"

@@ -4,12 +4,12 @@ import styled, { css } from 'styled-components';
 import { navigate } from '@reach/router';
 import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
-import { TickIcon } from '../components/icons/TickIcon';
 import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
 import { encode } from '../utils/encode';
 import { FadeIn, FadeThrough } from '../components/Animation';
+import { CheckCircledIcon } from '@modulz/radix-icons';
 
 const Main = styled.main`
   flex: 1;
@@ -165,7 +165,7 @@ export default function Contact({ location }) {
   return (
     <>
       <SEO
-        path="?success=true"
+        path={location.pathname}
         title="Contact"
         description="Get in touch with me"
       />
@@ -199,7 +199,9 @@ export default function Contact({ location }) {
                     {({ o }) => (
                       <animated.div style={{ opacity: o.interpolate(o => o) }}>
                         <div css="display: flex; align-items: center; margin-bottom: var(--spacing-huge);">
-                          <TickIcon
+                          <CheckCircledIcon
+                            role="img"
+                            title="Success!"
                             width="3rem"
                             height="3rem"
                             css="color: var(--color-green-400); margin-right: var(--spacing-medium);"

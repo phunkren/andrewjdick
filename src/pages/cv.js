@@ -8,17 +8,19 @@ import cv from '../assets/documents/Andrew James CV.pdf';
 import { formatId } from '../utils/formatId';
 import { convertPxToRem } from '../utils/unitConversion';
 import { FadeThrough, FadeIn } from '../components/Animation';
-import { GitHubIcon } from '../components/icons/GitHubIcon';
-import { EmailIcon } from '../components/icons/EmailIcon';
 import { LinkedInIcon } from '../components/icons/LinkedInIcon';
-import { HomeIcon } from '../components/icons/HomeIcon';
-import { DownloadIcon } from '../components/icons/DownloadIcon';
-import { PrintIcon } from '../components/icons/PrintIcon';
 import { ExternalLink, DownloadLink } from '../components/Link';
 import { IconButton } from '../components/Button';
 import { Text } from '../components/Text';
 import { SEO } from '../components/SEO';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
+import {
+  EnvelopeOpenIcon,
+  FileIcon,
+  GitHubLogoIcon,
+  HomeIcon,
+  DownloadIcon,
+} from '@modulz/radix-icons';
 
 const List = styled.ul`
   margin-bottom: var(--spacing-huge);
@@ -35,6 +37,7 @@ const ListItem = styled.li`
 const StyledExternalLink = styled(ExternalLink)`
   display: inline-flex;
   align-items: center;
+  line-height: 1.5rem;
 `;
 
 const Wrap = styled.div`
@@ -105,11 +108,6 @@ const Heading = styled.div`
 const HeaderIcons = styled.div`
   display: flex;
   align-items: center;
-
-  & > *:active {
-    transform: scale(0.9);
-    transition: transform 0.2s;
-  }
 
   & > ${DownloadLink} {
     display: inline-flex;
@@ -425,18 +423,30 @@ export default function CV({ data, location: { pathname } }) {
                           {!isMobile && !isIE && (
                             <>
                               <IconButton
+                                title="Print"
                                 aria-label="Print"
                                 onClick={handleCvPrint}
                               >
-                                <PrintIcon width="2rem" height="2rem" />
+                                <FileIcon
+                                  role="img"
+                                  title="Print"
+                                  width="2rem"
+                                  height="2rem"
+                                />
                               </IconButton>
 
                               <DownloadLink
+                                title="Download"
                                 aria-label="Download"
                                 href={cv}
                                 onClick={handleCvDownload}
                               >
-                                <DownloadIcon width="2rem" height="2rem" />
+                                <DownloadIcon
+                                  role="img"
+                                  title="Download"
+                                  width="2rem"
+                                  height="2rem"
+                                />
                               </DownloadLink>
                             </>
                           )}
@@ -454,7 +464,12 @@ export default function CV({ data, location: { pathname } }) {
                                     href={`mailto:${author.email}`}
                                     aria-label="Email me"
                                   >
-                                    <EmailIcon width="1.5rem" height="1.5rem" />
+                                    <EnvelopeOpenIcon
+                                      role="img"
+                                      title="Email me"
+                                      width="1.5rem"
+                                      height="1.5rem"
+                                    />
                                     <Text size="s">{author.email}</Text>
                                   </StyledExternalLink>
                                 </ListItem>
@@ -464,7 +479,12 @@ export default function CV({ data, location: { pathname } }) {
                                     href={siteUrl}
                                     aria-label="Return to homepage"
                                   >
-                                    <HomeIcon width="1.5rem" height="1.5rem" />
+                                    <HomeIcon
+                                      role="img"
+                                      title="Visit me"
+                                      width="1.5rem"
+                                      height="1.5rem"
+                                    />
                                     <Text size="s">{siteDisplayUrl}</Text>
                                   </StyledExternalLink>
                                 </ListItem>
@@ -474,7 +494,9 @@ export default function CV({ data, location: { pathname } }) {
                                     href={social.github.url}
                                     aria-label={`${social.github.label} profile`}
                                   >
-                                    <GitHubIcon
+                                    <GitHubLogoIcon
+                                      role="img"
+                                      title="My Github profile"
                                       width="1.5rem"
                                       height="1.5rem"
                                     />

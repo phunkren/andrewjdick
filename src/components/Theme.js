@@ -82,9 +82,10 @@ export const ThemeToggle = props => {
       >
         <LightIcon
           on={!checked}
+          role="img"
           aria-label="Theme toggle"
-          width="2.5rem"
-          height="2.5rem"
+          width="2rem"
+          height="2rem"
         />
 
         <CustomCheckboxInput

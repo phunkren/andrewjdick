@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { animated } from 'react-spring/renderprops';
 import Div100vh from 'react-div-100vh';
+import { Cross1Icon } from '@modulz/radix-icons';
 import { DialogOverlay, DialogContent } from '@reach/dialog';
 import '@reach/dialog/styles.css';
 import { Social } from './Social';
 import { Navigation } from './Navigation';
 import { IconButton } from './Button';
-import { CrossIcon } from './icons/CrossIcon';
 import { ThemeToggle } from './Theme';
 import { DrawerSpring } from './Animation';
 import { fadeInAnimation } from '../styles/animation';
@@ -47,15 +47,13 @@ const StyledDialogOverlay = styled(DialogOverlay)(({ state }) => [
     `,
 ]);
 
-const CloseButton = styled(IconButton)``;
-
 const Content = styled(animated.div)(({ theme }) => [
   css`
     display: flex;
     flex-flow: column;
     margin: 0;
     margin-right: auto;
-    padding: var(--spacing-medium) var(--spacing-medium) var(--spacing-large);
+    padding: var(--spacing-large);
     background-color: ${theme.overlay10};
     border-right: 1px solid var(--color-gray400);
     color: ${theme.copyColor};
@@ -69,7 +67,7 @@ const StyledNavigation = styled(Navigation)(
   ({ theme }) => css`
     color: ${theme.copyColor};
     margin-top: var(--spacing-huge);
-    padding-left: var(--spacing-medium);
+    padding: 0 var(--spacing-medium);
   `,
 );
 
@@ -81,7 +79,7 @@ export const Drawer = ({ state, onDismiss, ...props }) => {
     if (state === 'open') {
       setIsOpen(true);
     } else {
-      setTimeout(() => setIsOpen(false), 250);
+      setTimeout(() => setIsOpen(false), 550);
     }
   }, [state]);
 
@@ -103,22 +101,24 @@ export const Drawer = ({ state, onDismiss, ...props }) => {
                     flex-direction: row-reverse;
                     justify-content: space-between;
                     align-items: center;
-                    padding-right: var(--spacing-small);
                   `}
                 >
-                  <CloseButton
+                  <IconButton
                     aria-label="Close navigation menu"
                     onClick={onDismiss}
                   >
-                    <CrossIcon />
-                  </CloseButton>
+                    <Cross1Icon role="img" width="1.75rem" height="1.75rem" />
+                  </IconButton>
 
                   <ThemeToggle />
                 </div>
 
                 <StyledNavigation column onLinkClick={onDismiss} />
 
-                <Social css="justify-content: space-around; margin-top: auto;" />
+                <Social
+                  size="1.75rem"
+                  css="justify-content: space-around; margin-top: auto;"
+                />
               </Content>
             </Div100vh>
           )}
