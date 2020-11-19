@@ -63,7 +63,7 @@ const Border = styled(animated.div)`
 export const Hero = ({ customHero, variant, ...props }) => {
   return (
     <HeroSpring variant={variant}>
-      {({ rem, percentage, border }) => (
+      {({ rem, border }) => (
         <Container
           aria-hidden="true"
           variant={variant}
@@ -79,16 +79,17 @@ export const Hero = ({ customHero, variant, ...props }) => {
               fluid={customHero.image.childImageSharp.fluid}
               alt={customHero.alt}
             />
-          ) : null}
-
-          <figure
-            css={`
-              ${fadeInAnimation};
-            `}
-          >
-            <Lightbulbs />
-            <figcaption>Illustrations courtesy of absurd.design</figcaption>
-          </figure>
+          ) : (
+            <figure
+              css={`
+                ${fadeInAnimation};
+                animation-delay: 0.65s;
+              `}
+            >
+              <Lightbulbs />
+              <figcaption>Illustration courtesy of absurd.design</figcaption>
+            </figure>
+          )}
 
           <Border
             style={{
