@@ -1,11 +1,10 @@
 import React from 'react';
-import { animated, interpolate } from 'react-spring/renderprops';
-import styled, { css } from 'styled-components';
+import { animated } from 'react-spring/renderprops';
+import styled from 'styled-components';
 import lightBulb from '../assets/images/lightBulb.png';
 import { fadeInAnimation, infiniteScrollAnimation } from '../styles/animation';
 import Img from 'gatsby-image';
 import { HeroSpring } from './Animation';
-import { linearGradient } from 'polished';
 
 const Lightbulbs = styled.div`
   background-image: url(${lightBulb});
@@ -24,44 +23,30 @@ const BlogHero = styled(Img)`
   ${fadeInAnimation};
 `;
 
-const Container = styled(animated.aside)(({ theme, variant }) => [
-  css`
-    background-color: white;
+const Container = styled(animated.aside)`
+  background-color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  will-change: transform;
+  ${fadeInAnimation};
+  animation-duration: 0.4s;
+
+  &::after {
+    content: '';
     position: absolute;
     top: 0;
     right: 0;
-    left: 0;
     bottom: 0;
-    overflow: hidden;
-    will-change: transform;
-    ${fadeInAnimation};
-    animation-duration: 0.4s;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: var(--color-black);
-      opacity: 0.95;
-      z-index: 2;
-      transition: background-color 0.4s ease-in 0.2s,
-        background-image 0.4s ease-out 0.2s;
-    }
-  `,
-  variant === 'home' &&
-    css`
-      &::after {
-        background-image: ${linearGradient({
-          colorStops: [`${theme.overlay5} 0%`, `${theme.background} 97.5%`],
-          toDirection: 'to bottom',
-          fallback: `${theme.background}`,
-        })};
-      }
-    `,
-]);
+    left: 0;
+    background-color: var(--color-black);
+    opacity: 0.95;
+    z-index: 2;
+  }
+`;
 
 const Border = styled(animated.div)`
   position: absolute;
@@ -83,10 +68,8 @@ export const Hero = ({ customHero, variant, ...props }) => {
           aria-hidden="true"
           variant={variant}
           style={{
-            transform: interpolate(
-              [rem, percentage],
-              (rem, percentage) =>
-                `translate3d(0, calc(-100% + ${rem}rem + ${percentage}%), 0)`,
+            transform: rem.interpolate(
+              rem => `translate3d(0, calc(-100% + ${rem}rem), 0)`,
             ),
           }}
           {...props}
