@@ -76,7 +76,7 @@ const config = {
         background_color: '#121212',
         theme_color: '#fefefe',
         display: 'standalone',
-        icon: 'assets/images/logo.png',
+        icon: 'src/assets/images/logo.png',
         crossOrigin: 'use-credentials',
       },
     },
