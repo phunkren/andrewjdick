@@ -1,5 +1,6 @@
 import React from 'react';
 import { animated } from 'react-spring/renderprops';
+import { ArrowRightIcon } from '@modulz/radix-icons';
 import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
 import { formatId } from '../utils/formatId';
@@ -9,7 +10,6 @@ import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
 import { FadeIn, BlogTrail } from '../components/Animation';
-import { ThickArrowRightIcon } from '@modulz/radix-icons';
 
 const Main = styled.main`
   flex: 1;
@@ -142,7 +142,7 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => {
         css="font-weight: 600;"
       >
         Read more{' '}
-        <ThickArrowRightIcon
+        <ArrowRightIcon
           role="img"
           aria-hidden="true"
           height="1em"
