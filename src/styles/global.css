@@ -1,18 +1,15 @@
 :root {
   --color-black: #121212;
   --color-charcoal: #303030;
-  --color-white: #ffffff;
+  --color-white: #fefefe;
 
   /* https://tailwindcss.com/docs/customizing-colors */
   --color-gray-200: #edf2f7;
   --color-gray-400: #cbd5e0;
   --color-gray-600: #718096;
   --color-gray-700: #4a5568;
-  --color-orange-100: #fffaf0;
   --color-orange-200: #feebc8;
-  --color-orange-300: #fbd38d;
   --color-orange-400: #f6ad55;
-  --color-orange-500: #ed8936;
   --color-orange-600: #dd6b20;
   --color-blue-200: #bee3f8;
   --color-blue-400: #63b3ed;
