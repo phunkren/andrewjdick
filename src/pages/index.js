@@ -49,7 +49,7 @@ const Section = styled.section(
 const Title = styled(Text)(
   ({ theme }) => css`
     color: ${theme.titleColor};
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.18);
+    text-shadow: ${theme.titleShadow};
   `,
 );
 
