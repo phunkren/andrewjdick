@@ -76,7 +76,15 @@ const config = {
         background_color: '#121212',
         theme_color: '#fefefe',
         display: 'standalone',
-        icon: 'src/assets/images/logo.png',
+        icon: `src/assets/images/maskable_icon.png`,
+        icons: [
+          {
+            src: 'src/assets/images/maskable_icon.png',
+            sizes: '196x196',
+            type: 'image/png',
+            purpose: 'any maskable',
+          },
+        ],
         crossOrigin: 'use-credentials',
       },
     },
