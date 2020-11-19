@@ -120,42 +120,36 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => {
 
   return (
     <Preview aria-labelledby={`blog post-${formattedTitle}`}>
-      <FadeIn>
-        {({ o }) => (
-          <animated.div style={{ opacity: o.interpolate(o => o) }}>
-            <Title as="h2" size="xl" id={`post-${formattedTitle}`}>
-              {frontmatter.title}
-            </Title>
+      <Title as="h2" size="xl" id={`post-${formattedTitle}`}>
+        {frontmatter.title}
+      </Title>
 
-            <Info size="xs">
-              {frontmatter.date} | {fields.readingTime.text}
-            </Info>
+      <Info size="xs">
+        {frontmatter.date} | {fields.readingTime.text}
+      </Info>
 
-            <Text
-              as="p"
-              aria-label="Excerpt"
-              css="padding-bottom: var(--spacing-huge);"
-            >
-              {excerpt}
-            </Text>
+      <Text
+        as="p"
+        aria-label="Excerpt"
+        css="padding-bottom: var(--spacing-huge);"
+      >
+        {excerpt}
+      </Text>
 
-            <StyledLink
-              to={`/blog${fields.slug}`}
-              aria-label="Click to read the article in full"
-              css="font-weight: 600;"
-            >
-              Read more{' '}
-              <ThickArrowRightIcon
-                role="img"
-                aria-hidden="true"
-                height="1em"
-                width="1em"
-                css="margin-left: var(--spacing-tiny); position: relative; top: 2px;"
-              />
-            </StyledLink>
-          </animated.div>
-        )}
-      </FadeIn>
+      <StyledLink
+        to={`/blog${fields.slug}`}
+        aria-label="Click to read the article in full"
+        css="font-weight: 600;"
+      >
+        Read more{' '}
+        <ThickArrowRightIcon
+          role="img"
+          aria-hidden="true"
+          height="1em"
+          width="1em"
+          css="margin-left: var(--spacing-tiny); position: relative; top: 2px;"
+        />
+      </StyledLink>
     </Preview>
   );
 };
