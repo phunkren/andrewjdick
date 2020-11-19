@@ -46,7 +46,7 @@ export const FadeIn = ({ children }) => {
             from={{ o: 0 }}
             enter={{ o: 1 }}
             leave={{ o: 0 }}
-            config={[{ duration: 210, easing: easeOut }]}
+            config={[{ duration: 210, delay: 200, easing: easeOut }]}
           >
             {mount => mount && (props => children(props))}
           </Transition>
@@ -147,8 +147,8 @@ export const DrawerSpring = Keyframes.Spring({
   },
   close: {
     config: {
-      duration: 300,
-      delay: 250,
+      duration: 250,
+      delay: 150,
       easing: easeIn,
     },
     x: -100,

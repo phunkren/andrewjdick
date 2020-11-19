@@ -1,13 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { EnvelopeOpenIcon } from '@modulz/radix-icons';
 import { Social } from './Social';
 import { fadeInAnimation } from '../styles/animation';
 import { BREAKPOINTS, MEDIA } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
 import { ExternalLink } from './Link';
 import { Text } from './Text';
-import { Icon } from './icons/Icon';
-import { EmailIcon } from './icons/EmailIcon';
 
 const ContactLink = styled(ExternalLink)`
   display: flex;
@@ -17,7 +16,7 @@ const ContactLink = styled(ExternalLink)`
     display: none;
   }
 
-  & > ${Icon} {
+  & > svg {
     display: block;
   }
 
@@ -26,7 +25,7 @@ const ContactLink = styled(ExternalLink)`
       display: block;
     }
 
-    & > ${Icon} {
+    & > svg {
       display: none;
     }
   `};
@@ -56,7 +55,6 @@ const Inner = styled.div(({ theme, isHomepage }) => [
       padding: var(--spacing-medium) var(--spacing-medium);
       color: ${theme.copyColor};
       ${fadeInAnimation};
-      animation-delay: 0.5s;
 
       ${ContactLink} {
         display: none;
@@ -81,9 +79,18 @@ export const Footer = ({ isHomepage, ...props }) => {
   return (
     <Outer {...props}>
       <Inner isHomepage={isHomepage}>
-        <ContactLink href="mailto:contact@ajames.dev" css="font-weight: 600;">
+        <ContactLink
+          href="mailto:contact@ajames.dev"
+          title="Email me"
+          css="font-weight: 600;"
+        >
           <Text size="xs">contact@ajames.dev</Text>
-          <EmailIcon />
+          <EnvelopeOpenIcon
+            role="img"
+            aria-label="Email me"
+            width="1.75rem"
+            height="1.75rem"
+          />
         </ContactLink>
 
         <Social

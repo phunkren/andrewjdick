@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
+import { HamburgerMenuIcon } from '@modulz/radix-icons';
 import { Logo } from '../components/Logo';
 import { Navigation } from '../components/Navigation';
 import { IconButton } from '../components/Button';
 import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
-import { HamburgerIcon } from './icons/HamburgerIcon';
 import { convertPxToRem } from '../utils/unitConversion';
 import { isIOS } from 'react-device-detect';
 import { Drawer } from './Drawer';
@@ -124,7 +124,12 @@ export const Header = ({ variant }) => {
             aria-label="Navigation menu"
             onClick={toggleMobileNavigation}
           >
-            <HamburgerIcon />
+            <HamburgerMenuIcon
+              role="img"
+              title="Navigation menu"
+              width="1.75rem"
+              height="1.75rem"
+            />
           </MobileNavigationButton>
         </Inner>
       </Outer>

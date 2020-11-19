@@ -1725,6 +1725,10 @@
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/@mikaelkristiansson/domready/-/domready-1.0.10.tgz#f6d69866c0857664e70690d7a0bfedb72143adb5"
 
+"@modulz/radix-icons@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@modulz/radix-icons/-/radix-icons-3.3.0.tgz#4af89aa773d8a3951814a3500ccb1eeb2d2cd262"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -2848,11 +2852,12 @@ array.prototype.flat@^1.2.3:
     es-abstract "^1.18.0-next.1"
 
 array.prototype.flatmap@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/array.prototype.flatmap/-/array.prototype.flatmap-1.2.3.tgz#1c13f84a178566042dd63de4414440db9222e443"
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/array.prototype.flatmap/-/array.prototype.flatmap-1.2.4.tgz#94cfd47cc1556ec0747d97f7c7738c58122004c9"
   dependencies:
+    call-bind "^1.0.0"
     define-properties "^1.1.3"
-    es-abstract "^1.17.0-next.1"
+    es-abstract "^1.18.0-next.1"
     function-bind "^1.1.1"
 
 arraybuffer.slice@~0.0.7:
@@ -4683,8 +4688,8 @@ css-tree@1.0.0-alpha.37:
     source-map "^0.6.1"
 
 css-tree@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.1.0.tgz#9b8559e0169c0f678f49a6e045e2c3101f7aa36f"
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.1.1.tgz#30b8c0161d9fb4e9e2141d762589b6ec2faebd2e"
   dependencies:
     mdn-data "2.0.14"
     source-map "^0.6.1"
@@ -4864,14 +4869,14 @@ debug@=3.1.0, debug@~3.1.0:
     ms "2.0.0"
 
 debug@^3.0.0, debug@^3.1.0, debug@^3.1.1, debug@^3.2.5, debug@^3.2.6:
-  version "3.2.6"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
+  version "3.2.7"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.7.tgz#72580b7e9145fb39b6676f9c5e5fb100b934179a"
   dependencies:
     ms "^2.1.1"
 
 debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.2.0.tgz#7f150f93920e94c58f5574c2fd01a3110effe7f1"
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.1.tgz#f0d229c505e0c6d8c49ac553d1b13dc183f6b2ee"
   dependencies:
     ms "2.1.2"
 
@@ -5396,8 +5401,8 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
 electron-to-chromium@^1.3.378, electron-to-chromium@^1.3.591:
-  version "1.3.598"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.598.tgz#8f757018902ab6190323a8c5f6124d854893a35b"
+  version "1.3.601"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.601.tgz#881824eaef0b2f97c89e1abb5835fdd224997d34"
 
 elliptic@^6.5.3:
   version "6.5.3"
@@ -10018,19 +10023,23 @@ mdast-util-to-nlcst@^3.2.0:
     unist-util-position "^3.0.0"
     vfile-location "^2.0.0"
 
-mdast-util-to-string@^1.0.5, mdast-util-to-string@^1.1.0:
+mdast-util-to-string@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/mdast-util-to-string/-/mdast-util-to-string-1.1.0.tgz#27055500103f51637bd07d01da01eb1967a43527"
 
+mdast-util-to-string@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/mdast-util-to-string/-/mdast-util-to-string-2.0.0.tgz#b8cfe6a713e1091cb5b728fc48885a4767f8b97b"
+
 mdast-util-toc@^5.0:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/mdast-util-toc/-/mdast-util-toc-5.0.4.tgz#5c7bc8ff64914546384d81ea155478ba34802c12"
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/mdast-util-toc/-/mdast-util-toc-5.1.0.tgz#3af0f9c9a764b993538af03f1f79f4e3cec22736"
   dependencies:
     "@types/mdast" "^3.0.3"
     "@types/unist" "^2.0.3"
     extend "^3.0.2"
     github-slugger "^1.2.1"
-    mdast-util-to-string "^1.0.5"
+    mdast-util-to-string "^2.0.0"
     unist-util-is "^4.0.0"
     unist-util-visit "^2.0.0"
 

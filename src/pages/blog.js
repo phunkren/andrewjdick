@@ -8,9 +8,8 @@ import { Text } from '../components/Text';
 import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
-import { Icon } from '../components/icons/Icon';
-import { ArrowRightIcon } from '../components/icons/ArrowRightIcon';
 import { FadeIn, BlogTrail } from '../components/Animation';
+import { ThickArrowRightIcon } from '@modulz/radix-icons';
 
 const Main = styled.main`
   flex: 1;
@@ -91,7 +90,7 @@ const StyledLink = styled(Link)(
     width: fit-content;
     color: ${theme.linkColor};
 
-    ${Icon} {
+    svg {
       will-change: transform;
       transition: transform 0.2s ease-out;
     }
@@ -99,7 +98,7 @@ const StyledLink = styled(Link)(
     &:hover {
       padding-right: var(--spacing-small);
 
-      ${Icon} {
+      svg {
         transform: translate3d(var(--spacing-small), 0, 0);
       }
     }
@@ -121,41 +120,36 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => {
 
   return (
     <Preview aria-labelledby={`blog post-${formattedTitle}`}>
-      <FadeIn>
-        {({ o }) => (
-          <animated.div style={{ opacity: o.interpolate(o => o) }}>
-            <Title as="h2" size="xl" id={`post-${formattedTitle}`}>
-              {frontmatter.title}
-            </Title>
+      <Title as="h2" size="xl" id={`post-${formattedTitle}`}>
+        {frontmatter.title}
+      </Title>
 
-            <Info size="xs">
-              {frontmatter.date} | {fields.readingTime.text}
-            </Info>
+      <Info size="xs">
+        {frontmatter.date} | {fields.readingTime.text}
+      </Info>
 
-            <Text
-              as="p"
-              aria-label="Excerpt"
-              css="padding-bottom: var(--spacing-huge);"
-            >
-              {excerpt}
-            </Text>
+      <Text
+        as="p"
+        aria-label="Excerpt"
+        css="padding-bottom: var(--spacing-huge);"
+      >
+        {excerpt}
+      </Text>
 
-            <StyledLink
-              to={`/blog${fields.slug}`}
-              aria-label="Click to read the article in full"
-              css="font-weight: 600;"
-            >
-              Read more{' '}
-              <ArrowRightIcon
-                aria-hidden="true"
-                height="1em"
-                width="1em"
-                css="margin-left: var(--spacing-tiny); position: relative; top: 2px;"
-              />
-            </StyledLink>
-          </animated.div>
-        )}
-      </FadeIn>
+      <StyledLink
+        to={`/blog${fields.slug}`}
+        aria-label="Click to read the article in full"
+        css="font-weight: 600;"
+      >
+        Read more{' '}
+        <ThickArrowRightIcon
+          role="img"
+          aria-hidden="true"
+          height="1em"
+          width="1em"
+          css="margin-left: var(--spacing-tiny); position: relative; top: 2px;"
+        />
+      </StyledLink>
     </Preview>
   );
 };

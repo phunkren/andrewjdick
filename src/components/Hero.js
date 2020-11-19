@@ -1,6 +1,6 @@
 import React from 'react';
 import { animated } from 'react-spring/renderprops';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import lightBulb from '../assets/images/lightBulb.png';
 import { fadeInAnimation, infiniteScrollAnimation } from '../styles/animation';
 import Img from 'gatsby-image';
@@ -23,30 +23,46 @@ const BlogHero = styled(Img)`
   ${fadeInAnimation};
 `;
 
-const Container = styled(animated.aside)`
-  background-color: white;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  overflow: hidden;
-  will-change: transform;
-  ${fadeInAnimation};
-  animation-duration: 0.4s;
-
-  &::after {
-    content: '';
+const Container = styled(animated.aside)(({ variant }) => [
+  css`
+    background-color: white;
     position: absolute;
     top: 0;
     right: 0;
-    bottom: 0;
     left: 0;
-    background-color: var(--color-black);
-    opacity: 0.95;
-    z-index: 2;
-  }
-`;
+    bottom: 0;
+    overflow: hidden;
+    will-change: transform;
+    ${fadeInAnimation};
+    animation-duration: 0.4s;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: var(--color-black);
+      opacity: 0.95;
+      z-index: 2;
+    }
+  `,
+  variant === 'home' &&
+    css`
+      background-color: transparent;
+
+      ${Lightbulbs} {
+        transition: opacity 0.1s ease-out;
+        opacity: 0;
+      }
+
+      &::after {
+        transition: opacity 0.2s ease-out 0.1s;
+        opacity: 0;
+      }
+    `,
+]);
 
 const Border = styled(animated.div)`
   position: absolute;
@@ -83,11 +99,13 @@ export const Hero = ({ customHero, variant, ...props }) => {
             <figure
               css={`
                 ${fadeInAnimation};
-                animation-delay: 0.65s;
+                animation-delay: 0.5s;
               `}
             >
-              <Lightbulbs />
-              <figcaption>Illustration courtesy of absurd.design</figcaption>
+              <Lightbulbs role="img" aria-labelledby="absurd-design" />
+              <figcaption id="absurd-design" css="visibility: hidden;">
+                Illustration courtesy of absurd.design
+              </figcaption>
             </figure>
           )}
 

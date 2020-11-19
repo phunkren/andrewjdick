@@ -30,6 +30,8 @@ export const IconButton = styled(props => <button type="button" {...props} />)(
     min-height: 44px;
     background-color: transparent;
     color: inherit;
+    will-change: transform;
+    transition: transform 0.2s ease-in;
 
     &:hover {
       color: var(--color-blue-600);
@@ -37,6 +39,8 @@ export const IconButton = styled(props => <button type="button" {...props} />)(
 
     &:active {
       color: var(--color-orange-400);
+      transform: scale(0.9);
+      transition: transform 0.2s ease-out;
     }
   `,
 );

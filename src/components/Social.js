@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
-import { GitHubIcon } from './icons/GitHubIcon';
-import { NotionIcon } from './icons/NotionIcon';
-import { TwitterIcon } from './icons/TwitterIcon';
+import { GitHubLogoIcon, TwitterLogoIcon } from '@modulz/radix-icons';
 import { RssIcon } from './icons/RssIcon';
+import { NotionIcon } from './icons/NotionIcon';
 import { ExternalLink } from './Link';
 
 const SocialLinks = styled.nav`
@@ -17,11 +16,6 @@ const SocialLink = styled(ExternalLink)`
 
   &:not(:first-child) {
     margin-left: var(--spacing-small);
-  }
-
-  &:active {
-    transform: scale(0.9);
-    transition: transform 0.2s;
   }
 `;
 
@@ -36,7 +30,7 @@ export const Social = styled(({ size, ...props }) => {
         aria-label={github.label}
         title={github.label}
       >
-        <GitHubIcon width={size} height={size} />
+        <GitHubLogoIcon role="img" title="GitHub" width={size} height={size} />
       </SocialLink>
 
       <SocialLink
@@ -52,7 +46,12 @@ export const Social = styled(({ size, ...props }) => {
         aria-label={twitter.label}
         title={twitter.label}
       >
-        <TwitterIcon width={size} height={size} />
+        <TwitterLogoIcon
+          role="img"
+          title="Twitter"
+          width={size}
+          height={size}
+        />
       </SocialLink>
 
       <SocialLink
