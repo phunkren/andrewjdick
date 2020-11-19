@@ -58,9 +58,9 @@ export const FadeIn = ({ children }) => {
 
 export const HeroSpring = ({ variant, children }) => {
   const positions = {
-    home: [{ rem: 0, percentage: 100 }, { border: -100 }],
-    page: [{ rem: 12.5, percentage: 0 }, { border: 0 }],
-    blog: [{ rem: 25, percentage: 0 }, { border: 0 }],
+    home: [{ rem: 0 }, { border: -100 }],
+    page: [{ rem: 12.5 }, { border: 0 }],
+    blog: [{ rem: 25 }, { border: 0 }],
   };
 
   const configs = {
@@ -111,7 +111,6 @@ export const HeroSpring = ({ variant, children }) => {
       items={currentPosition}
       to={{
         rem: currentPosition[0].rem,
-        percentage: currentPosition[0].percentage,
         border: currentPosition[1].border,
       }}
       config={currentConfig}
