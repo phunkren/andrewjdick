@@ -106,24 +106,21 @@ const Heading = styled.div`
 `;
 
 const HeaderIcons = styled.div`
-  display: flex;
-  align-items: center;
+  display: none;
 
-  & > ${DownloadLink} {
-    display: inline-flex;
+  ${MEDIA.tablet`
+    display: flex;
     align-items: center;
-    justify-content: center;
-    min-width: 44px;
-    min-height: 44px;
-  }
 
-  & > * + * {
-    margin-left: var(--spacing-medium);
-  }
-
-  ${MEDIA.print`
-    display: none;
-  `};
+    & > ${DownloadLink} {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: var(--spacing-medium);
+      min-width: 44px;
+      min-height: 44px;
+    }
+  `}
 `;
 
 const Wrapper = styled.div(
@@ -215,7 +212,7 @@ const BlockHeader = styled(props => <Text as="h2" size="l" {...props} />)(
 const BlockSubheader = styled(Text)(
   ({ theme }) => css`
     color: ${theme.cvSubheaderColor};
-    margin-bottom: var(--spacing-tiny);
+    margin-bottom: var(--spacing-small);
 
     ${MEDIA.print`
       color: var(--color-black);
@@ -273,31 +270,82 @@ const Dates = styled(Text)(
   ({ theme }) => css`
     display: block;
     color: ${theme.auxiliaryColor};
-    margin-top: var(--spacing-small);
 
     ${MEDIA.tablet`
-      display: inline-block;
-      position: relative;
-      margin-top: 0;
-    `};
+      align-self: flex-end;
+      margin-left: auto;  
+    `}
+
+    ${MEDIA.print`
+      transform: translateY(-1px);
+      margin-left: auto;  
+    `}
   `,
 );
 
-const ExperienceInfo = styled.div`
+const EmployerLocation = styled(Text)(
+  ({ theme }) => css`
+    position: relative;
+    color: ${theme.auxiliaryColor};
+    margin-top: var(--spacing-tiny);
+    margin-bottom: var(--spacing-tiny);
+
+    ${MEDIA.tablet`
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-left: var(--spacing-large);
+      
+      &::before {
+        content: '/';
+        position: absolute;
+        left: calc(var(--spacing-medium) * -1);
+        top: 50%;
+        transform: translate(50%, -50%);
+      }
+    `}
+
+    ${MEDIA.print`
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-left: var(--spacing-large);
+      
+      &::before {
+        content: '/';
+        position: absolute;
+        left: calc(var(--spacing-medium) * -1 - 2px);
+        top: 50%;
+        transform: translate(50%, -50%);
+      }
+    `}
+  `,
+);
+
+const ExperienceEmployer = styled.div`
   display: flex;
   flex-flow: column;
-  align-items: flex-start;
 
   ${MEDIA.tablet`
     flex-flow: row;
-    align-items: center;
-    justify-content: space-between;
+    align-items: baseline;
   `};
 
   ${MEDIA.print`
     flex-flow: row;
-    align-items: center;
-    justify-content: space-between;
+    align-items: baseline;
+  `};
+`;
+
+const ExperienceInfo = styled.div`
+  display: flex;
+  flex-flow: column;
+
+  ${MEDIA.tablet`
+    flex-flow: row;
+  `}
+
+  ${MEDIA.print`
+    flex-flow: row;
+    align-items: baseline;
   `}
 `;
 
@@ -327,16 +375,16 @@ const EducationBlock = styled(Block)(({ variant }) => [
     display: flex;
     flex-flow: column;
 
-    ${BlockSubheader} {
-      margin-bottom: var(--spacing-small);
-    }
+    ${MEDIA.desktop`
+      margin-bottom: var(--spacing-huge);
+    `};
   `,
   variant === 'slim' &&
     css`
       margin-bottom: var(--spacing-medium);
 
       ${MEDIA.desktop`
-        margin-bottom: var(--spacing-medium);
+        margin-bottom: var(--spacing-large);
       `};
     `,
 ]);
@@ -405,8 +453,8 @@ export default function CV({ data, location: { pathname } }) {
                         color: ${({ theme }) => theme.copyColor};
 
                         ${MEDIA.print`
-                                color: var(--color-black);
-                              `}
+                          color: var(--color-black);
+                        `}
                       `}
                     >
                       {author.name}
@@ -417,36 +465,32 @@ export default function CV({ data, location: { pathname } }) {
                   </div>
 
                   <HeaderIcons aria-label="Export CV">
-                    {!isMobile && !isIE && (
-                      <>
-                        <IconButton
-                          title="Print"
-                          aria-label="Print"
-                          onClick={handleCvPrint}
-                        >
-                          <FileIcon
-                            role="img"
-                            title="Print"
-                            width="2rem"
-                            height="2rem"
-                          />
-                        </IconButton>
+                    <IconButton
+                      title="Print"
+                      aria-label="Print"
+                      onClick={handleCvPrint}
+                    >
+                      <FileIcon
+                        role="img"
+                        title="Print"
+                        width="2rem"
+                        height="2rem"
+                      />
+                    </IconButton>
 
-                        <DownloadLink
-                          title="Download"
-                          aria-label="Download"
-                          href={cv}
-                          onClick={handleCvDownload}
-                        >
-                          <DownloadIcon
-                            role="img"
-                            title="Download"
-                            width="2rem"
-                            height="2rem"
-                          />
-                        </DownloadLink>
-                      </>
-                    )}
+                    <DownloadLink
+                      title="Download"
+                      aria-label="Download"
+                      href={cv}
+                      onClick={handleCvDownload}
+                    >
+                      <DownloadIcon
+                        role="img"
+                        title="Download"
+                        width="2rem"
+                        height="2rem"
+                      />
+                    </DownloadLink>
                   </HeaderIcons>
                 </Heading>
 
@@ -539,13 +583,17 @@ export default function CV({ data, location: { pathname } }) {
                                 {qualification}
                               </BlockSubheader>
                             )}
-                            <Text size="ps" css="font-weight: 600;">
+                            <Text
+                              size="ps"
+                              css="font-weight: 600; margin-bottom: var(--spacing-tiny);"
+                            >
                               {course}
                             </Text>
                             <Text size="ps">{institute}</Text>
                             <Text
                               css={`
                                 color: ${({ theme }) => theme.auxiliaryColor};
+                                margin-top: var(--spacing-tiny);
                               `}
                               size="xs"
                             >
@@ -621,6 +669,7 @@ export default function CV({ data, location: { pathname } }) {
                         ({
                           position,
                           company,
+                          location,
                           url,
                           dates,
                           blurb,
@@ -635,13 +684,18 @@ export default function CV({ data, location: { pathname } }) {
                               {position}
                             </BlockSubheader>
                             <ExperienceInfo>
-                              <ExternalLink
-                                href={url}
-                                aria-label={`${company} website`}
-                                highlight
-                              >
-                                <Text>{company}</Text>
-                              </ExternalLink>{' '}
+                              <ExperienceEmployer>
+                                <ExternalLink
+                                  href={url}
+                                  aria-label={`${company} website`}
+                                  highlight
+                                >
+                                  <Text>{company}</Text>
+                                </ExternalLink>
+                                <EmployerLocation size="ps">
+                                  {location}
+                                </EmployerLocation>
+                              </ExperienceEmployer>
                               <Dates size="xs">{dates}</Dates>
                             </ExperienceInfo>
                             <Description>
@@ -704,6 +758,7 @@ export const query = graphql`
         blurb
         company
         dates
+        location
         portfolio {
           href
           name
