@@ -1,7 +1,10 @@
 import React from 'react';
-import { Transition, Spring, Trail } from 'react-spring/renderprops';
+import { Transition, Spring, Trail, Keyframes } from 'react-spring/renderprops';
 import { TransitionState } from 'gatsby-plugin-transition-link';
 import * as d3 from 'd3-ease';
+
+const easeIn = t => d3.easeSinIn(t);
+const easeOut = t => d3.easeSinOut(t);
 
 export const FadeThrough = ({ children }) => {
   return (
@@ -43,7 +46,7 @@ export const FadeIn = ({ children }) => {
             from={{ o: 0 }}
             enter={{ o: 1 }}
             leave={{ o: 0 }}
-            config={[{ duration: 210, easing: t => d3.easeSinOut(t) }]}
+            config={[{ duration: 210, easing: easeOut }]}
           >
             {mount => mount && (props => children(props))}
           </Transition>
@@ -60,44 +63,42 @@ export const HeroSpring = ({ variant, children }) => {
     blog: [{ rem: 25, percentage: 0 }, { border: 0 }],
   };
 
-  const easing = t => d3.easeSinIn(t);
-
   const configs = {
     home: key =>
       key === 'border'
         ? {
             duration: 200,
             delay: 0,
-            easing,
+            easing: easeIn,
           }
         : {
             duration: 400,
-            delay: 200,
-            easing,
+            delay: 250,
+            easing: easeIn,
           },
     page: key =>
       key === 'border'
         ? {
             duration: 200,
-            delay: 600,
-            easing,
+            delay: 450,
+            easing: easeOut,
           }
         : {
             duration: 400,
             delay: 0,
-            easing,
+            easing: easeOut,
           },
     blog: key =>
       key === 'border'
         ? {
             duration: 200,
-            delay: 600,
-            easing: t => d3.easeSinIn(t),
+            delay: 350,
+            easing: easeOut,
           }
         : {
-            duration: 200,
-            delay: 100,
-            easing: t => d3.easeSinIn(t),
+            duration: 300,
+            delay: 0,
+            easing: easeOut,
           },
   };
 
@@ -128,9 +129,29 @@ export const BlogTrail = ({ items, children }) => {
       keys={({ node }) => node.id}
       from={{ s: 0.92 }}
       to={{ s: 1 }}
-      config={{ duration: 400, easing: t => d3.easeSinOut(t) }}
+      config={{ duration: 400, easing: easeOut }}
     >
       {item => props => children(item, props)}
     </Trail>
   );
 };
+
+export const DrawerSpring = Keyframes.Spring({
+  open: {
+    config: {
+      duration: 300,
+      delay: 0,
+      easing: easeOut,
+    },
+    from: { x: -100 },
+    x: 0,
+  },
+  close: {
+    config: {
+      duration: 300,
+      delay: 250,
+      easing: easeIn,
+    },
+    x: -100,
+  },
+});

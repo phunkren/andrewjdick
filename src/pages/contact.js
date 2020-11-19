@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { navigate } from '@reach/router';
 import { SEO } from '../components/SEO';
 import { Text } from '../components/Text';
-import { TickIcon } from '../components/icons';
+import { TickIcon } from '../components/icons/TickIcon';
 import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';

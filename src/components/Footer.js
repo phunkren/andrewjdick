@@ -6,7 +6,8 @@ import { BREAKPOINTS, MEDIA } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
 import { ExternalLink } from './Link';
 import { Text } from './Text';
-import { Icon, EmailIcon } from './icons';
+import { Icon } from './icons/Icon';
+import { EmailIcon } from './icons/EmailIcon';
 
 const ContactLink = styled(ExternalLink)`
   display: flex;

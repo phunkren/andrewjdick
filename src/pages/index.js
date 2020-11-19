@@ -49,9 +49,25 @@ const Section = styled.section(
 const Title = styled(Text)(
   ({ theme }) => css`
     color: ${theme.titleColor};
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.18);
+    text-shadow: ${theme.titleShadow};
   `,
 );
+
+const Position = styled(Text)`
+  display: block;
+
+  ${MEDIA.tablet`
+    display: inline-flex;
+  `}
+`;
+
+const At = styled(Text)`
+  display: none;
+
+  ${MEDIA.tablet`
+    display: inline-flex;
+  `}
+`;
 
 export default function Home({ data }) {
   const { experience } = data.experienceJson;
@@ -67,10 +83,13 @@ export default function Home({ data }) {
             <Title as="h1" size="5xl" aria-label={`Name: ${author.name}`}>
               {author.name}
             </Title>
-            <Text size="l" aria-label={`Position: ${currentEmployer.position}`}>
+            <Position
+              size="l"
+              aria-label={`Position: ${currentEmployer.position}`}
+            >
               {currentEmployer.position}
-            </Text>
-            <Text size="l"> @ </Text>
+            </Position>
+            <At size="l">&nbsp;@&nbsp;</At>
             <ExternalLink
               aria-label={`Employer: ${currentEmployer.company}`}
               href={currentEmployer.url}

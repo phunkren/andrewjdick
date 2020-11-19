@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { DialogOverlay, DialogContent } from '@reach/dialog';
-import { Keyframes, animated } from 'react-spring/renderprops';
 import styled, { css } from 'styled-components';
+import { animated } from 'react-spring/renderprops';
+import Div100vh from 'react-div-100vh';
+import { DialogOverlay, DialogContent } from '@reach/dialog';
 import '@reach/dialog/styles.css';
 import { Social } from './Social';
 import { Navigation } from './Navigation';
 import { IconButton } from './Button';
 import { CrossIcon } from './icons/CrossIcon';
 import { ThemeToggle } from './Theme';
+import { DrawerSpring } from './Animation';
 import { fadeInAnimation } from '../styles/animation';
-import Div100vh from 'react-div-100vh';
 
 const StyledDialogContent = styled(DialogContent)(({ theme }) => [
   css`
@@ -45,6 +46,7 @@ const StyledDialogOverlay = styled(DialogOverlay)(({ state }) => [
       }
     `,
 ]);
+
 const CloseButton = styled(IconButton)``;
 
 const Content = styled(animated.div)(({ theme }) => [
@@ -62,15 +64,6 @@ const Content = styled(animated.div)(({ theme }) => [
     height: 100%;
   `,
 ]);
-
-const DrawerSpring = Keyframes.Spring({
-  open: {
-    config: { duration: 300 },
-    from: { x: -100 },
-    x: 0,
-  },
-  close: { config: { duration: 250 }, x: -100 },
-});
 
 const StyledNavigation = styled(Navigation)(
   ({ theme }) => css`
@@ -110,6 +103,7 @@ export const Drawer = ({ state, onDismiss, ...props }) => {
                     flex-direction: row-reverse;
                     justify-content: space-between;
                     align-items: center;
+                    padding-right: var(--spacing-small);
                   `}
                 >
                   <CloseButton

@@ -4,6 +4,7 @@ import { Icon } from './Icon';
 
 export const EmailIcon = props => {
   const id = `icon-email-${useId()}`;
+
   return (
     <Icon aria-labelledby={id} {...props}>
       <title id={id}>Email</title>
