@@ -23,25 +23,16 @@ const Wrapper = styled(Div100vh)`
 const Main = styled.main`
   flex: 1;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Section = styled.section(
   ({ theme }) => css`
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    width: 100%;
     padding: 0 var(--spacing-medium);
     color: ${theme.copyColor};
     ${fadeInAnimation};
-
-    ${MEDIA.tablet`
-      left: 50%;
-      transform: translate(-50%, -50%);
-      padding: 0 var(--spacing-large);
-    `}
   `,
 );
 
