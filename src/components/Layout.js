@@ -140,6 +140,11 @@ const Styles = createGlobalStyle(
       color: ${theme.headerColor};
     }
 
+    .tl-edges,
+    .tl-wrapper {
+      height: 100%;
+    }
+
     ${MEDIA.print`
       body {
         font-size: 14px;
