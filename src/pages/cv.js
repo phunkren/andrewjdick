@@ -688,6 +688,7 @@ export default function CV({ data, location: { pathname } }) {
                                 <ExternalLink
                                   href={url}
                                   aria-label={`${company} website`}
+                                  css="width: fit-content;"
                                   highlight
                                 >
                                   <Text>{company}</Text>
