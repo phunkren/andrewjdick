@@ -9,7 +9,7 @@ export const ThemeContext = createContext(null);
 
 export const Theme = props => {
   const _window = typeof window !== 'undefined' && window;
-  const [theme, setTheme] = useState({});
+  const [theme, setTheme] = useState();
 
   useEffect(theme ? persist : init, [theme]);
 
@@ -36,7 +36,7 @@ export const Theme = props => {
 
   return (
     <ThemeContext.Provider value={{ theme, update }}>
-      <ThemeProvider theme={THEMES[theme]} {...props} />
+      <ThemeProvider theme={THEMES[theme] || {}} {...props} />
     </ThemeContext.Provider>
   );
 };
