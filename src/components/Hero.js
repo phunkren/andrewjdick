@@ -27,7 +27,6 @@ const BlogHero = styled(Img)`
 
 const Container = styled(animated.aside)(({ theme, variant }) => [
   css`
-    background-color: white;
     position: absolute;
     top: 0;
     left: 0;
@@ -52,11 +51,7 @@ const Container = styled(animated.aside)(({ theme, variant }) => [
   `,
   variant === 'home' &&
     css`
-      background-image: ${linearGradient({
-        colorStops: [`${theme.overlay5} 0%`, `${theme.background} 97.5%`],
-        toDirection: 'to bottom',
-        fallback: `${theme.background}`,
-      })};
+      background-color: transparent;
 
       ${Lightbulbs} {
         transition: opacity 0.1s ease-out;
