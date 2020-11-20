@@ -10,9 +10,9 @@ export const ThemeContext = createContext(null);
 export const Theme = props => {
   const _window = typeof window !== 'undefined' && window;
   const localTheme = retrieve();
-  const [theme, setTheme] = useState(localTheme);
+  const [theme, setTheme] = useState(localTheme || DEFAULT_THEME);
 
-  useEffect(theme ? persist : init, [theme]);
+  useEffect(persist, [theme]);
 
   function validate(t) {
     return Object.keys(THEMES).includes(t);
@@ -30,16 +30,11 @@ export const Theme = props => {
     _window.localStorage.setItem('theme', theme);
   }
 
-  function init() {
-    const theme = validate(localTheme) ? localTheme : DEFAULT_THEME;
-    setTheme(theme);
-  }
-
-  return validate(theme) ? (
+  return (
     <ThemeContext.Provider value={{ theme, update }}>
       <ThemeProvider theme={THEMES[theme]} {...props} />
     </ThemeContext.Provider>
-  ) : null;
+  );
 };
 
 const Container = styled(CustomCheckboxContainer)`
