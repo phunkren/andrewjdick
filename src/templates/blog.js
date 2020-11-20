@@ -29,7 +29,7 @@ const Main = styled.main`
   flex-direction: column;
   justify-content: center;
   max-width: 100%;
-  margin: 0 auto;
+  margin: -84px auto 0;
 
   > * + * {
     margin-top: var(--spacing-medium);
@@ -42,7 +42,7 @@ const Main = styled.main`
 
 const Title = styled(Text)`
   position: absolute;
-  top: 225px;
+  top: 125px;
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
@@ -56,7 +56,6 @@ const Title = styled(Text)`
   `}
 
   ${MEDIA.desktop`
-    top: 200px;
     max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
     padding: 0 var(--spacing-huge);
   `}

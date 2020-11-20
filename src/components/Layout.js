@@ -15,7 +15,11 @@ const Styles = createGlobalStyle(
     html {
       display: flex;
       min-height: 100%;
-      background-color: ${theme.background};
+      background-image: ${linearGradient({
+        colorStops: [`${theme.overlay5} 0%`, `${theme.background} 97.5%`],
+        toDirection: 'to bottom',
+        fallback: `${theme.background}`,
+      })};
     }
 
     &::-webkit-scrollbar {

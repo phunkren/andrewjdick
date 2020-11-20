@@ -52,6 +52,7 @@ const Container = styled(animated.aside)(({ variant }) => [
   variant === 'home' &&
     css`
       background-color: transparent;
+      opacity: 0;
 
       ${Lightbulbs} {
         transition: opacity 0.1s ease-out;
