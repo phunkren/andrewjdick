@@ -5,7 +5,6 @@ import lightBulb from '../assets/images/lightBulb.png';
 import { fadeInAnimation, infiniteScrollAnimation } from '../styles/animation';
 import Img from 'gatsby-image';
 import { HeroSpring } from './Animation';
-import { linearGradient } from 'polished';
 
 const Lightbulbs = styled.div`
   background-image: url(${lightBulb});
@@ -27,6 +26,7 @@ const BlogHero = styled(Img)`
 
 const Container = styled(animated.aside)(({ theme, variant }) => [
   css`
+    background-color: white;
     position: absolute;
     top: 0;
     left: 0;
@@ -51,7 +51,7 @@ const Container = styled(animated.aside)(({ theme, variant }) => [
   `,
   variant === 'home' &&
     css`
-      background-color: transparent;
+      background-color: ${theme.overlay5};
 
       ${Lightbulbs} {
         transition: opacity 0.1s ease-out;
