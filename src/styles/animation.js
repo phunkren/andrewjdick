@@ -23,7 +23,7 @@ const infiniteScroll = keyframes`
     transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translate3d(0, calc(-200vh - 500px), 0);
+    transform: translate3d(0, -1920px, 0);
   }
 `;
 
@@ -47,7 +47,7 @@ export const fadeOutAnimation = css`
 `;
 
 export const infiniteScrollAnimation = css`
-  animation: ${infiniteScroll} 45s linear infinite;
+  animation: ${infiniteScroll} 60s linear infinite;
 `;
 
 export const fadeThroughAnimation = css`

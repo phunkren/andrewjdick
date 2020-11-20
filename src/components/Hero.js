@@ -11,8 +11,8 @@ const Lightbulbs = styled.div`
   ${infiniteScrollAnimation};
   background-repeat: repeat;
   background-position: center;
-  height: 400vh;
-  width: 100vw;
+  width: 100%;
+  height: 5760px;
   z-index: -1;
 `;
 
@@ -28,9 +28,9 @@ const Container = styled(animated.aside)(({ variant }) => [
     background-color: white;
     position: absolute;
     top: 0;
-    right: 0;
     left: 0;
-    bottom: 0;
+    height: 100vh;
+    width: 100vw;
     overflow: hidden;
     will-change: transform;
     ${fadeInAnimation};
@@ -85,7 +85,7 @@ export const Hero = ({ customHero, variant, ...props }) => {
           variant={variant}
           style={{
             transform: rem.interpolate(
-              rem => `translate3d(0, calc(-100% + ${rem}rem), 0)`,
+              rem => `translate3d(0,  calc(-100% + ${rem}rem), 0)`,
             ),
           }}
           {...props}
