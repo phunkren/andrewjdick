@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, createContext } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { CustomCheckboxContainer, CustomCheckboxInput } from '@reach/checkbox';
 import '@reach/checkbox/styles.css';
-import { THEMES } from '../styles/themes';
+import { DEFAULT_THEME, THEMES } from '../styles/themes';
 import { LightIcon } from './icons/LightIcon';
 
 export const ThemeContext = createContext(null);
@@ -31,14 +31,7 @@ export const Theme = props => {
   }
 
   function init() {
-    const darkMedia = '(prefers-color-scheme: dark)';
-    const prefersDarkTheme = _window?.matchMedia(darkMedia).matches;
-    const theme = validate(localTheme)
-      ? localTheme
-      : prefersDarkTheme
-      ? 'dark'
-      : 'light';
-
+    const theme = validate(localTheme) ? localTheme : DEFAULT_THEME;
     setTheme(theme);
   }
 
