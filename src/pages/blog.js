@@ -18,7 +18,6 @@ const Main = styled.main`
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-top: 76px;
   margin-right: auto;
   margin-bottom: var(--spacing-massive);
   margin-left: auto;

@@ -14,6 +14,7 @@ const Lightbulbs = styled.div`
   width: 100%;
   height: 5760px;
   z-index: -1;
+  transform: translate3d(0, -100%, 0);
 `;
 
 const BlogHero = styled(Img)`
@@ -73,6 +74,7 @@ const Border = styled(animated.div)`
   height: 2px;
   background-color: var(--color-orange-600);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+  transform: translate3d(-100%, 0, 0);
   z-index: 5;
 `;
 

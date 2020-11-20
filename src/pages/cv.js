@@ -47,7 +47,6 @@ const Wrap = styled.div`
 
 const Main = styled.main`
   position: relative;
-  margin-top: 76px;
   margin-right: auto;
   margin-bottom: 0;
   margin-left: auto;
