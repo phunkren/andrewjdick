@@ -61,7 +61,7 @@ const Styles = createGlobalStyle(
     body,
     div#___gatsby,
     div#gatsby-focus-wrapper {
-      flex: 1;
+      flex: 1 0 100%;
       display: flex;
       flex-direction: column;
       width: 100%;
