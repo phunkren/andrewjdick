@@ -1,4 +1,5 @@
 import React from 'react';
+import { onRenderBody as renderReactHelmet } from 'gatsby-plugin-react-helmet/gatsby-ssr';
 import 'prismjs/themes/prism-tomorrow.css';
 import { Theme } from './src/components/Theme';
 import { Layout } from './src/components/Layout';
@@ -16,8 +17,10 @@ export const wrapPageElement = ({ element }) => {
   );
 };
 
-export const onRenderBody = ({ setPreBodyComponents }) => {
-  setPreBodyComponents([
+export const onRenderBody = (api, options) => {
+  renderReactHelmet(api, options);
+
+  api.setPreBodyComponents([
     <noscript key="noscript">
       Your browser does not support JavaScript!
     </noscript>,
