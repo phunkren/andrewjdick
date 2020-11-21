@@ -73,7 +73,7 @@ export const HeroSpring = ({ variant, children }) => {
           }
         : {
             duration: 400,
-            delay: 250,
+            delay: 400,
             easing: easeIn,
           },
     page: key =>

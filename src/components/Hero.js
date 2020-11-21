@@ -54,12 +54,12 @@ const Container = styled(animated.aside)(({ theme, variant }) => [
       background-color: ${theme.overlay5};
 
       ${Lightbulbs} {
-        transition: opacity 0.1s ease-out;
+        transition: opacity 0.2s ease-out;
         opacity: 0;
       }
 
       &::after {
-        transition: opacity 0.2s ease-out;
+        transition: opacity 0.3s ease-out;
         opacity: 0;
       }
     `,
