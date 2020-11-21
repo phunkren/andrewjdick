@@ -8,15 +8,11 @@ import { SEO } from '../components/SEO';
 import { MEDIA } from '../styles/media';
 import { fadeInAnimation } from '../styles/animation';
 
-const Wrapper = styled(Div100vh)`
+const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  height: 100%;
   overflow: hidden;
 `;
 

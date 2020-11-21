@@ -15,7 +15,11 @@ const Styles = createGlobalStyle(
     html {
       display: flex;
       min-height: 100%;
-      background-color: ${theme.background};
+      background-image: ${linearGradient({
+        colorStops: [`${theme.overlay5} 0%`, `${theme.background} 97.5%`],
+        toDirection: 'to bottom',
+        fallback: `${theme.background}`,
+      })};
     }
 
     &::-webkit-scrollbar {
@@ -36,6 +40,8 @@ const Styles = createGlobalStyle(
       max-width: 100%;
       width: 100%;
       overflow-x: hidden;
+      display: flex;
+      flex-flow: coluimn;
 
       & * {
         font-size: inherit;
@@ -57,7 +63,7 @@ const Styles = createGlobalStyle(
     body,
     div#___gatsby,
     div#gatsby-focus-wrapper {
-      flex: 1;
+      flex: 1 0 100%;
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -134,6 +140,14 @@ const Styles = createGlobalStyle(
 
     label {
       color: ${theme.headerColor};
+    }
+
+    .tl-edges,
+    .tl-wrapper {
+      height: 100%;
+      display: flex;
+      flex-flow: column;
+      flex: 1;
     }
 
     ${MEDIA.print`

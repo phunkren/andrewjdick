@@ -19,7 +19,6 @@ const Main = styled.main`
   position: relative;
   max-width: ${convertPxToRem(BREAKPOINTS.tablet)};
   width: 100%;
-  margin-top: 76px;
   margin-right: auto;
   margin-bottom: 0;
   margin-left: auto;

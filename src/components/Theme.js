@@ -9,9 +9,9 @@ export const ThemeContext = createContext(null);
 
 export const Theme = props => {
   const _window = typeof window !== 'undefined' && window;
-  const [theme, setTheme] = useState();
+  const [theme, setTheme] = useState(DEFAULT_THEME);
 
-  useEffect(theme ? persist : init, [theme]);
+  useEffect(persist, [theme]);
 
   function validate(t) {
     return Object.keys(THEMES).includes(t);
@@ -29,14 +29,9 @@ export const Theme = props => {
     _window.localStorage.setItem('theme', theme);
   }
 
-  function init() {
-    const localTheme = retrieve();
-    setTheme(localTheme || DEFAULT_THEME);
-  }
-
   return (
     <ThemeContext.Provider value={{ theme, update }}>
-      <ThemeProvider theme={THEMES[theme] || {}} {...props} />
+      <ThemeProvider theme={THEMES[theme]} {...props} />
     </ThemeContext.Provider>
   );
 };

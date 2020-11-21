@@ -14,6 +14,7 @@ const Lightbulbs = styled.div`
   width: 100%;
   height: 5760px;
   z-index: -1;
+  transform: translate3d(0, -100%, 0);
 `;
 
 const BlogHero = styled(Img)`
@@ -23,7 +24,7 @@ const BlogHero = styled(Img)`
   ${fadeInAnimation};
 `;
 
-const Container = styled(animated.aside)(({ variant }) => [
+const Container = styled(animated.aside)(({ theme, variant }) => [
   css`
     background-color: white;
     position: absolute;
@@ -53,12 +54,12 @@ const Container = styled(animated.aside)(({ variant }) => [
       background-color: transparent;
 
       ${Lightbulbs} {
-        transition: opacity 0.1s ease-out;
+        transition: opacity 0.3s ease-out;
         opacity: 0;
       }
 
       &::after {
-        transition: opacity 0.2s ease-out 0.1s;
+        transition: opacity 0.3s ease-out 0.2s;
         opacity: 0;
       }
     `,
@@ -73,6 +74,7 @@ const Border = styled(animated.div)`
   height: 2px;
   background-color: var(--color-orange-600);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+  transform: translate3d(-100%, 0, 0);
   z-index: 5;
 `;
 
