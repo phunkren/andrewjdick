@@ -59,7 +59,7 @@ const Container = styled(animated.aside)(({ theme, variant }) => [
       }
 
       &::after {
-        transition: opacity 0.3s ease-out 0.1s;
+        transition: opacity 0.3s ease-out 0.2s;
         opacity: 0;
       }
     `,
