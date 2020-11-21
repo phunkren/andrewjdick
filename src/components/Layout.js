@@ -40,6 +40,8 @@ const Styles = createGlobalStyle(
       max-width: 100%;
       width: 100%;
       overflow-x: hidden;
+      display: flex;
+      flex-flow: coluimn;
 
       & * {
         font-size: inherit;
@@ -143,6 +145,9 @@ const Styles = createGlobalStyle(
     .tl-edges,
     .tl-wrapper {
       height: 100%;
+      display: flex;
+      flex-flow: column;
+      flex: 1;
     }
 
     ${MEDIA.print`
