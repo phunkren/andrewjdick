@@ -37,7 +37,7 @@ const Inner = styled.div(({ theme, variant }) => [
       padding: 0 var(--spacing-huge);
     `};
   `,
-  variant === 'home' &&
+  variant === 'default' &&
     css`
       color: ${theme.copyColor};
     `,

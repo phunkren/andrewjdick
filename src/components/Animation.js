@@ -58,13 +58,13 @@ export const FadeIn = ({ children }) => {
 
 export const HeroSpring = ({ variant, children }) => {
   const positions = {
-    home: [{ rem: 0 }, { border: -100 }],
+    default: [{ rem: 0 }, { border: -100 }],
     page: [{ rem: 12.5 }, { border: 0 }],
-    blog: [{ rem: 25 }, { border: 0 }],
+    post: [{ rem: 25 }, { border: 0 }],
   };
 
   const configs = {
-    home: key =>
+    default: key =>
       key === 'border'
         ? {
             duration: 200,
@@ -88,7 +88,7 @@ export const HeroSpring = ({ variant, children }) => {
             delay: 0,
             easing: easeOut,
           },
-    blog: key =>
+    post: key =>
       key === 'border'
         ? {
             duration: 200,
