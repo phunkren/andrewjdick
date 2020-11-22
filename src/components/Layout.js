@@ -177,12 +177,27 @@ const ScrollContainer = styled.aside`
 
 export const Layout = styled(({ location, children, data }) => {
   const isHomepage = location?.pathname === '/';
-  const isBlogPost = Boolean(location?.pathname.split('/blog/')[1]);
+  const variant = getVariant();
   const customHero = {
     image: data?.markdownRemark?.frontmatter?.image,
     alt: data?.markdownRemark?.frontmatter?.imageAlt,
   };
-  const variant = isHomepage ? 'home' : isBlogPost ? 'blog' : 'page';
+
+  function getVariant() {
+    if (location?.pathname?.split('/blog/')[1]) {
+      return 'post';
+    }
+
+    if (
+      location?.pathname === '/blog' ||
+      location?.pathname === '/contact' ||
+      location?.pathname === '/cv'
+    ) {
+      return 'page';
+    }
+
+    return 'default';
+  }
 
   return (
     <>
