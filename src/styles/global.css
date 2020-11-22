@@ -65,3 +65,11 @@
   src: url('/assets/fonts/MonoLisa-Regular.woff2') format('woff2'),
     url('/assets/fonts/MonoLisa-Regular.woff') format('woff');
 }
+
+html {
+  color: red;
+}
+
+body {
+  color: orange;
+}
