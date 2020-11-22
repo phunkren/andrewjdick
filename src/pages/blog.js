@@ -49,19 +49,27 @@ const List = styled(animated.ul)`
   `}
 `;
 
+const ReadMore = styled(Text)`
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  font-weight: 600;
+
+  svg {
+    will-change: transform;
+    transition: transform 0.2s ease-out;
+  }
+`;
+
 const Preview = styled.article(
   ({ theme }) => css`
     display: flex;
     flex-flow: column;
-    padding: var(--spacing-huge) var(--spacing-medium);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
     border-radius: 4px;
     background-color: ${theme.overlay10};
     color: ${theme.cardColor};
-
-    ${MEDIA.tablet`
-      padding: var(--spacing-huge);
-    `}
   `,
 );
 
@@ -70,6 +78,36 @@ const Title = styled(Text)(
     width: 90%;
     color: ${theme.cardHeaderColor};
     margin-bottom: var(--spacing-small);
+    transition: color 0.1s ease-out;
+  `,
+);
+
+const PreviewLink = styled(Link)(
+  ({ theme }) => css`
+    padding: var(--spacing-huge) var(--spacing-medium);
+
+    &:hover {
+      color: inherit;
+
+      ${ReadMore} {
+        color: ${theme.hoverColor};
+        padding-right: var(--spacing-small);
+      }
+
+      svg {
+        transform: translate3d(var(--spacing-small), 0, 0);
+      }
+    }
+
+    &:active {
+      ${ReadMore} {
+        color: ${theme.activeColor};
+      }
+    }
+
+    ${MEDIA.tablet`
+      padding: var(--spacing-huge);
+    `}
   `,
 );
 
@@ -78,29 +116,6 @@ const Info = styled(Text)(
     display: block;
     color: ${theme.auxiliaryColor};
     margin-bottom: var(--spacing-medium);
-  `,
-);
-
-const StyledLink = styled(Link)(
-  ({ theme }) => css`
-    align-self: flex-start;
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    color: ${theme.linkColor};
-
-    svg {
-      will-change: transform;
-      transition: transform 0.2s ease-out;
-    }
-
-    &:hover {
-      padding-right: var(--spacing-small);
-
-      svg {
-        transform: translate3d(var(--spacing-small), 0, 0);
-      }
-    }
   `,
 );
 
@@ -119,36 +134,34 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => {
 
   return (
     <Preview aria-labelledby={`blog post-${formattedTitle}`}>
-      <Title as="h2" size="xl" id={`post-${formattedTitle}`}>
-        {frontmatter.title}
-      </Title>
+      <PreviewLink to={`/blog${fields.slug}`}>
+        <Title as="h2" size="xl" id={`post-${formattedTitle}`}>
+          {frontmatter.title}
+        </Title>
 
-      <Info size="xs">
-        {frontmatter.date} | {fields.readingTime.text}
-      </Info>
+        <Info size="xs">
+          {frontmatter.date} | {fields.readingTime.text}
+        </Info>
 
-      <Text
-        as="p"
-        aria-label="Excerpt"
-        css="padding-bottom: var(--spacing-huge);"
-      >
-        {excerpt}
-      </Text>
+        <Text
+          as="p"
+          aria-label="Excerpt"
+          css="padding-bottom: var(--spacing-huge);"
+        >
+          {excerpt}
+        </Text>
 
-      <StyledLink
-        to={`/blog${fields.slug}`}
-        aria-label="Click to read the article in full"
-        css="font-weight: 600;"
-      >
-        Read more{' '}
-        <ArrowRightIcon
-          role="img"
-          aria-hidden="true"
-          height="1em"
-          width="1em"
-          css="margin-left: var(--spacing-tiny); position: relative; top: 2px;"
-        />
-      </StyledLink>
+        <ReadMore aria-label="Click to read the article in full">
+          Read more{' '}
+          <ArrowRightIcon
+            role="img"
+            aria-hidden="true"
+            height="1em"
+            width="1em"
+            css="margin-left: var(--spacing-tiny); position: relative; top: 2px;"
+          />
+        </ReadMore>
+      </PreviewLink>
     </Preview>
   );
 };
