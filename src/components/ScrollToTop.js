@@ -36,21 +36,21 @@ export const ScrollToTop = () => {
       setY({
         y: 0,
         reset: true,
-        from: { y: _window.scrollY },
-        onFrame: props => window.scroll(0, props.y),
+        from: { y: _window?.scrollY },
+        onFrame: props => _window?.scroll(0, props.y),
       });
     }
   }
 
   useEffect(() => {
     function handleScroll() {
-      const isBelowThreshold = window.scrollY > _window.innerHeight;
+      const isBelowThreshold = _window?.scrollY > _window?.innerHeight;
       setIsVisible(isBelowThreshold);
     }
 
-    _window.addEventListener('scroll', throttle(handleScroll, 100));
+    _window && _window.addEventListener('scroll', throttle(handleScroll, 100));
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => _window?.removeEventListener('scroll', handleScroll);
   }, [_window]);
 
   return (

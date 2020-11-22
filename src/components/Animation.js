@@ -67,7 +67,7 @@ export const HeroSpring = ({ variant, children }) => {
     default: key =>
       key === 'border'
         ? {
-            duration: 200,
+            duration: 100,
             delay: 0,
             easing: easeIn,
           }
@@ -79,7 +79,7 @@ export const HeroSpring = ({ variant, children }) => {
     page: key =>
       key === 'border'
         ? {
-            duration: 200,
+            duration: 100,
             delay: 450,
             easing: easeOut,
           }
@@ -91,7 +91,7 @@ export const HeroSpring = ({ variant, children }) => {
     post: key =>
       key === 'border'
         ? {
-            duration: 200,
+            duration: 100,
             delay: 350,
             easing: easeOut,
           }
