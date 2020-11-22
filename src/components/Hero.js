@@ -49,7 +49,7 @@ const Container = styled(animated.aside)(({ theme, variant }) => [
       z-index: 2;
     }
   `,
-  variant === 'home' &&
+  variant === 'default' &&
     css`
       background-color: transparent;
 
@@ -92,7 +92,7 @@ export const Hero = ({ customHero, variant, ...props }) => {
           }}
           {...props}
         >
-          {variant === 'blog' ? (
+          {variant === 'post' ? (
             <BlogHero
               fluid={customHero.image.childImageSharp.fluid}
               alt={customHero.alt}
