@@ -134,7 +134,10 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => {
 
   return (
     <Preview aria-labelledby={`blog post-${formattedTitle}`}>
-      <PreviewLink to={`/blog${fields.slug}`}>
+      <PreviewLink
+        to={`/blog${fields.slug}`}
+        aria-label="Click to read the article in full"
+      >
         <Title as="h2" size="xl" id={`post-${formattedTitle}`}>
           {frontmatter.title}
         </Title>
@@ -151,7 +154,7 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => {
           {excerpt}
         </Text>
 
-        <ReadMore aria-label="Click to read the article in full">
+        <ReadMore>
           Read more{' '}
           <ArrowRightIcon
             role="img"
