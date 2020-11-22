@@ -5,6 +5,7 @@ import { linearGradient } from 'polished';
 import { Hero } from './Hero';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { ScrollToTop } from './ScrollToTop';
 import { MEDIA } from '../styles/media';
 import { fadeInAnimation } from '../styles/animation';
 
@@ -22,11 +23,8 @@ const Styles = createGlobalStyle(
       })};
     }
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
     body {
+      display: flex;
       font: 18px var(--font-copy);
       font: 1.15rem var(--font-copy);
       line-height: 1.5;
@@ -40,8 +38,8 @@ const Styles = createGlobalStyle(
       max-width: 100%;
       width: 100%;
       overflow-x: hidden;
-      display: flex;
-      flex-flow: coluimn;
+      overflow-y: overlay;
+      scrollbar-width: thin;
 
       & * {
         font-size: inherit;
@@ -168,6 +166,15 @@ const Div = styled.div`
   animation-delay: 0.5s;
 `;
 
+const ScrollContainer = styled.aside`
+  position: fixed;
+  display: block;
+  top: var(--spacing-giant);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+`;
+
 export const Layout = styled(({ location, children, data }) => {
   const isHomepage = location?.pathname === '/';
   const isBlogPost = Boolean(location?.pathname.split('/blog/')[1]);
@@ -190,6 +197,10 @@ export const Layout = styled(({ location, children, data }) => {
 
         <Footer isHomepage={isHomepage} />
       </Div>
+
+      <ScrollContainer>
+        <ScrollToTop />
+      </ScrollContainer>
     </>
   );
 })``;
