@@ -18,21 +18,21 @@ const fadeOut = keyframes`
   }
 `;
 
-const infiniteScroll = keyframes`
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(0, -1920px, 0);
-  }
-`;
-
 const fadeThrough = keyframes`
   from {
     transform: scale(0.92);
   }
   to {
     transform: scale(1);
+  }
+`;
+
+const infiniteScroll = keyframes`
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -1920px, 0);
   }
 `;
 
@@ -46,11 +46,11 @@ export const fadeOutAnimation = css`
   animation: ${fadeOut} 0.09s ease-out forwards;
 `;
 
-export const infiniteScrollAnimation = css`
-  animation: ${infiniteScroll} 60s linear infinite;
-`;
-
 export const fadeThroughAnimation = css`
   transform: scale(0.92);
   animation: ${fadeThrough} 0.21s ease-out 0.09s forwards;
+`;
+
+export const infiniteScrollAnimation = css`
+  animation: ${infiniteScroll} 60s linear infinite;
 `;
