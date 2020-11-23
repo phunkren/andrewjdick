@@ -17,7 +17,7 @@ export const FadeThrough = ({ children }) => {
           <Transition
             native
             items={mount}
-            from={mount && { s: 0.92 }}
+            from={mount && { s: 0.95 }}
             enter={mount && { s: 1 }}
             leave={!mount && { o: 0 }}
             config={{
