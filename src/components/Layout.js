@@ -47,11 +47,15 @@ const Styles = createGlobalStyle(
         bottom: 0;
         left: 0;
         background-image: ${linearGradient({
-          colorStops: [`${theme.overlay5} 0%`, `${theme.background} 97.5%`],
+          colorStops: [
+            `${theme.background} 0%`,
+            `${theme.overlay5} 25%`,
+            `${theme.background} 75%`,
+          ],
           toDirection: 'to bottom',
           fallback: `${theme.background}`,
         })};
-        transform: scale(4);
+        transform: scale(2);
         z-index: -1;
       }
 
