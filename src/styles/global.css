@@ -65,8 +65,3 @@
   src: url('/assets/fonts/MonoLisa-Regular.woff2') format('woff2'),
     url('/assets/fonts/MonoLisa-Regular.woff') format('woff');
 }
-
-/* This ensures the background is black on iOS bounce scroll */
-body {
-  background-image: linear-gradient(#1d1d1d 0%, #000000 97.5%);
-}

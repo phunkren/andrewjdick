@@ -24,7 +24,6 @@ const Styles = createGlobalStyle(
     }
 
     body {
-      display: flex;
       font: 18px var(--font-copy);
       font: 1.15rem var(--font-copy);
       line-height: 1.5;
@@ -36,10 +35,25 @@ const Styles = createGlobalStyle(
       })};
       color: ${theme.copyColor};
       max-width: 100%;
-      width: 100%;
       overflow-x: hidden;
       overflow-y: overlay;
       scrollbar-width: thin;
+
+      &::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: ${linearGradient({
+          colorStops: [`${theme.overlay5} 0%`, `${theme.background} 97.5%`],
+          toDirection: 'to bottom',
+          fallback: `${theme.background}`,
+        })};
+        transform: scale(4);
+        z-index: -1;
+      }
 
       & * {
         font-size: inherit;
