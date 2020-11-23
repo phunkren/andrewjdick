@@ -31,7 +31,7 @@ const ContactLink = styled(ExternalLink)`
   `};
 `;
 
-const Inner = styled.div(({ theme, isHomepage }) => [
+const Inner = styled.div(({ theme, $variant }) => [
   css`
     display: flex;
     align-items: center;
@@ -49,7 +49,7 @@ const Inner = styled.div(({ theme, isHomepage }) => [
       }
     `};
   `,
-  isHomepage &&
+  $variant === 'default' &&
     css`
       justify-content: center;
       padding: var(--spacing-medium) var(--spacing-medium);
@@ -75,10 +75,12 @@ const Outer = styled.footer`
   `};
 `;
 
-export const Footer = ({ isHomepage, ...props }) => {
-  return (
+export const Footer = ({ variant, ...props }) => {
+  const _window = typeof window !== 'undefined' && window;
+
+  return _window ? (
     <Outer {...props}>
-      <Inner isHomepage={isHomepage}>
+      <Inner $variant={variant}>
         <ContactLink
           href="mailto:contact@ajames.dev"
           title="Email me"
@@ -93,11 +95,8 @@ export const Footer = ({ isHomepage, ...props }) => {
           />
         </ContactLink>
 
-        <Social
-          isHomepage={isHomepage}
-          size={isHomepage ? '2rem' : '1.75rem'}
-        />
+        <Social size={variant === 'default' ? '2rem' : '1.75rem'} />
       </Inner>
     </Outer>
-  );
+  ) : null;
 };

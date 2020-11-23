@@ -176,7 +176,6 @@ const ScrollContainer = styled.aside`
 `;
 
 export const Layout = styled(({ location, children, data }) => {
-  const isHomepage = location?.pathname === '/';
   const variant = getVariant();
   const customHero = {
     image: data?.markdownRemark?.frontmatter?.image,
@@ -210,7 +209,7 @@ export const Layout = styled(({ location, children, data }) => {
 
         {children}
 
-        <Footer isHomepage={isHomepage} />
+        <Footer variant={variant} />
       </Div>
 
       <ScrollContainer>
