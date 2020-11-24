@@ -17,7 +17,7 @@ export const FadeThrough = ({ children }) => {
           <Transition
             native
             items={mount}
-            from={mount && { s: 0.92 }}
+            from={mount && { s: 0.95 }}
             enter={mount && { s: 1 }}
             leave={!mount && { o: 0 }}
             config={{
@@ -80,7 +80,7 @@ export const HeroSpring = ({ variant, children }) => {
       key === 'border'
         ? {
             duration: 100,
-            delay: 450,
+            delay: 400,
             easing: easeOut,
           }
         : {
@@ -92,7 +92,7 @@ export const HeroSpring = ({ variant, children }) => {
       key === 'border'
         ? {
             duration: 100,
-            delay: 350,
+            delay: 300,
             easing: easeOut,
           }
         : {
