@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { animated } from 'react-spring/renderprops';
 import Div100vh from 'react-div-100vh';
-import { Cross1Icon } from '@modulz/radix-icons';
+import { Cross1Icon } from '@radix-ui/react-icons';
 import { DialogOverlay, DialogContent } from '@reach/dialog';
 import '@reach/dialog/styles.css';
 import { Social } from './Social';

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import throttle from 'lodash-es/throttle';
-import { ThickArrowUpIcon } from '@modulz/radix-icons';
+import { ThickArrowUpIcon } from '@radix-ui/react-icons';
 import { useSpring } from 'react-spring';
 import styled, { css } from 'styled-components';
 import { IconButton } from './Button';

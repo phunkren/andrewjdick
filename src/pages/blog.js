@@ -1,6 +1,6 @@
 import React from 'react';
 import { animated } from 'react-spring/renderprops';
-import { ArrowRightIcon } from '@modulz/radix-icons';
+import { ArrowRightIcon } from '@radix-ui/react-icons';
 import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
 import { formatId } from '../utils/formatId';

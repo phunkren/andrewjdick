@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { HamburgerMenuIcon } from '@modulz/radix-icons';
+import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 import { Logo } from '../components/Logo';
 import { Navigation } from '../components/Navigation';
 import { IconButton } from '../components/Button';
