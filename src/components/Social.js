@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
-import { GitHubLogoIcon, TwitterLogoIcon } from '@modulz/radix-icons';
+import {
+  GitHubLogoIcon,
+  TwitterLogoIcon,
+  NotionLogoIcon,
+} from '@radix-ui/react-icons';
 import { RssIcon } from './icons/RssIcon';
-import { NotionIcon } from './icons/NotionIcon';
 import { ExternalLink } from './Link';
 
 const SocialLinks = styled.nav`
@@ -38,7 +41,7 @@ export const Social = styled(({ size, ...props }) => {
         aria-label={notion.label}
         title={notion.label}
       >
-        <NotionIcon width={size} height={size} />
+        <NotionLogoIcon width={size} height={size} />
       </SocialLink>
 
       <SocialLink

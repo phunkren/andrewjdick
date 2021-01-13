@@ -10,7 +10,7 @@
   "baseUrl": "https://ajames.dev",
   "private": true,
   "dependencies": {
-    "@modulz/radix-icons": "^3.3.0",
+    "@radix-ui/react-icons": "^1.0.0",
     "@reach/auto-id": "^0.11.2",
     "@reach/checkbox": "^0.11.2",
     "@reach/dialog": "^0.10.5",
