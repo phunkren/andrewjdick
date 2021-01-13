@@ -9,7 +9,7 @@ import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
 import { encode } from '../utils/encode';
 import { FadeIn, FadeThrough } from '../components/Animation';
-import { CheckCircledIcon } from '@modulz/radix-icons';
+import { CheckCircledIcon } from '@radix-ui/react-icons';
 
 const Main = styled.main`
   flex: 1;

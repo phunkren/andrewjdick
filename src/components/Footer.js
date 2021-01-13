@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { EnvelopeOpenIcon } from '@modulz/radix-icons';
+import { EnvelopeOpenIcon } from '@radix-ui/react-icons';
 import { Social } from './Social';
 import { fadeInAnimation } from '../styles/animation';
 import { BREAKPOINTS, MEDIA } from '../styles/media';

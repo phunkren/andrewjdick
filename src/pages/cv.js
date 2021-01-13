@@ -20,7 +20,7 @@ import {
   GitHubLogoIcon,
   HomeIcon,
   DownloadIcon,
-} from '@modulz/radix-icons';
+} from '@radix-ui/react-icons';
 
 const List = styled.ul`
   margin-bottom: var(--spacing-huge);
