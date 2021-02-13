@@ -17,7 +17,9 @@ const StyledButton = styled(IconButton)(({ theme, $visible }) => [
     will-change: transform;
     pointer-events: none;
     transition: transform 0.2s ease-in, border 0.2s ease-out;
-    transform: translate3d(0, 8rem, 0);
+    transform: translate3d(0, 10rem, 0);
+    width: 50px;
+    height: 50px;
 
     &:hover {
       color: inherit;
@@ -69,7 +71,7 @@ export const ScrollToTop = () => {
       onClick={handleClick}
       tabIndex={isVisible ? 0 : -1}
     >
-      <ThickArrowUpIcon width="1.75rem" height="1.75rem" />
+      <ThickArrowUpIcon width="2rem" height="2rem" />
     </StyledButton>
   );
 };

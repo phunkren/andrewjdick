@@ -7,9 +7,7 @@ import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { linkStyles } from '../components/Link';
 import { SIZES } from '../components/Text';
 import { convertPxToRem } from '../utils/unitConversion';
-import { FadeIn } from '../components/Animation';
 import { Hero } from '../components/Hero';
-import { animated } from 'react-spring/renderprops';
 
 const Wrapper = styled.div`
   flex: 1;
@@ -43,7 +41,7 @@ const Main = styled.main`
 
 const Title = styled(Text)`
   position: absolute;
-  top: 204px;
+  top: 225px;
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
@@ -234,15 +232,9 @@ function BlogTemplate({ data }) {
       <Wrapper>
         <Main>
           <article>
-            <FadeIn>
-              {({ o }) => (
-                <animated.div style={{ opacity: o.interpolate(o => o) }}>
-                  <Title as="h1" size="xxxl">
-                    {frontmatter.title}
-                  </Title>
-                </animated.div>
-              )}
-            </FadeIn>
+            <Title as="h1" size="xxxl">
+              {frontmatter.title}
+            </Title>
 
             <Info size="xs">
               {frontmatter.date} | {fields.readingTime.text}

@@ -14,7 +14,7 @@ const Inner = styled.div(() => [
     padding: var(--spacing-huge) var(--spacing-medium);
     max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
     color: inherit;
-    padding: var(--spacing-medium);
+    padding: var(--spacing-massive) var(--spacing-medium) var(--spacing-medium);
     ${fadeInAnimation};
   `,
 ]);

@@ -180,7 +180,7 @@ const BlogPreview = ({ post: { excerpt, frontmatter, fields } }) => {
         <Text
           as="p"
           aria-label="Excerpt"
-          css="padding-bottom: var(--spacing-huge);"
+          css="padding-bottom: var(--spacing-huge); font-weight: 400;"
         >
           {excerpt}
         </Text>

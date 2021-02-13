@@ -36,7 +36,7 @@ export const SIZES = {
   'pb': css`
     font-size: 18px;
     font-size: ${convertPxToRem(18)};
-    line-height: 1.7;
+    line-height: 1.8;
 
     ${MEDIA.print`
       font-size: 16px;
