@@ -46,7 +46,7 @@ export const SIZES = {
   'm': css`
     font-size: 18px;
     font-size: ${convertPxToRem(18)};
-    line-height: 1.444;
+    line-height: 1.5;
 
     ${MEDIA.desktop`
       font-size: 20px;

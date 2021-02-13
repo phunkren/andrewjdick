@@ -7,7 +7,7 @@ import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import cv from '../assets/documents/Andrew James CV.pdf';
 import { formatId } from '../utils/formatId';
 import { convertPxToRem } from '../utils/unitConversion';
-import { FadeThrough, FadeIn } from '../components/Animation';
+import { FadeThrough } from '../components/Animation';
 import { LinkedInIcon } from '../components/icons/LinkedInIcon';
 import { ExternalLink, DownloadLink } from '../components/Link';
 import { IconButton } from '../components/Button';
@@ -21,6 +21,7 @@ import {
   HomeIcon,
   DownloadIcon,
 } from '@radix-ui/react-icons';
+import { Hero } from '../components/Hero';
 
 const List = styled.ul`
   margin-bottom: var(--spacing-huge);
@@ -424,17 +425,13 @@ export default function CV({ data, location: { pathname } }) {
         description="An overview of my experience and technical expertise"
       />
 
+      <Hero />
+
       <Wrap>
         <Main>
-          <FadeIn>
-            {({ o }) => (
-              <animated.div style={{ opacity: o.interpolate(o => o) }}>
-                <Title as="h1" size="4xl" id="cv">
-                  CV
-                </Title>
-              </animated.div>
-            )}
-          </FadeIn>
+          <Title as="h1" size="4xl" id="cv">
+            CV
+          </Title>
           <FadeThrough>
             {({ s, o }) => (
               <Container

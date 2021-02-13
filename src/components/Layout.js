@@ -2,7 +2,6 @@ import React from 'react';
 import { reset } from 'styled-reset';
 import styled, { css, createGlobalStyle } from 'styled-components';
 import { linearGradient } from 'polished';
-import { Hero } from './Hero';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { ScrollToTop } from './ScrollToTop';
@@ -166,6 +165,14 @@ const Styles = createGlobalStyle(
       flex: 1;
     }
 
+    .tl-wrapper {
+      position: static;
+    }
+
+    .homepage ul li a {
+      color: ${({ theme }) => theme.homepageLinkColor};
+    }
+
     ${MEDIA.print`
       body {
         font-size: 14px;
@@ -181,58 +188,30 @@ const Div = styled.div`
   flex-flow: column;
   min-height: 100%;
   ${fadeInAnimation};
-  animation-delay: 0.5s;
 `;
 
 const ScrollContainer = styled.aside`
   position: fixed;
   display: block;
-  bottom: var(--spacing-giant);
+  bottom: 4.5rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
+  pointer-events: none;
 `;
 
-export const Layout = styled(({ location, children, data }) => {
-  const variant = getVariant();
-  const customHero = {
-    image: data?.markdownRemark?.frontmatter?.image,
-    alt: data?.markdownRemark?.frontmatter?.imageAlt,
-  };
+export const Layout = styled(({ children }) => (
+  <>
+    <Styles />
 
-  function getVariant() {
-    if (location?.pathname?.split('/blog/')[1]) {
-      return 'post';
-    }
+    <Div>
+      <Header />
+      {children}
+      <Footer />
+    </Div>
 
-    if (
-      location?.pathname === '/blog' ||
-      location?.pathname === '/contact' ||
-      location?.pathname === '/cv'
-    ) {
-      return 'page';
-    }
-
-    return 'default';
-  }
-
-  return (
-    <>
-      <Styles />
-
-      <Hero customHero={customHero} variant={variant} />
-
-      <Div>
-        <Header variant={variant} />
-
-        {children}
-
-        <Footer variant={variant} />
-      </Div>
-
-      <ScrollContainer>
-        <ScrollToTop />
-      </ScrollContainer>
-    </>
-  );
-})``;
+    <ScrollContainer>
+      <ScrollToTop />
+    </ScrollContainer>
+  </>
+))``;

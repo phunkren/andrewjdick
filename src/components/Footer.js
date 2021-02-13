@@ -1,69 +1,22 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { EnvelopeOpenIcon } from '@radix-ui/react-icons';
 import { Social } from './Social';
 import { fadeInAnimation } from '../styles/animation';
 import { BREAKPOINTS, MEDIA } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
-import { ExternalLink } from './Link';
-import { Text } from './Text';
 
-const ContactLink = styled(ExternalLink)`
-  display: flex;
-  align-items: center;
-
-  & > ${Text} {
-    display: none;
-  }
-
-  & > svg {
-    display: block;
-  }
-
-  ${MEDIA.tablet`
-    & > ${Text} {
-      display: block;
-    }
-
-    & > svg {
-      display: none;
-    }
-  `};
-`;
-
-const Inner = styled.div(({ theme, $variant }) => [
+const Inner = styled.div(() => [
   css`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin: 0 auto;
     padding: var(--spacing-huge) var(--spacing-medium);
     max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
     color: inherit;
-
-    ${MEDIA.tablet`
-      padding: var(--spacing-huge);
-
-      & > ${ExternalLink} {
-        display: block;
-      }
-    `};
+    padding: var(--spacing-medium);
+    ${fadeInAnimation};
   `,
-  $variant === 'default' &&
-    css`
-      justify-content: center;
-      padding: var(--spacing-medium) var(--spacing-medium);
-      color: ${theme.copyColor};
-      ${fadeInAnimation};
-
-      ${ContactLink} {
-        display: none;
-      }
-
-      ${MEDIA.tablet`
-        padding: var(--spacing-huge);
-      `}
-    `,
 ]);
 
 const Outer = styled.footer`
@@ -75,28 +28,10 @@ const Outer = styled.footer`
   `};
 `;
 
-export const Footer = ({ variant, ...props }) => {
-  const _window = typeof window !== 'undefined' && window;
-
-  return _window ? (
-    <Outer {...props}>
-      <Inner $variant={variant}>
-        <ContactLink
-          href="mailto:contact@ajames.dev"
-          title="Email me"
-          css="font-weight: 600;"
-        >
-          <Text size="xs">contact@ajames.dev</Text>
-          <EnvelopeOpenIcon
-            role="img"
-            aria-label="Email me"
-            width="1.75rem"
-            height="1.75rem"
-          />
-        </ContactLink>
-
-        <Social size={variant === 'default' ? '2rem' : '1.75rem'} />
-      </Inner>
-    </Outer>
-  ) : null;
-};
+export const Footer = props => (
+  <Outer {...props}>
+    <Inner>
+      <Social size="1.75rem" />
+    </Inner>
+  </Outer>
+);

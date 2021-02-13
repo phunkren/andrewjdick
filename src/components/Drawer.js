@@ -10,7 +10,6 @@ import { Navigation } from './Navigation';
 import { IconButton } from './Button';
 import { ThemeToggle } from './Theme';
 import { DrawerSpring } from './Animation';
-import { fadeInAnimation } from '../styles/animation';
 
 const StyledDialogContent = styled(DialogContent)(({ theme }) => [
   css`
@@ -36,7 +35,6 @@ const StyledDialogOverlay = styled(DialogOverlay)(({ state }) => [
       background-color: rgba(0, 0, 0, 0.8);
       transition: background-color 0.5s ease-out;
       z-index: 50;
-      ${fadeInAnimation};
     }
   `,
   state === 'close' &&

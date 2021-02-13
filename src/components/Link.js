@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import TransitionLink from 'gatsby-plugin-transition-link';
+import { Link as GatsbyLink } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { MEDIA } from '../styles/media';
 
@@ -24,7 +24,7 @@ export const linkStyles = css`
   }
 
   &:active {
-    color: var(--color-orange-400);
+    color: var(--color-blue-700);
 
     & > svg {
       transform: scale(0.9);
@@ -100,14 +100,7 @@ const isPartiallyActive = ({ isPartiallyCurrent }) =>
     : {};
 
 export const Link = styled(({ navigate, ...props }) => {
-  return (
-    <TransitionLink
-      entry={{ length: 0.4 }}
-      exit={{ length: 0.05 }}
-      getProps={isPartiallyActive}
-      {...props}
-    />
-  );
+  return <GatsbyLink getProps={isPartiallyActive} {...props} />;
 })(({ highlight }) => [linkStyles, highlight && highlightStyles]);
 
 export const DownloadLink = styled(({ children, ...props }) => (

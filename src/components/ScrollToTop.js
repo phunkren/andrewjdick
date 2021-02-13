@@ -17,7 +17,11 @@ const StyledButton = styled(IconButton)(({ theme, $visible }) => [
     will-change: transform;
     pointer-events: none;
     transition: transform 0.2s ease-in, border 0.2s ease-out;
-    transform: translate3d(0, 100px, 0);
+    transform: translate3d(0, 8rem, 0);
+
+    &:hover {
+      color: inherit;
+    }
 
     ${MEDIA.print`
       display: none;
@@ -61,7 +65,7 @@ export const ScrollToTop = () => {
   return (
     <StyledButton
       $visible={isVisible}
-      aria-label="Scroll to top"
+      title="Scroll to top"
       onClick={handleClick}
       tabIndex={isVisible ? 0 : -1}
     >

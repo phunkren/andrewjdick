@@ -17,7 +17,7 @@ export const FadeThrough = ({ children }) => {
           <Transition
             native
             items={mount}
-            from={mount && { s: 0.95 }}
+            from={mount && { s: 0.99 }}
             enter={mount && { s: 1 }}
             leave={!mount && { o: 0 }}
             config={{
@@ -138,7 +138,7 @@ export const BlogTrail = ({ items, children }) => {
 export const DrawerSpring = Keyframes.Spring({
   open: {
     config: {
-      duration: 300,
+      duration: 0,
       delay: 0,
       easing: easeOut,
     },

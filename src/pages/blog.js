@@ -9,7 +9,8 @@ import { Text } from '../components/Text';
 import { Link } from '../components/Link';
 import { MEDIA, BREAKPOINTS } from '../styles/media';
 import { convertPxToRem } from '../utils/unitConversion';
-import { FadeIn, BlogTrail } from '../components/Animation';
+import { BlogTrail } from '../components/Animation';
+import { Hero } from '../components/Hero';
 
 const Main = styled.main`
   flex: 1;
@@ -49,27 +50,19 @@ const List = styled(animated.ul)`
   `}
 `;
 
-const ReadMore = styled(Text)`
-  align-self: flex-start;
-  display: flex;
-  align-items: center;
-  width: fit-content;
-  font-weight: 600;
-
-  svg {
-    will-change: transform;
-    transition: transform 0.2s ease-out;
-  }
-`;
-
-const Preview = styled.article(
+const ReadMore = styled(Text)(
   ({ theme }) => css`
+    align-self: flex-start;
     display: flex;
-    flex-flow: column;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
-    border-radius: 4px;
-    background-color: ${theme.overlay10};
-    color: ${theme.cardColor};
+    align-items: center;
+    width: fit-content;
+    font-weight: 600;
+    color: ${theme.linkColor};
+
+    svg {
+      will-change: transform;
+      transition: transform 0.2s ease-out;
+    }
   `,
 );
 
@@ -82,32 +75,70 @@ const Title = styled(Text)(
   `,
 );
 
+const Preview = styled.article(
+  ({ theme }) => css`
+    display: flex;
+    flex-flow: column;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+    border-radius: 4px;
+    background-color: ${theme.overlay10};
+    color: ${theme.cardColor};
+    transition: transform 0.2s ease-out;
+
+    &:active {
+      transform: scale(0.99);
+    }
+
+    ${MEDIA.desktop`      
+      &:hover {
+        ${Title} {
+          color: ${theme.navLinkColor};
+        }
+      }
+    
+      &:active {
+        transform: none;
+      }
+    `};
+  `,
+);
+
 const PreviewLink = styled(Link)(
   ({ theme }) => css`
     padding: var(--spacing-huge) var(--spacing-medium);
+    color: ${theme.copyColor};
 
     &:hover {
-      color: inherit;
+      color: ${theme.copyColor};
+    }
 
-      ${ReadMore} {
-        color: ${theme.hoverColor};
-        padding-right: var(--spacing-small);
-      }
+    &:active {
+      color: inherit;
 
       svg {
         transform: translate3d(var(--spacing-small), 0, 0);
       }
     }
 
-    &:active {
-      ${ReadMore} {
-        color: ${theme.activeColor};
-      }
-    }
-
     ${MEDIA.tablet`
       padding: var(--spacing-huge);
     `}
+
+    ${MEDIA.desktop`
+      @media (hover: hover) {
+        &:hover {
+          color: inherit;
+
+          ${ReadMore} {
+            padding-right: var(--spacing-small);
+          }
+
+          svg {
+            transform: translate3d(var(--spacing-small), 0, 0);
+          }
+        }
+      }
+    `};
   `,
 );
 
@@ -180,17 +211,14 @@ export default function Blog({ data, location: { pathname } }) {
         title="Blog"
         description="Personal contributions to modern frontend web development"
       />
+
+      <Hero />
+
       <Wrapper>
         <Main>
-          <FadeIn>
-            {({ o }) => (
-              <animated.div style={{ opacity: o.interpolate(o => o) }}>
-                <StyledTitle as="h1" size="4xl" id="blog">
-                  Blog
-                </StyledTitle>
-              </animated.div>
-            )}
-          </FadeIn>
+          <StyledTitle as="h1" size="4xl" id="blog">
+            Blog
+          </StyledTitle>
           <List>
             <BlogTrail items={posts}>
               {(item, { s }) => (
