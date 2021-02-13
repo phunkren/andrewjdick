@@ -11,6 +11,7 @@ export const SEO = ({
   published,
   canonical,
   article,
+  ...props
 }) => {
   const {
     site: {
@@ -46,7 +47,7 @@ export const SEO = ({
   const microCardUrl = generateMicroCardUrl(seo.microCard);
 
   return (
-    <Helmet title={seo.title}>
+    <Helmet title={seo.title} {...props}>
       <html lang="en" amp />
 
       <meta name="title" content={seo.title} />

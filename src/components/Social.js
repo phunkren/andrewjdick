@@ -6,8 +6,10 @@ import {
   TwitterLogoIcon,
   NotionLogoIcon,
 } from '@radix-ui/react-icons';
+import { TwitchIcon } from './icons/TwitchIcon';
 import { RssIcon } from './icons/RssIcon';
 import { ExternalLink } from './Link';
+import { MEDIA } from '../styles/media';
 
 const SocialLinks = styled.nav`
   display: flex;
@@ -20,30 +22,20 @@ const SocialLink = styled(ExternalLink)`
   &:not(:first-child) {
     margin-left: var(--spacing-small);
   }
+
+  ${MEDIA.tablet`
+    &:not(:first-child) {
+      margin-left: var(--spacing-medium);
+    }
+  `}
 `;
 
 export const Social = styled(({ size, ...props }) => {
   const data = useStaticQuery(query);
-  const { github, notion, twitter, rss } = data.socialJson.social;
+  const { github, notion, twitter, twitch, rss } = data.socialJson.social;
 
   return (
     <SocialLinks {...props}>
-      <SocialLink
-        href={github.url}
-        aria-label={github.label}
-        title={github.label}
-      >
-        <GitHubLogoIcon role="img" title="GitHub" width={size} height={size} />
-      </SocialLink>
-
-      <SocialLink
-        href={notion.url}
-        aria-label={notion.label}
-        title={notion.label}
-      >
-        <NotionLogoIcon width={size} height={size} />
-      </SocialLink>
-
       <SocialLink
         href={twitter.url}
         aria-label={twitter.label}
@@ -55,6 +47,30 @@ export const Social = styled(({ size, ...props }) => {
           width={size}
           height={size}
         />
+      </SocialLink>
+
+      <SocialLink
+        href={github.url}
+        aria-label={github.label}
+        title={github.label}
+      >
+        <GitHubLogoIcon role="img" title="GitHub" width={size} height={size} />
+      </SocialLink>
+
+      <SocialLink
+        href={twitch.url}
+        aria-label={twitch.label}
+        title={twitch.label}
+      >
+        <TwitchIcon role="img" title="Twitch" width="1.7rem" height="1.7rem" />
+      </SocialLink>
+
+      <SocialLink
+        href={notion.url}
+        aria-label={notion.label}
+        title={notion.label}
+      >
+        <NotionLogoIcon width={size} height={size} />
       </SocialLink>
 
       <SocialLink
@@ -74,6 +90,11 @@ const query = graphql`
     socialJson {
       social {
         github {
+          handle
+          label
+          url
+        }
+        twitch {
           handle
           label
           url

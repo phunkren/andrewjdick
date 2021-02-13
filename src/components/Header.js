@@ -102,11 +102,11 @@ export const Header = ({ variant }) => {
                   `}
 
                 &:hover {
-                  border-color: var(--color-blue-400);
+                  border-color: var(--color-blue-600);
                 }
 
                 &:active {
-                  border-color: var(--color-orange-400);
+                  border-color: var(--color-blue-700);
                 }
               `}
             />

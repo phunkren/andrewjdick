@@ -38,7 +38,7 @@ export const IconButton = styled(props => <button type="button" {...props} />)(
     }
 
     &:active {
-      color: var(--color-orange-400);
+      color: var(--color-blue-700);
       transform: scale(0.9);
       transition: transform 0.2s ease-out;
     }

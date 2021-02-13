@@ -10,6 +10,7 @@ import { convertPxToRem } from '../utils/unitConversion';
 import { encode } from '../utils/encode';
 import { FadeIn, FadeThrough } from '../components/Animation';
 import { CheckCircledIcon } from '@radix-ui/react-icons';
+import { Hero } from '../components/Hero';
 
 const Main = styled.main`
   flex: 1;
@@ -70,7 +71,7 @@ const Button = styled.button`
   }
 
   &:active {
-    background-color: var(--color-orange-400);
+    background-color: var(--color-blue-700);
   }
 
   ${MEDIA.tablet`
@@ -168,17 +169,15 @@ export default function Contact({ location }) {
         title="Contact"
         description="Get in touch with me"
       />
+
+      <Hero />
+
       <Wrapper>
         <Main>
-          <FadeIn>
-            {({ o }) => (
-              <animated.div style={{ opacity: o.interpolate(o => o) }}>
-                <Title as="h1" size="4xl" id="contact">
-                  Contact
-                </Title>
-              </animated.div>
-            )}
-          </FadeIn>
+          <Title as="h1" size="4xl" id="contact">
+            Contact
+          </Title>
+
           <FadeThrough>
             {({ s, o }) => (
               <Form

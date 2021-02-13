@@ -8,6 +8,7 @@ import { linkStyles } from '../components/Link';
 import { SIZES } from '../components/Text';
 import { convertPxToRem } from '../utils/unitConversion';
 import { FadeIn } from '../components/Animation';
+import { Hero } from '../components/Hero';
 import { animated } from 'react-spring/renderprops';
 
 const Wrapper = styled.div`
@@ -42,7 +43,7 @@ const Main = styled.main`
 
 const Title = styled(Text)`
   position: absolute;
-  top: 125px;
+  top: 204px;
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
@@ -204,6 +205,11 @@ function BlogTemplate({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, fields, html } = markdownRemark;
 
+  const customHero = {
+    image: data?.markdownRemark?.frontmatter?.image,
+    alt: data?.markdownRemark?.frontmatter?.imageAlt,
+  };
+
   useEffect(() => {
     const codeBlocks = document.getElementsByTagName('pre');
 
@@ -222,6 +228,8 @@ function BlogTemplate({ data }) {
         published={frontmatter.date}
         article
       />
+
+      <Hero variant="post" customHero={customHero} />
 
       <Wrapper>
         <Main>
