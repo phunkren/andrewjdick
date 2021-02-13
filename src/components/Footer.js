@@ -11,10 +11,9 @@ const Inner = styled.div(() => [
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    padding: var(--spacing-huge) var(--spacing-medium);
     max-width: ${convertPxToRem(BREAKPOINTS.desktopUltraWide)};
     color: inherit;
-    padding: var(--spacing-massive) var(--spacing-medium) var(--spacing-medium);
+    padding: var(--spacing-massive) var(--spacing-medium) var(--spacing-large);
     ${fadeInAnimation};
   `,
 ]);
@@ -31,7 +30,7 @@ const Outer = styled.footer`
 export const Footer = props => (
   <Outer {...props}>
     <Inner>
-      <Social size="1.75rem" />
+      <Social size="2rem" />
     </Inner>
   </Outer>
 );
