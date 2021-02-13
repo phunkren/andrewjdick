@@ -187,7 +187,7 @@ const Div = styled.div`
 const ScrollContainer = styled.aside`
   position: fixed;
   display: block;
-  top: var(--spacing-giant);
+  bottom: var(--spacing-giant);
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;

@@ -4,19 +4,24 @@ import { ThickArrowUpIcon } from '@radix-ui/react-icons';
 import { useSpring } from 'react-spring';
 import styled, { css } from 'styled-components';
 import { IconButton } from './Button';
+import { MEDIA } from '../styles/media';
 
 const StyledButton = styled(IconButton)(({ theme, $visible }) => [
   css`
     background: ${theme.overlay15};
     color: ${theme.copyColor};
     border: 2px solid;
-    border-color: var(--color-charcoal);
+    border-color: var(--color-orange-600);
     border-radius: 50%;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
     will-change: transform;
     pointer-events: none;
     transition: transform 0.2s ease-in, border 0.2s ease-out;
-    transform: translate3d(0, -100px, 0);
+    transform: translate3d(0, 100px, 0);
+
+    ${MEDIA.print`
+      display: none;
+    `}
   `,
   $visible &&
     css`
