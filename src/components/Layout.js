@@ -193,11 +193,15 @@ const Div = styled.div`
 const ScrollContainer = styled.aside`
   position: fixed;
   display: block;
-  bottom: 4.5rem;
+  bottom: 4.25rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
   pointer-events: none;
+
+  ${MEDIA.tablet`
+      bottom: 5rem;
+  `}
 `;
 
 export const Layout = styled(({ children }) => (

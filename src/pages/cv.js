@@ -212,7 +212,7 @@ const BlockHeader = styled(props => <Text as="h2" size="l" {...props} />)(
 const BlockSubheader = styled(Text)(
   ({ theme }) => css`
     color: ${theme.cvSubheaderColor};
-    margin-bottom: var(--spacing-small);
+    margin-bottom: var(--spacing-tiny);
 
     ${MEDIA.print`
       color: var(--color-black);
@@ -224,6 +224,10 @@ const Description = styled.div`
   ${Text} {
     margin-top: var(--spacing-large);
     padding-bottom: 0;
+  }
+
+  ${Text}:first-child {
+    margin-top: var(--spacing-medium);
   }
 
   ul {
