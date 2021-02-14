@@ -138,7 +138,7 @@ export const BlogTrail = ({ items, children }) => {
 export const DrawerSpring = Keyframes.Spring({
   open: {
     config: {
-      duration: 0,
+      duration: 300,
       delay: 0,
       easing: easeOut,
     },
