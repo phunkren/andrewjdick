@@ -45,7 +45,7 @@ export const ScrollToTop = () => {
   function handleClick() {
     if (_window) {
       setY({
-        y: 0,
+        y: -1,
         reset: true,
         from: { y: _window?.scrollY },
         onFrame: props => _window?.scroll(0, props.y),
