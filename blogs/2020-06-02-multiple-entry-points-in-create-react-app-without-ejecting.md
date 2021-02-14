@@ -107,39 +107,35 @@ Due to the nature of tree shaking, all of the imported containers in the applica
 require(process.env.REACT_APP_BUILD_TARGET === 'test' ? './test' : './app');
 ```
 
-This works. However, adding multiple entry points would quickly make the conditional logic unwieldy. It also means that setting the environment variable to anything other than `test` will render the main application.
+This works, but setting the environment variable to anything other than test will import the main application. We can fix this with an `if/else` statement, and further refine the solution with ES6 [dynamic imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports). 
 
-We refined this by refactoring the current solution to utilize [ES6 dynamic imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#Dynamic_Imports). We define a collection of build targets, [find](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find) the desired target based on our environment variable, and render the target’s default export whenever the imported container’s promise is resolved. 💥
+The `importBuildTarget()` function below will return a promise for each entry point, and a fallback error in the event that the specified build target is not found. Once the import promise has resolved it will render the requested build target with none of the other entry point files in the bundled build. 💥
 
 ```jsx
 /* index.js */
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-const BUILD_TARGETS = [
-  {
-    name: 'app',
-    path: './app',
-  },
-  {
-    name: 'test',
-    path: './test',
-  },
-];
-
-// Determine which entry point to import
-const { path } = BUILD_TARGETS.find(
-  ({ name }) => process.env.REACT_APP_BUILD_TARGET === name,
-);
+function importBuildTarget() {
+  if (process.env.REACT_APP_BUILD_TARGET === "app") {
+    return import("./app.js");
+  } else if (process.env.REACT_APP_BUILD_TARGET === "test") {
+    return import("./test.js");
+  } else {
+    return Promise.reject(
+      new Error("No such build target: " + process.env.REACT_APP_BUILD_TARGET)
+    );
+  }
+}
 
 // Import the entry point and render it's default export
-import(`${path}`).then(({ default: BuildTarget }) =>
+importBuildTarget().then(({ default: Environment }) =>
   ReactDOM.render(
     <React.StrictMode>
-      <BuildTarget />
+      <Environment />
     </React.StrictMode>,
-    document.getElementById('root'),
-  ),
+    document.getElementById("root")
+  )
 );
 ```
 
@@ -153,6 +149,6 @@ You can create multiple entry points in a CRA application without ejecting by us
 - [Netlify (App)](https://multiple-entry-points-app.netlify.app)
 - [Netlify (Test)](https://multiple-entry-points-test.netlify.app)
 
-Special thanks to [Stephen Taylor](https://twitter.com/meandmycode) and [Robin Weston](https://twitter.com/robinweston) for their valuable input.
+Special thanks to [Stephen Taylor](https://twitter.com/meandmycode) and [Robin Weston](https://twitter.com/robinweston) for their valuable input, and to [Jonathan Hawkes](https://twitter.com/jonathanhawkes) for his solution to all build target files appearing in the bundle.
 
 Like the article? [Let me know on Twitter](https://twitter.com/phunkren) 🐦
