@@ -169,7 +169,8 @@ const Styles = createGlobalStyle(
       position: static;
     }
 
-    .homepage ul li a {
+    .homepage ul li a,
+    .homepage button {
       color: ${({ theme }) => theme.homepageLinkColor};
     }
 
