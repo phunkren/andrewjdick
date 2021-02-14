@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import lightBulb from '../assets/images/lightBulb.png';
 import { fadeInAnimation } from '../styles/animation';
 import Img from 'gatsby-image';
+import { MEDIA } from '../styles/media';
 
 const Lightbulbs = styled.div`
   position: absolute;
@@ -17,6 +18,10 @@ const Lightbulbs = styled.div`
   width: 100%;
   height: 100%;
   z-index: -1;
+
+  ${MEDIA.desktop`
+    background-size: auto;
+  `}
 `;
 
 const BlogHero = styled(Img)`
