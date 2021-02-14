@@ -6,7 +6,10 @@
       "url": "https://www.rockstarnorth.com/",
       "dates": "Nov 20 - Present",
       "location": "Edinburgh, UK",
-      "blurb": "As a frontend engineer I collaborate with other Rockstar technology teams across their worldwide studios to develop front-end features and applications for Rockstar's online services."
+      "blurb": "As a frontend engineer I collaborate with other Rockstar technology teams across their worldwide studios to develop front-end features and applications for Rockstar's online services.",
+      "portfolio": [
+        { "name": "Social Club", "href": "https://socialclub.rockstargames.com/" }
+      ]
     },
     {
       "position": "Senior engineer",
