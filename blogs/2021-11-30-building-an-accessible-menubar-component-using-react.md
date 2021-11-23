@@ -152,16 +152,16 @@ The `MenubarContext` will store a [Set](https://developer.mozilla.org/en-US/docs
 ```jsx
 function Menubar({ children, ...props }) {
   const menuItems = React.useRef(new Set()).current;
-	const value = React.useMemo(() => ({ menuItems }), [menuItems]);
-	const listProps = { ... };
+  const value = React.useMemo(() => ({ menuItems }), [menuItems]);
+  const listProps = { ... };
 
   return (
-		<MenubarContext.Provider value={value}>
-				<ul {...listProps}>
-						{children}
-				</ul>
-		</MenubarContext.Provider>
-	);
+    <MenubarContext.Provider value={value}>
+      <ul {...listProps}>
+        {children}
+      </ul>
+    </MenubarContext.Provider>
+  );
 };
 ```
 
@@ -203,8 +203,8 @@ React.useEffect(() => {
 
 return (
     <li {...listItemProps}>
-				{React.cloneElement(children, childProps)}
-		</li>
+      {React.cloneElement(children, childProps)}
+    </li>
 );
 ```
 
@@ -275,25 +275,25 @@ const childProps = {
 };
 
 React.useEffect(() => {
-	  const menuItemNode = menuItemRef.current;
+    const menuItemNode = menuItemRef.current;
 
-		if (menuItemNode) {
-		    if (!menuItems.size) {
-			      setIsFirstChild(true);
-		    }
+    if (menuItemNode) {
+      if (!menuItems.size) {
+        setIsFirstChild(true);
+      }
 
-		    menuItems.add(menuItemNode);
-		}
+      menuItems.add(menuItemNode);
+    }
 
-	  return () => {
-		    menuItems.delete(menuItemNode);
-	  };
+    return () => {
+      menuItems.delete(menuItemNode);
+    };
 }, [menuItems]);
 
 return (
-		<li {...listItemProps}>
-				{React.cloneElement(children, childProps)}
-		</li>;
+    <li {...listItemProps}>
+      {React.cloneElement(children, childProps)}
+    </li>;
 );
 ```
 
@@ -507,7 +507,7 @@ The purpose of the `Submenu` parent component is to hold the compound component 
 const submenuInitialState = {
   currentIndex: null,
   previousIndex: null,
-	isExpanded: false,
+  isExpanded: false,
 };
 
 function submenuReducer(state, action) {
@@ -535,8 +535,8 @@ const Submenu = ({ children }) =>
 
   return (
     <SubmenuContext.Provider value={value}>
-			{children}
-		</SubmenuContext.Provider>
+      {children}
+    </SubmenuContext.Provider>
   );
 };
 ```
@@ -551,7 +551,7 @@ const close = React.useCallback(() => dispatch({ type: "collapse" }), []);
 const first = React.useCallback() => dispatch({ type: "move", index: 0 }), []);
 
 const last = React.useCallback(() => (
-		dispatch({ type: "move", index: menuItems.size - 1 }), [menuItems.size]
+    dispatch({ type: "move", index: menuItems.size - 1 }), [menuItems.size]
 ));
 
 const move = React.useCallback((index) => dispatch({ type: "move", index }), []);
@@ -562,8 +562,8 @@ const value = React.useMemo(() => ({ open, close, first, last, move }),
 
 return (
     <SubmenuContext.Provider value={value}>
-			{children}
-		</SubmenuContext.Provider>
+      {children}
+    </SubmenuContext.Provider>
 );
 ```
 
@@ -605,8 +605,8 @@ const [isFirstChild, setIsFirstChild] = React.useState(false);
 const submenuContext = React.useContext(SubmenuContext);
 
 const childProps = {
-		[ ... ],
-	  tabIndex: !submenuContext && isFirstChild ? "0" : "-1",
+    [ ... ],
+    tabIndex: !submenuContext && isFirstChild ? "0" : "-1",
 };
 ```
 
@@ -684,11 +684,11 @@ const keyDown = (e) => {
 };
 
 const buttonProps = {
-	  [ ... ],
-	  onKeyDown: (e) => {
-	    onKeyDown?.(e);
-	    keyDown(e);
-	  },
+    [ ... ],
+    onKeyDown: (e) => {
+      onKeyDown?.(e);
+        keyDown(e);
+    },
 };
 ```
 
@@ -698,16 +698,16 @@ The `Trigger` achieves this by checking to see if the event originated from a su
 
 ```jsx
 const buttonProps = {
-		[ ... ],
-		onFocus: (e) => {
-			  const isFromSubmenu = e.relatedTarget?.getAttribute(
-					"data-menubar-submenu-menuitem"
-				) === "";
+    [ ... ],
+    onFocus: (e) => {
+      const isFromSubmenu = e.relatedTarget?.getAttribute(
+        "data-menubar-submenu-menuitem"
+      ) === "";
 
-			  if (isFromSubmenu) {
-			    open();
-			  }
-		}
+      if (isFromSubmenu) {
+        open();
+      }
+    }
 };
 ```
 
@@ -748,60 +748,60 @@ Now let's add some `keydown` events specific to the `List` component. We'll retr
 const { close, first, last, move } = submenuContext;
 
 const keyDown = (e) => {
-	  switch (e.code) {
-		    case "ArrowUp":
-			      e.stopPropagation();
-			      e.preventDefault();
-			      previous();
-			      break;
-		    case "ArrowDown":
-			      e.stopPropagation();
-			      e.preventDefault();
-			      next();
-			      break;
-		    case "ArrowLeft":
-			      e.preventDefault();
-			      close();
-			      break;
-		    case "ArrowRight":
-			      e.preventDefault();
-			      close();
-			      break;
-		    case "Home":
-			      e.stopPropagation();
-			      e.preventDefault();
-			      first();
-			      break;
-		    case "End":
-			      e.stopPropagation();
-			      e.preventDefault();
-			      last();
-			      break;
-		    case "Enter":
-		    case "Space":
-			      close();
-			      break;
-		    case "Escape":
-			      e.stopPropagation();
-			      e.preventDefault();
-			      close();
-			      break;
-		    case "Tab":
-			      close();
-			      break;
-		    default:
-			      e.stopPropagation();
-			      match(e);
-			      break;
+    switch (e.code) {
+        case "ArrowUp":
+          e.stopPropagation();
+          e.preventDefault();
+          previous();
+          break;
+      case "ArrowDown":
+          e.stopPropagation();
+          e.preventDefault();
+          next();
+          break;
+      case "ArrowLeft":
+          e.preventDefault();
+          close();
+          break;
+      case "ArrowRight":
+          e.preventDefault();
+          close();
+          break;
+      case "Home":
+          e.stopPropagation();
+          e.preventDefault();
+          first();
+          break;
+      case "End":
+          e.stopPropagation();
+          e.preventDefault();
+          last();
+          break;
+      case "Enter":
+      case "Space":
+          close();
+          break;
+      case "Escape":
+          e.stopPropagation();
+          e.preventDefault();
+          close();
+          break;
+      case "Tab":
+          close();
+          break;
+      default:
+          e.stopPropagation();
+          match(e);
+          break;
 	  }
 };
 
 const listProps = {
-	  [ ... ],
-		onKeyDown: (e) => {
-		    e.preventDefault();
-		    keyDown(e);
-	  },
+    [ ... ],
+    onKeyDown: (e) => {
+      e.preventDefault();
+        keyDown(e);
+    },
 };
 ```
 
