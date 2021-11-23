@@ -1,5 +1,4 @@
 import React from 'react';
-import { isMobile, isIE } from 'react-device-detect';
 import { animated } from 'react-spring/renderprops';
 import { graphql } from 'gatsby';
 import styled, { css } from 'styled-components';
@@ -400,9 +399,9 @@ export default function CV({ data, location: { pathname } }) {
   const { author, siteUrl } = data.site.siteMetadata;
   const currentPosition = experience[0].position;
   const siteDisplayUrl = siteUrl.split('https://')[1];
-  const expertise = ['html', 'css/scss', 'javascript', 'react'];
-  const interests = ['design systems', 'a11y', 'graphQL', 'JAMstack'];
-  const hobbies = ['cycling', 'guitar', 'gaming', 'writing'];
+  const expertise = ['html', 'css/css-in-js', 'javascript', 'react'];
+  const interests = ['design systems', 'a11y', 'typescript', 'storybook'];
+  const hobbies = ['writing', 'streaming', 'cycling', 'guitar'];
 
   function handleCvPrint() {
     trackCustomEvent({

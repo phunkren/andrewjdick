@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { graphql } from 'gatsby';
-import Div100vh from 'react-div-100vh';
 import { ExternalLink } from '../components/Link';
 import { Text } from '../components/Text';
 import { SEO } from '../components/SEO';
