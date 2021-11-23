@@ -978,7 +978,7 @@ Now all that's left is to add extra logic for mouse pointer events, nested subme
 
 Unfortunately, we'll consider these features out of scope for this article. I can always write a follow-up post if there's enough demand for it. In the meantime, I've included all the extra logic and the unit tests in the [Code Sandbox demo](https://codesandbox.io/s/a11y-menubar-ej7kh?file=/src/App.js) at the top of the page.
 
-- Special thanks to [Jenna Smith](https://twitter.com/jjenzz) for her invaluable contributions to the initial API design.
+\* Special thanks to [Jenna Smith](https://twitter.com/jjenzz) for her invaluable contributions to the initial API design.
 
 Feel free to reach out if you have any questions or feedback.
 
